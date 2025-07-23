@@ -39,10 +39,14 @@ if (isset($_GET['update-student-info'])) {
                             <label for="email">Email:</label>
                             <input type="email" name="email" id="email">
                      </div>
-                     <div>
+                     <div class="col-span-2">
                             <label for="address">Address:</label>
                             <input type="text" name="address" id="address">
                      </div>
+                     <div>
+                            <label for="parent-name">Parent Name:</label>
+                            <input type="number" name="parent-name" id="parent-name">
+                     </div>    
                      <div>
                             <label for="parent-phone">Parent Phone:</label>
                             <input type="number" name="parent-phone" id="parent-phone">
@@ -164,6 +168,7 @@ if (isset($_GET['update-student-info'])) {
                             <p class="center"><a href="?update-student-info" class="update-btn">update Info</a>
                                    <a href="?update-student-password" class="update-btn">update Password</a>
                             </p>
+
                      </div>
               </div>
        </div>

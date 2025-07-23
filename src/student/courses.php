@@ -71,6 +71,7 @@
 ?>
        <div class="main center-fdct">
               <h1 class="heading">X semester, View Courses</h1>
+              <div class="box-expan-normal">
               <table>
                      <thead>
                             <tr>
@@ -122,6 +123,7 @@
                             </tr>
                      </tbody>
               </table>
+              </div>
        </div>
 
 
@@ -154,31 +156,33 @@
 ?>              
               <div class="main center-fdct">
                      <h1 class="heading">Semester X, View Course Schedule</h1>
-                     <table class="edit-table">
-                            <thead>
-                                   <tr>
-                                          <th>Cid</th>
-                                          <th>Course Title</th>
-                                          <th>Tid</th>
-                                         <th>Teacher Name</th>
-                                          <th>From</th>
-                                          <th>To</th>
-                                   </tr>
-                            </thead>
-                            <tbody>
-                                   <tr>
-                                          <td class="tac">CSIT-101</td>
-                                          <td>Data Structures and Algorithm</td>
-                                          <td class="tac">1001</td>
-                                          <td>
-                                                 Bishal Bhat
-                                                 <a href="?view-teacher-tid" class="teacher-info-link">&#8599;</a>
-                                          </td>
-                                          <td> X:00 AM</td>
-                                          <td> Y:00 AM</td>
-                                   </tr>
-                            </tbody>
-                     </table>
+                     <div class="box-expan-normal">
+                            <table class="edit-table">
+                                   <thead>
+                                          <tr>
+                                                 <th>Cid</th>
+                                                 <th>Course Title</th>
+                                                 <th>Tid</th>
+                                                 <th>Teacher Name</th>
+                                                 <th>From</th>
+                                                 <th>To</th>
+                                          </tr>
+                                   </thead>
+                                   <tbody>
+                                          <tr>
+                                                 <td class="tac">CSIT-101</td>
+                                                 <td>Data Structures and Algorithm</td>
+                                                 <td class="tac">1001</td>
+                                                 <td>
+                                                        Bishal Bhat
+                                                        <a href="?view-teacher-tid" class="teacher-info-link">&#8599;</a>
+                                                 </td>
+                                                 <td> X:00 AM</td>
+                                                 <td> Y:00 AM</td>
+                                          </tr>
+                                   </tbody>
+                            </table>
+                     </div>
               </div>
 
 <!-- Code To display Default Options... -->

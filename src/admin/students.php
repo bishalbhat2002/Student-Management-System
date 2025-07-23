@@ -12,43 +12,53 @@
                                    <label for="regd-no">Registration No:</label>
                                    <input type="text" name="regd-no" id="regd-no">
                             </div>
+                            
                             <div>
                                    <label for="name">Name:</label>
                                    <input type="text" name="name" id="name">
                             </div>
+
                             <div>
                                    <label for="faculty">Faculty:</label>
                                    <input type="text" name="faculty" id="faculty">
                             </div> 
+
                             <div class="gender">
                                    <label for="gender">Gender:</label><br>
                                    <input type="radio" name="gender" value="male">Male
                                    <input type="radio" name="gender" value="female">Female
-                            </div> 
+                            </div>
+
                             <div>
                                    <label for="phone">Phone:</label>
                                    <input type="number" name="phone" id="phone">
                             </div>
+
                             <div>
                                    <label for="email">Email:</label>
                                    <input type="email" name="email" id="email">
-                            </div>                      
+                            </div>  
+
                             <div>
                                    <label for="dob">DOB:</label>
                                    <input type="date" name="dob" id="dob">
                             </div>      
              
-
                             <div>
                                    <label for="address">Address:</label>
                                    <input type="text" name="address" id="address">
                             </div> 
-                               
+                            
+                            <div>
+                                   <label for="parent-name">Parent Name:</label>
+                                   <input type="number" name="parent-name" id="parent-name">
+                            </div>                                
+
                             <div>
                                    <label for="parent-phone">Parent Phone:</label>
                                    <input type="number" name="parent-phone" id="parent-phone">
-                            </div>                                
-
+                            </div>   
+                     
                             <div> 
                                    <label for="photo">Upload Photo:</label>
                                    <input type="file" name="photo" id="photo">
@@ -233,6 +243,10 @@
                                    <input type="text" name="address" id="address">
                             </div> 
                             <div>
+                                   <label for="parent-name">Parent Name:</label>
+                                   <input type="number" name="parent-name" id="parent-name">
+                            </div>    
+                            <div>
                                    <label for="parent-phone">Parent Phone:</label>
                                    <input type="number" name="parent-phone" id="parent-phone">
                             </div>                                
@@ -281,7 +295,11 @@
                            
                             <div class="col-span-2 center mb-2">
                                    <img src="../../assets/images/image.jpg" alt="Photo" class="image small-image">
-                            </div>       
+                            </div>
+                            <div>
+                                   <label for="regd-no">Registration No:</label>
+                                   <input type="text" name="regd-no" id="regd-no" readonly>
+                            </div>      
                             <div>
                                    <label for="name">Name:</label>
                                    <input type="text" name="name" id="name">
@@ -310,7 +328,11 @@
                             <div>
                                    <label for="address">Address:</label>
                                    <input type="text" name="address" id="address">
-                            </div>         
+                            </div> 
+                            <div>
+                                   <label for="parent-name">Parent Name:</label>
+                                   <input type="number" name="parent-name" id="parent-name">
+                            </div>            
                             <div>
                                    <label for="parent-phone">Parent Phone:</label>
                                    <input type="number" name="parent-phone" id="parent-phone">
@@ -337,15 +359,13 @@
                             </div>
 
                             <div class="col-span-2 center">
-                                   <button class="save-btn btn large mt-1">Save Changes</button>
+                                   <a href="?view-student-regd-no" class="save-btn btn large mt-1">Save Changes</a>
                             </div>
                             
 
                      </form>
 
               </div>
-
-
 
 
 <!-- Code for entering Student Registration Number for Adding Admission -->

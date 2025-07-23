@@ -80,11 +80,7 @@
                                                  <td>Dodhara Chandani Mp-3, Kanchanpur Nepal</td>
                                                  <td>
                                                         <a href="?view-Teacher-id" class="view-btn">View</a>
-<<<<<<< HEAD
                                                         <a href="?edit-teacher-id" class="edit-btn">Edit</a>
-=======
-                                                        <a href="?edit-Teacher-id" class="edit-btn">Edit</a>
->>>>>>> b3f5f87acc16104466d1bde0405f7c746e780acb
                                                         <a href="?delete-teacher-id" class="delete-btn">Delete</a>
                                                  </td>
                                           </tr>
@@ -96,11 +92,7 @@
                                                  <td>Dodhara Chandani Mp-3, Kanchanpur Nepal</td>
                                                  <td>
                                                         <a href="?view-Teacher-id" class="view-btn">View</a>
-<<<<<<< HEAD
                                                         <a href="?edit-teacher-id" class="edit-btn">Edit</a>
-=======
-                                                        <a href="?edit-Teacher-id" class="edit-btn">Edit</a>
->>>>>>> b3f5f87acc16104466d1bde0405f7c746e780acb
                                                         <a href="?delete-teacher-id" class="delete-btn">Delete</a>
                                                  </td>
                                           </tr>                                          
@@ -111,11 +103,7 @@
                                                  <td>Dodhara Chandani Mp-3, Kanchanpur Nepal</td>
                                                  <td>
                                                         <a href="?view-Teacher-id" class="view-btn">View</a>
-<<<<<<< HEAD
                                                         <a href="?edit-teacher-id" class="edit-btn">Edit</a>
-=======
-                                                        <a href="?edit-Teacher-id" class="edit-btn">Edit</a>
->>>>>>> b3f5f87acc16104466d1bde0405f7c746e780acb
                                                         <a href="?delete-teacher-id" class="delete-btn">Delete</a>
                                                  </td>
                                           </tr>                                          
@@ -126,11 +114,7 @@
                                                  <td>Dodhara Chandani Mp-3, Kanchanpur Nepal</td>
                                                  <td>
                                                         <a href="?view-Teacher-id" class="view-btn">View</a>
-<<<<<<< HEAD
                                                         <a href="?edit-teacher-id" class="edit-btn">Edit</a>
-=======
-                                                        <a href="?edit-Teacher-id" class="edit-btn">Edit</a>
->>>>>>> b3f5f87acc16104466d1bde0405f7c746e780acb
                                                         <a href="?delete-teacher-id" class="delete-btn">Delete</a>
                                                  </td>
                                           </tr>                                          
