@@ -1,0 +1,208 @@
+:root {
+  font-size: 62.5%;
+
+  /* Background Colors */
+  --bgcolor-primary-100: #292727;
+  --bgcolor-primary-80: #414141;
+  --bgcolor-primary-50: #aaaaaab3;
+  --bgcolor-form: #c4c4c4;
+
+  /* Text Colors */
+  --color-primary-100: #ffffff;
+  --color-primary-80: #cfcfcf;
+  --color-primary-50: #808080;
+
+  --color-secondary-100: #242424;
+  --color-secondary-80: #404040;
+  --color-secondary-50: #535353cd;
+
+  /* Button colors */
+  --color-success: rgb(19, 198, 19);
+  --color-danger: rgb(255, 85, 0);
+  --color-login: rgb(17, 116, 255);
+  --color-login-hover: rgb(38, 127, 252);
+  --color-focus: rgb(61, 90, 255);
+  --shadow: 0.1rem 0.1rem 1.5rem 0 var(--color-secondary-100);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Roboto, sans-serif, system-ui, "Segoe UI";
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10rem;
+  background-color: var(--bgcolor-primary-80);
+  nav {
+    height: 8rem;
+    background-color: var(--bgcolor-primary-100);
+    width: 100%;
+    display: grid;
+    place-content: center;
+    box-shadow: var(--shadow);
+    a {
+      color: var(--color-primary-100);
+      text-decoration: none;
+      font-size: 4rem;
+      font-weight: bolder;
+    }
+  }
+  form {
+    border: 0.1rem solid var(--color-primary-100);
+    width: min(40rem, 95vw);
+    /* height: 45rem; */
+    padding: 1.5rem;
+    padding-bottom: 2.5rem;
+    background-color: var(--bgcolor-form);
+    border-radius: 0.5rem;
+    box-shadow: var(--shadow);
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    gap: 2rem;
+
+    .login {
+      width: 100%;
+      padding-bottom: 0.4rem;
+      border-bottom: 0.15rem solid var(--color-secondary-50);
+      h1 {
+        font-size: 4rem;
+        font-weight: bold;
+        text-align: center;
+        color: var(--color-secondary-80);
+      }
+    }
+    label {
+      font-size: 2rem;
+      font-weight: 400;
+      color: var(--bgcolor-primary-100);
+    }
+    input,
+    select {
+      width: min(35rem, 90vw);
+      font-size: 2rem;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      border: none;
+      font-weight: 400;
+      margin-top: 0.3rem;
+      color: var(--bgcolor-primary-80);
+    }
+    select {
+      padding-left: 0.5rem;
+    }
+
+    input:focus,
+    select:focus {
+      border: none;
+      outline: 0.2rem solid var(--color-focus);
+    }
+
+    #login-btn {
+      display: inline-block;
+      font-size: 2rem;
+      width: min(15rem, 40vw);
+      color: var(--color-primary-100);
+      background-color: var(--color-login);
+      margin-top: 2rem;
+      padding: 0.67rem 1rem;
+      border-radius: 0.5rem;
+      border: 0.1rem solid var(--color-primary-80);
+      transition: all 200ms ease;
+    }
+    #login-btn:hover {
+      background-color: var(--color-login-hover);
+      transform: scale(1.05);
+    }
+    #login-btn:active {
+      transform: scale(0.99);
+    }
+  }
+}
+
+
+  /* Code for Message Showing */
+  .message {
+    font-size: 1.5rem;
+    padding: 1.3rem 1.5rem 0.7rem 1.5rem;
+    width: 40rem;
+    border-radius: 0.5rem 0.5rem 0.5rem 0;
+    position: fixed;
+    bottom: 2rem;         
+    right: 2rem;
+    color: var(--bgcolor-primary-100);
+    transition: all 2s ease-in;
+
+    p{
+      color: var(--color-secondary-80);
+    }
+  }
+
+  #error-message {
+    background-color: rgba(234, 140, 140, 0.873);
+  }
+
+  #success-message {
+    background-color: rgba(169, 251, 163, 0.668);
+  }
+
+  .message div #error-icon {
+    color: rgb(223, 38, 38);
+    font-size: 2rem;
+  }
+
+  .message div #success-icon {
+    color: rgb(2, 150, 39);
+    font-size: 2rem;
+  }
+
+  #error-message::before {
+    content: "";
+    height: 0.5rem;
+    width: 0.1rem;
+    border-radius: 0 0.5rem 0.5rem 0.5rem;
+    background-color: rgb(227, 69, 69);
+    position: absolute;
+    bottom: -0.3rem;
+    left: 0rem;
+    animation: width-grow 3s ease-in-out forwards;
+  }
+  #success-message::before {
+    content: "";
+    height: 0.5rem;
+    width: 0.1rem;
+    border-radius: 0 0.5rem 0.5rem 0.5rem;
+    background-color: rgb(2, 150, 39);
+    position: absolute;
+    bottom: -0.3rem;
+    left: 0rem;
+    animation: width-grow 3s ease-in-out forwards;
+  }
+
+  @keyframes width-grow {
+    from {
+      width: 0rem;
+    }
+    to {
+      width: 100%;
+    }
+  }
+
+  .flex {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .center {
+    display: grid;
+    place-content: center;
+  }

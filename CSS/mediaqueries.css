@@ -1,0 +1,325 @@
+
+@media (min-width: 1200px) {
+  :root {
+    font-size: 62.5%; /* Keep it the same for large screens */
+  }
+
+  #hambuger-icon{
+      display: none;
+  }
+  
+
+  .form-expan, .box-expan{
+    width: 89rem;
+    display: grid;
+    grid-template-columns: 41rem 41rem;
+    column-gap: 3rem;
+    div{
+      width: 41rem;
+    }
+
+    .btn-container{
+      grid-column: span 2;
+      width: 100%;
+    }
+    
+    .col-span-2{
+      grid-column: span 2;
+      width: 100%;
+      input{
+        width: 100%
+      }
+    }
+    .row-span-2{
+      grid-row: span-2;
+    }
+  }
+}
+
+/* Tablets (768px to 1199px) */
+@media (max-width: 1199px) and (min-width: 768px) {
+  :root {
+    font-size: 56.25%; /* 1rem = 9px */
+  }
+  #hambuger-icon{
+      display: none;
+  }
+  
+  nav {
+    width: 20rem;
+    z-index: 3;
+  }
+  .logo{
+    grid-area: sidebar;
+    width: 100%;
+  }
+
+  body{
+    grid-template-rows: 7rem 1fr;
+    grid-template-columns: 20rem 1fr;
+    
+    grid-template-areas:
+    "sidebar header"
+    "sidebar main";
+  }
+  
+
+  .admin-dashboard, .teacher-dashboard, .student-dashboard {
+    grid-template-rows: 18rem 1fr 1fr;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "greet"
+      "student-status"  
+      "info";
+  }
+  .greet {
+    margin-left: 3rem;
+  }
+
+  
+  .student-status {
+    grid-template-columns: 60rem;
+    grid-template-rows: 12rem 20rem  4rem 10rem;
+    grid-template-areas:
+      "total-info"
+      "semester-info"
+      "gap"
+      "more-options";
+  }
+  
+.admin-info, .teacher-info, .student-info {
+  align-self: flex-end;
+  justify-self: center;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+  .total-info {
+    margin: 2rem 1rem 5rem 1rem;
+  }
+
+  .notices{
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+              'teachers'
+              'students';
+    }
+    .teacher-notices, .student-notices{
+      margin-top: 10rem;
+    }
+
+    .form-expan, .box-expan{
+      width: 89rem;
+      display: grid;
+      grid-template-columns: 41rem 41rem;
+      column-gap: 3rem;
+      div{
+        width: 41rem;
+      }
+  
+      .btn-container{
+        grid-column: span 2;
+        width: 100%;
+      }
+      
+      .col-span-2{
+        grid-column: span 2;
+        width: 100%;
+        input{
+          width: 100%
+        }
+      }
+      .row-span-2{
+        grid-row: span-2;
+      }
+    }
+}
+
+/* Large smartphones (576px to 767px) */
+@media (max-width: 767px) and (min-width: 576px) {
+  :root {
+    font-size: 50%; /* 1rem = 8px */
+  }
+  nav {
+    width: 20rem;
+    z-index: 3;
+  }
+
+  body{
+    grid-template-rows: 7rem 1fr;
+    grid-template-columns: 20rem 1fr;
+    
+    grid-template-areas:
+    "sidebar header"
+    "sidebar main";
+  }
+
+  .admin-dashboard, .teacher-dashboard, .student-dashboard {
+    grid-template-columns: 1fr;
+    grid-template-rows: 18rem 1fr 1fr;
+    grid-template-columns: 60rem;
+    grid-template-areas:
+      "greet"
+      "student-status"  
+      "info";
+  }
+  .greet {
+    margin-left: 3rem;
+  }
+  
+.student-status {
+  grid-template-columns: 60rem;
+  grid-template-rows: 12rem 20rem  4rem 10rem;
+  grid-template-areas:
+    "total-info"
+    "semester-info"
+    "gap"
+    "more-options";
+}
+
+  
+.total-info {
+    margin: 2rem 1rem 5rem 1rem;
+}
+.admin-info, .teacher-info, .teacher-info {
+  align-self: flex-end;
+  justify-self: center;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+.notices{
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+              'teachers'
+              'students';
+    }
+    .teacher-notices, .student-notices{
+      margin-top: 10rem;
+    }
+    .student-status .student-notices{
+      margin-top: 1rem;
+    }
+}
+
+/* Small smartphones (up to 575px) */
+@media (max-width: 575px) {
+  :root {
+    font-size: 43.75%; /* 1rem = 7px */
+  }
+
+  body{
+    grid-template-rows: 7rem 1fr;
+    grid-template-columns: 1fr;
+    
+    grid-template-areas:
+    "header"
+    "main";
+
+    nav {
+      width: 100%;
+      display: none;
+    }
+    
+    .main-disable{
+      display: none;
+    }
+
+    /* CSS code for Slider menu start Here*/
+    .disabled{
+      display: flex;
+    }
+    /* CSS code for Slider menu End here*/
+  }
+  .allfit{
+    grid-template-rows: 7rem 1fr;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+    "header"
+    "sidebar";   
+}
+
+
+  .admin-dashboard, .teacher-dashboard, .student-dashboard {
+    grid-template-columns: 1fr;
+    grid-template-rows: 18rem 50rem 1fr;
+    grid-template-columns: 60rem;
+    grid-template-areas:
+      "greet"
+      "student-status"  
+      "info";
+  }
+  .greet {
+    margin-left: 3rem;
+  }
+
+  
+  .student-status {
+    grid-template-columns: 60rem;
+    grid-template-rows: 12rem 20rem  1rem 10rem;
+    grid-template-areas:
+      "total-info"
+      "semester-info"
+      "gap"
+      "more-options";
+  }
+  
+  .total-info {
+    margin: 2rem 1rem 5rem 1rem;
+  }
+
+  
+.admin-info, .teacher-info, .student-info {
+  width: 45rem;
+  min-height: 45rem;
+  align-self: flex-end;
+  justify-self: center;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  padding: 2rem;
+
+  img {
+    height: 14rem;
+    border-radius: 50%;
+    border: 0.2rem solid var(--color-primary-100);
+    display: block;
+    margin: 0 0 2rem 0;
+  }
+  p {
+    font-size: 1.8rem;
+    line-height: 1.5;
+    display: flex;
+  }
+  p a {
+    margin: 2rem 1rem 1rem 1rem;
+  }
+}
+  
+/* Update Admin Info.php page media queries for mobile start */
+.updateAdminInfo{
+    margin-top: 10rem;
+
+    label{
+      font-size: 1.8rem;
+    }
+}
+/* Update Admin Info.php page media queries for mobile end */
+.notices{
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr;
+  grid-template-areas: 
+            'teachers'
+            'students';
+  }
+  .single-student-notices{
+    align-items: start;
+  }
+  .teacher-notices, .student-notices{
+    margin-top: 10rem;
+  }
+
+  .student-status .student-notices{
+    margin-top: 1rem;
+  }
+
+}

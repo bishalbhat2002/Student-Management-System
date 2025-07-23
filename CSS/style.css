@@ -1,0 +1,1062 @@
+:root {
+  font-size: 62.5%;
+
+  /* Background Colors */
+  --bgcolor-primary-100: #292727;
+  --bgcolor-primary-80: #414141;
+  --bgcolor-primary-50: #b5b2b2bb;
+  --bgcolor-form: #c7c7c7;
+
+  --bgcolor-secondary-100: #0029b1;
+  --bgcolor-secondary-80: #1f51f7;
+  --bgcolor-secondary-50: #5878e0;
+
+  --bgcolor-card: #7171714c;
+  --bgcolor-focus: rgb(136, 199, 244);
+
+  /* Text colors */
+  --color-primary-100: #ffffff;
+  --color-primary-80: #cfcfcf;
+  --color-primary-50: #c4c3c3;
+
+  --color-secondary-100: #0d0d0d;
+  --color-secondary-80: #2e2d2d;
+  --color-secondary-50: #3d3d3d;
+
+  /* Button colors */
+  --color-success: rgb(19, 198, 19);
+  --color-danger: rgb(252, 91, 11);
+  --color-warning: rgb(252, 96, 18);
+  --color-edit: rgba(110, 110, 243, 0.719);
+  --color-add: rgba(42, 165, 79, 0.849);
+  --color-update: rgba(89, 104, 238, 0.849);
+  --color-save: rgb(33, 178, 8);
+  --color-delete: rgba(255, 97, 53, 0.863);
+  --color-view: rgba(116, 116, 116, 0.925);
+  --bgcolor-hover: rgb(49, 49, 255);
+  --color-hover: rgb(253, 253, 253);
+  --color-reset: rgb(228, 166, 32);
+  --color-highlighter: rgb(254, 187, 63);
+
+  --shadow: 0.1rem 0.1rem 0.8rem 0 var(--color-secondary-80);
+  --soft-shadow: 0rem 0.3rem 2rem 0 rgba(50, 50, 50, 0.373);
+  --notes-shadow: 0rem 0.5rem 2rem 0 rgba(23, 22, 22, 0.373);
+}
+
+/* CSS Code for Error and Success Handling Start Here */
+
+  .message {
+    font-size: 1.5rem;
+    padding: 1.3rem 1.5rem 0.7rem 1.5rem;
+    width: 40rem;
+    border-radius: 0.5rem 0.5rem 0.5rem 0;
+    position: fixed;
+    bottom: 2rem;         
+    right: 2rem;
+    color: var(--bgcolor-primary-100);
+    transition: all 2s ease-in;
+
+    p{
+      color: var(--color-secondary-80);
+    }
+  }
+
+  #error-message {
+    background-color: rgba(234, 140, 140, 0.873);
+  }
+
+  #success-message {
+    background-color: rgba(169, 251, 163, 0.668);
+  }
+
+  .message div #error-icon {
+    color: rgb(223, 38, 38);
+    font-size: 2rem;
+  }
+
+  .message div #success-icon {
+    color: rgb(2, 150, 39);
+    font-size: 2rem;
+  }
+
+  #error-message::before {
+    content: "";
+    height: 0.5rem;
+    width: 0.1rem;
+    border-radius: 0 0.5rem 0.5rem 0.5rem;
+    background-color: rgb(227, 69, 69);
+    position: absolute;
+    bottom: -0.3rem;
+    left: 0rem;
+    animation: width-grow 3s ease-in-out forwards;
+  }
+  #success-message::before {
+    content: "";
+    height: 0.5rem;
+    width: 0.1rem;
+    border-radius: 0 0.5rem 0.5rem 0.5rem;
+    background-color: rgb(2, 150, 39);
+    position: absolute;
+    bottom: -0.3rem;
+    left: 0rem;
+    animation: width-grow 3s ease-in-out forwards;
+  }
+
+  @keyframes width-grow {
+    from {
+      width: 0rem;
+    }
+    to {
+      width: 100%;
+    }
+  }
+
+/* CSS Code for Error and Success Handling End Here */
+
+
+/* Common CSS Code for Body START here*/
+body {
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--bgcolor-primary-80);
+  position: relative;
+
+  display: grid;
+  grid-template-rows: 7rem 1fr;
+  grid-template-columns: 20rem 1fr;
+
+  grid-template-areas:
+    "sidebar header"
+    "sidebar main";
+
+  .logo {
+    grid-area: header;
+    width: 100%;
+    height: 7rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bolder;
+    background-color: var(--bgcolor-primary-100);
+    box-shadow: var(--shadow);
+    z-index: 3;
+    position: sticky;
+    top: 0;
+    a{
+      transform: none;
+      text-decoration: none;
+      font-size: 4rem;
+      color: var(--color-primary-100);
+
+    }
+  }
+
+  nav {
+    grid-area: sidebar;
+    background-color: var(--bgcolor-primary-100);
+    height: 100%;
+    width: 20rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    z-index: 2;
+    
+    box-shadow: var(--shadow);
+    transition: all 300ms ease;
+
+    ul {
+      display: flex;
+      justify-content: space-around;
+      align-items: start;
+      flex-direction: column;
+      margin-top: 10rem;
+      gap: 1rem;
+
+      li {
+        list-style-type: none;
+        width: 100%;
+
+        a {
+          text-decoration: none;
+          font-size: 2rem;
+          color: var(--color-primary-100);
+          display: block;
+          padding: 0.5rem 0.5rem 0.5rem 3rem;
+        }
+
+        a:hover {
+          color: var(--color-secondary-100);
+          background-color: var(--color-primary-50);
+          transition: all 300ms ease;
+        }
+      }
+    }
+
+    .active{
+        color: var(--bgcolor-primary-100);
+        background-color: var(--color-primary-100);
+        font-weight: 600;
+    }
+
+    .logout {
+      margin-bottom: 2rem;
+      text-align: left;
+      margin-left: 4rem;
+
+      a {
+        text-decoration: none;
+        font-size: 2rem;
+        color: var(--color-primary-100);
+        background-color: var(--bgcolor-primary-80);
+        padding: 1rem 2rem;
+        border-radius: 0.5rem;
+      }
+
+      a:hover {
+        color: rgb(36, 36, 36);
+        background-color: rgb(179, 178, 178);
+        font-weight: bold;
+      }
+    }
+  }
+  #hambuger-icon{
+    margin: 1rem;
+    position: fixed;
+    top: 1.5rem;
+    left: 1.5rem;
+    z-index: 11;
+      img{
+        height: 3rem;
+        filter: invert();
+        transition: all 300ma ease-in-out;
+      }
+      img:hover{
+        transform: scale(1.2);
+      }
+  }
+
+  /* Make a class for main grid area for each page...... */
+  .main{
+    grid-area: main;
+  }
+}
+/* Common CSS Code for Body END here*/
+
+/* CSS code for Slider menu start Here*/
+.disabled{
+    display: none;
+}
+.allfit{
+    grid-template-rows: 7rem 1fr;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+    "header"
+    "main";   
+}
+/* CSS code for Slider menu End here*/
+
+
+
+/* Admin code from here... */
+.admin-dashboard, .teacher-dashboard {
+  color: var(--color-primary-100);
+  margin: 0 auto;
+  grid-area: main;
+  display: grid;
+  grid-template-columns: 62rem 5rem 40rem;
+  grid-template-rows: 20rem 1fr;
+  grid-template-areas:
+    "greet gap info"
+    "student-status gap info";
+}
+.student-dashboard{
+  color: var(--color-primary-100);
+  margin: 0 auto;
+  grid-area: main;
+  display: grid;
+  grid-template-columns: 55rem 5rem 45rem;
+  grid-template-rows: 15rem 1fr;
+  grid-template-areas:
+    "greet gap info"
+    "student-status gap info";
+}
+
+.greet {
+  grid-area: greet;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4rem;
+  h1 {
+    font-size: 4rem;
+  }
+  h3 {
+    font-size: 3rem;
+    font-weight: 600;
+    color: var(--color-highlighter);
+  }
+}
+
+.student-dashboard .greet{
+  padding-left: 2rem;
+}
+.student-status {
+  grid-area: student-status;
+  align-self: flex-start;
+  display: grid;
+  grid-template-rows: 10rem 19rem  2rem 10rem;
+  grid-template-areas:
+    "total-info"
+    "semester-info"
+    "gap"
+    "more-options";
+}
+
+.student-dashboard .student-status {
+  grid-area: student-status;
+  align-self: flex-start;
+  display: grid;
+  grid-template-rows: 12rem  1fr;
+  grid-template-areas:
+  "short-info"
+  "notices";
+}
+
+.total-info {
+  grid-area: total-info;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  gap: 2rem;
+}
+.short-info {
+  grid-area: short-info;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  gap: 2rem;
+}
+.student-status .dashboard-notices{
+  grid-area: notices;
+}
+
+.semester-info {
+  grid-area: semester-info;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 0 1rem;
+
+  .sem-container {
+    background-color: var(--bgcolor-card);
+    outline: 0.1rem solid var(--color-primary-80);
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    height: 6rem;
+    width: 17rem;
+
+    .semester-box {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: 500;
+      height: inherit;
+      width: 7rem;
+      background-color: var(--bgcolor-secondary-50);
+      border-radius: 0.5rem 0 0 0.5rem;
+    }
+
+    p {
+      font-size: 2rem;
+      margin-left: 1rem;
+    }
+  }
+}
+
+.total-students,
+.total-teachers {
+  width: 25.5rem;
+  height: 8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  background-color: var(--bgcolor-card);
+  border: 0.1rem solid var(--color-primary-80);
+  border-radius: 0.5rem;
+  gap: 2rem;
+  font-weight: 500;
+  img {
+    height: 4rem;
+  }
+}
+
+.short-info .total-attendance,
+.short-info .semester {
+  width: 20rem;
+  height: 8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 2rem;
+  background-color: var(--bgcolor-card);
+  border: 0.1rem solid var(--color-primary-80);
+  border-radius: 0.5rem;
+  gap: 2rem;
+  font-weight: 500;
+}
+
+
+.more-options {
+  grid-area: more-options;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  gap: 2rem;
+
+  .tadmission-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    height: 6rem;
+    width: 24rem;
+    background-color: var(--bgcolor-card);
+    outline: 0.1rem solid var(--color-primary-80);
+    border-radius: 0.5rem;
+    font-size: 1.5rem;
+
+    .tadmission-box {
+      height: inherit;
+      width: 12rem;
+      font-size: 1.8rem;
+      font-weight: 600;
+      text-align: center;
+      background-color: var(--bgcolor-secondary-50);
+      border-radius: 0.5rem 0 0 0.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  .resetPassword-btn {
+    display: inline-block;
+    height: 6rem;
+    width: 20rem;
+    text-decoration: none;
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--color-primary-100);
+    background-color: var(--color-reset);
+    outline: 0.1rem solid var(--color-primary-80);
+    border-radius: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.admin-info, .teacher-info, .student-info {
+  grid-area: info;
+  background-color: var(--bgcolor-card);
+  border: 0.1rem solid var(--color-primary-80);
+  border-radius: 0.5rem;
+  min-width: 35rem;
+  max-width: 50rem;
+  max-height: 54rem;
+  padding: 2rem;
+  align-self: flex-end;
+  div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 0 2rem 0;
+    
+  }
+  img {
+    height: 14rem;
+    border-radius: 50%;
+    border: 0.2rem solid var(--color-primary-100);
+    display: block;
+    box-shadow: var(--shadow);
+  }
+  p {
+    font-size: 1.8rem;
+    line-height: 1.5;
+    display: flex;
+  }
+  p a {
+    margin: 2rem 1rem 1rem 1rem;
+  }
+}
+
+/* Update Admin Info Code start here...  */
+.updateAdminInfo{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+.heading{
+  font-size: 3rem;
+  color: var(--color-primary-100);
+  margin: 2.5rem 0 1.5rem 0;
+  text-align: center;
+}
+/* FORM related codes are written on UtilityClasses.css file because form are used on many web pages. */
+
+/* Update Admin Info Code ends here...  */
+
+/* Admin Notices CSS code Starts here */
+.notices{
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: 
+            'teachers students';
+  margin-bottom: 5rem;
+}
+.single-student-notices{
+  margin-bottom: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+}
+
+.teacher-notices{
+  grid-area: teachers;
+  max-height: 60rem;
+  width: 50rem;
+  justify-self: start;
+  align-self: flex-end;
+  overflow: auto;
+  scrollbar-width: none;
+  padding-top: 0;
+}
+.student-notices{
+  padding-top: 0;
+  grid-area: students;
+  max-height: 60rem;
+  width: 50rem;
+  align-self: flex-end;
+  justify-self: center;
+  overflow: auto;
+  scrollbar-width: none;
+}
+.caption{
+  height: 6rem;
+  width: 50rem;
+  font-size: 3rem;
+  font-weight: bold;
+  color: var(--color-primary-100);
+  background-color: var(--bgcolor-primary-80);
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding-left: 2rem;
+  position: sticky;
+  margin: 0 -2rem;
+  top: 0;
+  z-index: 5;
+}
+.caption-full{
+  height: 6rem;
+  width: 50rem;
+  font-size: 3rem;
+  font-weight: bold;
+  color: var(--color-primary-100);
+  background-color: var(--bgcolor-primary-80);
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding-left: 2rem;
+  position: sticky;
+  margin: 0 -2rem;
+  top: 0;
+  z-index: 5;
+}
+.student-status .caption{
+  width: 50rem;
+}
+
+
+.add-notice{
+  font-size: 2rem;
+  text-decoration: none;
+  z-index: 5;
+  color: var(--color-primary-100);
+  background-color: var(--bgcolor-secondary-50);
+  padding: 0.7rem 2rem;
+  border-radius: 0.5rem;
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+}
+textarea{
+  height: 10rem;
+}
+
+.notice{
+  text-decoration: none;
+    background-color: var(--color-primary-100);
+    height: 4.5rem;
+    width: 100%;
+    font-size: 1.5rem;
+    border-radius: 0.3rem;
+    display: flex;
+    position: relative;
+    color: var(--color-secondary-50);
+    margin: 0.5rem 0;
+}
+.notice-number{
+  background-color: var(--bgcolor-secondary-50);
+  border-radius: 0.3rem 0 0 0.3rem;
+  height: 100%;
+  aspect-ratio: 1;
+  display: grid;
+  place-content: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--color-primary-100);
+}
+.notice-title{
+  display: flex;
+  align-items: center;
+  margin-left: 1rem;
+}
+.notice-date{
+  display: inline-block;
+  position: absolute;
+  right: 0.5rem;
+  bottom: 0.5rem;
+}
+
+.center-fdc .heading{
+  margin-top: 2rem;
+}
+
+.notice-view-box{
+  max-height: 60rem;
+  width: 50rem;
+  margin-top: -2rem;
+  color: var(--bgcolor-primary-100);
+  h2{
+    font-size: 2.2rem;
+    text-decoration: underline;
+    text-align: center;
+  }
+
+  p{
+    margin: 1.5rem 0;
+    font-size: 1.5rem;
+  }
+  .notice-image{
+    border: 0.1rem solid var(--color-primary-80);
+    border-radius: 0.5rem;
+    height: 35rem;
+    margin-bottom: 0.5rem;
+  }
+  div{
+    font-size: 1.3rem;
+  }
+}
+
+/* Admin Notices CSS code Ends here */
+
+
+/* Admin Semester Code Start here */
+.semester-edit {
+  margin: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+
+  .sem-container {
+    background-color: var(--bgcolor-card);
+    color: var(--color-primary-100);
+    outline: 0.1rem solid var(--color-primary-80);
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    height: 8rem;
+    max-width: 70rem;
+    min-width: 30rem;
+    width: 70rem;
+    position: relative;
+
+    .semester-box {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: bold;
+      height: inherit;
+      width: 10rem;
+      background-color: var(--bgcolor-secondary-50);
+      border-radius: 0.5rem 0 0 0.5rem;
+    }
+
+    p {
+      font-size: 2rem;
+      margin-left: 1rem;
+      font-weight: 500;
+    }
+  }
+}
+
+.action{
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  position: absolute;
+  right: 0.6rem;
+
+}
+
+table{
+  background-color: var(--color-primary-100);
+  th{
+    text-align: center;
+    padding: 0.5rem 3rem;
+    font-size: 2rem;
+    color: var(--color-primary-100);
+    background-color: var(--bgcolor-secondary-50);
+  }
+  tr:nth-child(even){
+    background-color: var(--color-primary-80);
+  } 
+  td{
+    font-size: 1.5rem;
+    padding: 0.5rem 1rem;
+    font-weight: 500;
+    color: var(--color-secondary-80);
+    position: relative;
+  }
+  input{
+    box-shadow: var(--soft-shadow);
+  }
+  .tac{
+    text-align: center;
+    vertical-align: middle;
+  }
+  .m-0{
+    margin: 0;
+  }
+  .teacher-info-link{
+    text-decoration: none;
+    color: var(--color-primary-100);
+    background-color: var(--bgcolor-primary-80);
+    padding-bottom: 0.35rem;
+    border-radius: 10%;
+    text-align: center;
+    display: inline-block;
+    display: grid;
+    place-content: center;
+    font-size: 2rem;
+    width: 2rem;
+    height: 2rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+    
+  }
+}
+
+.edit-table{
+  tr:nth-child(even){
+    background-color: var(--color-primary-100);
+  }
+  td 
+}
+/* Admin Semester Code End here */
+
+
+/* Result Section Code Start Here */
+.box-color-white{
+  min-width: 60rem;
+  width: min(60rem, 90%);
+  max-width: 80rem;
+  color: var(--color-secondary-50);
+  background-color: var(--color-primary-100);
+  box-shadow: var(--soft-shadow);
+  border-radius: 0.5rem;
+  padding: 2rem;
+  margin: 0 auto;
+  position: relative;
+}
+
+.header{
+  border: 0.1rem solid var(--color-primary-80);
+  height: 7.5rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 1rem;
+  img{
+    height: 6rem;
+  }
+  h1, h2, h3{
+    text-align: center;
+  }
+  h1{
+    font-size: 2.3rem;
+  }  
+  h2{
+    font-size: 1.5rem;
+    font-weight: 400;
+  }  
+  h3{
+    font-size: 1.4rem;
+    font-weight: 400;
+  }
+}
+.info-container{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.student-info-result{
+  border: 0.1rem solid var(--color-primary-80);
+  border-radius: 0.5rem;
+  padding: 1rem 2rem;
+  font-size: 1.3rem;
+  font-weight: 400;
+  line-height: 1.3;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+
+.marks{
+  width: 100%;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+
+  .result-table{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    border-collapse: collapse;
+    border: 0.1rem solid var(--color-primary-80);
+
+    th, td{
+      text-align: center;
+      vertical-align: middle;
+      border: none;
+      border: 0.1rem solid var(--color-primary-50);
+    }
+    th{
+      font-size: 1.3rem;
+      font-weight: 500;
+      background-color: var(--color-primary-80);
+      color: var(--color-secondary-50);
+      padding: 0.2rem 1rem;
+    }
+    tr:nth-child(even){
+      background-color: var(--color-hover);
+    }
+    td{
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: var(--color-secondary-50);
+    }
+  }
+  tfoot tr td{
+    font-size: 1.2rem;
+    font-weight: 400;
+  }
+}
+
+.result-note{
+  font-size: 1.3rem;
+}
+
+/* Add Result CSS codes */
+.add-result-table-style{
+  width: inherit;
+  padding: 0.5rem;
+  color: var(--color-secondary-80);
+  margin-top: 1rem;
+}
+
+.subject-code{
+  height: 2rem;
+  width: 10rem;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 1.5rem;
+  font-weight: 500;
+  border-radius: 0.2rem;
+}
+.subject-name{
+  padding-left: 1rem;
+  vertical-align: middle;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+.marks-input-box{
+  width: 15rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+  border-radius: 0.5rem;
+  input{
+    margin: 0.5rem 0;
+  }
+}
+
+.form-result-analyze{
+  min-width: 100rem;
+  max-width: 80vw;
+  max-height: calc(100dvh - 17rem);
+  background-color: var(--bgcolor-form);
+  border: 0.1rem solid var(--color-primary-80);
+  border-radius: 0.5rem;
+  padding: 2rem;
+  margin: 0 auto;
+  
+  div{
+    position: sticky;
+    top: 0;
+
+    label{
+      font-weight: 500;
+      color: var(--color-primary-100);
+    }
+    select{
+      font-size: 1.3rem;
+      height: 3rem;
+      width: 25rem;
+    }
+    option{
+      width: 30rem;
+    }
+    .btn{
+      margin-top: -1.4rem;
+    }
+  }
+  table{
+    th{
+      height: 4.5rem;
+      font-size: 1.5rem;
+      padding: 0 0.7rem;
+    }
+    td{
+      border: 0.2rem solid var(--color-primary-80);
+    }
+  }
+}
+/* Result Section Code End Here */
+
+
+/* Teacher Section Code START here */
+.study-material-container{
+  max-height: 30rem;
+  min-width: min(100rem, 90vw);
+  max-width: 90%; 
+  background-color: var(--color-primary-100);
+  color: var(--color-secondary-80);
+  border: 0.2rem solid var(--color-primary-100);
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--notes-shadow);
+  display: grid;
+  grid-template-rows: 3rem 1fr;
+  grid-template-columns: minmax(6rem, 10rem) 1fr minmax(7rem, 12rem);
+  grid-template-areas: 
+          'id subject-title actions'
+          'id-value main-content actions';
+  .id{
+    grid-area: id;
+    font-size: 2rem;
+    font-weight: 500;
+    justify-self: center;
+    align-self: center;
+  }
+  .subject-title{
+    grid-area: subject-title;
+
+    font-size: 2rem;
+    font-weight: 500;
+  }
+  .id-value{
+    grid-area: id-value;
+    font-size: 2rem;
+    font-weight: 400;
+    justify-self: center;
+    align-self: start;
+    margin-top: 0.5rem;
+  }
+  .main-content{
+    grid-area: main-content;
+    p{
+      font-size: 1.5rem;
+      font-weight: 400;
+      margin: 0.3rem 0;
+    }
+    .teacher-name, .sent-date{
+      font-size: 1.3rem;
+      font-weight: 500;
+    }
+  }
+  .actions{
+    grid-area: actions;
+    justify-self: center;
+    align-self: center;
+  }
+  a{
+    font-size: 1.3rem;
+  }
+}
+
+.smc-student{
+  grid-template-areas: 
+  'id subject-title actions'
+  'id-value main-content main-content';
+}
+
+
+/* Teacher Section Code END here */
+
+
+/* Student Section Code START here */
+.small-input-field input[type='text'],
+.small-input-field input[type='password'],
+.small-input-field input[type='number'],
+.small-input-field input[type='email'],
+.small-input-field input[type='date'],
+.small-input-field input[type='file'],
+.small-input-field textarea,
+.small-input-field select
+{
+  width: 100%;
+  height: 3rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+.small-input-field .image{
+  height: 10rem;
+  border-width: 0.1rem;
+}
+.small-input-field .small-image{
+  height: 7rem;
+  border-width: 0.1rem;
+}
+
+
+/* Student Section Code END here */
