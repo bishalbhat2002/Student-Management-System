@@ -285,7 +285,7 @@ if (isset($_GET['publish-result'])) {
 ?>
 
        <div class="center-fdct main">
-              <h1 class="heading">Batch: 20YY, Sem: X - Analyze Result</h1>
+              <h1 class="heading-smaller">Batch: 20YY, Sem: X - Analyze Result</h1>
               <form action="?Analyze-result-batch-sem" name="result-publish-form" method="post" enctype="multipart/form-data" class="form-result-analyze">
                      <div class="center">
                             <label for="filter" class="mr-1">Filter:</label>

@@ -30,13 +30,14 @@
 ?>
        <div class="main center-fdct">
               <h1 class="heading">X semester, View Courses</h1>
-              <table>
-                     <thead>
-                            <tr>
-                                   <th>Course ID</th>
-                                   <th>Course Title</th>
-                                   <th>Teacher ID</th>
-                                   <th>Teacher Name</th>
+              <div class="box-cover">
+                     <table>
+                            <thead>
+                                   <tr>
+                                          <th>Course ID</th>
+                                          <th>Course Title</th>
+                                          <th>Teacher ID</th>
+                                          <th>Teacher Name</th>
                             </tr>
                      </thead>
                      <tbody>
@@ -49,7 +50,7 @@
                                           <a href="" class="teacher-info-link">&#8599;</a>
                                    </td>
                             </tr>
-
+                            
                             <tr>
                                    <td class="center">CSIT-101</td>
                                    <td>Data Structures and Algorithm</td>
@@ -59,7 +60,7 @@
                                           <a href="" class="teacher-info-link">&#8599;</a>
                                    </td>
                             </tr>
-
+                            
                             <tr>
                                    <td class="center">CSIT-101</td>
                                    <td>Data Structures and Algorithm</td>
@@ -69,7 +70,7 @@
                                           <a href="" class="teacher-info-link">&#8599;</a>
                                    </td>
                             </tr>
-
+                            
                             <tr>
                                    <td class="center">CSIT-101</td>
                                    <td>Data Structures and Algorithm</td>
@@ -81,14 +82,15 @@
                             </tr>
                      </tbody>
               </table>
-
+       </div>
+              
               <div class="mt-3 center">
                      <a href="?assign-teacher-to-course-sem" class="edit-btn font-large">Edit Courses</a>
               </div>
-
+              
        </div>
 
-<!-- Code to Select semester for assigning Teachers to courses -->
+       <!-- Code to Select semester for assigning Teachers to courses -->
 <?php
        }else if(isset($_GET['assign-teacher-to-course'])){           
 ?>
@@ -118,68 +120,69 @@
               <div class="main center-fdct">
                      <h1 class="heading">Semester X, Assign Teacher to a Course</h1>
                      <form action="" method="POST" name="teacher-Assign" enctype="multipart/form-data">
-                            <table class="edit-table">
-
-                                   <thead>
-                                          <tr>
-                                                 <th>Course ID</th>
-                                                 <th>Course Title</th>
-                                                 <th>Teacher ID</th>
-                                                 <th>Teacher Name</th>
-                                          </tr>
-                                   </thead>
-                                   <tbody>
-                                          <tr>
-                                                 <td class="tac">CSIT-101</td>
-                                                 <td>Data Structures and Algorithm</td>
-                                                 <td class="v-align-m">
-                                                        <input type="text" name="tid" class="m-0">
-                                                 </td>
-                                                 <td class="v-align-m">
+                            <div class="box-cover">
+                                   <table class="edit-table">
+                                          <thead>
+                                                 <tr>
+                                                        <th>Course ID</th>
+                                                        <th>Course Title</th>
+                                                        <th>Teacher ID</th>
+                                                        <th>Teacher Name</th>
+                                                 </tr>
+                                          </thead>
+                                          <tbody>
+                                                 <tr>
+                                                        <td class="tac">CSIT-101</td>
+                                                        <td>Data Structures and Algorithm</td>
+                                                        <td class="v-align-m">
+                                                               <input type="text" name="tid" class="m-0">
+                                                        </td>
+                                                        <td class="v-align-m">
+                                                               <input type="text" name="tname" class="m-0">
+                                                        </td>
+                                                 </tr>
+                                                 
+                                                 <tr>
+                                                        <td class="tac">CSIT-101</td>
+                                                        <td>Data Structures and Algorithm</td>
+                                                        <td class="v-align-m">
+                                                               <input type="text" name="tid" class="m-0">
+                                                        </td>
+                                                        <td class="v-align-m">
+                                                               <input type="text" name="tname" class="m-0">
+                                                        </td>
+                                                 </tr>
+                                                 
+                                                 <tr>
+                                                        <td class="tac">CSIT-101</td>
+                                                        <td>Data Structures and Algorithm</td>
+                                                        <td class="v-align-m">
+                                                               <input type="text" name="tid" class="m-0">
+                                                        </td>
+                                                        <td class="v-align-m">
+                                                               <input type="text" name="tname" class="m-0">
+                                                        </td>
+                                                 </tr>
+                                                 
+                                                 <tr>
+                                                        <td class="tac">CSIT-101</td>
+                                                        <td>Data Structures and Algorithm</td>
+                                                        <td class="v-align-m">
+                                                               <input type="text" name="tid" class="m-0">
+                                                        </td>
+                                                        <td class="v-align-m">
                                                         <input type="text" name="tname" class="m-0">
                                                  </td>
                                           </tr>
-                                          
-                                          <tr>
-                                                 <td class="tac">CSIT-101</td>
-                                                 <td>Data Structures and Algorithm</td>
-                                                 <td class="v-align-m">
-                                                        <input type="text" name="tid" class="m-0">
-                                                 </td>
-                                                 <td class="v-align-m">
-                                                        <input type="text" name="tname" class="m-0">
-                                                 </td>
-                                          </tr>
-
-                                          <tr>
-                                                 <td class="tac">CSIT-101</td>
-                                                 <td>Data Structures and Algorithm</td>
-                                                 <td class="v-align-m">
-                                                        <input type="text" name="tid" class="m-0">
-                                                 </td>
-                                                 <td class="v-align-m">
-                                                        <input type="text" name="tname" class="m-0">
-                                                 </td>
-                                          </tr>
-
-                                          <tr>
-                                                 <td class="tac">CSIT-101</td>
-                                                 <td>Data Structures and Algorithm</td>
-                                                 <td class="v-align-m">
-                                                        <input type="text" name="tid" class="m-0">
-                                                 </td>
-                                                 <td class="v-align-m">
-                                                        <input type="text" name="tname" class="m-0">
-                                                 </td>
-                                          </tr>
-                                   </tbody>
-                            </table>       
+                                          </tbody>
+                                          </table>       
+                                   </div>
                             <div class="mt-3 center">
                                    <input type="submit" class="font-large mt-3 save-btn" value="save changes">
                             </div>
                      </form>
               </div>
-
+              
 <!-- Code to Select semester for viewing Course schedule -->
 <?php
        }else if(isset($_GET['view-course-Schedule'])){           
@@ -210,19 +213,43 @@
               <div class="main center-fdct">
                      <h1 class="heading">Semester X, View Course Schedule</h1>
                      <form action="?edit-course-schedule" method="POST" name="edit-course-schedule" enctype="multipart/form-data">
-                            <table class="edit-table">
-
-                                   <thead>
-                                          <tr>
-                                                 <th>Cid</th>
-                                                 <th>Course Title</th>
-                                                 <th>Tid</th>
-                                                 <th>Teacher Name</th>
-                                                 <th>From</th>
-                                                 <th>To</th>
+                            <div class="box-cover">
+                                   <table class="edit-table">
+                                          <thead>
+                                                 <tr>
+                                                        <th>Cid</th>
+                                                        <th>Course Title</th>
+                                                        <th>Tid</th>
+                                                        <th>Teacher Name</th>
+                                                        <th>From</th>
+                                                        <th>To</th>
+                                                 </tr>
+                                          </thead>
+                                          <tbody>
+                                                 <tr>
+                                                        <td class="tac">CSIT-101</td>
+                                                        <td>Data Structures and Algorithm</td>
+                                                        <td class="tac">1001</td>
+                                                        <td>
+                                                               Bishal Bhat
+                                                               <a href="" class="teacher-info-link">&#8599;</a>
+                                                        </td>
+                                                        <td> X:00 AM</td>
+                                                        <td> Y:00 AM</td>
+                                                 </tr>
+                                                 
+                                                 <tr>
+                                                        <td class="tac">CSIT-101</td>
+                                                        <td>Data Structures and Algorithm</td>
+                                                        <td class="tac">1001</td>
+                                                 <td>
+                                                        Bishal Bhat
+                                                        <a href="" class="teacher-info-link">&#8599;</a>
+                                                 </td>
+                                                 <td> X:00 AM</td>
+                                                 <td> Y:00 AM</td>
                                           </tr>
-                                   </thead>
-                                   <tbody>
+                                          
                                           <tr>
                                                  <td class="tac">CSIT-101</td>
                                                  <td>Data Structures and Algorithm</td>
@@ -234,31 +261,7 @@
                                                  <td> X:00 AM</td>
                                                  <td> Y:00 AM</td>
                                           </tr>
-
-                                          <tr>
-                                                 <td class="tac">CSIT-101</td>
-                                                 <td>Data Structures and Algorithm</td>
-                                                 <td class="tac">1001</td>
-                                                 <td>
-                                                        Bishal Bhat
-                                                        <a href="" class="teacher-info-link">&#8599;</a>
-                                                 </td>
-                                                 <td> X:00 AM</td>
-                                                 <td> Y:00 AM</td>
-                                          </tr>
-
-                                          <tr>
-                                                 <td class="tac">CSIT-101</td>
-                                                 <td>Data Structures and Algorithm</td>
-                                                 <td class="tac">1001</td>
-                                                 <td>
-                                                        Bishal Bhat
-                                                        <a href="" class="teacher-info-link">&#8599;</a>
-                                                 </td>
-                                                 <td> X:00 AM</td>
-                                                 <td> Y:00 AM</td>
-                                          </tr>
-
+                                          
                                           <tr>
                                                  <td class="tac">CSIT-101</td>
                                                  <td>Data Structures and Algorithm</td>
@@ -272,6 +275,7 @@
                                           </tr>
                                    </tbody>
                             </table>
+                     </div>
                      </form>
                      <div class="mt-3 center">
                             <a href="?edit-course-schedule-sem" class="edit-btn font-large">Edit Course Schedule</a>
@@ -310,14 +314,15 @@
               <div class="main center-fdct">
                      <h1 class="heading">Semester X, Edit Course Schedule</h1>
                      <form action="?edit-course-schedule" method="POST" name="edit-course-schedule" enctype="multipart/form-data">
-                            <table class="edit-table">
-
-                                   <thead>
-                                          <tr>
-                                                 <th>Cid</th>
-                                                 <th>Course Title</th>
-                                                 <th>Tid</th>
-                                                 <th>Teacher Name</th>
+                          <div class="box-cover">
+                                 <table class="edit-table">
+                                        
+                                        <thead>
+                                               <tr>
+                                                      <th>Cid</th>
+                                                      <th>Course Title</th>
+                                                      <th>Tid</th>
+                                                      <th>Teacher Name</th>
                                                  <th>From</th>
                                                  <th>To</th>
                                           </tr>
@@ -348,7 +353,7 @@
                                                         <input type="text" name="tname" class="m-0">
                                                  </td>
                                           </tr>
-
+                                          
                                           <tr>
                                                  <td class="tac">CSIT-101</td>
                                                  <td>Data Structures and Algorithm</td>
@@ -361,7 +366,7 @@
                                                         <input type="text" name="tname" class="m-0">
                                                  </td>
                                           </tr>
-
+                                          
                                           <tr>
                                                  <td class="tac">CSIT-101</td>
                                                  <td>Data Structures and Algorithm</td>
@@ -374,18 +379,19 @@
                                                         <input type="text" name="tname" class="m-0">
                                                  </td>
                                           </tr>
-                                         
+                                          
                                    </tbody>
                                    
                             </table>     
+                     </div> 
                             <div class="mt-3 center">
                                    <input type="submit" class="font-large mt-3 save-btn" value="save changes">
                             </div>
                      </form>
               </div>
-
-<!-- Code To display Default Options... -->
-<?php
+              
+              <!-- Code To display Default Options... -->
+              <?php
        }else{
 ?> 
        <div class="main center">
