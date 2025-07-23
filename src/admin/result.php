@@ -478,46 +478,12 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!-- Code to View Result... -->
 <?php
        }else if(isset($_GET['result-view-id'])){
 ?>
                <div class="main center-fdc">
-<<<<<<< HEAD
                      <div class="box-color-white" id="result">
-=======
-                     <div class="box-color-white result">
->>>>>>> b3f5f87acc16104466d1bde0405f7c746e780acb
                      <form action="" method="POST" name="resultForm" enctype="multipart/form-data">
                                    <!-- Header Section -->
                                    <div class="header">
@@ -564,25 +530,12 @@
                                           <table class="result-table">
                                                  <thead>
                                                         <tr>
-<<<<<<< HEAD
                                                                <th>Course ID</th>
                                                                <th>Course Title</th>
                                                                <th colspan="2">Marks Obtained <span>[TH]</span> <Span>[PR]</Span></th>
                                                                <th>MO</th>
                                                                <th>FM</th>
                                                                <th>Result</th>
-=======
-                                                               <th rowspan="2">Course ID</th>
-                                                               <th rowspan="2">Course Title</th>
-                                                               <th colspan="2">Marks Obtained</th>
-                                                               <th rowspan="2">MO</th>
-                                                               <th rowspan="2">FM</th>
-                                                               <th rowspan="2">Result</th>
-                                                        </tr>
-                                                        <tr>
-                                                               <th>[Th]</th>
-                                                               <th>[Pr]</th>
->>>>>>> b3f5f87acc16104466d1bde0405f7c746e780acb
                                                         </tr>
                                                  </thead>
                                                  <tbody>
@@ -659,11 +612,7 @@
                             </form>
                      </div>   
                      <div class="center mt-1">
-<<<<<<< HEAD
                             <button class="save-btn btn" onclick="downloadResultPDF()">Download Result</button>
-=======
-                            <button class="save-btn btn" onclick="downloadPDF()">Download Result</button>
->>>>>>> b3f5f87acc16104466d1bde0405f7c746e780acb
                      </div>
               </div>
 <?php
