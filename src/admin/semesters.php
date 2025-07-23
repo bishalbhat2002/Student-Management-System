@@ -7,65 +7,66 @@
 <!-- View All Student Code here -->
        <div>
               <h1 class="heading">X Semester Information</h1>
-              <table>
-                     <thead>
-                     <tr>
-                            <th>Regd.No</th>
-                            <th>Name</th>
-                            <th>Attendance</th>
-                            <th>Phone</th>
-                            <th>Action</th>
-                     </tr>
-                     </thead>
-                     <tbody>
-                            <tr>
-                                   <td>Sc-1243423342</td>
-                                   <td>Bishal Bhat</td>
-                                   <td class="center">39/39</td>
-                                   <td>98095343</td>
-                                   <td>
-                                          <a href="?viewStudent-id" class="view-btn">View Details</a>
-                                   </td>
-                            </tr>
-                            <tr>
-                                   <td>Sc-1243423342</td>
-                                   <td>Bishal Bhat</td>
-                                   <td class="center">39/39</td>
-                                   <td>98095343</td>
-                                   <td>
-                                          <a href="?viewStudent-id" class="view-btn">View Details</a>
-                                   </td>
-                            </tr>
-                            <tr>
-                                   <td>Sc-1243423342</td>
-                                   <td>Bishal Bhat</td>
-                                   <td class="center">39/39</td>
-                                   <td>98095343</td>
-                                   <td>
-                                          <a href="?viewStudent-id" class="view-btn">View Details</a>
-                                   </td>
-                            </tr>
-                            <tr>
-                                   <td>Sc-1243423342</td>
-                                   <td>Bishal Bhat</td>
-                                   <td class="center">39/39</td>
-                                   <td>98095343</td>
-                                   <td>
-                                          <a href="?viewStudent-id" class="view-btn">View Details</a>
-                                   </td>
-                            </tr>
-                            <tr>
-                                   <td>Sc-1243423342</td>
-                                   <td>Bishal Bhat</td>
-                                   <td class="center">39/39</td>
-                                   <td>98095343</td>
-                                   <td>
-                                          <a href="?viewStudent-id" class="view-btn">View Details</a>
-                                   </td>
-                            </tr>
-                     </tbody>
-              </table>
-
+              <div class="box-cover">
+                     <table>
+                            <thead>
+                                   <tr>
+                                          <th>Regd.No</th>
+                                          <th>Name</th>
+                                          <th>Attendance</th>
+                                          <th>Phone</th>
+                                          <th>Action</th>
+                                   </tr>
+                            </thead>
+                            <tbody>
+                                   <tr>
+                                          <td>Sc-1243423342</td>
+                                          <td>Bishal Bhat</td>
+                                          <td class="center">39/39</td>
+                                          <td>98095343</td>
+                                          <td>
+                                                 <a href="students.php?view-student-regd-no" class="view-btn">View Details</a>
+                                          </td>
+                                   </tr>
+                                   <tr>
+                                          <td>Sc-1243423342</td>
+                                          <td>Bishal Bhat</td>
+                                          <td class="center">39/39</td>
+                                          <td>98095343</td>
+                                          <td>
+                                                 <a href="students.php?view-student-regd-no" class="view-btn">View Details</a>
+                                          </td>
+                                   </tr>
+                                   <tr>
+                                          <td>Sc-1243423342</td>
+                                          <td>Bishal Bhat</td>
+                                          <td class="center">39/39</td>
+                                          <td>98095343</td>
+                                          <td>
+                                                 <a href="students.php?view-student-regd-no" class="view-btn">View Details</a>
+                                          </td>
+                                   </tr>
+                                   <tr>
+                                          <td>Sc-1243423342</td>
+                                          <td>Bishal Bhat</td>
+                                          <td class="center">39/39</td>
+                                          <td>98095343</td>
+                                          <td>
+                                                 <a href="students.php?view-student-regd-no" class="view-btn">View Details</a>
+                                          </td>
+                                   </tr>
+                                   <tr>
+                                          <td>Sc-1243423342</td>
+                                          <td>Bishal Bhat</td>
+                                          <td class="center">39/39</td>
+                                          <td>98095343</td>
+                                          <td>
+                                                 <a href="students.php?view-student-regd-no" class="view-btn">View Details</a>
+                                          </td>
+                                   </tr>
+                            </tbody>
+                     </table>
+              </div> 
        </div>
 
 <?php

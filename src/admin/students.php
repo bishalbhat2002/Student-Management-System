@@ -88,7 +88,7 @@
 ?>
               <div class="main center-fdct">
                      <h1 class="heading">View Students</h1>
-                     <div class="box-expan-normal center">
+                     <div class="box-cover center">
                             <table>
                                    <thead>
                                           <tr>
@@ -291,7 +291,7 @@
 ?>
               <div class="main center-fdct">
                      <h1 class="heading">Edit Student</h1>
-                     <form action="" method="post" name="view-student-form" enctype="multipart/form-data" class="form-expan small-input-field">
+                     <form action="?view-student-regd-no" method="post" name="view-student-form" enctype="multipart/form-data" class="form-expan small-input-field">
                            
                             <div class="col-span-2 center mb-2">
                                    <img src="../../assets/images/image.jpg" alt="Photo" class="image small-image">
@@ -359,7 +359,7 @@
                             </div>
 
                             <div class="col-span-2 center">
-                                   <a href="?view-student-regd-no" class="save-btn btn large mt-1">Save Changes</a>
+                                   <button class="save-btn btn large mt-1">Save Changes</button>
                             </div>
                             
 
@@ -479,7 +479,7 @@
 ?>
               <div class="main center-fdct">
                      <h1 class="heading">Semester X, View Admission</h1>
-                     <div>
+                     <div class="box-cover">
                             <table>
                                    <thead>
                                           <tr>
@@ -571,7 +571,7 @@
 ?>
               <div class="main center-fdct">
                      <h1 class="heading">View Fees - 20YY Batch</h1>
-                     <div>
+                     <div class="box-cover">
                             <table class="smaller-table">
                                    <thead>
                                           <tr>

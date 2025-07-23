@@ -71,58 +71,58 @@
 ?>
        <div class="main center-fdct">
               <h1 class="heading">X semester, View Courses</h1>
-              <div class="box-expan-normal">
-              <table>
-                     <thead>
-                            <tr>
-                                   <th>Course ID</th>
-                                   <th>Course Title</th>
-                                   <th>Teacher ID</th>
-                                   <th>Teacher Name</th>
-                            </tr>
-                     </thead>
-                     <tbody>
-                            <tr>
-                                   <td class="center">CSIT-101</td>
-                                   <td>Data Structures and Algorithm</td>
-                                   <td class="center">1001</td>
-                                   <td>
-                                          <span>Bishal Bhat</span>
-                                          <a href="?view-teacher-tid" class="teacher-info-link">&#8599;</a>
-                                   </td>
-                            </tr>
+              <div class="box-cover">
+                     <table>
+                            <thead>
+                                   <tr>
+                                          <th>Course ID</th>
+                                          <th>Course Title</th>
+                                          <th>Teacher ID</th>
+                                          <th>Teacher Name</th>
+                                   </tr>
+                            </thead>
+                            <tbody>
+                                   <tr>
+                                          <td class="center">CSIT-101</td>
+                                          <td>Data Structures and Algorithm</td>
+                                          <td class="center">1001</td>
+                                          <td>
+                                                 <span>Bishal Bhat</span>
+                                                 <a href="?view-teacher-tid" class="teacher-info-link">&#8599;</a>
+                                          </td>
+                                   </tr>
 
-                            <tr>
-                                   <td class="center">CSIT-101</td>
-                                   <td>Data Structures and Algorithm</td>
-                                   <td class="center">1001</td>
-                                   <td>
-                                          <span>Bishal Bhat</span>
-                                          <a href="?view-teacher-tid" class="teacher-info-link">&#8599;</a>
-                                   </td>
-                            </tr>
+                                   <tr>
+                                          <td class="center">CSIT-101</td>
+                                          <td>Data Structures and Algorithm</td>
+                                          <td class="center">1001</td>
+                                          <td>
+                                                 <span>Bishal Bhat</span>
+                                                 <a href="?view-teacher-tid" class="teacher-info-link">&#8599;</a>
+                                          </td>
+                                   </tr>
 
-                            <tr>
-                                   <td class="center">CSIT-101</td>
-                                   <td>Data Structures and Algorithm</td>
-                                   <td class="center">1001</td>
-                                   <td>
-                                          <span>Bishal Bhat</span>
-                                          <a href="?view-teacher-tid" class="teacher-info-link">&#8599;</a>
-                                   </td>
-                            </tr>
+                                   <tr>
+                                          <td class="center">CSIT-101</td>
+                                          <td>Data Structures and Algorithm</td>
+                                          <td class="center">1001</td>
+                                          <td>
+                                                 <span>Bishal Bhat</span>
+                                                 <a href="?view-teacher-tid" class="teacher-info-link">&#8599;</a>
+                                          </td>
+                                   </tr>
 
-                            <tr>
-                                   <td class="center">CSIT-101</td>
-                                   <td>Data Structures and Algorithm</td>
-                                   <td class="center">1001</td>
-                                   <td>
-                                          <span>Bishal Bhat</span>
-                                          <a href="?view-teacher-tid" class="teacher-info-link">&#8599;</a>
-                                   </td>
-                            </tr>
-                     </tbody>
-              </table>
+                                   <tr>
+                                          <td class="center">CSIT-101</td>
+                                          <td>Data Structures and Algorithm</td>
+                                          <td class="center">1001</td>
+                                          <td>
+                                                 <span>Bishal Bhat</span>
+                                                 <a href="?view-teacher-tid" class="teacher-info-link">&#8599;</a>
+                                          </td>
+                                   </tr>
+                            </tbody>
+                     </table>
               </div>
        </div>
 
@@ -156,7 +156,7 @@
 ?>              
               <div class="main center-fdct">
                      <h1 class="heading">Semester X, View Course Schedule</h1>
-                     <div class="box-expan-normal">
+                     <div class="box-cover">
                             <table class="edit-table">
                                    <thead>
                                           <tr>

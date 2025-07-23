@@ -4,7 +4,7 @@
 <!-- Code for Viewing Fees -->
     <div class="main center-fdct">
                      <h1 class="heading">View Fees - 20YY Batch</h1>
-                     <div class="box-expan-normal">
+                     <div class="box-cover">
                             <table class="smaller-table">
                                    <thead>
                                           <tr>
