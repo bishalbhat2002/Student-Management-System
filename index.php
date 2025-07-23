@@ -19,4 +19,5 @@
               header("location: src/student/dashboard.php?success= {$success_msg}"); 
               exit();
        }
+       
 ?>
