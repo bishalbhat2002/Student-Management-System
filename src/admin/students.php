@@ -391,7 +391,7 @@
 ?>
               <div class="main center-fdct">
                      <h1 class="heading">Add Admission</h1>
-                     <form action="" method="post" name="add-admission-form" enctype="multipart/form-data" class="form-expan small-input-field">
+                     <form action="?view-admission-semester" method="post" name="add-admission-form" enctype="multipart/form-data" class="form-expan small-input-field">
                            
                             <div class="col-span-2 center mb-1">
                                    <img src="../../assets/images/image.jpg" alt="Photo" class="image">

@@ -509,7 +509,13 @@ body {
 }
 
 .heading{
-  font-size: 3rem;
+  font-size: 2.5rem;
+  color: var(--color-primary-100);
+  margin: 2.5rem 0 1.5rem 0;
+  text-align: center;
+}
+heading-smaller{
+  font-size: 2.5rem;
   color: var(--color-primary-100);
   margin: 2.5rem 0 1.5rem 0;
   text-align: center;
@@ -919,46 +925,48 @@ table{
 }
 
 .form-result-analyze{
-  min-width: 100rem;
-  max-width: 80vw;
-  max-height: calc(100dvh - 17rem);
   background-color: var(--bgcolor-form);
   border: 0.1rem solid var(--color-primary-80);
   border-radius: 0.5rem;
-  padding: 2rem;
+  width: 80rem;
+  padding: 1rem 2rem;
   margin: 0 auto;
-  
-  div{
-    position: sticky;
-    top: 0;
 
-    label{
-      font-weight: 500;
-      color: var(--color-primary-100);
-    }
-    select{
-      font-size: 1.3rem;
-      height: 3rem;
-      width: 25rem;
-    }
-    option{
-      width: 30rem;
-    }
-    .btn{
-      margin-top: -1.4rem;
-    }
+  select{
+    width: 20rem;
+    margin: 0;
+    margin-right: 2rem;
+    font-size: 1.5rem;
   }
-  table{
-    th{
-      height: 4.5rem;
-      font-size: 1.5rem;
-      padding: 0 0.7rem;
-    }
-    td{
-      border: 0.2rem solid var(--color-primary-80);
-    }
-  }
+} 
+
+table .top-sticky{
+  position: sticky;
+  top: 7rem;
+  z-index: 1;
 }
+
+#result-analysis-table{
+  th{
+    background-color: var(--bgcolor-secondary-50);
+    min-width: 5rem;
+    font-size: 1.7rem;
+    padding: 0.5rem 1rem;
+  }
+tr{
+  td{
+    font-size: 1.5rem;
+    height: 2rem;
+    padding: 0.5rem 1rem;
+    a{
+      font-size: 1.5rem;
+      height: 2.4rem;
+      padding: 0.2rem 0.3rem 0rem 0.3rem;
+    }
+  }
+}  
+}
+
 /* Result Section Code End Here */
 
 
