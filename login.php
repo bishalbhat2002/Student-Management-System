@@ -8,8 +8,11 @@
        <link rel="preconnect" href="https://fonts.googleapis.com">
        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<<<<<<< HEAD
        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+=======
+>>>>>>> b3f5f87acc16104466d1bde0405f7c746e780acb
        <link rel="stylesheet" href="CSS/loginStyle.css">
 </head>
 
@@ -44,11 +47,18 @@
        </form>
 
        <?php
+<<<<<<< HEAD
               require_once "includes/show_message.php";
+=======
+       if (isset($_GET['error'])) {
+              echo "<div id='error'>Error: {$_GET['error']}</div>";
+       }
+>>>>>>> b3f5f87acc16104466d1bde0405f7c746e780acb
        ?>
 </body>
 <script>
        window.onload = function hide() {
+<<<<<<< HEAD
               const error = document.getElementById('error-message'); // Fetches Error Element
               const success = document.getElementById('success-message'); // Fetches Success Element
               if (error) {
@@ -62,6 +72,14 @@
                      }, 3000);
               }
 
+=======
+              let element = document.getElementById('error');
+              if (element) {
+                     setTimeout(() => {
+                            element.classList.add('hide');
+                     }, 1000);
+              }
+>>>>>>> b3f5f87acc16104466d1bde0405f7c746e780acb
        }
 </script>
 
@@ -70,7 +88,12 @@
 <?php
 if (isset($_POST['login'])) {
        if (isset($_POST['role']) && isset($_POST['username']) && isset($_POST['password'])) {
+<<<<<<< HEAD
 
+=======
+              print_r($_POST);
+              //       exit();
+>>>>>>> b3f5f87acc16104466d1bde0405f7c746e780acb
               $role = $_POST['role'];
               $username = $_POST['username'];
               $password = $_POST['password'];
@@ -92,10 +115,18 @@ if (isset($_POST['login'])) {
                      $_SESSION['password'] = $row['password'];
                      $_SESSION['role'] = $row['role'];
 
+<<<<<<< HEAD
                      header("location: index.php?success= Login Successfull...");
                      exit();
               } else {
                      header("location:login.php?error= Wrong Username or Password...");
+=======
+
+                     header("location: index.php");
+                     exit();
+              } else {
+                     header("location:login.php?error=  Wrong Username or Password...");
+>>>>>>> b3f5f87acc16104466d1bde0405f7c746e780acb
                      exit();
               }
        } else {
@@ -104,4 +135,8 @@ if (isset($_POST['login'])) {
        }
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> b3f5f87acc16104466d1bde0405f7c746e780acb
 ?>

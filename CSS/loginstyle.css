@@ -29,7 +29,11 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+<<<<<<< HEAD
   font-family: Roboto, sans-serif, system-ui, "Segoe UI";
+=======
+  font-family: Roboto, sans-serif, system-ui, 'Segoe UI';
+>>>>>>> b3f5f87acc16104466d1bde0405f7c746e780acb
 }
 
 body {
@@ -74,11 +78,19 @@ body {
       width: 100%;
       padding-bottom: 0.4rem;
       border-bottom: 0.15rem solid var(--color-secondary-50);
+<<<<<<< HEAD
       h1 {
         font-size: 4rem;
         font-weight: bold;
         text-align: center;
         color: var(--color-secondary-80);
+=======
+      h1{
+        font-size: 4rem;
+        font-weight: bold;
+        text-align: center;
+        color: var(--color-secondary-80);   
+>>>>>>> b3f5f87acc16104466d1bde0405f7c746e780acb
       }
     }
     label {
@@ -97,14 +109,22 @@ body {
       margin-top: 0.3rem;
       color: var(--bgcolor-primary-80);
     }
+<<<<<<< HEAD
     select {
+=======
+    select{
+>>>>>>> b3f5f87acc16104466d1bde0405f7c746e780acb
       padding-left: 0.5rem;
     }
 
     input:focus,
     select:focus {
       border: none;
+<<<<<<< HEAD
       outline: 0.2rem solid var(--color-focus);
+=======
+      outline: 0.3rem solid var(--color-focus);
+>>>>>>> b3f5f87acc16104466d1bde0405f7c746e780acb
     }
 
     #login-btn {
@@ -127,6 +147,7 @@ body {
       transform: scale(0.99);
     }
   }
+<<<<<<< HEAD
 }
 
 
@@ -206,3 +227,24 @@ body {
     display: grid;
     place-content: center;
   }
+=======
+
+  #error {
+    background-color: var(--color-danger);
+    color: var(--color-primary-100);
+    font-weight: 500;
+    padding: 1rem;
+    width: 100%;
+    text-align: center;
+    font-size: 1.5rem;
+    position: absolute;
+    bottom: 0;
+  }
+
+  .hide {
+    opacity: 0;
+    transition: all 500ms ease;
+    cursor: default;
+  }
+}
+>>>>>>> b3f5f87acc16104466d1bde0405f7c746e780acb

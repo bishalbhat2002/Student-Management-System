@@ -44,6 +44,7 @@
 }
 
 /* CSS Code for Error and Success Handling Start Here */
+<<<<<<< HEAD
 
   .message {
     font-size: 1.5rem;
@@ -111,6 +112,38 @@
     }
   }
 
+=======
+#error {
+  background-color: var(--color-danger);
+  color: var(--color-primary-100);
+  font-weight: 500;
+  padding: 1rem;
+  width: 100%;
+  text-align: center;
+  font-size: 1.5rem;
+  position: absolute;
+  bottom: 0;
+  z-index: 15;
+}
+#success {
+  background-color: var(--color-success);
+  color: var(--color-primary-100);
+  font-weight: 500;
+  padding: 1rem;
+  width: 100%;
+  text-align: center;
+  font-size: 1.5rem;
+  position: absolute;
+  bottom: 0;
+  z-index: 15;
+}
+
+.hide {
+  opacity: 0;
+  transition: all 500ms ease;
+  cursor: default;
+}
+>>>>>>> b3f5f87acc16104466d1bde0405f7c746e780acb
 /* CSS Code for Error and Success Handling End Here */
 
 
