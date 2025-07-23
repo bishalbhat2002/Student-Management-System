@@ -11,11 +11,7 @@
        if(isset($_GET['logout'])){
               session_unset();
               session_destroy();
-<<<<<<< HEAD
               header("location: ".BASE_URL."/login.php?success= Logout Successfull...");
-=======
-              header("location: ".BASE_URL."/login.php");
->>>>>>> b3f5f87acc16104466d1bde0405f7c746e780acb
               exit();
        }
 
@@ -32,15 +28,9 @@
        <link rel="preconnect" href="https://fonts.googleapis.com">
        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-<<<<<<< HEAD
        <link rel="stylesheet" href="<?php echo BASE_URL;?>/CSS/utilityClasses.css">                  <!-- Utility Classes linked first because we might overwrite some classes in Style.css file, It contains classes with most used properties. --> 
        <link rel="stylesheet" href="<?php echo BASE_URL;?>/CSS/style.css">                           <!-- Style.css added for general Styling -->
        <link rel="stylesheet" href="<?php echo BASE_URL;?>/CSS/mediaqueries.css">                    <!-- Mediaqueries.css file contains code required for making the website responsive -->
-=======
-       <link rel="stylesheet" href="../../CSS/utilityClasses.css">                  <!-- Utility Classes linked first because we might overwrite some classes in Style.css file, It contains classes with most used properties. --> 
-       <link rel="stylesheet" href="../../CSS/style.css">                           <!-- Style.css added for general Styling -->
-       <link rel="stylesheet" href="../../CSS/mediaqueries.css">                    <!-- Mediaqueries.css file contains code required for making the website responsive -->
->>>>>>> b3f5f87acc16104466d1bde0405f7c746e780acb
 </head>
 <body>
        <div class="logo"><a href="<?php echo BASE_URL; ?>">SMS</a></div>
@@ -80,10 +70,6 @@
                      </ul>
               <?php } ?>
 
-<<<<<<< HEAD
-=======
-
->>>>>>> b3f5f87acc16104466d1bde0405f7c746e780acb
               <div class="logout">
                      <a href="?logout=true" name="logout">Log out</a>
               </div>
