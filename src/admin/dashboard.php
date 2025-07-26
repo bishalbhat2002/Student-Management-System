@@ -103,7 +103,7 @@
               <form action="" name="resetTeacherPassword" method="post" enctype="multipart/form-data" class="form-expan">
                      
                      <div class="col-span-2 center mb-2">
-                                   <img src="../../public/assets/images/image.jpg" alt="Photo" class="image">
+                                   <img src="<?php echo BASE_URL;?>/public/assets/images/image.jpg" alt="Photo" class="image">
                             </div> 
                      <div>
                             <label for="tid">Teacher ID:</label> <br>
@@ -147,50 +147,60 @@
 ?>
               <div class="center-fdct main">
                      <h1 class="heading">Update Admin Info</h1>
-                     <form action="" name="updateAdminInfo" method="post" enctype="multipart/form-data" class="form-expan small-input-field">
+                     <form action="" name="updateAdminInfo" method="post" enctype="multipart/form-data" id="adminInfoUpdateForm" class="form-expan small-input-field">
                             <input type="hidden" name="adminId" value="">
 
                             <div class="col-span-2 center mb-2">
-                                   <img src="../../public/assets/images/image.jpg" alt="Photo" class="image">
+                                   <img src="<?php echo BASE_URL;?>/public/assets/images/image.jpg" alt="Photo" class="image">
                             </div>
 
                             <div>
                                    <label for="username">Username:</label> <br>
-                                   <input type="text" name="username" value="">
+                                   <input type="text" name="username" id="username" value="">
+                                   <p id="usernameError" class="error"></p>
                             </div>
                             <div>
                                    <label for="name">Name:</label> <br>
-                                   <input type="text" name="name" value="">
+                                   <input type="text" name="name" id="name" value="">
+                                   <p id="nameError" class="error"></p>
                             </div>
                             <div>
                                    <label for="dob">DOB:</label> <br>
-                                   <input type="date" name="dob" value="" max="">
+                                   <input type="date" name="dob" id="dob" value="" max="">
+                                   <p id="dobError" class="error"></p>
                             </div>
                             <div class="gender">
                                    <label for="gender">Gender:</label> <br>
                                    <input type="radio" name="gender" value="male">Male
                                    <input type="radio" name="gender" value="female">Female
+                                   <p id="genderError" class="error"></p>
                             </div>
                             <div>
                                    <label for="faculty">Faculty:</label> <br>
-                                   <input type="text" name="faculty" readonly value="">
+                                   <input type="text" name="faculty" id="faculty" readonly value="">
+                                   <p id="facultyError" class="error"></p>
                             </div>
                             <div>
                                    <label for="phone">Mobile:</label> <br>
-                                   <input type="number" name="phone" value="">
+                                   <input type="number" name="phone" id="phone" value="">
+                                   <p id="phoneError" class="error"></p>
                             </div>
                             <div>
                                    <label for="email">Email:</label> <br>
-                                   <input type="email" name="email" value="">
+                                   <input type="email" name="email" id="email" value="">
+                                   <p id="emailError" class="error"></p>
                             </div>
 
                             <div>
                                    <label for="address">Adress:</label> <br>
-                                   <input type="text" name="address" value="">
+                                   <input type="text" name="address" id="address" value="">
+                                   <p id="addressError" class="error"></p>
                             </div>
+
                             <div>
                                    <label for="photo">Update Photo:</label> <br>
                                    <input type="file" name="photo" id="photo" value="">
+                                   <p id="photoError" class="error"></p>
                             </div>
 
                             <div class="center btn-container">
@@ -206,19 +216,22 @@
 ?>
               <div class="main center-fdct">
                      <h1 class="heading">Update Admin Password</h1>
-                     <form action="" name="updateAdminPassword" method="post" enctype="multipart/form-data" class="form">
+                     <form action="" name="updateAdminPassword" method="post" enctype="multipart/form-data" class="form" id="updatePasswordForm">
                             <input type="hidden" name="adminId" value="">
                             <div>
                                    <label for="currentPassword">current Password:</label> <br>
-                                   <input type="text" name="currentPassword" value="">
+                                   <input type="text" name="currentPassword" id="currentPasswordfwefwf" value="">
+                                   <p id="currentPasswordError" class="error"></p>
                             </div>
                             <div>
                                    <label for="newPassword">New Password:</label> <br>
-                                   <input type="text" name="newPassword" value="">
+                                   <input type="text" name="newPassword" id="newPassword" value="">
+                                   <p id="newPasswordError" class="error"></p>
                             </div>
                             <div>
                                    <label for="confirmNewPassword">Confirm New Password:</label> <br>
-                                   <input type="text" name="confirmNewPassword" value="">
+                                   <input type="text" name="confirmNewPassword" id="confirmNewPassword" value="">
+                                   <p id="confirmNewPasswordError" class="error"></p>
                             </div>
                             <div class="center btn-container">
                                    <input type="submit" value="Save Changes" class="update-btn">

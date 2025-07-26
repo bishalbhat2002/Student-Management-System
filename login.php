@@ -22,7 +22,7 @@
               </div>
               <div>
                      <label for="role">As:</label> <br>
-                     <select name="role" id="role">
+                     <select name="role" id="role" required>
                             <option value="" selected disabled>select role</option>
                             <option value="admin">Admin</option>
                             <option value="teacher">Teacher</option>
@@ -32,12 +32,12 @@
 
               <div>
                      <label for="username">Username</label> <br>
-                     <input type="text" name="username" id="username"> <br>
+                     <input type="text" name="username" id="username" required> <br>
               </div>
 
               <div>
                      <label for="password"> Password</label> <br>
-                     <input type="password" name="password" id="password"> <br>
+                     <input type="password" name="password" id="password" required> <br>
               </div>
 
               <button id="login-btn" name="login">login</button>
@@ -64,8 +64,6 @@
 
        }
 </script>
-<script src="public/js/loginPage.js"></script>
-
 </html>
 
 <?php

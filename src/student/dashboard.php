@@ -6,7 +6,7 @@ if (isset($_GET['update-student-info'])) {
 ?>
        <div class="main center-fdct">
               <h1 class="heading">Update Student Info</h1>
-              <form action="?" method="post" name="Update-student-form" enctype="multipart/form-data" class="form-expan small-input-field">
+              <form action="?" method="post" name="Update-student-form" enctype="multipart/form-data" class="form-expan small-input-field" id="studentValidateForm">
 
                      <div class="col-span-2 center mb-2">
                             <img src="<?php echo BASE_URL;?>/public/assets/images/image.jpg" alt="Photo" class="image small-image">
@@ -17,44 +17,55 @@ if (isset($_GET['update-student-info'])) {
                      <div>
                             <label for="name">Name:</label>
                             <input type="text" name="name" id="name">
+                            <p id="nameError" class="error"></p>
                      </div>
                      <div>
                                    <label for="faculty">Faculty:</label>
                                    <input type="text" name="faculty" id="faculty" readonly>
+
                      </div> 
                      <div>
                             <label for="dob">DOB:</label>
                             <input type="date" name="dob" id="dob">
+                            <p id="dobError" class="error"></p>
+
                      </div>
                      <div class="gender">
                             <label for="gender">Gender:</label><br>
                             <input type="radio" name="gender" value="male">Male
                             <input type="radio" name="gender" value="female">Female
+                            <p id="genderError" class="error"></p>
                      </div>
                      <div>
                             <label for="phone">Phone:</label>
                             <input type="number" name="phone" id="phone">
+                            <p id="phoneError" class="error"></p>
                      </div>
                      <div>
                             <label for="email">Email:</label>
                             <input type="email" name="email" id="email">
+                            <p id="emailError" class="error"></p>
                      </div>
                      <div class="col-span-2">
                             <label for="address">Address:</label>
                             <input type="text" name="address" id="address">
+                            <p id="addressError" class="error"></p>
                      </div>
                      <div>
-                            <label for="parent-name">Parent Name:</label>
-                            <input type="number" name="parent-name" id="parent-name">
+                            <label for="parentName">Parent Name:</label>
+                            <input type="number" name="parent-name" id="parentName">
+                            <p id="parentNameError" class="error"></p>
                      </div>    
                      <div>
-                            <label for="parent-phone">Parent Phone:</label>
-                            <input type="number" name="parent-phone" id="parent-phone">
+                            <label for="parentPhone">Parent Phone:</label>
+                            <input type="number" name="parent-phone" id="parentPhone">
+                            <p id="parentPhoneError" class="error"></p>
                      </div>
 
                      <div>
                             <label for="photo">Upload Photo:</label>
                             <input type="file" name="photo" id="photo">
+                            <p id="photoError" class="error"></p>
                      </div>
                      <div>
                             <label for="view-results">View Results:</label> <br>
@@ -65,11 +76,13 @@ if (isset($_GET['update-student-info'])) {
                      </div>
                      <div>
                             <label for="see-result">SEE Result:</label>
-                            <input type="file" name="see-result" id="see-result">
+                            <input type="file" name="see-result" id="seeResult">
+                            <p id="seeResultError" class="error"></p>
                      </div>
                      <div>
                             <label for="neb-result">NEB Result:</label>
-                            <input type="file" name="neb-result" id="neb-result">
+                            <input type="file" name="neb-result" id="nebResult">
+                            <p id="nebResultError" class="error"></p>
                      </div>
 
                      <div class="col-span-2 center">
@@ -85,19 +98,22 @@ if (isset($_GET['update-student-info'])) {
 ?>
        <div class="main center-fdct">
               <h1 class="heading">Update Password</h1>
-              <form action="" name="update-student-password-from" method="post" enctype="multipart/form-data" class="form">
+              <form action="" name="update-student-password-from" method="post" enctype="multipart/form-data" class="form" id="updatePasswordForm">
                      <input type="hidden" name="tid" value="">
                      <div>
                             <label for="currentPassword">current Password:</label> <br>
-                            <input type="text" name="currentPassword" value="">
+                            <input type="text" name="currentPassword" id="currentPassword" value="">
+                               <p id="currentPasswordError" class="error"></p>
                      </div>
                      <div>
                             <label for="newPassword">New Password:</label> <br>
-                            <input type="text" name="newPassword" value="">
+                            <input type="text" name="newPassword" id="newPassword" value="">
+                               <p id="newPasswordError" class="error"></p>
                      </div>
                      <div>
                             <label for="confirmNewPassword">Confirm New Password:</label> <br>
-                            <input type="text" name="confirmNewPassword" value="">
+                            <input type="text" name="confirmNewPassword" id="confirmNewPassword" value="">
+                               <p id="confirmNewPasswordError" class="error"></p>
                      </div>
                      <div class="center btn-container">
                             <input type="submit" value="Save Changes" class="update-btn">

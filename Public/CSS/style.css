@@ -37,6 +37,7 @@
   --color-hover: rgb(253, 253, 253);
   --color-reset: rgb(228, 166, 32);
   --color-highlighter: rgb(254, 187, 63);
+  --color-error: rgb(249, 32, 32);
 
   --shadow: 0.1rem 0.1rem 0.8rem 0 var(--color-secondary-80);
   --soft-shadow: 0rem 0.3rem 2rem 0 rgba(50, 50, 50, 0.373);
@@ -57,7 +58,7 @@
     transition: all 2s ease-in;
 
     p{
-      color: var(--color-secondary-80);
+      color: var(--bgcolor-primary-80);
     }
   }
 
@@ -112,6 +113,18 @@
   }
 
 /* CSS Code for Error and Success Handling End Here */
+
+
+/* CSS code for handling Form field Error Start Here */
+.error{
+  font-size: 1.7rem;
+  color: var(--color-error);
+  margin: 0;
+  position: relative;
+  bottom: -0.5rem;
+}
+/* CSS code for handling Form field Error End Here */
+
 
 
 /* Common CSS Code for Body START here*/
@@ -1055,7 +1068,6 @@ tr{
   height: 3rem;
   font-size: 1.5rem;
   font-weight: 500;
-  margin-bottom: 1rem;
 }
 .small-input-field .image{
   height: 10rem;
