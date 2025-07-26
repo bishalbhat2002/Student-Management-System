@@ -1,4 +1,4 @@
-<?php require_once "../../includes/header.php"; ?>
+<?php require_once "../includes/header.php"; ?>
 
 
 
@@ -12,7 +12,7 @@
                                    <!-- Header Section -->
                                    <div class="header">
                                           <div class="fwu-logo">
-                                                 <img src="../../assets/images/fwu-logo.jpg" alt="FWU-Logo">
+                                                 <img src="<?php echo BASE_URL;?>/public/assets/images/fwu-logo.jpg" alt="FWU-Logo">
                                           </div>  
                                           <div>
                                                  <h1>Farwestern University</h1>
@@ -20,7 +20,7 @@
                                                  <h3>Mahendranagar, Kanchanpur</h3>
                                           </div>                          
                                           <div class="fwu-logo">
-                                                 <img src="../../assets/images/fwu-logo.jpg" alt="FWU-Logo">
+                                                 <img src="<?php echo BASE_URL;?>/public/assets/images/fwu-logo.jpg" alt="FWU-Logo">
                                           </div>
                                    </div>
                                    <!-- Student Info Section -->
@@ -165,4 +165,4 @@
        }
 ?>  
 
-<?php require_once "../../includes/footer.php"; ?>
+<?php require_once "../includes/footer.php"; ?>

@@ -1,4 +1,4 @@
-<?php require_once "../../includes/header.php"; ?>
+<?php require_once "../includes/header.php"; ?>
 <div class="main center-fdct">
 
 <?php
@@ -157,4 +157,4 @@
 </div>
 
 
-<?php require_once "../../includes/footer.php"; ?>
+<?php require_once "../includes/footer.php"; ?>

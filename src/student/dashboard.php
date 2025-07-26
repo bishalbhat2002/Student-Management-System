@@ -1,4 +1,4 @@
-<?php require_once "../../includes/header.php"; ?>
+<?php require_once "../includes/header.php"; ?>
 
 <!-- Code for Updating Student Info-->
 <?php
@@ -9,7 +9,7 @@ if (isset($_GET['update-student-info'])) {
               <form action="?" method="post" name="Update-student-form" enctype="multipart/form-data" class="form-expan small-input-field">
 
                      <div class="col-span-2 center mb-2">
-                            <img src="../../assets/images/image.jpg" alt="Photo" class="image small-image">
+                            <img src="<?php echo BASE_URL;?>/public/assets/images/image.jpg" alt="Photo" class="image small-image">
                      </div>
 
                      <input type="hidden" name="regd-no" value="">
@@ -155,7 +155,7 @@ if (isset($_GET['update-student-info'])) {
 
                      <div class="student-info">
                             <div>
-                                   <img src=<?php echo BASE_URL . "/assets/images/image.jpg"; ?> alt="profile picture">
+                                   <img src="<?php echo BASE_URL;?>/public/assets/images/image.jpg" alt="profile picture">
                             </div>
                             <p>Name: Bishal Bhat</p>
                             <p>Gender: Male</p>
@@ -176,4 +176,4 @@ if (isset($_GET['update-student-info'])) {
 }
 ?>
 
-<?php require_once "../../includes/footer.php"; ?>
+<?php require_once "../includes/footer.php"; ?>

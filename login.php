@@ -10,7 +10,7 @@
        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-       <link rel="stylesheet" href="CSS/loginStyle.css">
+       <link rel="stylesheet" href="public/CSS/loginStyle.css">
 </head>
 
 <body>
@@ -44,7 +44,7 @@
        </form>
 
        <?php
-              require_once "includes/show_message.php";
+              require_once "src/includes/show_message.php";
        ?>
 </body>
 <script>
@@ -64,6 +64,7 @@
 
        }
 </script>
+<script src="public/js/loginPage.js"></script>
 
 </html>
 

@@ -1,4 +1,4 @@
-<?php require_once "../../includes/header.php"; ?>
+<?php require_once "../includes/header.php"; ?>
 
 <!-- Code for Viewing Teacher -->
 <?php
@@ -8,7 +8,7 @@
                      <h1 class="heading mt-1">Tid: 1001 - View Teacher</h1>
                      <form action="" method="post" name="view-teacher-form" enctype="multipart/form-data" class="form-expan mb-1">
                             <div class="col-span-2 center mb-2">
-                                   <img src="../../assets/images/image.jpg" alt="Photo" class="image">
+                                   <img src="<?php echo BASE_URL;?>/public/assets/images/image.jpg" alt="Photo" class="image">
                             </div>
                             <div>
                                    <label for="name">Name:</label>
@@ -201,5 +201,5 @@
 
 
 
-<?php require_once "../../includes/footer.php"; ?>
+<?php require_once "../includes/footer.php"; ?>
 

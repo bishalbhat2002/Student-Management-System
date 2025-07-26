@@ -1,4 +1,4 @@
-<?php require_once "../../includes/header.php"; ?>
+<?php require_once "../includes/header.php"; ?>
 
 
 <!-- Code for Reset Password Options -->
@@ -38,7 +38,7 @@
               <form action="?" name="resetStudentPassword" method="post" enctype="multipart/form-data" class="form-expan">
                      
                      <div class="col-span-2 center mb-2">
-                                   <img src="../../assets/images/image.jpg" alt="Photo" class="image">
+                                   <img src="../../public/assets/images/image.jpg" alt="Photo" class="image">
                             </div> 
                      <div>
                             <label for="regd-no">Registration No.:</label> <br>
@@ -103,7 +103,7 @@
               <form action="" name="resetTeacherPassword" method="post" enctype="multipart/form-data" class="form-expan">
                      
                      <div class="col-span-2 center mb-2">
-                                   <img src="../../assets/images/image.jpg" alt="Photo" class="image">
+                                   <img src="../../public/assets/images/image.jpg" alt="Photo" class="image">
                             </div> 
                      <div>
                             <label for="tid">Teacher ID:</label> <br>
@@ -151,7 +151,7 @@
                             <input type="hidden" name="adminId" value="">
 
                             <div class="col-span-2 center mb-2">
-                                   <img src="../../assets/images/image.jpg" alt="Photo" class="image">
+                                   <img src="../../public/assets/images/image.jpg" alt="Photo" class="image">
                             </div>
 
                             <div>
@@ -240,8 +240,8 @@
 
                      <div class="student-status">
                             <div class="total-info">
-                                   <div class="total-students"><img src="<?php echo BASE_URL.'/assets/images/student.png'?>" alt="student icon">250 <br>Total Students</div>
-                                   <div class="total-teachers"><img src="<?php echo BASE_URL.'/assets/images/hat.png'?>" alt="hat icon">250 <br>Total Teachers</div>
+                                   <div class="total-students"><img src="<?php echo BASE_URL.'/public/assets/images/student.png'?>" alt="student icon">250 <br>Total Students</div>
+                                   <div class="total-teachers"><img src="<?php echo BASE_URL.'/public/assets/images/hat.png'?>" alt="hat icon">250 <br>Total Teachers</div>
                             </div>
 
                             <div class="semester-info">
@@ -260,7 +260,7 @@
 
                      <div class="admin-info">
                             <div>
-                                   <img src= <?php echo BASE_URL."/assets/images/image.jpg"; ?> alt="profile picture">
+                                   <img src= <?php echo BASE_URL."/public/assets/images/image.jpg"; ?> alt="profile picture">
                             </div>
                                    <p>Name: Bishal Bhat</p>
                                    <p>Gender: Male</p>
@@ -280,4 +280,4 @@
        }
 ?>
 
-<?php require_once "../../includes/footer.php"; ?>
+<?php require_once "../includes/footer.php"; ?>

@@ -2,7 +2,7 @@
        session_start();
 
        if(!isset($_SESSION['username'])){
-              header('location:login.php');
+              header('location:../../login.php');
               exit();
        }
        require_once "../../config/absolutePath.php";              // Include absolute File to header.php file, so we can use absolute path (through BASE_URL constant variable defined in absolutePath.php file)
@@ -28,13 +28,13 @@
        <link rel="preconnect" href="https://fonts.googleapis.com">
        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-       <link rel="stylesheet" href="<?php echo BASE_URL;?>/CSS/utilityClasses.css">                  <!-- Utility Classes linked first because we might overwrite some classes in Style.css file, It contains classes with most used properties. --> 
-       <link rel="stylesheet" href="<?php echo BASE_URL;?>/CSS/style.css">                           <!-- Style.css added for general Styling -->
-       <link rel="stylesheet" href="<?php echo BASE_URL;?>/CSS/mediaqueries.css">                    <!-- Mediaqueries.css file contains code required for making the website responsive -->
+       <link rel="stylesheet" href="<?php echo BASE_URL;?>/public/CSS/utilityClasses.css">                  <!-- Utility Classes linked first because we might overwrite some classes in Style.css file, It contains classes with most used properties. --> 
+       <link rel="stylesheet" href="<?php echo BASE_URL;?>/public/CSS/style.css">                           <!-- Style.css added for general Styling -->
+       <link rel="stylesheet" href="<?php echo BASE_URL;?>/public/CSS/mediaqueries.css">                    <!-- Mediaqueries.css file contains code required for making the website responsive -->
 </head>
 <body>
        <div class="logo"><a href="<?php echo BASE_URL; ?>">SMS</a></div>
-       <div id="hambuger-icon"><img src="../../assets/images/hambuger.png" alt="Hamburger icon"></div>
+       <div id="hambuger-icon"><img src="<?php echo BASE_URL;?>/public/assets/images/hambuger.png" alt="Hamburger icon"></div>
        <nav class="navbar">
 
               <?php if($_SESSION['role']==='admin'){ ?>

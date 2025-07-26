@@ -1,4 +1,4 @@
-<?php require_once "../../includes/header.php"; ?>
+<?php require_once "../includes/header.php"; ?>
 
 
 <!-- Code for Adding New Student -->
@@ -208,7 +208,7 @@
                      <form action="?edit-student-regd-no" method="post" name="view-student-form" enctype="multipart/form-data" class="form-expan small-input-field">
                            
                             <div class="col-span-2 center mb-2">
-                                   <img src="../../assets/images/image.jpg" alt="Photo" class="image">
+                                   <img src="<?php echo BASE_URL;?>/public/assets/images/image.jpg" alt="Photo" class="image">
                             </div>       
                             <div>
                                    <label for="name">Name:</label>
@@ -253,8 +253,8 @@
                             <div>
                                    <label for="view-results">View Results:</label> <br>
                                    <div id="view-results"> 
-                                          <a href="../../assets/image.jpg" target="_blank" class="view-btn btn">SEE Result</a>
-                                          <a href="../../assets/image.jpg" target="_blank" class="view-btn btn">NEB Result</a>
+                                          <a href="<?php echo BASE_URL;?>/public/assets/image.jpg" target="_blank" class="view-btn btn">SEE Result</a>
+                                          <a href="<?php echo BASE_URL;?>/public/assets/image.jpg" target="_blank" class="view-btn btn">NEB Result</a>
                                    </div>
                             </div>            
                             <div class="col-span-2 center">
@@ -294,7 +294,7 @@
                      <form action="?view-student-regd-no" method="post" name="view-student-form" enctype="multipart/form-data" class="form-expan small-input-field">
                            
                             <div class="col-span-2 center mb-2">
-                                   <img src="../../assets/images/image.jpg" alt="Photo" class="image small-image">
+                                   <img src="<?php echo BASE_URL;?>/public/assets/images/image.jpg" alt="Photo" class="image small-image">
                             </div>
                             <div>
                                    <label for="regd-no">Registration No:</label>
@@ -394,7 +394,7 @@
                      <form action="?view-admission-semester" method="post" name="add-admission-form" enctype="multipart/form-data" class="form-expan small-input-field">
                            
                             <div class="col-span-2 center mb-1">
-                                   <img src="../../assets/images/image.jpg" alt="Photo" class="image">
+                                   <img src="<?php echo BASE_URL;?>/public/assets/images/image.jpg" alt="Photo" class="image">
                             </div>       
                             <div>
                                    <label for="regd-no">Registration No:</label>
@@ -683,7 +683,7 @@
                      <h1 class="heading">Delete Student</h1>
                      <form action="?view-all-students" method="post" name="delete-student-form" enctype="multipart/form-data" class="form-expan">
                             <div class="col-span-2 center mb-2">
-                                   <img src="../../assets/images/image.jpg" alt="Photo" class="image">
+                                   <img src="<?php echo BASE_URL;?>/public/assets/images/image.jpg" alt="Photo" class="image">
                             </div>
                             <div>
                                    <label for="name">Name:</label>
@@ -742,7 +742,7 @@
 
 
 
-<?php require_once "../../includes/footer.php"; ?>
+<?php require_once "../includes/footer.php"; ?>
 
 
 

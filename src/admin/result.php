@@ -1,4 +1,4 @@
-<?php require_once "../../includes/header.php"; ?>
+<?php require_once "../includes/header.php"; ?>
 
 
 <!-- Code for Selecting Batch and Semester for Result Publish -->
@@ -527,7 +527,7 @@ if (isset($_GET['publish-result'])) {
                             <!-- Header Section -->
                             <div class="header">
                                    <div class="fwu-logo">
-                                          <img src="../../assets/images/fwu-logo.jpg" alt="FWU-Logo">
+                                          <img src="<?php echo BASE_URL;?>/public/assets/images/fwu-logo.jpg" alt="FWU-Logo">
                                    </div>
                                    <div>
                                           <h1>Farwestern University</h1>
@@ -535,7 +535,7 @@ if (isset($_GET['publish-result'])) {
                                           <h3>Mahendranagar, Kanchanpur</h3>
                                    </div>
                                    <div class="fwu-logo">
-                                          <img src="../../assets/images/fwu-logo.jpg" alt="FWU-Logo">
+                                          <img src="<?php echo BASE_URL;?>/public/assets/images/fwu-logo.jpg" alt="FWU-Logo">
                                    </div>
                             </div>
                             <!-- Student Info Section -->
@@ -673,4 +673,4 @@ if (isset($_GET['publish-result'])) {
 
 
 
-<?php require_once "../../includes/footer.php"; ?>
+<?php require_once "../includes/footer.php"; ?>

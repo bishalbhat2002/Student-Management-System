@@ -1,4 +1,4 @@
-<?php require_once "../../includes/header.php"; ?>
+<?php require_once "../includes/header.php"; ?>
 
 
 <!-- Code for Adding New Teacher -->
@@ -168,7 +168,7 @@
                      <h1 class="heading mt-1">View Teacher</h1>
                      <form action="?edit-teacher-id" method="post" name="add-teacher-form" enctype="multipart/form-data" class="form-expan mb-1">
                             <div class="col-span-2 center mb-2">
-                                   <img src="../../assets/images/image.jpg" alt="Photo" class="image">
+                                   <img src="<?php echo BASE_URL;?>/public/assets/images/image.jpg" alt="Photo" class="image">
                             </div>
                             <div>
                                    <label for="name">Name:</label>
@@ -234,7 +234,7 @@
                      <h1 class="heading">Edit Teacher</h1>
                      <form action="?view-all-teachers" method="post" name="add-teacher-form" enctype="multipart/form-data" class="form-expan mb-1">
                             <div class="col-span-2 center mb-2">
-                                   <img src="../../assets/images/image.jpg" alt="Photo" class="image">
+                                   <img src="<?php echo BASE_URL;?>/public/assets/images/image.jpg" alt="Photo" class="image">
                             </div>
                             <div>
                                    <label for="name">Name:</label>
@@ -306,7 +306,7 @@
                      <h1 class="heading">Delete Teacher</h1>
                      <form action="?view-all-teachers" method="post" name="add-teacher-form" enctype="multipart/form-data" class="form-expan">
                             <div class="col-span-2 center mb-2">
-                                   <img src="../../assets/images/image.jpg" alt="Photo" class="image">
+                                   <img src="<?php echo BASE_URL;?>/public/assets/images/image.jpg" alt="Photo" class="image">
                             </div>
                             <div>
                                    <label for="name">Name:</label>
@@ -362,7 +362,7 @@
 
 
 
-<?php require_once "../../includes/footer.php"; ?>
+<?php require_once "../includes/footer.php"; ?>
 
 
 

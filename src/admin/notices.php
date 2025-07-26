@@ -1,4 +1,4 @@
-<?php require_once "../../includes/header.php"; ?>
+<?php require_once "../includes/header.php"; ?>
 
 <?php
        if(isset($_GET['add-teacher-notice'])){
@@ -60,7 +60,7 @@
                             <h2 class="sub-heading">Notice Title...</h2>
                             <p> Notice Body Message... Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, harum accusamus excepturi voluptate cum nemo eos distinctio optio repudiandae, aliquam quas sit nisi quibusdam similique reiciendis neque, fugiat velit quam.</p>
                             <div class="center">
-                                   <a href="../../assets/notice.jpeg" download="Notice-sample-name" title="Click to download Notice"><img src="../../assets/images/notice.jpeg" alt="Notice Image" class="notice-image"></a>
+                                   <a href=<?php echo BASE_URL."/public/assets/images/notice.jpeg";?>  download="Notice-sample-name" title="Click to download Notice"><img src="../../assets/images/notice.jpeg" alt="Notice Image" class="notice-image"></a>
                             </div>
                      <div class="center">Date: 2082/01/05</div>
 
@@ -78,7 +78,7 @@
                             <h2 class="sub-heading">Notice Title...</h2>
                             <p> Notice Body Message... Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, harum accusamus excepturi voluptate cum nemo eos distinctio optio repudiandae, aliquam quas sit nisi quibusdam similique reiciendis neque, fugiat velit quam.</p>
                             <div class="center">
-                                   <img src="../../assets/images/notice.jpeg" alt="Notice Image" class="notice-image">
+                                   <img src=<?php echo BASE_URL."/public/assets/images/notice.jpeg";?> alt="Notice Image" class="notice-image">
                             </div>
                      <div class="center">Date: 2082/01/05</div>
 
@@ -150,7 +150,7 @@
 ?>
 
 
-<?php require_once "../../includes/footer.php"; ?>
+<?php require_once "../includes/footer.php"; ?>
 
 
 

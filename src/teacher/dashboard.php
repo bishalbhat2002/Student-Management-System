@@ -1,4 +1,4 @@
-<?php require_once "../../includes/header.php"; ?>
+<?php require_once "../includes/header.php"; ?>
 
 <!-- Code for Updating Teacher Info-->
 <?php
@@ -8,7 +8,7 @@
                      <h1 class="heading">Update Info</h1>
                      <form action="?" method="post" name="update-teacher-form" enctype="multipart/form-data" class="form-expan mb-1">
                             <div class="col-span-2 center mb-2">
-                                   <img src="../../assets/images/image.jpg" alt="Photo" class="image">
+                                   <img src="<?php echo BASE_URL;?>/public/assets/images/image.jpg" alt="Photo" class="image">
                             </div>
                             <div>
                                    <label for="name">Name:</label>
@@ -92,8 +92,12 @@
 
                      <div class="student-status">
                             <div class="total-info">
-                                   <div class="total-students"><img src="<?php echo BASE_URL.'/assets/images/student.png'?>" alt="student icon">250 <br>Total Students</div>
-                                   <div class="total-teachers"><img src="<?php echo BASE_URL.'/assets/images/hat.png'?>" alt="hat icon">250 <br>Total Teachers</div>
+                                   <div class="total-students">
+                                          <img src="<?php echo BASE_URL;?>/public/assets/images/student.png" alt="student icon">250 <br>Total Students
+                                   </div>
+                                   <div class="total-teachers">
+                                          <img src="<?php echo BASE_URL;?>/public/assets/images/hat.png" alt="hat icon">250 <br>Total Teachers
+                                   </div>
                             </div>
 
                             <div class="semester-info">
@@ -111,7 +115,7 @@
 
                      <div class="teacher-info">
                             <div>
-                                   <img src= <?php echo BASE_URL."/assets/images/image.jpg"; ?> alt="profile picture">
+                                   <img src="<?php echo BASE_URL;?>/public/assets/images/image.jpg"; ?> alt="profile picture">
                             </div>
                                    <p>Name: Bishal Bhat</p>
                                    <p>Gender: Male</p>
@@ -131,6 +135,6 @@
        }
 ?>
 
-<?php require_once "../../includes/footer.php"; ?>
+<?php require_once "../includes/footer.php"; ?>
 
 

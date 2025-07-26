@@ -1,4 +1,4 @@
-<?php require_once "../../includes/header.php"; ?>
+<?php require_once "../includes/header.php"; ?>
 
 <!-- Code to view study materials -->
 
@@ -14,8 +14,8 @@
                                    <p>The file linked to this message contains PHP pdf.</p>
                                    <div class="space-between">
                                           <div>
-                                                 <a href="../../uploads/study materials/PHP.pdf" download="sampleNote" class="save-btn">Click To Download</a>
-                                                 <a href="../../uploads/study materials/PHP.pdf" target="_blank" class="view-btn">View Note</a>
+                                                 <a href="<?php echo BASE_URL;?>/uploads/study materials/PHP.pdf" download="sampleNote" class="save-btn">Click To Download</a>
+                                                 <a href="<?php echo BASE_URL;?>/uploads/study materials/PHP.pdf" target="_blank" class="view-btn">View Note</a>
                                                  
                                           </div>
                                           <div class="flex gap-2">
@@ -29,4 +29,4 @@
               </div>
               </div> 
 
-<?php require_once "../../includes/footer.php"; ?>
+<?php require_once "../includes/footer.php"; ?>
