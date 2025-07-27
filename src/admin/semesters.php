@@ -75,7 +75,7 @@
 <!-- Code for Adding New Semester -->
               <div>
                      <h1 class="heading">Add New Semester</h1>       
-                     <form action="" method="post" name="addNewSemester" enctype="multipart/form-data" class="form">
+                     <form action="?" method="post" name="addNewSemester" enctype="multipart/form-data" class="form">
                             <div>
                                    <label for="semester">Select Semester:</label> <br>
                                    <select name="semester" id="semester">
@@ -111,7 +111,7 @@
                      <p>95 Students</p> 
                      <div class="action">
                             <a href="?viewstudents-sem" class="view-btn">View All Students</a>
-                            <a href="?deleteSemester-id" class="delete-btn">Delete Semester</a>
+                            <a href="?deleteSemester-id" class="delete-btn" onclick="return confirmDelete('semID')">Delete Semester</a>
                      </div>
               </div>
               <div class="sem-container width-large">
@@ -119,7 +119,7 @@
                      <p>43 Students</p>
                      <div class="action">
                             <a href="?viewstudents-sem" class="view-btn">View All Students</a>
-                            <a href="?deleteSemester-id" class="delete-btn">Delete Semester</a>
+                            <a href="?deleteSemester-id" class="delete-btn" onclick="return confirmDelete('semID')">Delete Semester</a>
                      </div>
               </div>
               <div class="sem-container width-large">
@@ -127,7 +127,7 @@
                      <p>38 Students</p>
                      <div class="action">
                             <a href="?viewstudents-sem" class="view-btn">View All Students</a>
-                            <a href="?deleteSemester-id" class="delete-btn">Delete Semester</a>
+                            <a href="?deleteSemester-id" class="delete-btn" onclick="return confirmDelete('semID')">Delete Semester</a>
                      </div>
               </div>
               <div class="sem-container width-large">
@@ -135,7 +135,7 @@
                      <p>32 Students</p>
                      <div class="action">
                             <a href="?viewstudents-sem" class="view-btn">View All Students</a>
-                            <a href="?deleteSemester-id" class="delete-btn">Delete Semester</a>
+                            <a href="?deleteSemester-id" class="delete-btn" onclick="return confirmDelete('semID')">Delete Semester</a>
                      </div>
               </div>
               <div class="sem-container width-large">
@@ -143,7 +143,7 @@
                      <p>28 Students</p>
                      <div class="action">
                             <a href="?viewstudents-sem" class="view-btn">View All Students</a>
-                            <a href="?deleteSemester-id" class="delete-btn">Delete Semester</a>
+                            <a href="?deleteSemester-id" class="delete-btn" onclick="return confirmDelete('semID')">Delete Semester</a>
                      </div>
               </div>
               <div class="center">

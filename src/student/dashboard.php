@@ -6,7 +6,7 @@ if (isset($_GET['update-student-info'])) {
 ?>
        <div class="main center-fdct">
               <h1 class="heading">Update Student Info</h1>
-              <form action="?" method="post" name="Update-student-form" enctype="multipart/form-data" class="form-expan small-input-field" id="studentValidateForm">
+              <form action="?" method="post" name="Update-student-form" enctype="multipart/form-data" class="form-expan small-input-field" id="updateStudentForm">
 
                      <div class="col-span-2 center mb-2">
                             <img src="<?php echo BASE_URL;?>/public/assets/images/image.jpg" alt="Photo" class="image small-image">
@@ -20,9 +20,9 @@ if (isset($_GET['update-student-info'])) {
                             <p id="nameError" class="error"></p>
                      </div>
                      <div>
-                                   <label for="faculty">Faculty:</label>
-                                   <input type="text" name="faculty" id="faculty" readonly>
-
+                            <label for="faculty">Faculty:</label>
+                            <input type="text" name="faculty" id="faculty" readonly>
+                            <p class="error" id="facultyError"></p>
                      </div> 
                      <div>
                             <label for="dob">DOB:</label>
@@ -53,12 +53,12 @@ if (isset($_GET['update-student-info'])) {
                      </div>
                      <div>
                             <label for="parentName">Parent Name:</label>
-                            <input type="number" name="parent-name" id="parentName">
+                            <input type="text" name="parentName" id="parentName">
                             <p id="parentNameError" class="error"></p>
                      </div>    
                      <div>
                             <label for="parentPhone">Parent Phone:</label>
-                            <input type="number" name="parent-phone" id="parentPhone">
+                            <input type="text" name="parentPhone" id="parentPhone">
                             <p id="parentPhoneError" class="error"></p>
                      </div>
 
@@ -68,20 +68,20 @@ if (isset($_GET['update-student-info'])) {
                             <p id="photoError" class="error"></p>
                      </div>
                      <div>
-                            <label for="view-results">View Results:</label> <br>
+                            <label for="viewResults">View Results:</label> <br>
                             <div id="view-results">
                                    <a href="" class="view-btn btn">SEE Result</a>
                                    <a href="" class="view-btn btn">NEB Result</a>
                             </div>
                      </div>
                      <div>
-                            <label for="see-result">SEE Result:</label>
-                            <input type="file" name="see-result" id="seeResult">
+                            <label for="seeResult">SEE Result:</label>
+                            <input type="file" name="seeResult" id="seeResult">
                             <p id="seeResultError" class="error"></p>
                      </div>
                      <div>
                             <label for="neb-result">NEB Result:</label>
-                            <input type="file" name="neb-result" id="nebResult">
+                            <input type="file" name="nebResult" id="nebResult">
                             <p id="nebResultError" class="error"></p>
                      </div>
 

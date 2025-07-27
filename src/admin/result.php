@@ -81,32 +81,32 @@ if (isset($_GET['publish-result'])) {
                                    <tr>
                                           <td class="subject-code">CSIT-101</td>
                                           <td class="subject-name">Subject-1 Lorem ipsum </td>
-                                          <td class="marks-input-box"><input type="number" min="0" max="100"></td>
-                                          <td class="marks-input-box"><input type="number" min="0" max="100"></td>
+                                          <td class="marks-input-box"><input type="number" min="0" max="60" required></td>
+                                          <td class="marks-input-box"><input type="number" min="0" max="40" required></td>
                                    </tr>
                                    <tr>
                                           <td class="subject-code">CSIT-101</td>
                                           <td class="subject-name">Subject-1 Lorem ipsum </td>
-                                          <td class="marks-input-box"><input type="number" min="0" max="100"></td>
-                                          <td class="marks-input-box"><input type="number" min="0" max="100"></td>
+                                          <td class="marks-input-box"><input type="number" min="0" max="60" required></td>
+                                          <td class="marks-input-box"><input type="number" min="0" max="40" required></td>
                                    </tr>
                                    <tr>
                                           <td class="subject-code">CSIT-101</td>
                                           <td class="subject-name">Subject-1 Lorem ipsum </td>
-                                          <td class="marks-input-box"><input type="number" min="0" max="100"></td>
-                                          <td class="marks-input-box"><input type="number" min="0" max="100"></td>
+                                          <td class="marks-input-box"><input type="number" min="0" max="60" required></td>
+                                          <td class="marks-input-box"><input type="number" min="0" max="40" required></td>
                                    </tr>
                                    <tr>
                                           <td class="subject-code">CSIT-101</td>
                                           <td class="subject-name">Subject-1 Lorem ipsum </td>
-                                          <td class="marks-input-box"><input type="number" min="0" max="100"></td>
-                                          <td class="marks-input-box"><input type="number" min="0" max="100"></td>
+                                          <td class="marks-input-box"><input type="number" min="0" max="60" required></td>
+                                          <td class="marks-input-box"><input type="number" min="0" max="40" required></td>
                                    </tr>
                                    <tr>
                                           <td class="subject-code">CSIT-101</td>
                                           <td class="subject-name">Subject-1 Lorem ipsum </td>
-                                          <td class="marks-input-box"><input type="number" min="0" max="100"></td>
-                                          <td class="marks-input-box"><input type="number" min="0" max="100"></td>
+                                          <td class="marks-input-box"><input type="number" min="0" max="60" required></td>
+                                          <td class="marks-input-box"><input type="number" min="0" max="40" required></td>
                                    </tr>
                             </tbody>
                      </table>
@@ -184,32 +184,32 @@ if (isset($_GET['publish-result'])) {
                                    <tr>
                                           <td class="subject-code">CSIT-101</td>
                                           <td class="subject-name">Subject-1 Lorem ipsum </td>
-                                          <td class="marks-input-box"><input type="number" min="0" max="100"></td>
-                                          <td class="marks-input-box"><input type="number" min="0" max="100"></td>
+                                          <td class="marks-input-box"><input type="number" min="0" max="60" required></td>
+                                          <td class="marks-input-box"><input type="number" min="0" max="40" required></td>
                                    </tr>
                                    <tr>
                                           <td class="subject-code">CSIT-101</td>
                                           <td class="subject-name">Subject-1 Lorem ipsum </td>
-                                          <td class="marks-input-box"><input type="number" min="0" max="100"></td>
-                                          <td class="marks-input-box"><input type="number" min="0" max="100"></td>
+                                          <td class="marks-input-box"><input type="number" min="0" max="60" required></td>
+                                          <td class="marks-input-box"><input type="number" min="0" max="40" required></td>
                                    </tr>
                                    <tr>
                                           <td class="subject-code">CSIT-101</td>
                                           <td class="subject-name">Subject-1 Lorem ipsum </td>
-                                          <td class="marks-input-box"><input type="number" min="0" max="100"></td>
-                                          <td class="marks-input-box"><input type="number" min="0" max="100"></td>
+                                          <td class="marks-input-box"><input type="number" min="0" max="60" required></td>
+                                          <td class="marks-input-box"><input type="number" min="0" max="40" required></td>
                                    </tr>
                                    <tr>
                                           <td class="subject-code">CSIT-101</td>
                                           <td class="subject-name">Subject-1 Lorem ipsum </td>
-                                          <td class="marks-input-box"><input type="number" min="0" max="100"></td>
-                                          <td class="marks-input-box"><input type="number" min="0" max="100"></td>
+                                          <td class="marks-input-box"><input type="number" min="0" max="60" required></td>
+                                          <td class="marks-input-box"><input type="number" min="0" max="40" required></td>
                                    </tr>
                                    <tr>
                                           <td class="subject-code">CSIT-101</td>
                                           <td class="subject-name">Subject-1 Lorem ipsum </td>
-                                          <td class="marks-input-box"><input type="number" min="0" max="100"></td>
-                                          <td class="marks-input-box"><input type="number" min="0" max="100"></td>
+                                          <td class="marks-input-box"><input type="number" min="0" max="60" required></td>
+                                          <td class="marks-input-box"><input type="number" min="0" max="40" required></td>
                                    </tr>
                             </tbody>
                      </table>
@@ -506,6 +506,32 @@ if (isset($_GET['publish-result'])) {
                                    </tr>
 
                                    <tr>
+                                          <td>fewkl</td>
+                                   </tr>                          <tr>
+                                          <td>fewkl</td>
+                                   </tr>                          <tr>
+                                          <td>fewkl</td>
+                                   </tr>                          <tr>
+                                          <td>fewkl</td>
+                                   </tr>                          <tr>
+                                          <td>fewkl</td>
+                                   </tr>                          <tr>
+                                          <td>fewkl</td>
+                                   </tr>                          <tr>
+                                          <td>fewkl</td>
+                                   </tr>                          <tr>
+                                          <td>fewkl</td>
+                                   </tr>                          <tr>
+                                          <td>fewkl</td>
+                                   </tr>                          <tr>
+                                          <td>fewkl</td>
+                                   </tr>                          <tr>
+                                          <td>fewkl</td>
+                                   </tr>                          <tr>
+                                          <td>fewkl</td>
+                                   </tr>                          <tr>
+                                          <td>fewkl</td>
+                                   </tr>                          <tr>
                                           <td>fewkl</td>
                                    </tr>
 

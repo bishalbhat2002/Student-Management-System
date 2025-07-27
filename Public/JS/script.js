@@ -100,6 +100,17 @@ function validatePasswordChange(){
     }
     return true;
 }
+// Attach event listener to the form 
+const updatePasswordForm = document.getElementById("updatePasswordForm");
+if(updatePasswordForm){
+    updatePasswordForm.addEventListener("submit", (event)=>{
+        // If validation fails, prevent form submission
+        if (!validatePasswordChange()) {
+            event.preventDefault();
+        }
+    });
+}
+
 // UpdatePassword Form Validation Code End
 
 
@@ -191,33 +202,33 @@ function validateAdminInfo() {
 
     // Validate photo file if a file is selected
     const photoInput = document.getElementById('photo');
+    // Check file size: 2MB max
+    const maxSizeInBytes = 2 * 1024 * 1024;
+    
     if (photoInput && photoInput.files.length > 0) {
         const file = photoInput.files[0];
         // Allowed MIME types
         const allowedTypes = ["image/jpeg", "image/png", "image/jpg"];
+
         if (!allowedTypes.includes(file.type)) {
             photoError.textContent = "Only JPEG, PNG, or JPG file formats are allowed.";
             isValid = false;
-        }
-        // Check file size: 2MB max
-        const maxSizeInBytes = 2 * 1024 * 1024;
-        if (file.size > maxSizeInBytes) {
+        }else if (file.size > maxSizeInBytes) {
             photoError.textContent = "File size must be less than 2MB.";
             isValid = false;
         }
     }
     return isValid;
 }
-document.addEventListener("DOMContentLoaded", () => {
-    const adminInfoForm = document.getElementById('adminInfoUpdateForm');
-    if (adminInfoForm){
-         adminInfoForm.addEventListener("submit", function(event) {
-             if (!validateAdminInfo()) {
-                 event.preventDefault();
-             }
-         });
-    }
-});
+
+const updateAdminForm = document.getElementById('updateAminForm');
+if (updateAdminForm){
+    updateAdminForm.addEventListener("submit", function(event) {
+        if (!validateAdminInfo()) {
+            event.preventDefault();
+            }
+    });
+}
 
 // UpdateAdmin Info Form Validation Code End
 
@@ -301,6 +312,9 @@ function validateTeacherInfo() {
 
     // Validate photo file if one is selected.
     const photoInput = document.getElementById('photo');
+    // Check file size: 2MB maximum.
+    const maxSizeInBytes = 2 * 1024 * 1024;
+
     if (photoInput && photoInput.files.length > 0) {
         const file = photoInput.files[0];
         // Allowed MIME types
@@ -308,26 +322,29 @@ function validateTeacherInfo() {
         if (!allowedTypes.includes(file.type)) {
             photoError.textContent = "Only JPEG, PNG, or JPG file formats are allowed.";
             isValid = false;
-        }
-        // Check file size: 2MB maximum.
-        const maxSizeInBytes = 2 * 1024 * 1024;
-        if (file.size > maxSizeInBytes) {
+        }else if (file.size > maxSizeInBytes) {
             photoError.textContent = "File size must be less than 2MB.";
             isValid = false;
         }
     }   
     return isValid;
 }
-document.addEventListener("DOMContentLoaded", () => {
-    const teacherForm = document.getElementById('updateTeacherForm');
-    if (teacherForm){
-         teacherForm.addEventListener("submit", function(event) {
-             if (!validateTeacherInfo()) {
-                 event.preventDefault();
-             }
-         });
+const updateTeacherForm = document.getElementById('updateTeacherForm');
+if (updateTeacherForm){
+    updateTeacherForm.addEventListener("submit", function(event) {
+    if (!validateTeacherInfo()) {
+        event.preventDefault();
     }
-});
+    });
+}
+const addTeacherForm = document.getElementById('addTeacherForm');
+if (addTeacherForm){
+    addTeacherForm.addEventListener("submit", function(event) {
+    if (!validateTeacherInfo()) {
+        event.preventDefault();
+    }
+    });
+}
 // UpdateTeacher Info Form Validation Code End
 
 
@@ -338,6 +355,7 @@ function validateStudentInfo() {
 
     // Get error display elements
     const nameError = document.getElementById('nameError');
+    const facultyError = document.getElementById('facultyError');
     const dobError = document.getElementById('dobError');
     const genderError = document.getElementById('genderError');
     const phoneError = document.getElementById('phoneError');
@@ -351,6 +369,9 @@ function validateStudentInfo() {
 
     // Reset error messages
     nameError.textContent = "";
+    if(facultyError){
+        facultyError.textContent = "";
+    }
     dobError.textContent = "";
     genderError.textContent = "";
     phoneError.textContent = "";
@@ -364,6 +385,7 @@ function validateStudentInfo() {
 
     // Get field values directly (all elements are assumed to exist)
     const name = document.getElementById('name').value.trim();
+    const faculty = document.getElementById('faculty').value.trim();
     const dob = document.getElementById('dob').value;
     // For gender, check if one is selected in the radio group
     const genderElem = document.querySelector('input[name="gender"]:checked');
@@ -381,6 +403,10 @@ function validateStudentInfo() {
     // Validate required text fields
     if (!name) {
         nameError.textContent = "Name is required.";
+        isValid = false;
+    }    
+    if (!faculty) {
+        facultyError.textContent = "faculty is required.";
         isValid = false;
     }
     if (!dob) {
@@ -439,20 +465,20 @@ function validateStudentInfo() {
         if (!allowedTypes.includes(file.type)) {
             photoError.textContent = "Only JPEG, PNG, or JPG formats are allowed.";
             isValid = false;
-        }
-        if (file.size > maxSize) {
+        } else if (file.size > maxSize) {
             photoError.textContent = "Photo file size must be less than 2MB.";
             isValid = false;
         }
     }
 
+    const resultAllowedTypes = ["image/jpeg", "image/png", "image/jpg", "application/pdf"];
+
     if (seeResultInput && seeResultInput.files.length > 0) {
         const file = seeResultInput.files[0];
-        if (!allowedTypes.includes(file.type)) {
-            seeResultError.textContent = "Only JPEG, PNG, or JPG formats are allowed.";
+        if (!resultAllowedTypes.includes(file.type)) {
+            seeResultError.textContent = "Only JPEG, PNG, JPG, or PDF formats are allowed.";
             isValid = false;
-        }
-        if (file.size > maxSize) {
+        }else if (file.size > maxSize) {
             seeResultError.textContent = "SEE Result file size must be less than 2MB.";
             isValid = false;
         }
@@ -460,11 +486,10 @@ function validateStudentInfo() {
 
     if (nebResultInput && nebResultInput.files.length > 0) {
         const file = nebResultInput.files[0];
-        if (!allowedTypes.includes(file.type)) {
+        if (!resultAllowedTypes.includes(file.type)) {
             nebResultError.textContent = "Only JPEG, PNG, or JPG formats are allowed.";
             isValid = false;
-        }
-        if (file.size > maxSize) {
+        }else if (file.size > maxSize) {
             nebResultError.textContent = "NEB Result file size must be less than 2MB.";
             isValid = false;
         }
@@ -472,34 +497,349 @@ function validateStudentInfo() {
 
     return isValid;
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-    const studentForm = document.getElementById("studentValidateForm");
-    if (studentForm) {
-         studentForm.addEventListener("submit", function(event) {
-             if (!validateStudentInfo()) {
-                 event.preventDefault();
-             }
-         });
-    }
-});
-// UpdateStudent Info Form Validation Code End
-
-
-
-
-
-
-
-
-// Attach event listener to the form when the DO
-const form = document.getElementById("updatePasswordForm");
-form.addEventListener("submit", (event)=>{
-    // If validation fails, prevent form submission
-    if (!validatePasswordChange()) {
+const updateStudentForm = document.getElementById("updateStudentForm");
+if (updateStudentForm) {
+    updateStudentForm.addEventListener("submit", function(event) {
+    if (!validateStudentInfo()) {
         event.preventDefault();
     }
-});
+    });
+}
+
+function validateResults() {
+    let isValid = true;
+    
+    // Get file input elements and error display elements
+    const seeResultInput = document.getElementById("seeResult");
+    const nebResultInput = document.getElementById("nebResult");
+    const seeResultError = document.getElementById("seeResultError");
+    const nebResultError = document.getElementById("nebResultError");
+    
+    // Reset error messages
+    seeResultError.textContent = "";
+    nebResultError.textContent = "";
+    
+    // Validate SEE Result: required field
+    if (!seeResultInput || seeResultInput.files.length === 0) {
+        seeResultError.textContent = "SEE Result is required.";
+        isValid = false;
+    }
+    
+    // Validate NEB Result: required field
+    if (!nebResultInput || nebResultInput.files.length === 0) {
+        nebResultError.textContent = "NEB Result is required.";
+        isValid = false;
+    }
+    
+    return isValid;
+}
+
+const addStudentForm = document.getElementById("addStudentForm");
+if (addStudentForm) {
+    addStudentForm.addEventListener("submit", function(event) {
+        if (!validateStudentInfo() && !validateResults()) {
+            event.preventDefault();
+        }
+    });
+}
+
+// UpdateStudent Info Form Validation Code End
+function validateStudyMaterialForm() {
+    let isValid = true;
+
+    // Get field values
+    const subject = document.getElementById("subject").value;
+    const message = document.getElementById("Message").value.trim();
+    const fileInput = document.getElementById("file");
+
+    // Get error display elements
+    const subjectError = document.getElementById("subjectError");
+    const messageError = document.getElementById("messageError");
+    const fileError = document.getElementById("fileError");
+
+    // Reset error messages
+    subjectError.textContent = "";
+    messageError.textContent = "";
+    fileError.textContent = "";
+
+    // Check required field: subject
+    if (!subject) {
+        subjectError.textContent = "Subject is required.";
+        isValid = false;
+    }
+
+    // Check required field: message and its max length
+    if (!message) {
+        messageError.textContent = "Message is required.";
+        isValid = false;
+    } else if (message.length > 3000) {
+        messageError.textContent = "Message must not exceed 3000 characters.";
+        isValid = false;
+    }
+
+    // Check required field: file
+    if (!fileInput || fileInput.files.length === 0) {
+        fileError.textContent = "File is required.";
+        isValid = false;
+    } else {
+        const file = fileInput.files[0];
+        // Allowed MIME types: Word, Excel, Image (JPEG, PNG), PDF
+        const allowedTypes = [
+            "application/msword",
+            "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+            "application/vnd.ms-excel",
+            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "image/jpeg",
+            "image/png",
+            "application/pdf"
+        ];
+        const maxSizeInBytes = 20 * 1024 * 1024;    // 20MB
+        if (!allowedTypes.includes(file.type)) {
+            fileError.textContent = "File must be a Word, Excel, Image, or PDF document.";
+            isValid = false;
+        } else if (file.size > maxSizeInBytes) {
+            fileError.textContent = "File size must be less than 20MB.";
+            isValid = false;
+        }
+    }
+
+    return isValid;
+}
+const studyMaterialForm = document.getElementById("studyMaterialForm"); 
+if (studyMaterialForm) {
+    studyMaterialForm.addEventListener("submit", (event) => {
+        if (!validateStudyMaterialForm()) {
+            event.preventDefault();
+        }
+    });
+}
+// Study Material Form Validation Code Start
+
+// Update Study Material Validation Code Start
+function validateUpdateStudyMaterialForm() {
+    let isValid = true;
+
+    // Get field values
+    const subject = document.getElementById("subject").value;
+    const message = document.getElementById("Message").value.trim();
+    const fileInput = document.getElementById("file");
+
+    // Get error display elements
+    const subjectError = document.getElementById("subjectError");
+    const messageError = document.getElementById("messageError");
+    const fileError = document.getElementById("fileError");
+
+    // Reset error messages
+    subjectError.textContent = "";
+    messageError.textContent = "";
+    fileError.textContent = "";
+
+    // Check required field: subject
+    if (!subject) {
+        subjectError.textContent = "Subject is required.";
+        isValid = false;
+    }
+
+    // Check required field: message and its max length
+    if (!message) {
+        messageError.textContent = "Message is required.";
+        isValid = false;
+    } else if (message.length > 3000) {
+        messageError.textContent = "Message must not exceed 3000 characters.";
+        isValid = false;
+    }
+
+    // Check required field: file
+    if (fileInput.files.length > 0) {
+        const file = fileInput.files[0];
+        // Allowed MIME types: Word, Excel, Image (JPEG, PNG), PDF
+        const allowedTypes = [
+            "application/msword",
+            "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+            "application/vnd.ms-excel",
+            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "image/jpeg",
+            "image/png",
+            "application/pdf"
+        ];
+        const maxSizeInBytes = 20 * 1024 * 1024;     // 20MB
+        if (!allowedTypes.includes(file.type)) {
+            fileError.textContent = "File must be a Word, Excel, Image, or PDF document.";
+            isValid = false;
+        } else if (file.size > maxSizeInBytes) {
+            fileError.textContent = "File size must be less than 20MB.";
+            isValid = false;
+        }
+    }
+    return isValid;
+}
+const updateStudyMaterialForm = document.getElementById("updateStudyMaterialForm"); 
+if (updateStudyMaterialForm) {
+    updateStudyMaterialForm.addEventListener("submit", (event) => {
+        if (!validateUpdateStudyMaterialForm()) {
+            event.preventDefault();
+        }
+    });
+}
+// Update Study Material Validation Code Start
+
+// Study Material Form Validation Code End
+
+
+
+
+// Notice Form Validation Code Start
+function validateNoticeForm() {
+    let isValid = true;
+    
+    // Get field values
+    const title = document.getElementById("title").value.trim();
+    const noticeBodyElement = document.getElementById("noticeBody");
+    const noticeBody = noticeBodyElement ? noticeBodyElement.value.trim(): "";
+    const noticePhotoInput = document.getElementById("noticePhoto");
+    
+    // Get error display elements
+    const titleError = document.getElementById("titleError");
+    const noticeBodyError = document.getElementById("noticeBodyError");
+    const noticePhotoError = document.getElementById("noticePhotoError");
+    
+    // Reset error messages
+    titleError.textContent = "";
+    noticeBodyError.textContent = "";
+    noticePhotoError.textContent = "";
+    
+    // Validate title: required
+    if (!title) {
+        titleError.textContent = "Title is required.";
+        isValid = false;
+    }
+    
+    // Check that at least one of notice body or notice photo is provided
+    const photoProvided = (noticePhotoInput.files && noticePhotoInput.files.length > 0);
+    if (!noticeBody && !photoProvided) {
+        noticeBodyError.textContent = "Please provide either a Notice Body or upload a Notice Photo.";
+        noticePhotoError.textContent = "Please provide either a Notice Photo or Notice Body.";
+        isValid = false;
+    }
+    if (noticeBody.length > 3000) {
+        noticeBodyError.textContent = "Notice Body must not exceed 3000 characters.";
+        isValid = false;
+    }
+    
+    // If a photo is provided then validate its type and size
+    if (photoProvided) {
+        const file = noticePhotoInput.files[0];
+        // Allowed file types: PDF, JPEG, or PNG
+        const allowedTypes = ["application/pdf", "image/jpeg", "image/png"];
+        const maxSizeInBytes = 2 * 1024 * 1024; // 2MB
+        if (!allowedTypes.includes(file.type)) {
+            noticePhotoError.textContent = "Notice Photo must be a PDF, JPEG, or PNG file.";
+            isValid = false;
+        } else if (file.size > maxSizeInBytes) {
+            noticePhotoError.textContent = "Notice Photo file size must be less than 2MB.";
+            isValid = false;
+        }
+    }
+    
+    return isValid;
+}
+
+const noticeFormTeacher = document.getElementById('addTeacherNotice');
+if (noticeFormTeacher) {
+    noticeFormTeacher.addEventListener("submit", function(event) {
+        if (!validateNoticeForm()) {
+            event.preventDefault();
+        }
+    });
+}
+const noticeFormStudent = document.getElementById('addStudentNotice');
+if (noticeFormStudent) {
+    noticeFormStudent.addEventListener("submit", function(event) {
+        if (!validateNoticeForm()) {
+            event.preventDefault();
+        }
+    });
+}
+// Notice Form Validation Code End
+ 
+
+
+// Add Admission Form Validation Code Start
+function validateAdmissionForm() {
+    let isValid = true;
+    
+    // Get field values
+    const semester = document.getElementById("semester").value;
+    const amountValue = document.getElementById("amount").value.trim();
+    const voucherPhotoInput = document.getElementById("voucher-photo");
+    
+    // Get error display elements
+    const semesterError = document.getElementById("semesterError");
+    const amountError = document.getElementById("amountError");
+    const voucherError = document.getElementById("voucherError");
+    
+    // Reset error messages
+    semesterError.textContent = "";
+    amountError.textContent = "";
+    voucherError.textContent = "";
+    
+    // Validate semester: must be selected
+    if (!semester) {
+        semesterError.textContent = "Please select a Semester.";
+        isValid = false;
+    }
+    
+    // Validate amount: must be provided and greater than 0
+    const amount = Number(amountValue);
+    if (!amountValue || isNaN(amount) || amount <= 0) {
+        amountError.textContent = "Enter a valid amount greater than 0.";
+        isValid = false;
+    }
+    
+    // Validate voucher: required, must be PDF or JPEG/PNG and less than or equal to 2MB
+    if (!voucherPhotoInput.files || voucherPhotoInput.files.length === 0) {
+        voucherError.textContent = "Voucher photo is required.";
+        isValid = false;
+    } else {
+        const file = voucherPhotoInput.files[0];
+        const allowedTypes = ["application/pdf", "image/jpeg", "image/png"];
+        const maxSizeInBytes = 2 * 1024 * 1024; // 2MB
+        
+        if (!allowedTypes.includes(file.type)) {
+            voucherError.textContent = "Voucher must be a PDF, JPEG, or PNG file.";
+            isValid = false;
+        } else if (file.size > maxSizeInBytes) {
+            voucherError.textContent = "Voucher file size must be 2MB or less.";
+            isValid = false;
+        }
+    }
+    
+    return isValid;
+}
+
+const addAdmissionForm = document.getElementById("addAdmissionForm");
+if (addAdmissionForm) {
+    addAdmissionForm.addEventListener("submit", (event) => {
+        if (!validateAdmissionForm()) {
+            event.preventDefault();
+        }
+    });
+}
+
+// Add Admission Form Validation Code End
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Code to Validate Forms END here
 

@@ -147,7 +147,7 @@
 ?>
               <div class="center-fdct main">
                      <h1 class="heading">Update Admin Info</h1>
-                     <form action="" name="updateAdminInfo" method="post" enctype="multipart/form-data" id="adminInfoUpdateForm" class="form-expan small-input-field">
+                     <form action="" name="updateAdminInfo" method="post" enctype="multipart/form-data" id="updateAdminForm" class="form-expan small-input-field">
                             <input type="hidden" name="adminId" value="">
 
                             <div class="col-span-2 center mb-2">
@@ -220,7 +220,7 @@
                             <input type="hidden" name="adminId" value="">
                             <div>
                                    <label for="currentPassword">current Password:</label> <br>
-                                   <input type="text" name="currentPassword" id="currentPasswordfwefwf" value="">
+                                   <input type="text" name="currentPassword" id="currentPassword" value="">
                                    <p id="currentPasswordError" class="error"></p>
                             </div>
                             <div>

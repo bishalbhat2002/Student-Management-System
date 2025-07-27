@@ -6,18 +6,21 @@
 <!-- Code to Send Notice to Teacher  -->
               <div class="center-fdct main">
                      <h1 class="heading">Send Notice to Teachers</h1>
-                     <form action="" method="post" name="noticeForm" enctype="multipart/form-data" class="form">
+                     <form action="" method="post" name="noticeForm" enctype="multipart/form-data" class="form" id="addTeacherNotice">
                             <div>
                                    <label for="title">Notice Title:</label> <br>
-                                   <input type="text" name="title" id="title" required>
+                                   <input type="text" name="title" id="title">
+                                   <p id="titleError" class="error"></p>
                             </div>
                             <div>  
                                    <label for="noticeBody">Notice Body</label> <br>
                                    <textarea name="noticeBody" id="noticeBody" cols="30" rows="5" placeholder="Notice body here..."></textarea>
+                                   <p id="noticeBodyError" class="error"></p>
                             </div>
                             <div>
                                    <label for="noticePhoto">Upload Notice:</label> <br>
-                                   <input type="file" name="noticePhoto" id="noticePhoto" required>
+                                   <input type="file" name="noticePhoto" id="noticePhoto">
+                                   <p id="noticePhotoError" class="error"></p>
                             </div>
                             <div class="center">
                                    <input type="submit" class="submit-btn" value="Send Notice">
@@ -31,18 +34,21 @@
 <!-- Code to Send Notice to Student  -->
               <div class="center-fdct main">
                      <h1 class="heading">Send Notice to Students</h1>
-                     <form action="" method="post" name="noticeForm" enctype="multipart/form-data" class="form">
+                     <form action="" method="post" name="noticeForm" enctype="multipart/form-data" class="form" id="addStudentNotice">
                             <div>
                                    <label for="title">Notice Title:</label> <br>
                                    <input type="text" name="title" id="title" required>
+                                    <p id="titleError" class="error"></p>
                             </div>
                             <div>  
                                    <label for="noticeBody">Notice Body</label> <br>
                                    <textarea name="noticeBody" id="noticeBody" cols="30" rows="5" placeholder="Notice body here..."></textarea>
+                                    <p id="noticeBodyError" class="error"></p>
                             </div>
                             <div>
                                    <label for="noticePhoto">Upload Notice:</label> <br>
                                    <input type="file" name="noticePhoto" id="noticePhoto" required>
+                                    <p id="noticePhotoError" class="error"></p>
                             </div>
                             <div class="center">
                                    <input type="submit" class="submit-btn" value="Send Notice">

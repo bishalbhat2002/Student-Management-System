@@ -126,7 +126,7 @@
 
                      <div class="teacher-info">
                             <div>
-                                   <img src="<?php echo BASE_URL;?>/public/assets/images/image.jpg"; ?> alt="profile picture">
+                                   <img src="<?php echo BASE_URL;?>/public/assets/images/image.jpg"; alt="profile picture">
                             </div>
                                    <p>Name: Bishal Bhat</p>
                                    <p>Gender: Male</p>

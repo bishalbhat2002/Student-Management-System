@@ -7,42 +7,50 @@
 ?>
               <div class="main center-fdct">
                      <h1 class="heading">Add New Teacher</h1>
-                     <form action="?view-all-teachers" method="post" name="add-teacher-form" enctype="multipart/form-data" class="form-expan">
+                     <form action="?view-all-teachers" method="post" name="add-teacher-form" enctype="multipart/form-data" class="form-expan" id="addTeacherForm">
                             <div class="col-span-2">
                                    <label for="name">Name:</label>
-                                   <input type="text" name="name" id="name">
+                                   <input type="text" name="name" id="name" value="">
+                                   <p class="error" id="nameError"></p>
                             </div>
                             <div>
                                    <label for="phone">Phone:</label>
                                    <input type="number" name="phone" id="phone">
+                                   <p class="error" id="phoneError"></p>
                             </div>
                             <div>
                                    <label for="email">Email:</label>
                                    <input type="email" name="email" id="email">
+                                   <p class="error" id="emailError"></p>
                             </div>                      
                             <div>
                                    <label for="dob">DOB:</label>
                                    <input type="date" name="dob" id="dob">
+                                   <p class="error" id="dobError"></p>
                             </div>      
                             <div class="gender">
                                    <label for="gender">Gender:</label><br>
                                    <input type="radio" name="gender" value="male">Male
                                    <input type="radio" name="gender" value="female">Female
+                                   <p class="error" id="genderError"></p>
                             </div>  
 
                             <div class="col-span-2">
                                    <label for="address">Address:</label>
                                    <input type="text" name="address" id="address">
+                                   <p class="error" id="addressError"></p>
                             </div>
 
                             <div>
-                                   <label for="academic-qualifications">Academic Qualifications:</label>
-                                   <input type="text" name="academic-qualifications" id="academic-qualifications">
+                                   <label for="academicQualification">Academic Qualifications:</label>
+                                   <input type="text" name="academicQualification" id="academicQualification">
+                                   <p class="error" id="academicQualificationError"></p>
                             </div>
 
                             <div>
                                    <label for="photo">Upload Photo:</label>
                                    <input type="file" name="photo" id="photo">
+                                   <p class="error" id="photoError"></p>
                             </div>
 
                             <div class="col-span-2 center">
@@ -232,44 +240,53 @@
 ?>
               <div class="main center-fdct">
                      <h1 class="heading">Edit Teacher</h1>
-                     <form action="?view-all-teachers" method="post" name="add-teacher-form" enctype="multipart/form-data" class="form-expan mb-1">
+                     <form action="?view-all-teachers" method="post" name="add-teacher-form" enctype="multipart/form-data" class="form-expan mb-1" id="updateTeacherForm">
                             <div class="col-span-2 center mb-2">
                                    <img src="<?php echo BASE_URL;?>/public/assets/images/image.jpg" alt="Photo" class="image">
                             </div>
                             <div>
                                    <label for="name">Name:</label>
                                    <input type="text" name="name" id="name">
+                                   <p class="error" id="nameError"></p>
                             </div>
                             <div>
                                    <label for="phone">Phone:</label>
                                    <input type="number" name="phone" id="phone">
+                                   <p class="error" id="phoneError"></p>
                             </div>
                             <div>
                                    <label for="email">Email:</label>
                                    <input type="email" name="email" id="email">
+                                   <p class="error" id="emailError"></p>
                             </div>                      
                             <div>
                                    <label for="dob">DOB:</label>
                                    <input type="date" name="dob" id="dob">
+                                   <p class="error" id="dobError"></p>
                             </div>      
                             <div class="gender">
                                    <label for="gender">Gender:</label><br>
                                    <input type="radio" name="gender" value="male">Male
                                    <input type="radio" name="gender" value="female">Female
+                                   <p class="error" id="genderError"></p>
                             </div>  
                             <div>
-                                   <label for="academic-qualifications">Academic Qualifications:</label>
-                                   <input type="text" name="academic-qualifications" id="academic-qualifications">
+                                   <label for="academicQualification">Academic Qualifications:</label>
+                                   <input type="text" name="academicQualification" id="academicQualification">
+                                   <p class="error" id="academicQualificationError"></p>
+
                             </div>
                             <div>
                                    <label for="address">Address:</label>
                                    <input type="text" name="address" id="address">
+                                   <p class="error" id="addressError"></p>
                             </div>
 
 
                             <div>
                                    <label for="photo">Upload Photo:</label>
                                    <input type="file" name="photo" id="photo">
+                                   <p class="error" id="photoError"></p>
                             </div>
 
                             <div class="col-span-2 center">
@@ -337,9 +354,8 @@
                                    <input type="text" name="address" id="address">
                             </div>
 
-
                             <div class="col-span-2 center">
-                                   <button class="delete-btn btn large mt-1">Delete Teacher</button>
+                                   <button class="delete-btn btn large mt-1" onclick="return confirmDelete('TID')">Delete Teacher</button>
                             </div>    
                      </form>
               </div>
@@ -359,8 +375,6 @@
 <?php
        }
 ?>
-
-
 
 <?php require_once "../includes/footer.php"; ?>
 

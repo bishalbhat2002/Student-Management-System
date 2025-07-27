@@ -30,7 +30,7 @@
 ?>
        <div class="main center-fdct">
               <h1 class="heading">X Semester, Send Study Material</h1>
-              <form action="?view-study-material-sem" name="take-attendance-form" method="POST" enctype="multipart/form-data" class="form-expan">
+              <form action="?view-study-material-sem" name="take-attendance-form" method="POST" enctype="multipart/form-data" class="form-expan" id="updateStudyMaterialForm">
                      <div>
                             <label for="Semester">Semester:</label>
                             <input type="text" name="semester" id="semester" readonly>
@@ -38,18 +38,22 @@
                      <div>
                             <label for="subject">Subject:</label>
                             <select name="subject" id="subject">
+                                   <option value="" selected disabled>Select Subject</option>
                                    <option value="DSA">DSA</option>
                                    <option value="C++">C++</option>
                                    <!-- Subject Names added dynamically here -->
                             </select>
+                            <p id="subjectError" class="error"></p>
                      </div>
                      <div class="col-span-2 row-span-2">
                             <label for="message">Message:</label>
                             <textarea name="message" id="Message" placeholder="Title or Message related to study Material here..."></textarea>
+                            <p id="messageError" class="error"></p>
                      </div>
                      <div>
                             <label for="file">Upload File:</label>
                             <input type="file" name="file" id="file">
+                            <p id="fileError" class="error"></p>
                      </div>
                  
                      <div class="center btn-container mt-1">
@@ -113,7 +117,7 @@
                             </div>
                             <div class="actions">
                                    <a href="?update-study-material-id" class="update-btn">update</a><br>
-                                   <a href="?update-study-material-id" class="delete-btn" onclick="return confirmDelete(id)">Delete</a>
+                                   <a href="?view-study-material-sem" class="delete-btn" onclick="return confirmDelete(id)">Delete</a>
                             </div>
                      </form>                                                
 
@@ -126,7 +130,7 @@
 ?>              
        <div class="main center-fdct">
               <h1 class="heading">X Semester, Update Study Material</h1>
-              <form action="?view-study-material-sem" name="take-attendance-form" method="POST" enctype="multipart/form-data" class="form-expan">
+              <form action="?view-study-material-sem" name="take-attendance-form" method="POST" enctype="multipart/form-data" class="form-expan" id="updateStudyMaterialForm">
                      <div>
                             <label for="Semester">Semester:</label>
                             <input type="text" name="semester" id="semester" readonly>
@@ -134,18 +138,22 @@
                      <div>
                             <label for="subject">Subject:</label>
                             <select name="subject" id="subject">
+                                   <option value="" selected disabled>Select Subject</option>
                                    <option value="DSA">DSA</option>
                                    <option value="C++">C++</option>
                                    <!-- Subject Names added dynamically here -->
                             </select>
+                            <p id="subjectError" class="error"></p>
                      </div>
                      <div class="col-span-2 row-span-2">
                             <label for="message">Message:</label>
                             <textarea name="message" id="Message" placeholder="Title or Message related to study Material here..."></textarea>
+                            <p id="messageError" class="error"></p>
                      </div>
                      <div>
                             <label for="file">Upload File:</label>
                             <input type="file" name="file" id="file">
+                            <p id="fileError" class="error"></p>
                      </div>
                  
                      <div class="center btn-container mt-1">

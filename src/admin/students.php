@@ -7,7 +7,7 @@
 ?>
               <div class="main center-fdct">
                      <h1 class="heading">Add New Student</h1>
-                     <form action="?view-all-students" method="post" name="add-student-form" enctype="multipart/form-data" class="form-expan">
+                     <form action="?view-all-students" method="post" name="add-student-form" enctype="multipart/form-data" class="form-expan" id="addStudentForm">
                             <div>
                                    <label for="regd-no">Registration No:</label>
                                    <input type="text" name="regd-no" id="regd-no">
@@ -16,60 +16,72 @@
                             <div>
                                    <label for="name">Name:</label>
                                    <input type="text" name="name" id="name">
+                                   <p class="error" id="nameError"></p>
                             </div>
 
                             <div>
                                    <label for="faculty">Faculty:</label>
                                    <input type="text" name="faculty" id="faculty">
+                                   <p class="error" id="facultyError"></p>
                             </div> 
 
                             <div class="gender">
                                    <label for="gender">Gender:</label><br>
                                    <input type="radio" name="gender" value="male">Male
                                    <input type="radio" name="gender" value="female">Female
+                                   <p class="error" id="genderError"></p>
                             </div>
 
                             <div>
                                    <label for="phone">Phone:</label>
                                    <input type="number" name="phone" id="phone">
+                                   <p class="error" id="phoneError"></p>
                             </div>
 
                             <div>
                                    <label for="email">Email:</label>
                                    <input type="email" name="email" id="email">
+                                   <p class="error" id="emailError"></p>
                             </div>  
 
                             <div>
                                    <label for="dob">DOB:</label>
                                    <input type="date" name="dob" id="dob">
+                                   <p class="error" id="dobError"></p>
                             </div>      
              
                             <div>
                                    <label for="address">Address:</label>
                                    <input type="text" name="address" id="address">
+                                   <p class="error" id="addressError"></p>
                             </div> 
                             
                             <div>
-                                   <label for="parent-name">Parent Name:</label>
-                                   <input type="number" name="parent-name" id="parent-name">
+                                   <label for="parentName">Parent Name:</label>
+                                   <input type="text" name="parentName" id="parentName">
+                                   <p class="error" id="parentNameError"></p>
                             </div>                                
 
                             <div>
-                                   <label for="parent-phone">Parent Phone:</label>
-                                   <input type="number" name="parent-phone" id="parent-phone">
+                                   <label for="parentPhone">Parent Phone:</label>
+                                   <input type="text" name="parentPhone" id="parentPhone">
+                                   <p class="error" id="parentPhoneError"></p>
                             </div>   
                      
                             <div> 
                                    <label for="photo">Upload Photo:</label>
                                    <input type="file" name="photo" id="photo">
-                            </div>              
+                                   <p class="error" id="photoError"></p>
+                            </div>   <br>           
                             <div>
-                                   <label for="see-result">SEE Result:</label>
-                                   <input type="file" name="see-result" id="see-result">
+                                   <label for="seeResult">SEE Result:</label>
+                                   <input type="file" name="seeResult" id="seeResult">
+                                   <p class="error" id="seeResultError"></p>
                             </div>
                             <div>
-                                   <label for="neb-result">NEB Result:</label>
-                                   <input type="file" name="neb-result" id="neb-result">
+                                   <label for="nebResult">NEB Result:</label>
+                                   <input type="file" name="nebResult" id="nebResult">
+                                   <p class="error" id="nebResultError"></p>
                             </div>
 
                             <div class="col-span-2 center">
@@ -291,7 +303,7 @@
 ?>
               <div class="main center-fdct">
                      <h1 class="heading">Edit Student</h1>
-                     <form action="?view-student-regd-no" method="post" name="view-student-form" enctype="multipart/form-data" class="form-expan small-input-field">
+                     <form action="?view-student-regd-no" method="post" name="view-student-form" enctype="multipart/form-data" class="form-expan small-input-field" id="updateStudentForm">
                            
                             <div class="col-span-2 center mb-2">
                                    <img src="<?php echo BASE_URL;?>/public/assets/images/image.jpg" alt="Photo" class="image small-image">
@@ -303,44 +315,54 @@
                             <div>
                                    <label for="name">Name:</label>
                                    <input type="text" name="name" id="name">
+                                   <p class="error" id="nameError"></p>
                             </div>
                             <div>
                                    <label for="faculty">Faculty:</label>
                                    <input type="text" name="faculty" id="faculty">
+                                   <p class="error" id="facultyError"></p>
                             </div>                        
                             <div>
                                    <label for="dob">DOB:</label>
                                    <input type="date" name="dob" id="dob">
+                                   <p class="error" id="dobError"></p>
                             </div>      
                             <div class="gender">
                                    <label for="gender">Gender:</label><br>
                                    <input type="radio" name="gender" value="male">Male
                                    <input type="radio" name="gender" value="female">Female
+                                   <p class="error" id="genderError"></p>
                             </div>  
                             <div>
                                    <label for="phone">Phone:</label>
                                    <input type="number" name="phone" id="phone">
+                                   <p class="error" id="phoneError"></p>
                             </div>
                             <div>
                                    <label for="email">Email:</label>
                                    <input type="email" name="email" id="email">
+                                   <p class="error" id="emailError"></p>
                             </div>                      
                             <div>
                                    <label for="address">Address:</label>
                                    <input type="text" name="address" id="address">
+                                   <p class="error" id="addressError"></p>
                             </div> 
                             <div>
-                                   <label for="parent-name">Parent Name:</label>
-                                   <input type="number" name="parent-name" id="parent-name">
+                                   <label for="parentName">Parent Name:</label>
+                                   <input type="text" name="parentName" id="parentName">
+                                   <p class="error" id="parentNameError"></p>
                             </div>            
                             <div>
                                    <label for="parent-phone">Parent Phone:</label>
-                                   <input type="number" name="parent-phone" id="parent-phone">
+                                   <input type="text" name="parentPhone" id="parentPhone">
+                                   <p class="error" id="parentPhoneError"></p>
                             </div>                                
 
                             <div> 
                                    <label for="photo">Upload Photo:</label>
                                    <input type="file" name="photo" id="photo">
+                                   <p class="error" id="photoError"></p>
                             </div> 
                             <div>
                                    <label for="view-results">View Results:</label> <br>
@@ -350,12 +372,14 @@
                                    </div>
                             </div>            
                             <div>
-                                   <label for="see-result">SEE Result:</label>
-                                   <input type="file" name="see-result" id="see-result">
+                                   <label for="seeResult">SEE Result:</label>
+                                   <input type="file" name="seeResult" id="seeResult">
+                                   <p class="error" id="seeResultError"></p>
                             </div>
                             <div>
-                                   <label for="neb-result">NEB Result:</label>
-                                   <input type="file" name="neb-result" id="neb-result">
+                                   <label for="nebResult">NEB Result:</label>
+                                   <input type="file" name="nebResult" id="nebResult">
+                                   <p class="error" id="nebResultError"></p>
                             </div>
 
                             <div class="col-span-2 center">
@@ -391,7 +415,7 @@
 ?>
               <div class="main center-fdct">
                      <h1 class="heading">Add Admission</h1>
-                     <form action="?view-admission-semester" method="post" name="add-admission-form" enctype="multipart/form-data" class="form-expan small-input-field">
+                     <form action="?view-admission-semester" method="post" name="add-admission-form" enctype="multipart/form-data" class="form-expan small-input-field" id="addAdmissionForm">
                            
                             <div class="col-span-2 center mb-1">
                                    <img src="<?php echo BASE_URL;?>/public/assets/images/image.jpg" alt="Photo" class="image">
@@ -431,14 +455,17 @@
                                           <option value="1st Sem">1st Semester</option>
                                           <option value="8th Sem">8th Semester</option>
                                    </select>
+                                   <p class="error" id="semesterError"></p>
                             </div> <br>      
                             <div>
                                    <label for="amount">Enter Amount:</label>
                                    <input type="number" name="amount" id="amount" title="Enter Amount Submitted by student in Numbers...">
+                                   <p class="error" id="amountError"></p>
                             </div>
                             <div>
                                    <label for="voucher-photo">Upload Photo:</label>
                                    <input type="file" name="voucher-photo" id="voucher-photo" title="Upload proof of Amount submit...">
+                                   <p class="error" id="voucherError"></p>
                             </div>
 
                             <div class="col-span-2 center">
@@ -716,7 +743,7 @@
 
 
                             <div class="col-span-2 center">
-                                   <button class="delete-btn btn large mt-1">Delete Student</button>
+                                   <button class="delete-btn btn large mt-1" onclick="return confirmDelete('Regd-No.')">Delete Student</button>
                             </div>    
                      </form>
               </div>
