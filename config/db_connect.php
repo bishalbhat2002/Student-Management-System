@@ -8,7 +8,7 @@
        try{
               $conn = new mysqli($servername, $username, $password, $dbname);
               echo "<br>MySQL connected Successfully..."; 
-       }catch(Exception $e){_-
+       }catch(Exception $e){
               die("<b>Database connection Failed: </b>".$e->getMessage());
        }
 
