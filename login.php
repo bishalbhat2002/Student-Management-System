@@ -87,7 +87,6 @@ if (isset($_POST['login'])) {
                      $row = $result->fetch_assoc();
                      session_start();
                      $_SESSION['username'] = $row['username'];
-                     $_SESSION['password'] = $row['password'];
                      $_SESSION['role'] = $row['role'];
 
                      header("location: index.php?success= Login Successfull...");

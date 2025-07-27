@@ -11,14 +11,17 @@
                             <div>
                                    <label for="regd-no">Registration No:</label>
                                    <input type="text" name="regd-no" id="regd-no">
+                            </div> 
+                            <div>
+                                   <label for="batch">Batch:</label>
+                                   <input type="number" name="batch" id="batch" min="2067" max="">
+                                   <p class="error" id="batchError"></p>
                             </div>
-                            
                             <div>
                                    <label for="name">Name:</label>
                                    <input type="text" name="name" id="name">
                                    <p class="error" id="nameError"></p>
                             </div>
-
                             <div>
                                    <label for="faculty">Faculty:</label>
                                    <input type="text" name="faculty" id="faculty">
@@ -72,7 +75,7 @@
                                    <label for="photo">Upload Photo:</label>
                                    <input type="file" name="photo" id="photo">
                                    <p class="error" id="photoError"></p>
-                            </div>   <br>           
+                            </div>         
                             <div>
                                    <label for="seeResult">SEE Result:</label>
                                    <input type="file" name="seeResult" id="seeResult">
@@ -311,6 +314,11 @@
                             <div>
                                    <label for="regd-no">Registration No:</label>
                                    <input type="text" name="regd-no" id="regd-no" readonly>
+                            </div>
+                            <div>
+                                   <label for="batch">Batch:</label>
+                                   <input type="number" name="batch" id="batch" min="2067" max="">
+                                   <p class="error" id="batchError"></p>
                             </div>      
                             <div>
                                    <label for="name">Name:</label>

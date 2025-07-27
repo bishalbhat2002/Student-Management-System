@@ -354,6 +354,7 @@ function validateStudentInfo() {
     let isValid = true; // Assume the form is valid
 
     // Get error display elements
+    const batchError = document.getElementById('batchError');
     const nameError = document.getElementById('nameError');
     const facultyError = document.getElementById('facultyError');
     const dobError = document.getElementById('dobError');
@@ -368,6 +369,7 @@ function validateStudentInfo() {
     const nebResultError = document.getElementById('nebResultError');
 
     // Reset error messages
+    batchError.textContent = "";
     nameError.textContent = "";
     if(facultyError){
         facultyError.textContent = "";
@@ -385,6 +387,7 @@ function validateStudentInfo() {
 
     // Get field values directly (all elements are assumed to exist)
     const name = document.getElementById('name').value.trim();
+    const batch = document.getElementById('batch').value.trim();
     const faculty = document.getElementById('faculty').value.trim();
     const dob = document.getElementById('dob').value;
     // For gender, check if one is selected in the radio group
@@ -401,10 +404,14 @@ function validateStudentInfo() {
     const nebResultInput = document.getElementById('nebResult');
 
     // Validate required text fields
+    if (!batch) {
+        batchError.textContent = "Batch is required.";
+        isValid = false;
+    }    
     if (!name) {
         nameError.textContent = "Name is required.";
         isValid = false;
-    }    
+    }     
     if (!faculty) {
         facultyError.textContent = "faculty is required.";
         isValid = false;
@@ -537,7 +544,7 @@ function validateResults() {
 const addStudentForm = document.getElementById("addStudentForm");
 if (addStudentForm) {
     addStudentForm.addEventListener("submit", function(event) {
-        if (!validateStudentInfo() && !validateResults()) {
+        if (!validateStudentInfo() || !validateResults()) {
             event.preventDefault();
         }
     });
