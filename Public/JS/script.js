@@ -221,7 +221,7 @@ function validateAdminInfo() {
     return isValid;
 }
 
-const updateAdminForm = document.getElementById('updateAminForm');
+const updateAdminForm = document.getElementById('updateAdminForm');
 if (updateAdminForm){
     updateAdminForm.addEventListener("submit", function(event) {
         if (!validateAdminInfo()) {
