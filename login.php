@@ -16,7 +16,7 @@
 <body>
        <nav><a href="">SMS</a></nav>
 
-       <form action="" method="POST" name="loginForm" enctype="multipart/form-data">
+       <form action="loginProcess.php" method="POST" name="loginForm">
               <div class="login">
                      <h1>Login</h1>
               </div>
@@ -32,15 +32,15 @@
 
               <div>
                      <label for="username">Username</label> <br>
-                     <input type="text" name="username" id="username" required> <br>
+                     <input type="text" name="username" id="username" value=""> <br>
               </div>
 
               <div>
                      <label for="password"> Password</label> <br>
-                     <input type="password" name="password" id="password" required> <br>
+                     <input type="password" name="password" id="password" value=""> <br>
               </div>
 
-              <button id="login-btn" name="login">login</button>
+              <button id="login-btn" name="login" value="login">login</button>
        </form>
 
        <?php
@@ -65,40 +65,3 @@
        }
 </script>
 </html>
-
-<?php
-if (isset($_POST['login'])) {
-       if (isset($_POST['role']) && isset($_POST['username']) && isset($_POST['password'])) {
-              $role = $_POST['role'];
-              $username = $_POST['username'];
-              $password = $_POST['password'];
-
-              require_once "config/db_config.php";
-              try {
-                     $sql = "SELECT username, password, role from users 
-                                   --  where username = '$username' AND password = '$password' AND role = '$role'
-                                     where username = '{$_POST['username']}' AND password = '{$_POST['password']}' AND role = '{$_POST['role']}'";
-                     $result = $conn->query($sql);
-              } catch (Exception $e) {
-                     die("<b>Error: </b>" . $e->getMessage());
-              }
-
-              if ($result->num_rows > 0) {
-                     $row = $result->fetch_assoc();
-                     session_start();
-                     $_SESSION['username'] = $row['username'];
-                     $_SESSION['role'] = $row['role'];
-
-                     header("location: index.php?success= Login Successfull...");
-                     exit();
-              } else {
-                     header("location:login.php?error= Wrong Username or Password...");
-                     exit();
-              }
-       } else {
-              header("location:login.php?error= User must fill all fields");
-              exit();
-       }
-}
-
-?>

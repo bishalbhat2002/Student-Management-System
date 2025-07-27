@@ -1,7 +1,14 @@
 <?php
        session_start();
+              
+       if($_SESSION['role'] === "admin")
+              $username = 'aid';
+       else if($_SESSION['role'] === "teacher")
+              $username = 'tid';
+       else if($_SESSION['role'] === "student")
+              $username = 'regdNo';
 
-       if(!isset($_SESSION['username'])){
+       if(!isset($_SESSION[$username])){
               header('location:../../login.php');
               exit();
        }
