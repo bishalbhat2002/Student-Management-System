@@ -4,85 +4,104 @@
 <?php
 if (isset($_GET['update-student-info'])) {
 ?>
+       <?php
+       try {
+              // Retrieve data from student table
+              $sql = "SELECT * FROM student WHERE regdNo = '{$_SESSION['regdNo']}'";
+              $result = $conn->query($sql);
+              if ($result->num_rows === 0) {
+                     throw new Exception("Student not found");
+              }
+              $row = $result->fetch_assoc();
+       } catch (Exception $e) {
+              die("<br><b>Error:</b> " . $e->getMessage());
+       }
+       ?>
+
        <div class="main center-fdct">
               <h1 class="heading">Update Student Info</h1>
-              <form action="?" method="post" name="Update-student-form" enctype="multipart/form-data" class="form-expan small-input-field" id="updateStudentForm">
+              <?php
+                     $errors = $_SESSION['formErrors'] ?? [];
+                     $oldData = $_SESSION['oldData'] ?? [];
+                     unset($_SESSION['formErrors'], $_SESSION['oldData']);
+              ?>
+              <form action="processes/updateStudentInfo.php" method="post" name="Update-student-form" enctype="multipart/form-data" class="form-expan small-input-field" id="updateStudentForm">
 
                      <div class="col-span-2 center mb-2">
-                            <img src="<?php echo BASE_URL;?>/public/assets/images/image.jpg" alt="Photo" class="image small-image">
+                            <img src="<?= $row['photo']?>" alt="Photo" class="image small-image">
                      </div>
 
-                     <input type="hidden" name="regd-no" value="">
+                     <input type="hidden" name="regdNo" value="<?= $row['regdNo'] ?>">
 
                      <div>
                             <label for="name">Name:</label>
-                            <input type="text" name="name" id="name">
-                            <p id="nameError" class="error"></p>
+                            <input type="text" name="name" id="name" value="<?= $oldData['name'] ?? $row['name']?>">
+                            <p id="nameError" class="error"><?= $errors['name'] ?? "" ?></p>
                      </div>
                      <div>
                             <label for="faculty">Faculty:</label>
-                            <input type="text" name="faculty" id="faculty" readonly>
-                            <p class="error" id="facultyError"></p>
+                            <input type="text" name="faculty" id="faculty" value="<?= $row['faculty']?>" readonly>
+                            <p class="error" id="facultyError"><?= $errors['faculty'] ?? "" ?></p>
                      </div> 
                      <div>
                             <label for="dob">DOB:</label>
-                            <input type="date" name="dob" id="dob">
-                            <p id="dobError" class="error"></p>
+                            <input type="date" name="dob" id="dob" value="<?= $oldData['dob'] ?? $row['dob']?>">
+                            <p id="dobError" class="error"><?= $errors['dob'] ?? "" ?></p>
 
                      </div>
                      <div class="gender">
                             <label for="gender">Gender:</label><br>
-                            <input type="radio" name="gender" value="male">Male
-                            <input type="radio" name="gender" value="female">Female
-                            <p id="genderError" class="error"></p>
+                            <input type="radio" name="gender" value="male" <?= ($row['gender'] === 'male') ? 'checked': '' ?>>Male
+                            <input type="radio" name="gender" value="female" <?= ($row['gender'] === 'female') ? 'checked': '' ?>>Female
+                            <p id="genderError" class="error"><?= $errors['gender'] ?? "" ?></p>
                      </div>
                      <div>
                             <label for="phone">Phone:</label>
-                            <input type="number" name="phone" id="phone">
-                            <p id="phoneError" class="error"></p>
+                            <input type="number" name="phone" id="phone" value="<?= $oldData['phone'] ?? $row['phone']?>">
+                            <p id="phoneError" class="error"><?= $errors['phone'] ?? "" ?></p>
                      </div>
                      <div>
                             <label for="email">Email:</label>
-                            <input type="email" name="email" id="email">
-                            <p id="emailError" class="error"></p>
+                            <input type="email" name="email" id="email" value="<?= $oldData['email'] ?? $row['email']?>">
+                            <p id="emailError" class="error"><?= $errors['email'] ?? "" ?></p>
                      </div>
                      <div class="col-span-2">
                             <label for="address">Address:</label>
-                            <input type="text" name="address" id="address">
-                            <p id="addressError" class="error"></p>
+                            <input type="text" name="address" id="address" value="<?= $oldData['address'] ?? $row['address']?>">
+                            <p id="addressError" class="error"><?= $errors['address'] ?? "" ?></p>
                      </div>
                      <div>
                             <label for="parentName">Parent Name:</label>
-                            <input type="text" name="parentName" id="parentName">
-                            <p id="parentNameError" class="error"></p>
+                            <input type="text" name="parentName" id="parentName" value="<?= $oldData['parentName'] ?? $row['parentName']?>">
+                            <p id="parentNameError" class="error"><?= $errors['parentName'] ?? "" ?></p>
                      </div>    
                      <div>
                             <label for="parentPhone">Parent Phone:</label>
-                            <input type="text" name="parentPhone" id="parentPhone">
-                            <p id="parentPhoneError" class="error"></p>
+                            <input type="text" name="parentPhone" id="parentPhone" value="<?= $oldData['parentPhone'] ?? $row['parentPhone']?>">
+                            <p id="parentPhoneError" class="error"><?= $errors['parentPhone'] ?? "" ?></p>
                      </div>
 
                      <div>
                             <label for="photo">Upload Photo:</label>
                             <input type="file" name="photo" id="photo">
-                            <p id="photoError" class="error"></p>
+                            <p id="photoError" class="error"><?= $errors['photo'] ?? "" ?></p>
                      </div>
                      <div>
                             <label for="viewResults">View Results:</label> <br>
                             <div id="view-results">
-                                   <a href="" class="view-btn btn">SEE Result</a>
-                                   <a href="" class="view-btn btn">NEB Result</a>
+                                   <a href="<?= $row['seeResult']?>" class="view-btn btn">SEE Result</a>
+                                   <a href="<?= $row['nebResult']?>" class="view-btn btn">NEB Result</a>
                             </div>
                      </div>
                      <div>
                             <label for="seeResult">SEE Result:</label>
                             <input type="file" name="seeResult" id="seeResult">
-                            <p id="seeResultError" class="error"></p>
+                            <p id="seeResultError" class="error"><?= $errors['seeResult'] ?? "" ?></p>
                      </div>
                      <div>
                             <label for="neb-result">NEB Result:</label>
                             <input type="file" name="nebResult" id="nebResult">
-                            <p id="nebResultError" class="error"></p>
+                            <p id="nebResultError" class="error"><?= $errors['nebResult'] ?? "" ?></p>
                      </div>
 
                      <div class="col-span-2 center">
@@ -185,9 +204,9 @@ if (isset($_GET['update-student-info'])) {
                                    }
                             ?>
                             <div>
-                                   <img src="<?= BASE_URL.$row['photo']?>" alt="profile picture">
+                                   <img src="<?= $row['photo']?>" alt="profile picture">
                             </div>
-                            <p>Name: <?php $row['name']?></p>
+                            <p>Name: <?= $row['name']?></p>
                             <p>Gender: <?= $row['gender']?></p>
                             <p>DOB: <?= $row['dob']?></p>
                             <p>Faculty: <?= $row['faculty']?></p>

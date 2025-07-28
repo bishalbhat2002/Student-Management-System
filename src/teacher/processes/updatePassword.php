@@ -4,7 +4,7 @@ session_start();
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Check that all required fields exist
     if (empty($_POST['tid']) || empty($_POST['currentPassword']) || empty($_POST['newPassword']) || empty($_POST['confirmNewPassword'])) {
-        header("Location: ../dashboard.php?error=Missing required fields");
+        header("Location: ../dashboard.php?update-teacher-password&error=Missing required fields");
         exit();
     }
 
@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     // Check if new password and confirm password match
     if ($newPassword !== $confirmNewPassword) {
-        header("Location: ../dashboard.php?error=New passwords do not match");
+        header("Location: ../dashboard.php?update-teacher-password&error=New passwords do not match");
         exit();
     }
 
@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $row = $result->fetch_assoc();
 
     if ($currentPassword !== $row['password']) {
-        header("Location: ../dashboard.php?error=Current password is incorrect");
+        header("Location: ../dashboard.php?update-teacher-password&error=Current password is incorrect");
         exit();
     }
 
@@ -50,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         header("Location: ../dashboard.php?success=Password updated successfully");
         exit();
     } catch(Exception $e) {
-        header("Location: ../dashboard.php?error=Failed to update password");
+        header("Location: ../dashboard.php?update-teacher-password&error=Failed to update password");
         exit();
     }
     

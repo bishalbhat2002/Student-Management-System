@@ -8,10 +8,15 @@
               <div class="main center-fdct">
                      <h1 class="heading">Add New Teacher</h1>
                      <form action="?view-all-teachers" method="post" name="add-teacher-form" enctype="multipart/form-data" class="form-expan" id="addTeacherForm">
-                            <div class="col-span-2">
+                            <div>
                                    <label for="name">Name:</label>
                                    <input type="text" name="name" id="name" value="">
                                    <p class="error" id="nameError"></p>
+                            </div>
+                            <div>
+                                   <label for="faculty">Faculty:</label>
+                                   <input type="text" name="faculty" id="faculty" value="">
+                                   <p class="error" id="facultyError"></p>
                             </div>
                             <div>
                                    <label for="phone">Phone:</label>
@@ -75,6 +80,7 @@
                                           <tr>
                                                  <th title="Teachers ID">Tid</th>
                                                  <th>Teacher Name</th>
+                                                 <th>Faculty</th>
                                                  <th>Phone</th>
                                                  <th>Address</th>
                                                  <th title="Actions you can Perfrom">Action</th>
@@ -187,6 +193,10 @@
                                    <input type="number" name="phone" id="phone">
                             </div>
                             <div>
+                                   <label for="faculty">Faculty:</label>
+                                   <input type="text" name="faculty" id="faculty">
+                            </div>
+                            <div>
                                    <label for="email">Email:</label>
                                    <input type="email" name="email" id="email">
                             </div>                      
@@ -248,6 +258,11 @@
                                    <label for="name">Name:</label>
                                    <input type="text" name="name" id="name">
                                    <p class="error" id="nameError"></p>
+                            </div>
+                            <div>
+                                   <label for="faculty">Faculty:</label>
+                                   <input type="text" name="faculty" id="faculty">
+                                   <p class="error" id="facultyError"></p>
                             </div>
                             <div>
                                    <label for="phone">Phone:</label>
@@ -328,6 +343,10 @@
                             <div>
                                    <label for="name">Name:</label>
                                    <input type="text" name="name" id="name">
+                            </div> 
+                            <div>
+                                   <label for="faculty">Faculty:</label>
+                                   <input type="text" name="faculty" id="faculty">
                             </div>
                             <div>
                                    <label for="phone">Phone:</label>

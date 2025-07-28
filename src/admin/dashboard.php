@@ -197,7 +197,6 @@ if (isset($_GET['password-reset'])) {
        } catch (Exception $e) {
               die("<br><b>Error:</b> " . $e->getMessage());
        }
-
        ?>
        <div class="center-fdct main">
               <h1 class="heading">Update Admin Info</h1>

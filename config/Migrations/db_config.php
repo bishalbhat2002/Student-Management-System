@@ -51,6 +51,7 @@ try {
               gender VARCHAR(10) CHECK (gender IN ('male', 'female')),
               dob DATE NOT NULL,
               faculty VARCHAR(100),
+              academicQualification varchar(100) NOT NULL,
               phone VARCHAR(15) UNIQUE NOT NULL,
               email VARCHAR(100) UNIQUE NOT NULL,
               address TEXT,

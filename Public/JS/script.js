@@ -241,6 +241,7 @@ function validateTeacherInfo() {
     const nameError = document.getElementById('nameError');
     const dobError = document.getElementById('dobError');
     const genderError = document.getElementById('genderError');
+    const facultyError = document.getElementById('facultyError');
     const phoneError = document.getElementById('phoneError');
     const emailError = document.getElementById('emailError');
     const academicQualificationError = document.getElementById('academicQualificationError');
@@ -251,6 +252,7 @@ function validateTeacherInfo() {
     nameError.textContent = "";
     dobError.textContent = "";
     genderError.textContent = "";
+    facultyError.textContent = "";
     phoneError.textContent = "";
     emailError.textContent = "";
     academicQualificationError.textContent = "";
@@ -261,6 +263,7 @@ function validateTeacherInfo() {
     const name = document.getElementById('name').value.trim();
     const dob = document.getElementById('dob').value;
     const genderElem = document.querySelector('input[name="gender"]:checked');
+    const faculty = document.getElementById('faculty').value.trim();
     const phone = document.getElementById('phone').value.trim();
     const email = document.getElementById('email').value.trim();
     const academicQualification = document.getElementById('academicQualification').value.trim();
@@ -279,6 +282,10 @@ function validateTeacherInfo() {
         genderError.textContent = "Gender is required.";
         isValid = false;
     }
+    if (!faculty) {
+        facultyError.textContent = "Faculty is required.";
+        isValid = false;
+    } 
     if (!phone) {
         phoneError.textContent = "Phone is required.";
         isValid = false;

@@ -4,52 +4,77 @@
 <?php
        if(isset($_GET['update-teacher-info'])){           
 ?>
+       <?php
+
+              try {
+                     // Retrieve data from admin table
+                     $sql = "SELECT * FROM teacher WHERE tid = '{$_SESSION['tid']}'";
+                     $result = $conn->query($sql);
+                     if ($result->num_rows === 0) {
+                            throw new Exception("Teacher not found");
+                     }
+                     $row = $result->fetch_assoc();
+              } catch (Exception $e) {
+                     die("<br><b>Error:</b> " . $e->getMessage());
+              }
+                     $errors = $_SESSION['formErrors'] ?? [];
+                     $oldData = $_SESSION['oldData'] ?? [];
+                     unset($_SESSION['formErrors'], $_SESSION['oldData']);
+
+       ?>
                <div class="main center-fdct">
                      <h1 class="heading">Update Info</h1>
-                     <form action="?" method="post" name="update-teacher-form" enctype="multipart/form-data" id="updateTeacherForm" class="form-expan mb-1">
+                     <form action="processes/updateTeacherInfo.php" method="post" name="update-teacher-form" enctype="multipart/form-data" id="updateTeacherForm" class="form-expan mb-1">
                             <div class="col-span-2 center mb-2">
-                                   <img src="<?php echo BASE_URL;?>/public/assets/images/image.jpg" alt="Photo" class="image">
+                                   <img src="<?= $row['photo']?>" alt="Photo" class="image">
                             </div>
+
+                                   <input type="hidden" name="tid" id="tid" value="<?= $row['tid']?>" readonly>                 
                             <div>
                                    <label for="name">Name:</label>
-                                   <input type="text" name="name" id="name">
-                                   <p id="nameError" class="error"></p>
+                                   <input type="text" name="name" id="name" value="<?= $oldData['name'] ?? $row['name']?>">
+                                   <p id="nameError" class="error"><?= $errors['name'] ?? ''?></p>
                             </div>
                             <div>
                                    <label for="dob">DOB:</label>
-                                   <input type="date" name="dob" id="dob">
-                                   <p id="dobError" class="error"></p>
+                                   <input type="date" name="dob" id="dob" value="<?= $oldData['dob'] ?? $row['dob']?>">
+                                   <p id="dobError" class="error"><?= $errors['dob']  ?? ''?></p>
                             </div>      
                             <div class="gender">
                                    <label for="gender">Gender:</label><br>
-                                   <input type="radio" name="gender" value="male">Male
-                                   <input type="radio" name="gender" value="female">Female
+                                   <input type="radio" name="gender" value="male" <?= ($row['gender'] === 'male')?'checked':'';?>>Male
+                                   <input type="radio" name="gender" value="female" <?= ($row['gender'] === 'female')?'checked':'';?>>Female
                                    <p id="genderError" class="error"></p>
                             </div>  
                             <div>
+                                   <label for="faculty">Faculty:</label>
+                                   <input type="text" name="faculty" id="faculty" value="<?= $oldData['faculty'] ?? $row['faculty']?>">
+                                   <p id="facultyError" class="error"><?= $errors['faculty']  ?? ''?></p>
+                            </div>                        
+                            <div>
                                    <label for="phone">Phone:</label>
-                                   <input type="number" name="phone" id="phone">
-                                   <p id="phoneError" class="error"></p>
+                                   <input type="number" name="phone" id="phone" value="<?= $oldData['phone'] ?? $row['phone']?>">
+                                   <p id="phoneError" class="error"><?= $errors['phone']  ?? ''?></p>
                             </div>
                             <div>
                                    <label for="email">Email:</label>
-                                   <input type="email" name="email" id="email">
-                                   <p id="emailError" class="error"></p>
+                                   <input type="email" name="email" id="email" value="<?= $oldData['email'] ?? $row['email']?>">
+                                   <p id="emailError" class="error"><?= $errors['email']  ?? ''?></p>
                             </div>                      
                             <div>
-                                   <label for="academic-qualifications">Academic Qualifications:</label>
-                                   <input type="text" name="academic-qualifications" id="academicQualification">
-                                   <p id="academicQualificationError" class="error"></p>
+                                   <label for="academic-qualification">Academic Qualifications:</label>
+                                   <input type="text" name="academicQualification" id="academicQualification" value="<?= $oldData['academicQualification'] ?? $row['academicQualification']?>">
+                                   <p id="academicQualificationError" class="error"><?= $errors['academicQualification']  ?? ''?></p>
                             </div>
                             <div>
                                    <label for="address">Address:</label>
-                                   <input type="text" name="address" id="address">
-                                   <p id="addressError" class="error"></p>
+                                   <input type="text" name="address" id="address" value="<?= $oldData['address'] ?? $row['address']?>">
+                                   <p id="addressError" class="error"><?= $errors['address']  ?? ''?></p>
                             </div>
                             <div>
                                    <label for="photo">Update Photo:</label>
-                                   <input type="file" name="photo" id="photo">
-                                   <p id="photoError" class="error"></p>
+                                   <input type="file" name="photo" id="photo" value="<?= $oldData['photo'] ?? $row['photo']?>">
+                                   <p id="photoError" class="error"><?= $errors['photo']  ?? ''?></p>
                             </div>
 
                             <div class="col-span-2 center">
@@ -125,17 +150,32 @@
                      </div>
 
                      <div class="teacher-info">
+                            <?php
+                                   try {
+                                   // Retrieve data from student table
+                                   $sql = "SELECT * FROM teacher WHERE tid = '{$_SESSION['tid']}'";
+                                   $result = $conn->query($sql);
+                                   if ($result->num_rows === 0) {
+                                          throw new Exception("Teacher not found");
+                                   }
+                                   $row = $result->fetch_assoc();
+                                   }
+                                   catch(Exception $e){
+                                          die("<br><b>Error:</b> ". $e->getMessage());
+                                   }
+                            ?>
+
                             <div>
-                                   <img src="<?php echo BASE_URL;?>/public/assets/images/image.jpg"; alt="profile picture">
+                                   <img src="<?= $row['photo'] ?>"; alt="profile picture">
                             </div>
-                                   <p>Name: Bishal Bhat</p>
-                                   <p>Gender: Male</p>
-                                   <p>DOB: 2000-12-19</p>
-                                   <p>Faculty: Department of CSIT</p>
-                                   <p>Phone: 98XXXXX</p>
-                                   <p>Email: bishalbhat2002@gmail.com</p>
-                                   <p>Address: Mahendranagar, kanchanpur</p>
-                                   <p>Teacher ID: 1001</p>
+                                   <p>Name: <?= $row['name'] ?></p>
+                                   <p>Gender: <?= $row['gender'] ?></p>
+                                   <p>DOB: <?= $row['dob'] ?></p>
+                                   <p>Faculty: <?= $row['faculty'] ?></p>
+                                   <p>Phone: <?= $row['phone'] ?></p>
+                                   <p>Email: <?= $row['email'] ?></p>
+                                   <p>Address: <?= $row['address'] ?></p>
+                                   <p>Teacher ID: <?= $row['tid'] ?></p>
                                    <p class="center"><a href="?update-teacher-info" class="update-btn">update Info</a>
                                    <a href="?update-teacher-password" class="update-btn">update Password</a></p>
                             </div>
