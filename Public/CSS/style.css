@@ -499,6 +499,7 @@ body {
   }
   img {
     height: 14rem;
+    width: 14rem;
     border-radius: 50%;
     border: 0.2rem solid var(--color-primary-100);
     display: block;

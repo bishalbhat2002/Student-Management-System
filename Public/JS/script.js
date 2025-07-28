@@ -120,7 +120,7 @@ function validateAdminInfo() {
     let isValid = true; // Assume valid until a check fails
 
     // Get error display elements (assumed to exist)
-    const usernameError = document.getElementById('usernameError');
+    const aidError = document.getElementById('aidError');
     const nameError = document.getElementById('nameError');
     const dobError = document.getElementById('dobError');
     const genderError = document.getElementById('genderError');
@@ -131,7 +131,7 @@ function validateAdminInfo() {
     const photoError = document.getElementById('photoError');
 
     // Reset error messages
-    usernameError.textContent = "";
+    aidError.textContent = "";
     nameError.textContent = "";
     dobError.textContent = "";
     genderError.textContent = "";
@@ -142,7 +142,7 @@ function validateAdminInfo() {
     photoError.textContent = "";
 
     // Get field values (trim to remove extra spaces)
-    const username = document.getElementById('username').value.trim();
+    const aid = document.getElementById('aid').value.trim();
     const name = document.getElementById('name').value.trim();
     const dob = document.getElementById('dob').value;
     // For gender, assuming a radio button group; check if one is selected.
@@ -153,8 +153,8 @@ function validateAdminInfo() {
     const address = document.getElementById('address').value.trim();
 
     // Check required fields without checking for error element existence
-    if (!username) {
-        usernameError.textContent = "Username is required.";
+    if (!aid) {
+        aidError.textContent = "Username is required.";
         isValid = false;
     }
     if (!name) {

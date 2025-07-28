@@ -22,6 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     // Include DB connection
     require_once "../../../config/db_connect.php";
+
     try{
            // Retrieve current password from admin table using a direct query
            $sql = "SELECT password FROM admin WHERE aid = '$adminId'";
