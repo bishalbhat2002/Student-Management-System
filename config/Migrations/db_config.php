@@ -92,7 +92,7 @@ try {
 // Semesters Table Creation Code
 try {
        $sql = "CREATE TABLE Semesters (
-              semID INT PRIMARY KEY AUTO_INCREMENT,
+              semId INT PRIMARY KEY AUTO_INCREMENT,
               semName VARCHAR(20) NOT NULL UNIQUE,
               fees decimal(8, 2) NOT NULL CHECK (fees >= 0)
               )";
@@ -129,8 +129,8 @@ try {
 
 // RunningSemesters Table Creation Code
 try {
-       $sql = "CREATE TABLE RunningSemesters (
-              rsid INT PRIMARY KEY AUTO_INCREMENT,
+       $sql = "CREATE TABLE runningSemesters (
+              rsid INT PRIMARY KEY,
               totalStudent INT DEFAULT 0,
               FOREIGN KEY (rsid) REFERENCES Semesters(semID)
               )";

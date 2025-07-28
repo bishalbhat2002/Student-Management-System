@@ -8,7 +8,6 @@
       display: none;
   }
   
-
   .form-expan, .box-expan{
     width: 89rem;
     display: grid;
@@ -44,7 +43,6 @@
   #hambuger-icon{
       display: none;
   }
-  
   nav {
     width: 20rem;
     z-index: 3;

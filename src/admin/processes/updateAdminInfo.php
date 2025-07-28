@@ -97,7 +97,7 @@ if($_SERVER['REQUEST_METHOD'] === "POST"){
               exit();
        }
 }else{
-       header("location: ../dashboard.php?kljwck");
+       header("location: ../dashboard.php?");
        exit(); 
 }
 ?>
