@@ -573,10 +573,6 @@ foreach ($semCourses as $sem => $courses) {
 
 
 
-
-
-
-
 #Inserting demo records in users table for Testing...  // Comment this part after executing this file once...
        try{
               $sql = "INSERT INTO Admin (aid, name, gender, dob, faculty, phone, email, address, password, photo) VALUES
