@@ -11,7 +11,7 @@
               $username = 'regdNo';
               
        if(!isset($_SESSION[$username])){
-              header('location:login.php? error=login gar bhai first');
+              header('location:login.php?');
               exit();
        }
        $success_msg = "Login Successfull...";

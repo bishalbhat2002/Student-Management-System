@@ -22,45 +22,20 @@ try {
        die("<b>Database Creation Failed: </b>" . $e->getMessage());
 }
 
-#Creating users Table
-// try{
-//        $sql = "CREATE table if not exists users(
-//                userid int AUTO_INCREMENT primary key,
-//                username varchar(60) not null unique,
-//                password varchar(90) not null,
-//                role enum('admin', 'student', 'teacher') not null
-//               )";
-//        $conn->query($sql);
-// }catch(Exception $e){
-//        die("<b>Users Table Creation Failed: </b>".$e->getMessage());
-// }       
-
-#Inserting demo records in users table for Testing...  // Comment this part after executing this file once...
-// try{
-//        $sql = "INSERT into users(username, password, role) values
-//                ('admin', '0000', 'admin'),
-//                ('teacher', '0000', 'teacher'),
-//                ('student', '0000', 'student')";
-//        $conn->query($sql);
-//        echo "<br>Demo Data Inserted Successfully...";
-// }catch(Exception $e){
-//        die("<b>Error while inserting Demo records: </b>".$e->getMessage());
-// }    
-
 
 // Admin Table Creation Code
 try {
        $sql = "CREATE TABLE Admin (
               aid VARCHAR(50) PRIMARY KEY,
               name VARCHAR(100) NOT NULL,
-              gender VARCHAR(10) CHECK (gender IN ('Male', 'Female')),
+              gender VARCHAR(10) CHECK (gender IN ('male', 'female')),
               Dob DATE NOT NULL,
               faculty VARCHAR(100),
               mobile VARCHAR(15) UNIQUE NOT NULL,
               email VARCHAR(100) UNIQUE NOT NULL,
               address TEXT,
               password VARCHAR(255) NOT NULL,
-              photo VARCHAR(255)
+              photo VARCHAR(255) DEFAULT '../../public/assets/images/image.jpg'
               )";
        $conn->query($sql);
 } catch (Exception $e) {
@@ -73,14 +48,14 @@ try {
        $sql = "CREATE TABLE Teacher (
               tid VARCHAR(20) PRIMARY KEY,
               name VARCHAR(100) NOT NULL,
-              gender VARCHAR(10) CHECK (gender IN ('Male', 'Female')),
+              gender VARCHAR(10) CHECK (gender IN ('male', 'female')),
               dob DATE NOT NULL,
               faculty VARCHAR(100),
               phone VARCHAR(15) UNIQUE NOT NULL,
               email VARCHAR(100) UNIQUE NOT NULL,
               address TEXT,
               password VARCHAR(255) NOT NULL,
-              photo VARCHAR(255)
+              photo VARCHAR(255) DEFAULT '../../public/assets/images/image.jpg'
               )";
        $conn->query($sql);
 } catch (Exception $e) {
@@ -93,7 +68,7 @@ try {
        $sql = "CREATE TABLE Student (
               regdNo VARCHAR(20) PRIMARY KEY,
               name VARCHAR(100) NOT NULL,
-              gender VARCHAR(10) CHECK (gender IN ('Male', 'Female')),
+              gender VARCHAR(10) CHECK (gender IN ('male', 'female')),
               dob DATE NOT NULL,
               faculty VARCHAR(100),
               phone VARCHAR(15) UNIQUE NOT NULL,
@@ -103,7 +78,7 @@ try {
               parentPhone VARCHAR(15),
               password VARCHAR(255) NOT NULL,
               batch INT CHECK (batch >= 2057),
-              photo VARCHAR(255),
+              photo VARCHAR(255) DEFAULT '../../public/assets/images/image.jpg',
               seeResult VARCHAR(255),    -- Link to SEE result photo
               nebResult VARCHAR(255)     -- Link to NEB result photo
               )";
@@ -183,14 +158,16 @@ for($i=1; $i<=8; $i++){
               $sql = "CREATE TABLE sem{$i}Courses (
                      cid VARCHAR(20) PRIMARY KEY,
                      cname VARCHAR(100) NOT NULL,
-                     FM INT CHECK (FM >= 0),
-                     PM INT CHECK (PM >= 0)
+                     TH INT CHECK (TH >= 0),
+                     PR INT CHECK (PR >= 0)
                      )";
               $conn->query($sql);
        } catch (Exception $e) {
               die("<b>Sem{$i}Courses Table Creation Failed: </b>" . $e->getMessage());
        }
 }
+
+
 
 
 // TeacherNotices Table Creation Code
@@ -223,13 +200,205 @@ try {
 
 
 
-// sem(1-8)Result Table Creation Code
-// try {
-//        $sql = "";
-//        $conn->query($sql);
-// } catch (Exception $e) {
-//        die("<b>Sem{$i}Result Table Creation Failed: </b>" . $e->getMessage());
-// }
+// sem1Result Table Creation Code
+try {
+    $sql = "CREATE TABLE sem1result (
+        regdNo VARCHAR(20) PRIMARY KEY,
+        batch VARCHAR(10),
+        symbolNo VARCHAR(20),
+        CSIT_111_TH INT CHECK (CSIT_111_TH BETWEEN 0 AND 100),
+        CSIT_111_PR INT CHECK (CSIT_111_PR = 0),
+        CSIT_112_TH INT CHECK (CSIT_112_TH BETWEEN 0 AND 60),
+        CSIT_112_PR INT CHECK (CSIT_112_PR BETWEEN 0 AND 40),
+        CSIT_113_TH INT CHECK (CSIT_113_TH BETWEEN 0 AND 100),
+        CSIT_113_PR INT CHECK (CSIT_113_PR = 0),
+        CSIT_114_TH INT CHECK (CSIT_114_TH BETWEEN 0 AND 60),
+        CSIT_114_PR INT CHECK (CSIT_114_PR BETWEEN 0 AND 40),
+        CSIT_115_TH INT CHECK (CSIT_115_TH BETWEEN 0 AND 60),
+        CSIT_115_PR INT CHECK (CSIT_115_PR BETWEEN 0 AND 40),
+        FOREIGN KEY (regdNo) REFERENCES student(regdNo)
+    )";
+    $conn->query($sql);
+} catch (Exception $e) {
+    die("sem1result Table creation failed: " . $e->getMessage());
+}
+
+// sem2Result Table Creation Code
+try {
+    $sql = "CREATE TABLE sem2result (
+        regdNo VARCHAR(20) PRIMARY KEY,
+        batch VARCHAR(10),
+        symbolNo VARCHAR(20),
+        CSIT_121_TH INT CHECK (CSIT_121_TH BETWEEN 0 AND 60),
+        CSIT_121_PR INT CHECK (CSIT_121_PR BETWEEN 0 AND 40),
+        CSIT_122_TH INT CHECK (CSIT_122_TH BETWEEN 0 AND 60),
+        CSIT_122_PR INT CHECK (CSIT_122_PR BETWEEN 0 AND 40),
+        CSIT_123_TH INT CHECK (CSIT_123_TH BETWEEN 0 AND 100),
+        CSIT_123_PR INT CHECK (CSIT_123_PR = 0),
+        CSIT_124_TH INT CHECK (CSIT_124_TH BETWEEN 0 AND 60),
+        CSIT_124_PR INT CHECK (CSIT_124_PR BETWEEN 0 AND 40),
+        CSIT_125_TH INT CHECK (CSIT_125_TH BETWEEN 0 AND 60),
+        CSIT_125_PR INT CHECK (CSIT_125_PR BETWEEN 0 AND 40),
+        FOREIGN KEY (regdNo) REFERENCES student(regdNo)
+    )";
+    $conn->query($sql);
+} catch (Exception $e) {
+    die("sem2result Table creation failed: " . $e->getMessage());
+}
+
+// sem3result Table Creation Code
+try {
+    $sql = "CREATE TABLE sem3result (
+        regdNo VARCHAR(20) PRIMARY KEY,
+        batch VARCHAR(10),
+        symbolNo VARCHAR(20),
+        CSIT_211_TH INT CHECK (CSIT_211_TH BETWEEN 0 AND 60),
+        CSIT_211_PR INT CHECK (CSIT_211_PR BETWEEN 0 AND 40),
+        CSIT_212_TH INT CHECK (CSIT_212_TH BETWEEN 0 AND 60),
+        CSIT_212_PR INT CHECK (CSIT_212_PR BETWEEN 0 AND 40),
+        CSIT_213_TH INT CHECK (CSIT_213_TH BETWEEN 0 AND 60),
+        CSIT_213_PR INT CHECK (CSIT_213_PR BETWEEN 0 AND 40),
+        CSIT_214_TH INT CHECK (CSIT_214_TH BETWEEN 0 AND 60),
+        CSIT_214_PR INT CHECK (CSIT_214_PR BETWEEN 0 AND 40),
+        CSIT_215_TH INT CHECK (CSIT_215_TH BETWEEN 0 AND 60),
+        CSIT_215_PR INT CHECK (CSIT_215_PR BETWEEN 0 AND 40),
+        CSIT_216_TH INT CHECK (CSIT_216_TH BETWEEN 0 AND 60),
+        CSIT_216_PR INT CHECK (CSIT_216_PR BETWEEN 0 AND 40),
+        FOREIGN KEY (regdNo) REFERENCES student(regdNo)
+    )";
+    $conn->query($sql);
+} catch (Exception $e) {
+    die("sem3result Table creation failed: " . $e->getMessage());
+}
+
+
+// sem4result Table Creation Code
+try {
+    $sql = "CREATE TABLE sem4result (
+        regdNo VARCHAR(20) PRIMARY KEY,
+        batch VARCHAR(10),
+        symbolNo VARCHAR(20),
+        CSIT_221_TH INT CHECK (CSIT_221_TH BETWEEN 0 AND 60),
+        CSIT_221_PR INT CHECK (CSIT_221_PR BETWEEN 0 AND 40),
+        CSIT_222_TH INT CHECK (CSIT_222_TH BETWEEN 0 AND 60),
+        CSIT_222_PR INT CHECK (CSIT_222_PR BETWEEN 0 AND 40),
+        CSIT_223_TH INT CHECK (CSIT_223_TH BETWEEN 0 AND 60),
+        CSIT_223_PR INT CHECK (CSIT_223_PR BETWEEN 0 AND 40),
+        CSIT_224_TH INT CHECK (CSIT_224_TH BETWEEN 0 AND 60),
+        CSIT_224_PR INT CHECK (CSIT_224_PR BETWEEN 0 AND 40),
+        CSIT_225_TH INT CHECK (CSIT_225_TH BETWEEN 0 AND 60),
+        CSIT_225_PR INT CHECK (CSIT_225_PR BETWEEN 0 AND 40),
+        CSIT_226_TH INT CHECK (CSIT_226_TH BETWEEN 0 AND 60),
+        CSIT_226_PR INT CHECK (CSIT_226_PR BETWEEN 0 AND 40),
+        FOREIGN KEY (regdNo) REFERENCES student(regdNo)
+    )";
+    $conn->query($sql);
+} catch (Exception $e) {
+    die("sem4result Table creation failed: " . $e->getMessage());
+}
+
+
+// sem5result Table Creation Code
+try {
+    $sql = "CREATE TABLE sem5result (
+        regdNo VARCHAR(20) PRIMARY KEY,
+        batch VARCHAR(10),
+        symbolNo VARCHAR(20),
+        CSIT_311_TH INT CHECK (CSIT_311_TH BETWEEN 0 AND 60),
+        CSIT_311_PR INT CHECK (CSIT_311_PR BETWEEN 0 AND 40),
+        CSIT_312_TH INT CHECK (CSIT_312_TH BETWEEN 0 AND 60),
+        CSIT_312_PR INT CHECK (CSIT_312_PR BETWEEN 0 AND 40),
+        CSIT_313_TH INT CHECK (CSIT_313_TH BETWEEN 0 AND 60),
+        CSIT_313_PR INT CHECK (CSIT_313_PR BETWEEN 0 AND 40),
+        CSIT_314_TH INT CHECK (CSIT_314_TH BETWEEN 0 AND 60),
+        CSIT_314_PR INT CHECK (CSIT_314_PR BETWEEN 0 AND 40),
+        CSIT_315_TH INT CHECK (CSIT_315_TH BETWEEN 0 AND 60),
+        CSIT_315_PR INT CHECK (CSIT_315_PR BETWEEN 0 AND 40),
+        CSIT_316_TH INT CHECK (CSIT_316_TH BETWEEN 0 AND 60),
+        CSIT_316_PR INT CHECK (CSIT_316_PR BETWEEN 0 AND 40),
+        FOREIGN KEY (regdNo) REFERENCES student(regdNo)
+    )";
+    $conn->query($sql);
+} catch (Exception $e) {
+    die("sem5result Table creation failed: " . $e->getMessage());
+}
+
+
+// sem6result Table Creation Code
+try {
+    $sql = "CREATE TABLE sem6result (
+        regdNo VARCHAR(20) PRIMARY KEY,
+        batch VARCHAR(10),
+        symbolNo VARCHAR(20),
+        CSIT_321_TH INT CHECK (CSIT_321_TH BETWEEN 0 AND 60),
+        CSIT_321_PR INT CHECK (CSIT_321_PR BETWEEN 0 AND 40),
+        CSIT_322_TH INT CHECK (CSIT_322_TH BETWEEN 0 AND 60),
+        CSIT_322_PR INT CHECK (CSIT_322_PR BETWEEN 0 AND 40),
+        CSIT_323_TH INT CHECK (CSIT_323_TH BETWEEN 0 AND 60),
+        CSIT_323_PR INT CHECK (CSIT_323_PR BETWEEN 0 AND 40),
+        CSIT_324_TH INT CHECK (CSIT_324_TH BETWEEN 0 AND 60),
+        CSIT_324_PR INT CHECK (CSIT_324_PR BETWEEN 0 AND 40),
+        CSIT_325_TH INT CHECK (CSIT_325_TH BETWEEN 0 AND 60),
+        CSIT_325_PR INT CHECK (CSIT_325_PR BETWEEN 0 AND 40),
+        CSIT_326_TH INT CHECK (CSIT_326_TH = 0),
+        CSIT_326_PR INT CHECK (CSIT_326_PR BETWEEN 0 AND 100),
+        FOREIGN KEY (regdNo) REFERENCES student(regdNo)
+    )";
+    $conn->query($sql);
+} catch (Exception $e) {
+    die("sem6result Table creation failed: " . $e->getMessage());
+}
+
+
+// sem7result Table Creation Code
+try {
+    $sql = "CREATE TABLE sem7result (
+        regdNo VARCHAR(20) PRIMARY KEY,
+        batch VARCHAR(10),
+        symbolNo VARCHAR(20),
+        CSIT_411_TH INT CHECK (CSIT_411_TH BETWEEN 0 AND 60),
+        CSIT_411_PR INT CHECK (CSIT_411_PR BETWEEN 0 AND 40),
+        CSIT_412_TH INT CHECK (CSIT_412_TH BETWEEN 0 AND 60),
+        CSIT_412_PR INT CHECK (CSIT_412_PR BETWEEN 0 AND 40),
+        CSIT_413_TH INT CHECK (CSIT_413_TH BETWEEN 0 AND 60),
+        CSIT_413_PR INT CHECK (CSIT_413_PR BETWEEN 0 AND 40),
+        CSIT_414_TH INT CHECK (CSIT_414_TH = 0),
+        CSIT_414_PR INT CHECK (CSIT_414_PR BETWEEN 0 AND 100),
+        CSIT_415_2_TH INT CHECK (CSIT_415_2_TH BETWEEN 0 AND 60),
+        CSIT_415_2_PR INT CHECK (CSIT_415_2_PR BETWEEN 0 AND 40),
+        CSIT_416_1_TH INT CHECK (CSIT_416_1_TH BETWEEN 0 AND 60),
+        CSIT_416_1_PR INT CHECK (CSIT_416_1_PR BETWEEN 0 AND 40),
+        FOREIGN KEY (regdNo) REFERENCES student(regdNo)
+    )";
+    $conn->query($sql);
+} catch (Exception $e) {
+    die("sem7result Table creation failed: " . $e->getMessage());
+}
+
+
+// sem8result Table Creation Code
+try {
+    $sql = "CREATE TABLE sem8result (
+        regdNo VARCHAR(20) PRIMARY KEY,
+        batch VARCHAR(10),
+        symbolNo VARCHAR(20),
+        CSIT_421_TH INT CHECK (CSIT_421_TH BETWEEN 0 AND 60),
+        CSIT_421_PR INT CHECK (CSIT_421_PR BETWEEN 0 AND 40),
+        CSIT_422_TH INT CHECK (CSIT_422_TH = 0),
+        CSIT_422_PR INT CHECK (CSIT_422_PR BETWEEN 0 AND 100),
+        CSIT_423_2_TH INT CHECK (CSIT_423_2_TH BETWEEN 0 AND 60),
+        CSIT_423_2_PR INT CHECK (CSIT_423_2_PR BETWEEN 0 AND 40),
+        CSIT_424_2_TH INT CHECK (CSIT_424_2_TH BETWEEN 0 AND 60),
+        CSIT_424_2_PR INT CHECK (CSIT_424_2_PR BETWEEN 0 AND 40),
+        CSIT_425_3_TH INT CHECK (CSIT_425_3_TH BETWEEN 0 AND 60),
+        CSIT_425_3_PR INT CHECK (CSIT_425_3_PR BETWEEN 0 AND 40),
+        FOREIGN KEY (regdNo) REFERENCES student(regdNo)
+    )";
+    $conn->query($sql);
+} catch (Exception $e) {
+    die("sem8result Table creation failed: " . $e->getMessage());
+}
+
 
 
 // Attendance Table Creation Code
@@ -289,6 +458,97 @@ for($i=1; $i<=8; $i++){
 
 
 echo "<b>All tables Created successfully....</b>";
+
+// Filling Course tables Sem(1-8)Course Tables code Start:
+// All semester courses in associative array
+$semCourses = [
+    1 => [
+        ['cid' => 'CSIT.111', 'cname' => 'English Grammar and Composition', 'TH' => 100, 'PR' => 0],
+        ['cid' => 'CSIT.112', 'cname' => 'Information Technology Fundamentals', 'TH' => 60, 'PR' => 40],
+        ['cid' => 'CSIT.113', 'cname' => 'Calculus and Analytical Geometry', 'TH' => 100, 'PR' => 0],
+        ['cid' => 'CSIT.114', 'cname' => 'Electronic Principles', 'TH' => 60, 'PR' => 40],
+        ['cid' => 'CSIT.115', 'cname' => 'Programming Fundamentals in C', 'TH' => 60, 'PR' => 40]
+    ],
+    2 => [
+        ['cid' => 'CSIT.121', 'cname' => 'Data Structure and Algorithms', 'TH' => 60, 'PR' => 40],
+        ['cid' => 'CSIT.122', 'cname' => 'Digital Logic Design', 'TH' => 60, 'PR' => 40],
+        ['cid' => 'CSIT.123', 'cname' => 'Linear Algebra', 'TH' => 100, 'PR' => 0],
+        ['cid' => 'CSIT.124', 'cname' => 'Mechanics and Electrodynamics', 'TH' => 60, 'PR' => 40],
+        ['cid' => 'CSIT.125', 'cname' => 'Microprocessor System', 'TH' => 60, 'PR' => 40]
+    ],
+    3 => [
+        ['cid' => 'CSIT.211', 'cname' => 'Computer Organization and Architecture', 'TH' => 60, 'PR' => 40],
+        ['cid' => 'CSIT.212', 'cname' => 'Discrete Structures', 'TH' => 60, 'PR' => 40],
+        ['cid' => 'CSIT.213', 'cname' => 'Introduction to Management', 'TH' => 60, 'PR' => 40],
+        ['cid' => 'CSIT.214', 'cname' => 'Object Oriented Programming With C++', 'TH' => 60, 'PR' => 40],
+        ['cid' => 'CSIT.215', 'cname' => 'Operating System', 'TH' => 60, 'PR' => 40],
+        ['cid' => 'CSIT.216', 'cname' => 'Statistics and Probability', 'TH' => 60, 'PR' => 40]
+    ],
+    4 => [
+        ['cid' => 'CSIT.221', 'cname' => 'Applied Statistics', 'TH' => 60, 'PR' => 40],
+        ['cid' => 'CSIT.222', 'cname' => 'Data Communication and Network', 'TH' => 60, 'PR' => 40],
+        ['cid' => 'CSIT.223', 'cname' => 'Database Management System', 'TH' => 60, 'PR' => 40],
+        ['cid' => 'CSIT.224', 'cname' => 'Numerical Methods', 'TH' => 60, 'PR' => 40],
+        ['cid' => 'CSIT.225', 'cname' => 'System Analysis and Design', 'TH' => 60, 'PR' => 40],
+        ['cid' => 'CSIT.226', 'cname' => 'Theory of Computation', 'TH' => 60, 'PR' => 40]
+    ],
+    5 => [
+        ['cid' => 'CSIT.311', 'cname' => 'Design and Analysis of Algorithm', 'TH' => 60, 'PR' => 40],
+        ['cid' => 'CSIT.312', 'cname' => 'Artificial Intelligence', 'TH' => 60, 'PR' => 40],
+        ['cid' => 'CSIT.313', 'cname' => 'Compiler Design', 'TH' => 60, 'PR' => 40],
+        ['cid' => 'CSIT.314', 'cname' => 'Simulation and Modelling', 'TH' => 60, 'PR' => 40],
+        ['cid' => 'CSIT.315', 'cname' => 'Graphics and Visual Computing', 'TH' => 60, 'PR' => 40],
+        ['cid' => 'CSIT.316', 'cname' => 'Web Technology I', 'TH' => 60, 'PR' => 40]
+    ],
+    6 => [
+        ['cid' => 'CSIT.321', 'cname' => 'Introduction to Cryptography', 'TH' => 60, 'PR' => 40],
+        ['cid' => 'CSIT.322', 'cname' => 'Java Programming I', 'TH' => 60, 'PR' => 40],
+        ['cid' => 'CSIT.323', 'cname' => 'Research Methodology for Computer Science', 'TH' => 60, 'PR' => 40],
+        ['cid' => 'CSIT.324', 'cname' => 'Software Engineering', 'TH' => 60, 'PR' => 40],
+        ['cid' => 'CSIT.325', 'cname' => 'Web Technology II', 'TH' => 60, 'PR' => 40],
+        ['cid' => 'CSIT.326', 'cname' => 'Minor Project I', 'TH' => 0, 'PR' => 100]
+    ],
+    7 => [
+        ['cid' => 'CSIT.411', 'cname' => 'E-commerce', 'TH' => 60, 'PR' => 40],
+        ['cid' => 'CSIT.412', 'cname' => 'Advanced Java Programming', 'TH' => 60, 'PR' => 40],
+        ['cid' => 'CSIT.413', 'cname' => 'Object Oriented Analysis and Design', 'TH' => 60, 'PR' => 40],
+        ['cid' => 'CSIT.414', 'cname' => 'Minor Project II', 'TH' => 0, 'PR' => 100],
+        ['cid' => 'CSIT.415.2', 'cname' => 'Database Admin', 'TH' => 60, 'PR' => 40],
+        ['cid' => 'CSIT.416.1', 'cname' => 'Data Mining & Warehousing', 'TH' => 60, 'PR' => 40]
+    ],
+    8 => [
+        ['cid' => 'CSIT.421', 'cname' => 'Parallel Computing', 'TH' => 60, 'PR' => 40],
+        ['cid' => 'CSIT.422', 'cname' => 'Internship', 'TH' => 0, 'PR' => 100],
+        ['cid' => 'CSIT.423.2', 'cname' => 'Advanced Database Design', 'TH' => 60, 'PR' => 40],
+        ['cid' => 'CSIT.424.2', 'cname' => 'Distributed DBMS', 'TH' => 60, 'PR' => 40],
+        ['cid' => 'CSIT.425.3', 'cname' => 'E-Governance', 'TH' => 60, 'PR' => 40]
+    ]
+];
+
+// Insert into DB
+foreach ($semCourses as $sem => $courses) {
+    foreach ($courses as $course) {
+        $cid = $course['cid'];
+        $cname = addslashes($course['cname']);
+        $th = $course['TH'];
+        $pr = $course['PR'];
+
+        try {
+            $sql = "INSERT INTO sem{$sem}Courses (cid, cname, TH, PR)
+                    VALUES ('$cid', '$cname', $th, $pr)";
+            $conn->query($sql);
+        } catch (Exception $e) {
+            die("<b>Sem{$sem} Courses Insertion Failed:</b> " . $e->getMessage());
+        }
+    }
+}
+
+// Filling Course tables Sem(1-8)Course Tables code End:
+
+
+
+
+
 
 
 #Inserting demo records in users table for Testing...  // Comment this part after executing this file once...
