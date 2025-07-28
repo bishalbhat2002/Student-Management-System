@@ -98,8 +98,8 @@ if (isset($_GET['update-student-info'])) {
 ?>
        <div class="main center-fdct">
               <h1 class="heading">Update Password</h1>
-              <form action="" name="update-student-password-from" method="post" enctype="multipart/form-data" class="form" id="updatePasswordForm">
-                     <input type="hidden" name="tid" value="">
+              <form action="processes/updatePassword.php" name="update-student-password-from" method="post" enctype="multipart/form-data" class="form" id="updatePasswordForm">
+                     <input type="hidden" name="regdNo" value="<?= $_SESSION['regdNo']?>">
                      <div>
                             <label for="currentPassword">current Password:</label> <br>
                             <input type="text" name="currentPassword" id="currentPassword" value="">
@@ -130,7 +130,7 @@ if (isset($_GET['update-student-info'])) {
               <div class="student-dashboard center-fdct">
                      <div class="greet">
                             <h1>Welcome Student !!</h1>
-                            <h3>Bishal Bhat</h3>
+                            <h3><?= $_SESSION['name'] ?></h3>
                      </div>
 
                      <div class="student-status ">
@@ -170,17 +170,31 @@ if (isset($_GET['update-student-info'])) {
                      </div>
 
                      <div class="student-info">
+                            <?php
+                                   try {
+                                   // Retrieve data from student table
+                                   $sql = "SELECT * FROM student WHERE regdNo = '{$_SESSION['regdNo']}'";
+                                   $result = $conn->query($sql);
+                                   if ($result->num_rows === 0) {
+                                          throw new Exception("Student not found");
+                                   }
+                                   $row = $result->fetch_assoc();
+                                   }
+                                   catch(Exception $e){
+                                          die("<br><b>Error:</b> ". $e->getMessage());
+                                   }
+                            ?>
                             <div>
-                                   <img src="<?php echo BASE_URL;?>/public/assets/images/image.jpg" alt="profile picture">
+                                   <img src="<?= BASE_URL.$row['photo']?>" alt="profile picture">
                             </div>
-                            <p>Name: Bishal Bhat</p>
-                            <p>Gender: Male</p>
-                            <p>DOB: 2000-12-19</p>
-                            <p>Faculty: Department of CSIT</p>
-                            <p>Phone: 98XXXXX</p>
-                            <p>Email: bishalbhat2002@gmail.com</p>
-                            <p>Address: Mahendranagar, kanchanpur</p>
-                            <p>Regd. No: SC-4524-434-43</p>
+                            <p>Name: <?php $row['name']?></p>
+                            <p>Gender: <?= $row['gender']?></p>
+                            <p>DOB: <?= $row['dob']?></p>
+                            <p>Faculty: <?= $row['faculty']?></p>
+                            <p>Phone: <?= $row['phone']?></p>
+                            <p>Email: <?= $row['email']?></p>
+                            <p>Address: <?= $row['address']?></p>
+                            <p>Regd. No: <?= $row['regdNo']?></p>
                             <p class="center"><a href="?update-student-info" class="update-btn">update Info</a>
                                    <a href="?update-student-password" class="update-btn">update Password</a>
                             </p>
@@ -193,3 +207,7 @@ if (isset($_GET['update-student-info'])) {
 ?>
 
 <?php require_once "../includes/footer.php"; ?>
+
+
+
+<?php

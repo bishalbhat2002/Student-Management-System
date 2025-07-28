@@ -37,7 +37,7 @@ if (isset($_POST['login'])) {
                      
                      $_SESSION[$usernameColumn] = $row[$usernameColumn];
                      $_SESSION['role'] = $role;
-                     // exit("12345");
+                     $_SESSION['name'] = $row['name'];
                      header("Location: index.php");
                      exit();
               } else {

@@ -66,8 +66,8 @@
 ?>
               <div class="main center-fdct">
                      <h1 class="heading">Update Password</h1>
-                     <form action="" name="updateTeacherPassword" method="post" enctype="multipart/form-data" class="form" id="updatePasswordForm">
-                            <input type="hidden" name="tid" value="">
+                     <form action="processes/updatePassword.php" name="updateTeacherPassword" method="post" enctype="multipart/form-data" class="form" id="updatePasswordForm">
+                            <input type="hidden" name="tid" value="<?= $_SESSION['tid']?>">
                             <div>
                                    <label for="currentPassword">current Password:</label> <br>
                                    <input type="text" name="currentPassword" id="currentPassword" value="">
@@ -98,7 +98,7 @@
               <div class="teacher-dashboard center-fdct">
                      <div class="greet">
                             <h1>Welcome Teacher !!</h1>
-                            <h3>Bishal Bhat</h3>    
+                            <h3><?= $_SESSION['name'] ?></h3>    
                      </div>
 
                      <div class="student-status">

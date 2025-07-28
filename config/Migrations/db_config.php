@@ -29,9 +29,9 @@ try {
               aid VARCHAR(50) PRIMARY KEY,
               name VARCHAR(100) NOT NULL,
               gender VARCHAR(10) CHECK (gender IN ('male', 'female')),
-              Dob DATE NOT NULL,
+              dob DATE NOT NULL,
               faculty VARCHAR(100),
-              mobile VARCHAR(15) UNIQUE NOT NULL,
+              phone VARCHAR(15) UNIQUE NOT NULL,
               email VARCHAR(100) UNIQUE NOT NULL,
               address TEXT,
               password VARCHAR(255) NOT NULL,
@@ -98,6 +98,31 @@ try {
        $conn->query($sql);
 } catch (Exception $e) {
        die("<b>Semester Table Creation Failed: </b>" . $e->getMessage());
+}
+
+// Inserting Semesters in Semesters Table
+for ($i = 1; $i <= 8; $i++) {
+try {
+        // Create semester name like "1st Semester", "2nd Semester", etc.
+        if ($i == 1) {
+            $semName = "1st Semester";
+        } elseif ($i == 2) {
+            $semName = "2nd Semester";
+        } elseif ($i == 3) {
+            $semName = "3rd Semester";
+        } else {
+            $semName = $i . "th Semester";
+        }
+
+        // Set fees
+        $fees = ($i == 1) ? 20000 : 18000;
+
+        $sql = "INSERT INTO Semesters (semName, fees) VALUES ('$semName', $fees)";
+        $conn->query($sql);
+                
+       } catch (Exception $e) {
+              die("<b> {$semName} Insert Failed:</b> " . $e->getMessage());
+       }
 }
 
 
@@ -553,8 +578,8 @@ foreach ($semCourses as $sem => $courses) {
 
 #Inserting demo records in users table for Testing...  // Comment this part after executing this file once...
        try{
-              $sql = "INSERT INTO Admin (aid, name, gender, Dob, faculty, mobile, email, address, password, photo) VALUES
-                     ('admin', 'Alice Johnson', 'Female', '1980-05-15', 'Science', '9841000001', 'alice@example.com', '123 Admin St, City', '0000', 'alice.jpg'),
+              $sql = "INSERT INTO Admin (aid, name, gender, dob, faculty, phone, email, address, password, photo) VALUES
+                     ('admin', 'Bishal Bhat', 'male', '2002-12-17', 'Science & Technology', '9841000001', 'bishalbhat2002@gmail.com', 'Mahendranagar, Kanchanpur Nepal', '0000', '/public/assets/images/image.jpg'),
                      ('admin2', 'Bob Smith', 'Male', '1975-09-20', 'Engineering', '9841000002', 'bob@example.com', '456 Admin Rd, City', 'password456', 'bob.jpg')";
               $conn->query($sql);
               echo "<br>Demo Data Inserted Successfully...";
@@ -564,7 +589,7 @@ foreach ($semCourses as $sem => $courses) {
        
        try{
               $sql = "INSERT INTO Teacher (tid, name, gender, dob, faculty, phone, email, address, password, photo) VALUES
-                     ('teacher', 'Dr. Charles Ray', 'Male', '1970-03-10', 'Mathematics', '9841012345', 'charles@example.com', '789 Teacher Ln, City', '0000', 'charles.jpg'),
+                     ('teacher', 'Bishal Bhat', 'male', '2002-12-17', 'Science & Technology', '9841012345', 'bishalbhat2002@gmail.com', 'Mahendranagar, Kanchanpur Nepal', '0000', '/public/assets/images/image.jpg'),
                      ('teacher2', 'Ms. Diana Lee', 'Female', '1985-11-22', 'Physics', '9841012346', 'diana@example.com', '101 Teacher Blvd, City', 'teachpass2', 'diana.jpg')";
               $conn->query($sql);
               echo "<br>Demo Data Inserted Successfully...";
@@ -574,7 +599,7 @@ foreach ($semCourses as $sem => $courses) {
        
        try{
               $sql = "INSERT INTO Student (regdNo, name, gender, dob, faculty, phone, email, address, parentName, parentPhone, password, batch, photo, seeResult, nebResult) VALUES
-                     ('student', 'Ethan Wright', 'Male', '2005-06-18', 'Science', '9841023456', 'ethan@example.com', '202 Student St, City', 'Linda Wright', '9841098765', '0000', 2060, 'ethan.jpg', 'see_ethan.jpg', 'neb_ethan.jpg'),
+                     ('student', 'Bishal Bhat', 'male', '2002-12-17', 'Science & Technology', '9841023456', 'bishalbhat2002@gmail.com', 'Mahendranagar, Kanchanpur Nepal', 'xyzzz', '9841098765', '0000', 2060, '/public/assets/images/image.jpg', '/public/assets/images/result.png', '/public/assets/images/result.png'),
                      ('S1002', 'Fiona Patel', 'Female', '2006-08-12', 'Engineering', '9841023457', 'fiona@example.com', '303 Student Rd, City', 'Raj Patel', '9841098766', 'studpass2', 2061, 'fiona.jpg', 'see_fiona.jpg', 'neb_fiona.jpg')";
               $conn->query($sql);
               echo "<br>Demo Data Inserted Successfully...";
@@ -584,3 +609,5 @@ foreach ($semCourses as $sem => $courses) {
 
    
 $conn->close();
+
+?>

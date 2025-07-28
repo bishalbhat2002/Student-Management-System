@@ -216,8 +216,8 @@
 ?>
               <div class="main center-fdct">
                      <h1 class="heading">Update Admin Password</h1>
-                     <form action="" name="updateAdminPassword" method="post" enctype="multipart/form-data" class="form" id="updatePasswordForm">
-                            <input type="hidden" name="adminId" value="">
+                     <form action="processes/updatePassword.php" name="updateAdminPassword" method="post" enctype="multipart/form-data" class="form" id="updatePasswordForm">
+                            <input type="hidden" name="aid" value="<?= $_SESSION['aid']?>">
                             <div>
                                    <label for="currentPassword">current Password:</label> <br>
                                    <input type="text" name="currentPassword" id="currentPassword" value="">
@@ -248,7 +248,7 @@
               <div class="admin-dashboard center-fdct">
                      <div class="greet">
                             <h1>Welcome Admin !!</h1>
-                            <h3>Bishal Bhat</h3>    
+                            <h3><?= $_SESSION['name'] ?></h3>    
                      </div>
 
                      <div class="student-status">
@@ -272,17 +272,31 @@
                      </div>
 
                      <div class="admin-info">
+                            <?php
+                                   try {
+                                   // Retrieve data from admin table
+                                   $sql = "SELECT * FROM admin WHERE aid = '{$_SESSION['aid']}'";
+                                   $result = $conn->query($sql);
+                                   if ($result->num_rows === 0) {
+                                          throw new Exception("Admin not found");
+                                   }
+                                   $row = $result->fetch_assoc();
+                                   }
+                                   catch(Exception $e){
+                                          die("<br><b>Error:</b> ". $e->getMessage());
+                                   }
+                            ?>
                             <div>
-                                   <img src= <?php echo BASE_URL."/public/assets/images/image.jpg"; ?> alt="profile picture">
+                                   <img src= <?php echo BASE_URL.$row['photo']; ?> alt="profile picture">
                             </div>
-                                   <p>Name: Bishal Bhat</p>
-                                   <p>Gender: Male</p>
-                                   <p>DOB: 2000-12-19</p>
-                                   <p>Faculty: Department of CSIT</p>
-                                   <p>Mobile: 98XXXXX</p>
-                                   <p>Email: bishalbhat2002@gmail.com</p>
-                                   <p>Address: Mahendranagar, kanchanpur</p>
-                                   <p>username: admin-1001</p>
+                                   <p>Name: <?= $row['name']?></p>
+                                   <p>Gender: <?= $row['gender']?></p>
+                                   <p>DOB: <?= $row['dob']?></p>
+                                   <p>Faculty: <?= $row['faculty']?></p>
+                                   <p>Mobile: <?= $row['phone']?></p>
+                                   <p>Email: <?= $row['email']?></p>
+                                   <p>Address: <?= $row['address']?></p>
+                                   <p>username: <?= $row['aid']?></p>
                                    <p class="center"><a href="?update-admin-info" class="update-btn">update Info</a>
                                    <a href="?update-admin-password" class="update-btn">update Password</a></p>
                             </div>
