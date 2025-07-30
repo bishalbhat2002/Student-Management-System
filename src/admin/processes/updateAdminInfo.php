@@ -1,5 +1,7 @@
 <?php
 require_once "connection.php";
+require_once "../../includes/functions.php";
+
 session_start();
 if($_SERVER['REQUEST_METHOD'] === "POST"){
 
@@ -89,7 +91,11 @@ if($_SERVER['REQUEST_METHOD'] === "POST"){
 
        // Execute update
        try{
-              $conn->query($sql);
+              $row = selectRecord('admin', 'aid', $aid);
+              $conn->query($sql);                                     # Execute Update Query... 
+              if($photoPath !== "" && !empty($row['photo'])){         # Check if previously photo field was set in the database table....
+                     deleteData($row['photo']);                       # Delete old photo from the memory.. 
+              }
               header("location: ../dashboard.php?success= Admin info updated successfully");
               exit();
        }catch(Exception $e){
@@ -101,3 +107,5 @@ if($_SERVER['REQUEST_METHOD'] === "POST"){
        exit(); 
 }
 ?>
+
+

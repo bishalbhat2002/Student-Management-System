@@ -9,8 +9,7 @@
                             <p>{$_GET['error']}</p>
                             </div>
                      </div>";
-       }
-       
+       }       
        
        #Code to Show Success Message
        if (isset($_GET['success'])) {
