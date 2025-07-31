@@ -102,7 +102,7 @@
        <?php
               try {
                      $sql;
-                     $sql = "SELECT * FROM runningSemesters"; 
+                     $sql = "SELECT * FROM runningSemester"; 
                      $result = $conn->query($sql);
                      if (!$result->num_rows > 0) {
                             echo "<h2 class='heading-smaller'>No Running Semester Found...</h2>";

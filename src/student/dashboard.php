@@ -152,13 +152,29 @@ if (isset($_GET['update-student-info'])) {
                             <h3><?= $_SESSION['name'] ?></h3>
                      </div>
 
+                      <?php      
+                                   try {
+                                          $sql = "SELECT semName FROM semester WHERE
+                                                  semId = '{$_SESSION['semId']}'";
+                                          $result = $conn->query($sql);
+                                          $semName = "";
+                                          if ($result->num_rows > 0) {
+                                                 $row = $result->fetch_assoc();
+                                                 $semName = $row['semName'];
+                                          }
+                                   }catch(Exception $e){
+                                          exit("<br><b>Error:</b>".$e->getMessage());
+                                   }
+                                          
+                     ?>     
+
                      <div class="student-status ">
                             <div class="short-info">
                                    <div class="total-attendance">39 / 45 <br>Attendance</div>
-                                   <div class="semester">6th <br>semester</div>
+                                   <div class="semester"><?= $semName ?> <br>semester</div>
                             </div>
 
-                            <div class="dashboard-notices box student-notices">
+                            <div class="dashboard-notices box student-notices" id="stay-bottom">
                                    <div class="caption">Students Notice</div>
                             <?php      
                                    try {

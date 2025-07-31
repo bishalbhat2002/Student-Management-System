@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     require_once "connection.php";
     
     try {
-        $sql = "INSERT INTO runningSemesters (rsid) VALUES ('$semId')";
+        $sql = "INSERT INTO runningSemester (rsid) VALUES ('$semId')";
         $result = $conn->query($sql); 
         header("Location: ../semesters.php?success=" . urlencode("Semester added successfully"));
         exit();

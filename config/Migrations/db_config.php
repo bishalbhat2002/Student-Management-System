@@ -63,6 +63,18 @@ try {
        die("<b>Teachers Table Creation Failed: </b>" . $e->getMessage());
 }
 
+// Semester Table Creation Code
+try {
+       $sql = "CREATE TABLE Semester (
+              semId INT PRIMARY KEY AUTO_INCREMENT,
+              semName VARCHAR(20) NOT NULL UNIQUE,
+              fees decimal(8, 2) NOT NULL CHECK (fees >= 0)
+              )";
+       $conn->query($sql);
+} catch (Exception $e) {
+       die("<b>Semester Table Creation Failed: </b>" . $e->getMessage());
+}
+
 
 // Student Table Creation Code
 try {
@@ -83,24 +95,11 @@ try {
               photo VARCHAR(255) DEFAULT '../../public/assets/images/image.jpg',
               seeResult VARCHAR(255),    -- Link to SEE result photo
               nebResult VARCHAR(255),     -- Link to NEB result photo
-              FOREIGN KEY (semId) REFERENCES TO semester(semId)
+              FOREIGN KEY (semId) REFERENCES semester(semId)
               )";
        $conn->query($sql);
 } catch (Exception $e) {
        die("<b>Student Table Creation Failed: </b>" . $e->getMessage());
-}
-
-
-// Semester Table Creation Code
-try {
-       $sql = "CREATE TABLE Semester (
-              semId INT PRIMARY KEY AUTO_INCREMENT,
-              semName VARCHAR(20) NOT NULL UNIQUE,
-              fees decimal(8, 2) NOT NULL CHECK (fees >= 0)
-              )";
-       $conn->query($sql);
-} catch (Exception $e) {
-       die("<b>Semester Table Creation Failed: </b>" . $e->getMessage());
 }
 
 // Inserting semester in semester Table
@@ -134,7 +133,7 @@ try {
        $sql = "CREATE TABLE runningsemester (
               rsid INT PRIMARY KEY,
               totalStudent INT DEFAULT 0,
-              FOREIGN KEY (rsid) REFERENCES semester(semID)
+              FOREIGN KEY (rsid) REFERENCES semester(semId)
               )";
        $conn->query($sql);
 } catch (Exception $e) {
@@ -456,9 +455,9 @@ for($i=1; $i<=8; $i++){
        try {
               $sql = "CREATE TABLE sem{$i}Attendance (
                      regdNo VARCHAR(20) PRIMARY KEY,
-                     Present INT CHECK (Present >= 0),
-                     total INT CHECK (total > 0),
-                     lastAttend DATE DEFAULT CURRENT_DATE,
+                     Present INT CHECK (Present >= 0),                       #No of Present Days
+                     total INT CHECK (total > 0),                            #Total days class was conducted.
+                     lastAttend DATE DEFAULT CURRENT_DATE,                   #Last date of attendance taken
                      FOREIGN KEY (regdNo) REFERENCES Student(regdNo)
                      )";
               $conn->query($sql);

@@ -38,6 +38,9 @@ if (isset($_POST['login'])) {
                      $_SESSION[$usernameColumn] = $row[$usernameColumn];
                      $_SESSION['role'] = $role;
                      $_SESSION['name'] = $row['name'];
+                     if($role === "student"){
+                            $_SESSION['semId'] = $row['semId']; 
+                     }
                      header("Location: index.php");
                      exit();
               } else {

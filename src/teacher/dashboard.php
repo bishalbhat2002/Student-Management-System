@@ -128,11 +128,11 @@
 
                      <?php
                             try{
-                                   $runningSemesterInfoQuery = "SELECT semesters.semName semName, runningSemesters.totalStudent totalStudent from
-                                                               semesters INNER JOIN runningSemesters ON semesters.semId = runningSemesters.rsid";
+                                   $runningSemesterInfoQuery = "SELECT semester.semName semName, runningSemester.totalStudent totalStudent from
+                                                               semester INNER JOIN runningSemester ON semester.semId = runningSemester.rsid";
                                    $runningSemesterInfoQueryResult = $conn->query($runningSemesterInfoQuery);
                                    
-                                   $totalAdmissionQuery = "SELECT SUM(totalStudent) as totalAdmission from runningSemesters";
+                                   $totalAdmissionQuery = "SELECT SUM(totalStudent) as totalAdmission from runningSemester";
                                    $totalAdmissionQueryResult = $conn->query($totalAdmissionQuery);
                             
                                    $totalStudentsQuery = "SELECT count(regdNo) as totalStudents from student";

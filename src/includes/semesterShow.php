@@ -2,11 +2,11 @@
 try {
        $sql;
        if($nonRunningSem){
-              $sql = "SELECT * FROM semesters 
-                     WHERE semId NOT IN (SELECT rsid FROM runningSemesters)";
+              $sql = "SELECT * FROM semester
+                     WHERE semId NOT IN (SELECT rsid FROM runningSemester)";
        }
        else{
-             $sql = "SELECT * FROM semesters"; 
+             $sql = "SELECT * FROM semester"; 
        }
        $result = $conn->query($sql);
 

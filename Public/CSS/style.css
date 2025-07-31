@@ -301,7 +301,7 @@ body {
   grid-area: main;
   display: grid;
   grid-template-columns: 55rem 5rem 45rem;
-  grid-template-rows: 15rem 1fr;
+  grid-template-rows: 20rem 1fr;
   grid-template-areas:
     "greet gap info"
     "student-status gap info";
@@ -339,6 +339,7 @@ body {
 }
 
 .student-dashboard .student-status {
+  height: 100%;
   grid-area: student-status;
   align-self: flex-start;
   display: grid;
@@ -364,6 +365,7 @@ body {
 }
 .student-status .dashboard-notices{
   grid-area: notices;
+  /* Height changed at the end of this page.... */
 }
 
 .semester-info {
@@ -1096,3 +1098,12 @@ tr{
 
 
 /* Student Section Code END here */
+
+
+
+/*  Student Dashboard Notice Height */
+.student-status .dashboard-notices{
+  max-height: 30.5rem;
+  align-self: flex-start;
+}
+/*  Student Dashboard Notice Height */
