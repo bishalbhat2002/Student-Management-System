@@ -46,15 +46,15 @@ if($_SERVER['REQUEST_METHOD'] === "POST"){
        // Handle file upload
        if (isset($_FILES['photo']) && $_FILES['photo']['error'] === UPLOAD_ERR_OK) {
               $file = $_FILES['photo'];
-              $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+              $allowedTypes = ['image/jpeg', 'image/png', 'image/jpg'];
 
               if (!in_array($file['type'], $allowedTypes)) {
-                     $errors['photo'] = "Only JPG, PNG, or GIF files allowed.";
+                     $errors['photo'] = "Only JPG, PNG, or JPEG files allowed.";
               } elseif ($file['size'] > 2 * 1024 * 1024) {
                      $errors['photo'] = "Image size must be less than 2MB.";
               } else {
                      $uploadDir = "../../../uploads/Images/";
-                     $newName = "admin_" . time() . "_" . basename($file['name']);
+                     $newName = "admin_Photo_Aid-".$aid."_" .time(). basename($file['name']);
                      $fullPath = $uploadDir . $newName;
 
                      if (move_uploaded_file($file['tmp_name'], $fullPath)) {
@@ -92,10 +92,9 @@ if($_SERVER['REQUEST_METHOD'] === "POST"){
        // Execute update
        try{
               $row = selectRecord('admin', 'aid', $aid);
-              $conn->query($sql);                                     # Execute Update Query... 
-              if($photoPath !== "" && !empty($row['photo'])){         # Check if previously photo field was set in the database table....
-                     deleteData($row['photo']);                       # Delete old photo from the memory.. 
-              }
+              $conn->query($sql);                                     # Execute Update Query...
+              if(!empty($row['photo'])); 
+                     deleteData($photoPath, $row['photo']);           # Delete Older Photo...
               header("location: ../dashboard.php?success= Admin info updated successfully");
               exit();
        }catch(Exception $e){

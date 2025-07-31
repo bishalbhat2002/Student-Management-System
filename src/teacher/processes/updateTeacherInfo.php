@@ -1,5 +1,7 @@
 <?php
 require_once "connection.php";
+require_once "../../includes/functions.php";
+
 session_start();
 if($_SERVER['REQUEST_METHOD'] === "POST"){
 
@@ -52,7 +54,7 @@ if($_SERVER['REQUEST_METHOD'] === "POST"){
                      $errors['photo'] = "Image size must be less than 2MB.";
               } else {
                      $uploadDir = "../../../uploads/Images/";
-                     $newName = "teacher_" . time() . "_" . basename($file['name']);
+                     $newName = "teacher_Photo_Tid-".$tid."_" .time(). basename($file['name']);
                      $fullPath = $uploadDir . $newName;
 
                      if (move_uploaded_file($file['tmp_name'], $fullPath)) {
@@ -90,7 +92,10 @@ if($_SERVER['REQUEST_METHOD'] === "POST"){
 
        // Execute update
        try{
+              $row = selectRecord('teacher', 'tid', $tid);
               $conn->query($sql);
+              if(!empty($row['photo'])); 
+                     deleteData($photoPath, $row['photo']);           # Delete Older Photo...
               header("location: ../dashboard.php?success= Teacher info updated successfully");
               exit();
        }catch(Exception $e){

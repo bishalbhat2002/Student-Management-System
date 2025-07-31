@@ -79,9 +79,11 @@ try {
               parentPhone VARCHAR(15),
               password VARCHAR(255) NOT NULL,
               batch INT CHECK (batch >= 2057),
+              semId INT DEFAULT NULL,
               photo VARCHAR(255) DEFAULT '../../public/assets/images/image.jpg',
               seeResult VARCHAR(255),    -- Link to SEE result photo
-              nebResult VARCHAR(255)     -- Link to NEB result photo
+              nebResult VARCHAR(255),     -- Link to NEB result photo
+              FOREIGN KEY (semId) REFERENCES TO semester(semId)
               )";
        $conn->query($sql);
 } catch (Exception $e) {
@@ -89,9 +91,9 @@ try {
 }
 
 
-// Semesters Table Creation Code
+// Semester Table Creation Code
 try {
-       $sql = "CREATE TABLE Semesters (
+       $sql = "CREATE TABLE Semester (
               semId INT PRIMARY KEY AUTO_INCREMENT,
               semName VARCHAR(20) NOT NULL UNIQUE,
               fees decimal(8, 2) NOT NULL CHECK (fees >= 0)
@@ -101,24 +103,24 @@ try {
        die("<b>Semester Table Creation Failed: </b>" . $e->getMessage());
 }
 
-// Inserting Semesters in Semesters Table
+// Inserting semester in semester Table
 for ($i = 1; $i <= 8; $i++) {
 try {
         // Create semester name like "1st Semester", "2nd Semester", etc.
         if ($i == 1) {
-            $semName = "1st Semester";
+            $semName = "1st";
         } elseif ($i == 2) {
-            $semName = "2nd Semester";
+            $semName = "2nd";
         } elseif ($i == 3) {
-            $semName = "3rd Semester";
+            $semName = "3rd";
         } else {
-            $semName = $i . "th Semester";
+            $semName = $i . "th";
         }
 
         // Set fees
         $fees = ($i == 1) ? 20000 : 18000;
 
-        $sql = "INSERT INTO Semesters (semName, fees) VALUES ('$semName', $fees)";
+        $sql = "INSERT INTO semester (semName, fees) VALUES ('$semName', $fees)";
         $conn->query($sql);
                 
        } catch (Exception $e) {
@@ -127,16 +129,16 @@ try {
 }
 
 
-// RunningSemesters Table Creation Code
+// Runningsemester Table Creation Code
 try {
-       $sql = "CREATE TABLE runningSemesters (
+       $sql = "CREATE TABLE runningsemester (
               rsid INT PRIMARY KEY,
               totalStudent INT DEFAULT 0,
-              FOREIGN KEY (rsid) REFERENCES Semesters(semID)
+              FOREIGN KEY (rsid) REFERENCES semester(semID)
               )";
        $conn->query($sql);
 } catch (Exception $e) {
-       die("<b>Running Semesters Table Creation Failed: </b>" . $e->getMessage());
+       die("<b>Running semester Table Creation Failed: </b>" . $e->getMessage());
 }
 
 
@@ -198,11 +200,12 @@ for($i=1; $i<=8; $i++){
 
 // TeacherNotices Table Creation Code
 try {
-       $sql = "CREATE TABLE teacherNotices (
-              tnid INT PRIMARY KEY AUTO_INCREMENT,
+       $sql = "CREATE TABLE teacherNotice (
+              nid INT PRIMARY KEY AUTO_INCREMENT,
+              title varchar(50) NOT NULL,
               nbody TEXT NOT NULL,
               photo VARCHAR(255),
-              date DATE NOT NULL DEFAULT CURRENT_DATE
+              date DATETIME DEFAULT CURRENT_TIMESTAMP
               )";
        $conn->query($sql);
 } catch (Exception $e) {
@@ -213,10 +216,11 @@ try {
 // StudentNotices Table Creation Code
 try {
        $sql = "CREATE TABLE studentNotice (
-              snid INT PRIMARY KEY AUTO_INCREMENT,
+              nid INT PRIMARY KEY AUTO_INCREMENT,
+              title varchar(50) NOT NULL,
               nbody TEXT NOT NULL,
               photo VARCHAR(255),
-              date DATE NOT NULL DEFAULT CURRENT_DATE
+              date DATETIME DEFAULT CURRENT_TIMESTAMP
               )";
        $conn->query($sql);
 } catch (Exception $e) {
@@ -572,12 +576,16 @@ foreach ($semCourses as $sem => $courses) {
 // Filling Course tables Sem(1-8)Course Tables code End:
 
 
+require_once "../absolutepath.php";
 
 #Inserting demo records in users table for Testing...  // Comment this part after executing this file once...
+       $demoPhoto = BASE_URL.'/public/assets/images/image.jpg';
+       $demoSeeResult = BASE_URL.'/public/assets/images/demoSeeResult.png';
+       $demoNebResult  = BASE_URL.'/public/assets/images/demoNebResult.png';
        try{
               $sql = "INSERT INTO Admin (aid, name, gender, dob, faculty, phone, email, address, password, photo) VALUES
-                     ('admin', 'Bishal Bhat', 'male', '2002-12-17', 'Science & Technology', '9841000001', 'bishalbhat2002@gmail.com', 'Mahendranagar, Kanchanpur Nepal', '0000', '/public/assets/images/image.jpg'),
-                     ('admin2', 'Bob Smith', 'Male', '1975-09-20', 'Engineering', '9841000002', 'bob@example.com', '456 Admin Rd, City', 'password456', 'bob.jpg')";
+                     ('admin', 'Bishal Bhat', 'male', '2002-12-17', 'Science & Technology', '9841000001', 'bishalbhat2002@gmail.com', 'Mahendranagar, Kanchanpur Nepal', '0000', '$demoPhoto'),
+                     ('admin2', 'Bob Smith', 'Male', '1975-09-20', 'Engineering', '9841000002', 'bob@example.com', '456 Admin Rd, City', 'password456', '$demoPhoto')";
               $conn->query($sql);
               echo "<br>Demo Data Inserted Successfully...";
        }catch(Exception $e){
@@ -585,9 +593,9 @@ foreach ($semCourses as $sem => $courses) {
        }          
        
        try{
-              $sql = "INSERT INTO Teacher (tid, name, gender, dob, faculty, phone, email, address, password, photo) VALUES
-                     ('teacher', 'Bishal Bhat', 'male', '2002-12-17', 'Science & Technology', '9841012345', 'bishalbhat2002@gmail.com', 'Mahendranagar, Kanchanpur Nepal', '0000', '/public/assets/images/image.jpg'),
-                     ('teacher2', 'Ms. Diana Lee', 'Female', '1985-11-22', 'Physics', '9841012346', 'diana@example.com', '101 Teacher Blvd, City', 'teachpass2', 'diana.jpg')";
+              $sql = "INSERT INTO Teacher (tid, name, gender, dob, faculty, academicQualification, phone, email, address, password, photo) VALUES
+                     ('teacher', 'Bishal Bhat', 'male', '2002-12-17', 'Science & Technology', 'Masters in IT' ,'9841012345', 'bishalbhat2002@gmail.com', 'Mahendranagar, Kanchanpur Nepal', '0000', '$demoPhoto'),
+                     ('teacher2', 'Ms. Diana Lee', 'Female', '1985-11-22', 'Physics', 'MBA' , '9841012346', 'diana@example.com', '101 Teacher Blvd, City', 'teachpass2', '$demoPhoto')";
               $conn->query($sql);
               echo "<br>Demo Data Inserted Successfully...";
        }catch(Exception $e){
@@ -596,8 +604,8 @@ foreach ($semCourses as $sem => $courses) {
        
        try{
               $sql = "INSERT INTO Student (regdNo, name, gender, dob, faculty, phone, email, address, parentName, parentPhone, password, batch, photo, seeResult, nebResult) VALUES
-                     ('student', 'Bishal Bhat', 'male', '2002-12-17', 'Science & Technology', '9841023456', 'bishalbhat2002@gmail.com', 'Mahendranagar, Kanchanpur Nepal', 'xyzzz', '9841098765', '0000', 2060, '/public/assets/images/image.jpg', '/public/assets/images/result.png', '/public/assets/images/result.png'),
-                     ('S1002', 'Fiona Patel', 'Female', '2006-08-12', 'Engineering', '9841023457', 'fiona@example.com', '303 Student Rd, City', 'Raj Patel', '9841098766', 'studpass2', 2061, 'fiona.jpg', 'see_fiona.jpg', 'neb_fiona.jpg')";
+                     ('student', 'Bishal Bhat', 'male', '2002-12-17', 'Science & Technology', '9841023456', 'bishalbhat2002@gmail.com', 'Mahendranagar, Kanchanpur Nepal', 'xyzzz', '9841098765', '0000', 2060,'$demoPhoto', '$demoSeeResult', '$demoNebResult'),
+                     ('S1002', 'Fiona Patel', 'Female', '2006-08-12', 'Engineering', '9841023457', 'fiona@example.com', '303 Student Rd, City', 'Raj Patel', '9841098766', 'studpass2', 2061, '$demoPhoto', '$demoSeeResult', '$demoNebResult')";
               $conn->query($sql);
               echo "<br>Demo Data Inserted Successfully...";
        }catch(Exception $e){

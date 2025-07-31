@@ -309,39 +309,70 @@ if (isset($_GET['password-reset'])) {
                             <h3><?= $_SESSION['name'] ?></h3>
                      </div>
 
+                     <?php
+                            try{
+                                   $runningSemesterInfoQuery = "SELECT semester.semName semName, runningsemester.totalStudent totalStudent from
+                                                               semester INNER JOIN runningsemester ON semester.semId = runningsemester.rsid";
+                                   $runningSemesterInfoQueryResult = $conn->query($runningSemesterInfoQuery);
+                                   
+                                   $totalAdmissionQuery = "SELECT SUM(totalStudent) as totalAdmission from runningsemester";
+                                   $totalAdmissionQueryResult = $conn->query($totalAdmissionQuery);
+                            
+                                   $totalStudentsQuery = "SELECT count(regdNo) as totalStudents from student";
+                                   $totalStudentsQueryResult = $conn->query($totalStudentsQuery);
+                                   
+                                   $totalTeachersQuery = "SELECT count(tid) as totalTeachers from teacher";
+                                   $totalTeachersQueryResult = $conn->query($totalTeachersQuery);
+
+                            }catch(Exception $e){
+                                   exit("<br><b>Error:</b>".$e->getMessage());
+                            }
+
+                            $totalStudents;
+                            $totalStudentsAdmission;
+                            $totalTeachers;
+
+                            if($totalAdmissionQueryResult->num_rows !== 0){
+                                   $row = $totalAdmissionQueryResult->fetch_assoc();
+                                   $totalStudentsAdmission = $row['totalAdmission'] ?? 0;
+                            }         
+                            if($totalStudentsQueryResult->num_rows !== 0){
+                                   $row = $totalStudentsQueryResult->fetch_assoc();
+                                   $totalStudents = $row['totalStudents'] ?? 0;
+                            }
+                            if($totalTeachersQueryResult->num_rows !== 0){
+                                   $row = $totalTeachersQueryResult->fetch_assoc();
+                                   $totalTeachers = $row['totalTeachers'] ?? 0;
+                            }
+
+                     ?>     
                      <div class="student-status">
                             <div class="total-info">
-                                   <div class="total-students"><img src="<?php echo BASE_URL . '/public/assets/images/student.png' ?>" alt="student icon">250 <br>Total Students</div>
-                                   <div class="total-teachers"><img src="<?php echo BASE_URL . '/public/assets/images/hat.png' ?>" alt="hat icon">250 <br>Total Teachers</div>
+                                   <div class="total-students"><img src="<?= BASE_URL . '/public/assets/images/student.png' ?>" alt="student icon"><?= $totalStudents ?> <br>Total Students</div>
+                                   <div class="total-teachers"><img src="<?= BASE_URL . '/public/assets/images/hat.png' ?>" alt="hat icon"><?= $totalTeachers ?> <br>Total Teachers</div>
                             </div>
 
                             <div class="semester-info">
-                                   <div class="sem-container">
-                                          <div class="semester-box">1st <br>Sem</div>
-                                          <p>95 Students</p>
-                                   </div>
-                                   <div class="sem-container">
-                                          <div class="semester-box">3rd <br>Sem</div>
-                                          <p>43 Students</p>
-                                   </div>
-                                   <div class="sem-container">
-                                          <div class="semester-box">5th <br>Sem</div>
-                                          <p>38 Students</p>
-                                   </div>
-                                   <div class="sem-container">
-                                          <div class="semester-box">6th <br>Sem</div>
-                                          <p>32 Students</p>
-                                   </div>
-                                   <div class="sem-container">
-                                          <div class="semester-box">8th <br>Sem</div>
-                                          <p>28 Students</p>
-                                   </div>
+                                   <?php
+                                          if($runningSemesterInfoQueryResult->num_rows > 0){
+                                                 while($row=$runningSemesterInfoQueryResult->fetch_assoc()){
+                                   ?>
+                                                        <div class="sem-container">
+                                                               <div class="semester-box"><?= $row['semName']?> <br>Sem</div>
+                                                               <p><?= $row['totalStudent']?> Students</p>
+                                                        </div>
+                                   <?php
+                                                 }
+                                          }else{
+                                                 echo "<h2 class='heading-smaller'>No Running semester Yet!!!</h2>";
+                                          }
+                                   ?>
                             </div>
 
                             <div class="more-options">
                                    <div class="tadmission-container">
                                           <div class="tadmission-box">Total <br>Admissions</div>
-                                          <p>1000 <br>Students</p>
+                                          <p><?= $totalStudentsAdmission ?> <br>Students</p>
                                    </div>
                                    <div><a href="?password-reset" class="resetPassword-btn">Reset Password</a></div>
                             </div>

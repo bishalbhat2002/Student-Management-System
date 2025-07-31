@@ -24,31 +24,28 @@
               <div class="main single-student-notices center-fdct">                  
                      <div class="student-notices box pb-1">
                             <div class="caption-full">Students Notice</div>
-                            <a href="?snv-id" class="notice" >
-                                   <div class="notice-number">1</div>
-                                   <div class="notice-title">6th Semester Form Fillup Notice...</div>
-                                   <p class="notice-date">2082/01/04</p>                            
-                            </a>
-                            <a href="?snv-id" class="notice" >
-                                   <div class="notice-number">1</div>
-                                   <div class="notice-title">6th Semester Form Fillup Notice...</div>
-                                   <p class="notice-date">2082/01/04</p>                            
-                            </a>                     
-                            <a href="?snv-id" class="notice" >
-                                   <div class="notice-number">1</div>
-                                   <div class="notice-title">6th Semester Form Fillup Notice...</div>
-                                   <p class="notice-date">2082/01/04</p>                            
-                            </a>                     
-                            <a href="?snv-id" class="notice" >
-                                   <div class="notice-number">1</div>
-                                   <div class="notice-title">6th Semester Form Fillup Notice...</div>
-                                   <p class="notice-date">2082/01/04</p>                            
-                            </a>                     
-                            <a href="?snv-id" class="notice" >
-                                   <div class="notice-number">1</div>
-                                   <div class="notice-title">6th Semester Form Fillup Notice...</div>
-                                   <p class="notice-date">2082/01/04</p>                            
-                            </a>              
+                             <?php      
+                                   try {
+                                          // Retrieve data from studentNotice table
+                                          $sql = "SELECT * FROM studentNotice order by nid desc";
+                                          $result = $conn->query($sql);
+                                          if ($result->num_rows > 0) {
+                                                 while($row = $result->fetch_assoc()){
+                            ?>     
+                                                        <a href="?table=student&nid=<?= $row['nid'] ?>" class="notice" >
+                                                               <div class="notice-number"><?= $row['nid'] ?></div>
+                                                               <div class="notice-title"><?= $row['title'] ?></div>
+                                                               <p class="notice-date"><?= $row['date'] ?></p>
+                                                        </a>
+                            <?php
+                                                 }
+                                          }else{
+                                                 echo "<h2 class='no-notice-found'>No Notices Found!!!</h2>";
+                                          }
+                                   } catch (Exception $e) {
+                                          echo "<br><b>Error:</b> " . $e->getMessage();
+                                   }
+                            ?>     
                      </div>   
               </div>
 <?php 

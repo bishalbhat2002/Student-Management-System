@@ -43,6 +43,10 @@
   --soft-shadow: 0rem 0.3rem 2rem 0 rgba(50, 50, 50, 0.373);
   --notes-shadow: 0rem 0.5rem 2rem 0 rgba(23, 22, 22, 0.373);
 }
+body{
+  height: 100vh;
+  width: 100vw;
+}
 
 /* CSS Code for Error and Success Handling Start Here */
 
@@ -291,6 +295,7 @@ body {
     "student-status gap info";
 }
 .student-dashboard{
+  height: 100%;
   color: var(--color-primary-100);
   margin: 0 auto;
   grid-area: main;
@@ -492,7 +497,7 @@ body {
   max-width: 50rem;
   max-height: 54rem;
   padding: 2rem;
-  align-self: flex-end;
+  align-self: middle;
   div{
     display: flex;
     flex-direction: column;
@@ -535,6 +540,12 @@ body {
 .heading-smaller{
   font-size: 2.0rem;
   color: var(--color-primary-100);
+  margin: 2.5rem 0 1.5rem 0;
+  text-align: center;
+}
+.no-notice-found{
+  font-size: 2.0rem;
+  color: var(--color-secondary-50);
   margin: 2.5rem 0 1.5rem 0;
   text-align: center;
 }

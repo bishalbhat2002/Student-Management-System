@@ -19,12 +19,14 @@ function selectRecord($table, $usernameColumn, $username)
        }
 }
 
-function deleteData($url){
-       $relative = str_replace(BASE_URL, '', $url);
-       $fullPath = $_SERVER['DOCUMENT_ROOT'] .'/student-management-system'. $relative;
-       
-       // Check if file exists before trying to delete
-       if (file_exists($fullPath)) {
-              unlink($fullPath);          // returns true on success, false on failure
+function deleteData($path, $url){
+       if($path !== "" && !str_contains($url, '/public')){         # Check if previously photo field was set in the database table....
+              $relative = str_replace(BASE_URL, '', $url);
+              $fullPath = $_SERVER['DOCUMENT_ROOT'] .'/student-management-system'. $relative;
+                                   
+              # Check if file exists before trying to delete
+              if (file_exists($fullPath)) {
+                     unlink($fullPath);          // returns true on success, false on failure
+              }
        }
 }
