@@ -3,7 +3,7 @@ require_once "connection.php";
 require_once "../../includes/functions.php";
 
 session_start();
-if ($_SERVER['REQUEST_METHOD'] === "POST") {
+if ($_SERVER['REQUEST_METHOD'] === "POST" && $_GET['operation'] !== 'delete-student') {
 
        $regdNo      = trim($_POST['regdNo']);
        $batch      = trim($_POST['batch']);
@@ -211,7 +211,23 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
                      exit();
               }
        }
-} else {
+
+
+}else if ($_SERVER['REQUEST_METHOD'] === "POST" && $_GET['operation'] === 'delete-student') {
+       
+       $regdNo      = trim($_POST['regdNo']);
+       try{
+              $sql = "DELETE FROM student where regdNo = '$regdNo'";
+              $conn->query($sql);
+              header("location: ../students.php?view-all-students&success= Student Deleted successfully");
+              exit();
+
+       }catch (Exception $e) {
+              header("location: ../students.php?delete-student-regdNo=$regdNo&error=" . $e->getMessage());
+              exit();
+       }
+
+}else {
        header("location: ../students.php");
        exit();
 }

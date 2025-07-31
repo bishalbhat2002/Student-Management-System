@@ -712,61 +712,81 @@ if (isset($_GET['add-student'])) {
 ?>
        <div class="main center-fdct">
               <h1 class="heading">Delete Student</h1>
-              <form action="?delete-student-regd-no" method="post" name="student-regd-form" enctype="multipart/form-data" class="form">
+              <form action="" class="form">
                      <div>
-                            <label for="tid">Enter Registration Number:</label>
-                            <input type="number" name="tid" id="tid">
+                            <label for="delete-student-regdNo">Enter Registration Number:</label>
+                            <input type="text" name="delete-student-regdNo" id="delete-student-regdNo">
                      </div>
                      <div class="center">
-                            <input type="submit" value="View Teacher" class="view-btn">
+                            <input type="submit" value="View student" class="view-btn">
                      </div>
               </form>
        </div>
 
-
-
        <!-- Code for Deleting Deleting -->
 <?php
-} else if (isset($_GET['delete-student-regd-no'])) {
+} else if (isset($_GET['delete-student-regdNo'])) {
 ?>
        <div class="main center-fdct">
               <h1 class="heading">Delete Student</h1>
-              <form action="?view-all-students" method="post" name="delete-student-form" enctype="multipart/form-data" class="form-expan">
+              
+              <?php
+              if ($_SERVER['REQUEST_METHOD'] === "GET" && isset($_GET['delete-student-regdNo'])) {
+                     $regdNo = trim($_GET['delete-student-regdNo']);
+                     try {
+                            // Retrieve data from student table
+                            $sql = "SELECT * FROM student WHERE regdNo = '$regdNo'";
+                            $result = $conn->query($sql);
+                            if ($result->num_rows === 0) {
+                                   header('location: students.php?delete-student&error=No student found with provided RegdNo.');
+                                   exit();
+                            }
+                     } catch (Exception $e) {
+                            die("<br><b>Error:</b> " . $e->getMessage());
+                     }
+                     $row = $result->fetch_assoc();
+              }
+              ?>
+
+              <form action="processes/studentProcess.php?operation=delete-student" method="post" name="delete-student-form" class="form-expan">
                      <div class="col-span-2 center mb-2">
-                            <img src="<?php echo BASE_URL; ?>/public/assets/images/image.jpg" alt="Photo" class="image">
+                            <img src="<?= $row['photo']?>" alt="Photo" class="image">
+                     </div>
+                     <div>
+                            <label for="regdNo">Registration Number:</label>
+                            <input type="text" name="regdNo" id="regdNo" value="<?= $row['regdNo']?>" readonly>
                      </div>
                      <div>
                             <label for="name">Name:</label>
-                            <input type="text" name="name" id="name">
+                            <input type="text" name="name" id="name" value="<?= $row['name']?>" readonly>
                      </div>
                      <div class="gender">
                             <label for="gender">Gender:</label><br>
-                            <input type="text" name="gender" id="gender">
+                            <input type="text" name="gender" id="gender" value="<?= $row['gender']?>" readonly>
                      </div>
                      <div>
                             <label for="phone">Phone:</label>
-                            <input type="number" name="phone" id="phone">
+                            <input type="number" name="phone" id="phone" value="<?= $row['phone']?>" readonly>
                      </div>
                      <div>
                             <label for="email">Email:</label>
-                            <input type="email" name="email" id="email">
+                            <input type="email" name="email" id="email" value="<?= $row['email']?>" readonly>
                      </div>
                      <div>
-                            <label for="parent">Parent:</label><br>
-                            <input type="text" name="parent" id="parent">
-                     </div>
-                     <div>
-                            <label for="parent-phone">Parent Phone:</label><br>
-                            <input type="number" name="parent-phone" id="parent-phone">
-                     </div>
-                     <div class="col-span-2">
                             <label for="address">Address:</label>
-                            <input type="text" name="address" id="address">
+                            <input type="text" name="address" id="address" value="<?= $row['address']?>" readonly>
                      </div>
-
+                     <div>
+                            <label for="parent">Parent Name:</label><br>
+                            <input type="text" name="parentName" id="parentName" value="<?= $row['parentName']?>" readonly>
+                     </div>
+                     <div>
+                            <label for="parentPhone">Parent Phone:</label><br>
+                            <input type="number" name="parentPhone" id="parentPhone" value="<?= $row['parentPhone']?>" readonly>
+                     </div>
 
                      <div class="col-span-2 center">
-                            <button class="delete-btn btn large mt-1" onclick="return confirmDelete('Regd-No.')">Delete Student</button>
+                            <button class="delete-btn btn large mt-1" onclick="return confirmDelete('<?= $row['regdNo']?>">Delete Student</button>
                      </div>
               </form>
        </div>
