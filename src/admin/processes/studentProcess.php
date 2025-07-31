@@ -17,9 +17,6 @@ if ($_SERVER['REQUEST_METHOD'] === "POST" && $_GET['operation'] !== 'delete-stud
        $parentName  = trim($_POST['parentName']);
        $parentPhone = trim($_POST['parentPhone']);
 
-       if (isset($errors))
-              unset($_SESSION['form_errors']);
-
        $errors = [];
 
        // Validation
@@ -74,6 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST" && $_GET['operation'] !== 'delete-stud
               }
        }
 
+
        # Handle Photo upload
        $photoPath = "";
        if (isset($_FILES['photo']) && $_FILES['photo']['error'] === UPLOAD_ERR_OK) {
@@ -120,6 +118,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST" && $_GET['operation'] !== 'delete-stud
               }
        }
 
+       
        // Handle NEB Result upload
        $nebResultPath = "";
        if (isset($_FILES['nebResult']) && $_FILES['nebResult']['error'] === UPLOAD_ERR_OK) {
@@ -158,9 +157,9 @@ if ($_SERVER['REQUEST_METHOD'] === "POST" && $_GET['operation'] !== 'delete-stud
               }
        }
 
+
        // Build update query
        if ($_GET['operation'] === 'add-student') {
-
               $sql = "INSERT INTO Student (regdNo, name, gender, dob, faculty, phone, email, address, parentName, parentPhone, password, batch, photo, seeResult, nebResult) VALUES 
                      ('$regdNo', '$name', '$gender', '$dob', '$faculty', '$phone', '$email', '$address', '$parentName', '$parentPhone', '$dob', $batch, '$photoPath', '$seeResultPath', '$nebResultPath')";
 
@@ -219,7 +218,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST" && $_GET['operation'] !== 'delete-stud
        try{
               $sql = "DELETE FROM student where regdNo = '$regdNo'";
               $conn->query($sql);
-              header("location: ../students.php?view-all-students&success= Student Deleted successfully");
+              header("location: ../students.php?view-all-students&success= Student Deleted successfully.");
               exit();
 
        }catch (Exception $e) {

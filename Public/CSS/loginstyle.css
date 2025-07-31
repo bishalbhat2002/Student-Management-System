@@ -137,8 +137,8 @@ body {
     width: 40rem;
     border-radius: 0.5rem 0.5rem 0.5rem 0;
     position: fixed;
-    bottom: 2rem;         
-    right: 2rem;
+    top: 12rem;         
+    right: 3rem;
     color: var(--bgcolor-primary-100);
     transition: all 2s ease-in;
 

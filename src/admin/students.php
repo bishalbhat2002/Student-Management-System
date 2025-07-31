@@ -12,7 +12,7 @@ if (isset($_GET['add-student'])) {
               $oldData = $_SESSION['oldData'] ?? [];
               unset($_SESSION['formErrors'], $_SESSION['oldData']);
               ?>
-              <form action="processes/studentProcess.php?operation=add-Student" method="post" name="add-student-form" enctype="multipart/form-data" class="form-expan" id="addStudentForm">
+              <form action="processes/studentProcess.php?operation=add-student" method="post" name="add-student-form" enctype="multipart/form-data" class="form-expan" id="addStudentForm">
                      <div>
                             <label for="regdNo">Registration No:</label>
                             <input type="text" name="regdNo" id="regdNo" value="<?= $oldData['regdNo'] ?? '' ?>">
@@ -113,7 +113,7 @@ if (isset($_GET['add-student'])) {
              <?php
                             try {
                                    // Retrieve data from student table
-                                   $sql = "SELECT * FROM student INNER JOIN semester where student.semId = semester.semId ORDER BY regdNo DESC";
+                                   $sql = "SELECT * FROM student LEFT JOIN semester ON student.semId = semester.semId ORDER BY regdNo DESC";
                                    $result = $conn->query($sql);
                                    if ($result->num_rows === 0) {
                                           header('location: students.php?view-student&error=No student Found to show...');
@@ -143,7 +143,7 @@ if (isset($_GET['add-student'])) {
                                    <tr>
                                           <td class="tac v-align-m"><?= $row['regdNo']?></td>
                                           <td><?= $row['name']?></td>
-                                          <td class="tac v-align-m"><?= $row['semName']?> Semester</td>
+                                          <td class="tac v-align-m"><?= $row['semName'] ?? '1st'?> Semester</td>
                                           <td><?= $row['phone']?></td>
                                           <td><?= $row['address']?></td>
                                           <td>
@@ -786,7 +786,7 @@ if (isset($_GET['add-student'])) {
                      </div>
 
                      <div class="col-span-2 center">
-                            <button class="delete-btn btn large mt-1" onclick="return confirmDelete('<?= $row['regdNo']?>">Delete Student</button>
+                            <button class="delete-btn btn large mt-1" onclick="return confirmDelete('<?= $row['regdNo']?>')">Delete Student</button>
                      </div>
               </form>
        </div>

@@ -133,6 +133,7 @@ try {
        $sql = "CREATE TABLE runningsemester (
               rsid INT PRIMARY KEY,
               totalStudent INT DEFAULT 0,
+              batch int,
               FOREIGN KEY (rsid) REFERENCES semester(semId)
               )";
        $conn->query($sql);

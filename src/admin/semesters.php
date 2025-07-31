@@ -75,7 +75,7 @@
 <!-- Code for Adding New Semester -->
               <div>
                      <h1 class="heading">Add New Semester</h1>       
-                     <form action="processes/addSemester.php" method="post" name="addNewSemester" enctype="multipart/form-data" class="form">
+                     <form action="processes/semester.php?operation=add-semester" method="post" name="addNewSemester" enctype="multipart/form-data" class="form">
                             <div>
                                    <label for="semester">Select Semester:</label> <br>
                                    <select name="semesterId" id="semester">
@@ -85,11 +85,14 @@
                                                  require_once "../includes/semesterShow.php"; 
                                           ?>
                                    </select>
-
-                                   <div class="center">
+                            </div>
+                            <div>
+                                   <label for="batch">Select Batch:</label>
+                                   <input type="number" name="batch" id="batch" min="2067" max="<?= (Date("Y")+57) ?>" >
+                            </div>
+                                   <div class="center mt-1">
                                           <input type="submit" value="Add Semester" class="add-btn">
                                    </div>
-                            </div>
                      </form>
               </div>
 <?php
@@ -102,62 +105,34 @@
        <?php
               try {
                      $sql;
-                     $sql = "SELECT * FROM runningSemester"; 
+                     $sql = "SELECT semName, totalStudent, rsid, batch FROM 
+                     runningSemester JOIN semester ON runningSemester.rsid = semester.semId"; 
                      $result = $conn->query($sql);
-                     if (!$result->num_rows > 0) {
-                            echo "<h2 class='heading-smaller'>No Running Semester Found...</h2>";
-                     }
               } catch (Exception $e) {
                      exit("<br><b>Error:</b>" . $e->getMessage());
               }
-              $semArray = ['0th', '1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th'];
-              while ($row = $result->fetch_assoc()) {
-                     $rsid = $row['rsid'];
-       ?>
-              <div class="sem-container width-large">
-                     <div class="semester-box"> <?= $semArray[$rsid] ?> <br>Sem</div> 
-                     <p> <?= $row['totalStudent']?> Students</p> 
-                     <div class="action">
-                            <a href="?viewstudents&semId=<?= $rsid?>" class="view-btn">View All Students</a>
-                            <a href="?deleteSemester&semId=<?= $rsid?>" class="delete-btn" onclick="return confirmDelete('semID')">Delete Semester</a>
-                     </div>
-              </div>
 
-       <?php }        
+              if (!$result->num_rows > 0) {
+                     echo "<h2 class='heading-smaller'>No Running Semester Found...</h2>";
+              }else{
+                     while ($row = $result->fetch_assoc()) {
        ?>
-              <!-- <div class="sem-container width-large">
-                     <div class="semester-box">3rd <br>Sem</div> 
-                     <p>43 Students</p>
-                     <div class="action">
-                            <a href="?viewstudents-sem" class="view-btn">View All Students</a>
-                            <a href="?deleteSemester-id" class="delete-btn" onclick="return confirmDelete('semID')">Delete Semester</a>
-                     </div>
-              </div>
-              <div class="sem-container width-large">
-                     <div class="semester-box">5th <br>Sem</div> 
-                     <p>38 Students</p>
-                     <div class="action">
-                            <a href="?viewstudents-sem" class="view-btn">View All Students</a>
-                            <a href="?deleteSemester-id" class="delete-btn" onclick="return confirmDelete('semID')">Delete Semester</a>
-                     </div>
-              </div>
-              <div class="sem-container width-large">
-                     <div class="semester-box">6th <br>Sem</div> 
-                     <p>32 Students</p>
-                     <div class="action">
-                            <a href="?viewstudents-sem" class="view-btn">View All Students</a>
-                            <a href="?deleteSemester-id" class="delete-btn" onclick="return confirmDelete('semID')">Delete Semester</a>
-                     </div>
-              </div>
-              <div class="sem-container width-large">
-                     <div class="semester-box">8th <br>Sem</div> 
-                     <p>28 Students</p>
-                     <div class="action">
-                            <a href="?viewstudents-sem" class="view-btn">View All Students</a>
-                            <a href="?deleteSemester-id" class="delete-btn" onclick="return confirmDelete('semID')">Delete Semester</a>
-                     </div>
-              </div> -->
-              <div class="center">
+                            <div class="sem-container large-width">
+                                   <div class="semester-box"> 
+                                          <div class="semester"><?= $row['semName'] ?> <br> Sem</div>
+                                          <div class="batch"><?= $row['batch'] ?></div>
+                                   </div> 
+                                   <p> <?= $row['totalStudent']?> Students</p> 
+                                   <div class="action">
+                                          <a href="?viewstudents&semId=<?= $row['rsid']?>" class="view-btn">View All Students</a>
+                                          <a href="processes/semester.php?operation=delete-semester&semId=<?= $row['rsid']?>" class="delete-btn" onclick="return confirmDelete('<?= $row['rsid']?>')">Delete Semester</a>
+                                   </div>
+                            </div>       
+
+       <?php         }    
+              }    
+       ?>
+              <div class="center mt-1">
                      <a href="?addSemester" class="add-btn font-large">Add New Semester</a>
               </div>
        </div>
