@@ -46,7 +46,7 @@ try {
 // Teacher Table Creation Code
 try {
        $sql = "CREATE TABLE Teacher (
-              tid VARCHAR(20) PRIMARY KEY,
+              tid int PRIMARY KEY AUTO_INCREMENT,
               name VARCHAR(100) NOT NULL,
               gender VARCHAR(10) CHECK (gender IN ('male', 'female')),
               dob DATE NOT NULL,
@@ -59,6 +59,8 @@ try {
               photo VARCHAR(255) DEFAULT '../../public/assets/images/image.jpg'
               )";
        $conn->query($sql);
+       $conn->query("ALTER TABLE Teacher AUTO_INCREMENT = 1000");
+       
 } catch (Exception $e) {
        die("<b>Teachers Table Creation Failed: </b>" . $e->getMessage());
 }
@@ -187,7 +189,11 @@ for($i=1; $i<=8; $i++){
                      cid VARCHAR(20) PRIMARY KEY,
                      cname VARCHAR(100) NOT NULL,
                      TH INT CHECK (TH >= 0),
-                     PR INT CHECK (PR >= 0)
+                     PR INT CHECK (PR >= 0),
+                     tid int,
+                     from_time varchar(10),
+                     to_time varchar(10),
+                     FOREIGN KEY(tid) REFERENCES teacher(tid)
                      )";
               $conn->query($sql);
        } catch (Exception $e) {
@@ -476,7 +482,7 @@ for($i=1; $i<=8; $i++){
                      subject VARCHAR(255) NOT NULL,
                      message TEXT NOT NULL,
                      file VARCHAR(255),
-                     tid VARCHAR(20),
+                     tid int,
                      date DATE DEFAULT CURRENT_DATE,
                      FOREIGN KEY (tid) REFERENCES Teacher(tid)
                      )";
@@ -593,9 +599,9 @@ require_once "../absolutepath.php";
        }          
        
        try{
-              $sql = "INSERT INTO Teacher (tid, name, gender, dob, faculty, academicQualification, phone, email, address, password, photo) VALUES
-                     ('teacher', 'Bishal Bhat', 'male', '2002-12-17', 'Science & Technology', 'Masters in IT' ,'9841012345', 'bishalbhat2002@gmail.com', 'Mahendranagar, Kanchanpur Nepal', '0000', '$demoPhoto'),
-                     ('teacher2', 'Ms. Diana Lee', 'Female', '1985-11-22', 'Physics', 'MBA' , '9841012346', 'diana@example.com', '101 Teacher Blvd, City', 'teachpass2', '$demoPhoto')";
+              $sql = "INSERT INTO Teacher (name, gender, dob, faculty, academicQualification, phone, email, address, password, photo) VALUES
+                     ('Bishal Bhat', 'male', '2002-12-17', 'Science & Technology', 'Masters in IT' ,'9841012345', 'bishalbhat2002@gmail.com', 'Mahendranagar, Kanchanpur Nepal', '0000', '$demoPhoto'),
+                     ('Ms. Diana Lee', 'Female', '1985-11-22', 'Physics', 'MBA' , '9841012346', 'diana@example.com', '101 Teacher Blvd, City', '0000', '$demoPhoto')";
               $conn->query($sql);
               echo "<br>Demo Data Inserted Successfully...";
        }catch(Exception $e){

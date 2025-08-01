@@ -71,3 +71,21 @@ function getSemBatch($semId){
               exit("<br><b>Error:</b>" . $e->getMessage());
        }
 }
+
+
+function getCourses($semId){
+       try {
+              $sql = "SELECT * from sem{$semId}courses";
+              global $conn;
+              $result = $conn->query($sql);
+
+              if ($result->num_rows > 0) {
+                     $row = $result->fetch_assoc();
+                     return $result;
+              } else {
+                     return "";
+              }
+       } catch (Exception $e) {
+              exit("<br><b>Error:</b>" . $e->getMessage());
+       } 
+}

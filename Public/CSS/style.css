@@ -14,6 +14,8 @@
   --bgcolor-card: #7171714c;
   --bgcolor-focus: rgb(136, 199, 244);
 
+  --table-color: rgba(196, 196, 196, 0.731);
+
   /* Text colors */
   --color-primary-100: #ffffff;
   --color-primary-80: #cfcfcf;
@@ -126,11 +128,11 @@ body{
 
 /* CSS code for handling Form field Error Start Here */
 .error{
-  font-size: 1.7rem;
+  font-size: 1.5rem;
   color: var(--color-error);
-  margin: 0;
   position: relative;
   bottom: -0.5rem;
+  left: 0.5rem;
 }
 /* CSS code for handling Form field Error End Here */
 
@@ -844,10 +846,14 @@ table{
 }
 
 .edit-table{
-  tr:nth-child(even){
-    background-color: var(--color-primary-100);
+  tr:nth-child(odd), tr:nth-child(even){
+    background-color: var(--table-color);
+  } 
+
+  select{
+    height: 3rem;
+    margin: 0;
   }
-  td 
 }
 /* Admin Semester Code End here */
 
@@ -1140,3 +1146,13 @@ tr{
   margin-bottom: 4rem;
 }
 /*  Student Dashboard Notice Height */
+
+
+
+/* Overriding Label Margin Top */
+.form{
+  label{
+    margin-top: 0;
+  }
+}
+/* Overriding Label Margin Top */

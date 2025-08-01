@@ -196,7 +196,7 @@ if (isset($_GET['add-student'])) {
               <h1 class="heading">View Student</h1>
 
               <?php
-              if ($_SERVER['REQUEST_METHOD'] === "GET") {
+              if (isset($_GET['view-student-regdNo'])) {
                      $regdNo = trim($_GET['view-student-regdNo']);
                      if (empty($regdNo)) {
                             header('location: students.php?view-student&error=Registration Number is Required.');
@@ -214,10 +214,9 @@ if (isset($_GET['add-student'])) {
                             die("<br><b>Error:</b> " . $e->getMessage());
                      }
                      $row = $result->fetch_assoc();
-              }
               ?>
 
-              <form action="?edit-student-regdNo" method="post" name="view-student-form" enctype="multipart/form-data" class="form-expan small-input-field">
+              <form action="" method="post" name="view-student-form" enctype="multipart/form-data" class="form-expan small-input-field">
 
                      <div class="col-span-2 center mb-2">
                             <img src="<?= $row['photo'] ?>" alt="Photo" class="image">
@@ -277,6 +276,9 @@ if (isset($_GET['add-student'])) {
                             <a href="?edit-student-regdNo=<?= $row['regdNo'] ?>" class="edit-btn btn large mt-1">Edit Student</a>
                      </div>
               </form>
+       <?php
+              }
+       ?>
 
        </div>
 

@@ -118,7 +118,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST" && $_GET['operation'] !== 'delete-stud
               }
        }
 
-       
+
        // Handle NEB Result upload
        $nebResultPath = "";
        if (isset($_FILES['nebResult']) && $_FILES['nebResult']['error'] === UPLOAD_ERR_OK) {
@@ -162,7 +162,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST" && $_GET['operation'] !== 'delete-stud
        if ($_GET['operation'] === 'add-student') {
               $sql = "INSERT INTO Student (regdNo, name, gender, dob, faculty, phone, email, address, parentName, parentPhone, password, batch, photo, seeResult, nebResult) VALUES 
                      ('$regdNo', '$name', '$gender', '$dob', '$faculty', '$phone', '$email', '$address', '$parentName', '$parentPhone', '$dob', $batch, '$photoPath', '$seeResultPath', '$nebResultPath')";
-              
+
               $sqlFees = "INSERT INTO fees (regdNo) VALUES ('$regdNo')";
               // Execute update
               try {
@@ -204,7 +204,18 @@ if ($_SERVER['REQUEST_METHOD'] === "POST" && $_GET['operation'] !== 'delete-stud
               $sql .= " WHERE regdNo = '$regdNo'";
               // Execute update
               try {
+                     $row = selectRecord('student', 'regdNo', $regdNo);
                      $conn->query($sql);
+
+                     if (!empty($row['photo']))
+                            deleteData($photoPath, $row['photo']);           # Delete Older Photo ...
+
+                     if (!empty($row['seeResult']))
+                            deleteData($seeResultPath, $row['seeResult']);           # Delete Older SEE Result ...
+
+                     if (!empty($row['nebResult']))
+                            deleteData($nebREsultPath, $row['nebResult']);           # Delete Older NEB Result ...
+
                      header("location: ../students.php?view-student-regdNo=$regdNo&success= Student info updated successfully");
                      exit();
               } catch (Exception $e) {
@@ -212,22 +223,18 @@ if ($_SERVER['REQUEST_METHOD'] === "POST" && $_GET['operation'] !== 'delete-stud
                      exit();
               }
        }
-
-
-}else if ($_SERVER['REQUEST_METHOD'] === "POST" && $_GET['operation'] === 'delete-student') {
+} else if ($_SERVER['REQUEST_METHOD'] === "POST" && $_GET['operation'] === 'delete-student') {
        $regdNo = trim($_POST['regdNo']);
-       try{
+       try {
               $sql = "DELETE FROM student where regdNo = '$regdNo'";
               $conn->query($sql);
               header("location: ../students.php?view-all-students&success= Student Deleted successfully.");
               exit();
-
-       }catch (Exception $e) {
+       } catch (Exception $e) {
               header("location: ../students.php?delete-student-regdNo=$regdNo&error=" . $e->getMessage());
               exit();
        }
-
-}else {
+} else {
        header("location: ../students.php");
        exit();
 }

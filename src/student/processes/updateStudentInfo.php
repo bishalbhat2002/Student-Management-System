@@ -160,13 +160,13 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
        try {
               $row = selectRecord('student', 'regdNo', $regdNo);
               $conn->query($sql);
-              if(!empty($row['photo'])); 
+              if(!empty($row['photo']))
                      deleteData($photoPath, $row['photo']);           # Delete Older Photo ...
 
-              if(!empty($row['seeResult'])); 
+              if(!empty($row['seeResult'])) 
                      deleteData($seeResultPath, $row['seeResult']);           # Delete Older SEE Result ...
 
-              if(!empty($row['nebResult'])); 
+              if(!empty($row['nebResult'])) 
                      deleteData($nebREsultPath, $row['nebResult']);           # Delete Older NEB Result ...
 
               header("location: ../dashboard.php?success= Student info updated successfully");

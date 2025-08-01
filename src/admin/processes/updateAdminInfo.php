@@ -93,7 +93,7 @@ if($_SERVER['REQUEST_METHOD'] === "POST"){
        try{
               $row = selectRecord('admin', 'aid', $aid);
               $conn->query($sql);                                     # Execute Update Query...
-              if(!empty($row['photo'])); 
+              if(!empty($row['photo']))
                      deleteData($photoPath, $row['photo']);           # Delete Older Photo...
               header("location: ../dashboard.php?success= Admin info updated successfully");
               exit();
