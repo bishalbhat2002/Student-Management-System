@@ -77,9 +77,7 @@
                                    <label for="semester">Select Semester:</label> <br>
                                    <select name="semesterId" id="semester">
                                           <option value="" selected disabled>Select Semester</option>
-                                          <?php 
-                                                 require_once "../includes/semesterShow.php?runningSem"; 
-                                          ?>
+                                          <?php require_once "../includes/showNonRunningSemester.php" ?>
                                    </select>
                             </div>
                             <div>

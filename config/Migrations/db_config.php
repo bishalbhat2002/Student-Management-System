@@ -91,7 +91,7 @@ try {
               parentPhone VARCHAR(15),
               password VARCHAR(255) NOT NULL,
               batch INT CHECK (batch >= 2057),
-              semId INT DEFAULT NULL,
+              semId INT DEFAULT 1,
               photo VARCHAR(255) DEFAULT '../../public/assets/images/image.jpg',
               seeResult VARCHAR(255),    -- Link to SEE result photo
               nebResult VARCHAR(255),     -- Link to NEB result photo

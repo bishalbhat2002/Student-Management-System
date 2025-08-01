@@ -1,5 +1,6 @@
 <?php
 require_once "connection.php";
+require_once "../../includes/functions.php";
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] === "POST") {
@@ -62,11 +63,18 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         $sql = "INSERT INTO sem{$semId}Admission (regdNo, admissionAmount, photo) 
                 VALUES ('$regdNo', '$amount', '$voucherPhotoPath')";
         $conn->query($sql);
-        header("location: ../students.php?view-admission-semId=$semId&success=Student Admitted successfully to Sem - $semId");
+
+        $sqlFees = "UPDATE fees set sem{$semId} = '$amount' where regdNo = '$regdNo'";
+        $conn->query($sqlFees);
+
+        $sql2 = "UPDATE runningSemester set totalStudent = totalStudent + 1 Where rsid = '$semId'";
+        $conn->query($sql2);
+
+        header("location: ../students.php?view-admission-semId=$semId&success=Student Admitted successfully to ".getSemName($semId)." Semester");
+
         exit();
     } catch (Exception $e) {
-       exit($e->getMessage());
-        header("location: ../students.php?add-admission-regdNo=$regdNo&error=Error while adding admission info");
+        header("location: ../students.php?add-admission-regdNo=$regdNo&error=".$e->getMessage());
         exit();
     }
 

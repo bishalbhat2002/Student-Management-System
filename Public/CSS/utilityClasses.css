@@ -14,7 +14,7 @@ a,
 }
 a:hover,
 .btn:hover {
-  transform: scale(1.08);
+  transform: scale(1.05);
 }
 a:active,
 .btn:active {
@@ -120,7 +120,13 @@ a:active,
 }
 .bold {
   font-weight: bold;
-  color: var(--color-primary-100);
+  color: var(--bgcolor-primary-80);
+}
+.bold-relative{
+  font-weight: 400;
+  color: var(--color-secondary-80);
+  position: relative;
+  top: 1.5rem;
 }
 
 /* Class for Button font-size END */

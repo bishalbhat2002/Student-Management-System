@@ -1,4 +1,5 @@
 <?php require_once "../includes/header.php"; ?>
+<?php require_once "../includes/functions.php"; ?>
 
 
 <!-- Code for Adding New Student -->
@@ -109,19 +110,19 @@ if (isset($_GET['add-student'])) {
 ?>
        <div class="main center-fdct">
               <h1 class="heading">View Students</h1>
-             
-             <?php
-                            try {
-                                   // Retrieve data from student table
-                                   $sql = "SELECT * FROM student LEFT JOIN semester ON student.semId = semester.semId ORDER BY regdNo DESC";
-                                   $result = $conn->query($sql);
-                                   if ($result->num_rows === 0) {
-                                          header('location: students.php?view-student&error=No student Found to show...');
-                                          exit();
-                                   }
-                            } catch (Exception $e) {
-                                   die("<br><b>Error:</b> " . $e->getMessage());
-                            }
+
+              <?php
+              try {
+                     // Retrieve data from student table
+                     $sql = "SELECT * FROM student LEFT JOIN semester ON student.semId = semester.semId ORDER BY regdNo DESC";
+                     $result = $conn->query($sql);
+                     if ($result->num_rows === 0) {
+                            header('location: students.php?view-student&error=No student Found to show...');
+                            exit();
+                     }
+              } catch (Exception $e) {
+                     die("<br><b>Error:</b> " . $e->getMessage());
+              }
               ?>
 
               <div class="box-cover center">
@@ -137,24 +138,24 @@ if (isset($_GET['add-student'])) {
                                    </tr>
                             </thead>
                             <tbody>
-                            <?php
-                                   while($row = $result->fetch_assoc()){
-                            ?>
-                                   <tr>
-                                          <td class="tac v-align-m"><?= $row['regdNo']?></td>
-                                          <td><?= $row['name']?></td>
-                                          <td class="tac v-align-m"><?= $row['semName'] ?? '1st'?> Semester</td>
-                                          <td><?= $row['phone']?></td>
-                                          <td><?= $row['address']?></td>
-                                          <td>
-                                                 <a href="?view-student-regdNo=<?= $row['regdNo']?>" class="view-btn">View</a>
-                                                 <a href="?edit-student-regdNo=<?= $row['regdNo']?>" class="edit-btn">Edit</a>
-                                                 <a href="?delete-student-regdNo=<?= $row['regdNo']?>" onclick="return confirmDelete('<?= $row['regdNo']?>')" class="delete-btn">Delete</a>
-                                          </td>
-                                   </tr>
-                            <?php
+                                   <?php
+                                   while ($row = $result->fetch_assoc()) {
+                                   ?>
+                                          <tr>
+                                                 <td class="tac v-align-m"><?= $row['regdNo'] ?></td>
+                                                 <td><?= $row['name'] ?></td>
+                                                 <td class="tac v-align-m"><?= $row['semName'] ?? '1st' ?> Semester</td>
+                                                 <td><?= $row['phone'] ?></td>
+                                                 <td><?= $row['address'] ?></td>
+                                                 <td>
+                                                        <a href="?view-student-regdNo=<?= $row['regdNo'] ?>" class="view-btn">View</a>
+                                                        <a href="?edit-student-regdNo=<?= $row['regdNo'] ?>" class="edit-btn">Edit</a>
+                                                        <a href="?delete-student-regdNo=<?= $row['regdNo'] ?>" onclick="return confirmDelete('<?= $row['regdNo'] ?>')" class="delete-btn">Delete</a>
+                                                 </td>
+                                          </tr>
+                                   <?php
                                    }
-                            ?>
+                                   ?>
 
                             </tbody>
                      </table>
@@ -197,6 +198,10 @@ if (isset($_GET['add-student'])) {
               <?php
               if ($_SERVER['REQUEST_METHOD'] === "GET") {
                      $regdNo = trim($_GET['view-student-regdNo']);
+                     if (empty($regdNo)) {
+                            header('location: students.php?view-student&error=Registration Number is Required.');
+                            exit();
+                     }
                      try {
                             // Retrieve data from student table
                             $sql = "SELECT * FROM student WHERE regdNo = '$regdNo'";
@@ -225,6 +230,10 @@ if (isset($_GET['add-student'])) {
                             <label for="name">Name:</label>
                             <input type="text" name="name" id="name" value="<?= $row['name'] ?>" readonly>
                      </div>
+                     <div>
+                            <label for="batch">Batch:</label>
+                            <input type="text" name="batch" id="batch" value="<?= $row['batch'] ?>" readonly>
+                     </div> 
                      <div>
                             <label for="faculty">Faculty:</label>
                             <input type="text" name="faculty" id="faculty" value="<?= $row['faculty'] ?>" readonly>
@@ -298,8 +307,12 @@ if (isset($_GET['add-student'])) {
               <h1 class="heading">Edit Student</h1>
 
               <?php
-              if ($_SERVER['REQUEST_METHOD'] === "GET" && isset($_GET['edit-student-regdNo'])) {
+              if (isset($_GET['edit-student-regdNo'])) {
                      $regdNo = trim($_GET['edit-student-regdNo']);
+                     if(empty($regdNo)){
+                            header('location: students.php?edit-student&error=Registration Number is required.');
+                            exit();  
+                     }
                      try {
                             // Retrieve data from student table
                             $sql = "SELECT * FROM student WHERE regdNo = '$regdNo'";
@@ -425,7 +438,7 @@ if (isset($_GET['add-student'])) {
                             <label for="add-admission-regdNo">Enter Regd. No:</label>
                             <input type="text" name="add-admission-regdNo" id="add-admission-regdNo">
                      </div>
-                     <div class="center">
+                     <div class="center mt-1">
                             <input type="submit" value="Find Student" class="edit-btn">
                      </div>
               </form>
@@ -433,96 +446,105 @@ if (isset($_GET['add-student'])) {
 
        <!-- Code for editing Adding Student Admission -->
 <?php
-} else if (!empty($_GET['add-admission-regdNo'])) {
+} else if (isset($_GET['add-admission-regdNo'])) {
 ?>
        <div class="main center-fdct">
               <h1 class="heading">Add Admission</h1>
-             
-             <?php
-                     if ($_SERVER['REQUEST_METHOD'] === "GET" && !empty($_GET['add-admission-regdNo'])) {
-                            $regdNo = trim($_GET['add-admission-regdNo']);
-                            try {
-                                   // Retrieve data from student table
-                                   $sql = "SELECT * FROM student WHERE regdNo = '$regdNo'";
-                                   $result = $conn->query($sql);
-                                   if ($result->num_rows === 0) {
-                                          header('location: students.php?add-admission&error=No student found with provided RegdNo.');
-                                          exit();
-                                   }
-                            } catch (Exception $e) {
-                                   die("<br><b>Error:</b> " . $e->getMessage());
-                            }
-                            $row = $result->fetch_assoc();
-                     }
-              ?>
 
               <?php
-              $errors = $_SESSION['formErrors'] ?? [];
-              $oldData = $_SESSION['oldData'] ?? [];
-              unset($_SESSION['formErrors'], $_SESSION['oldData']);
+              if (isset($_GET['add-admission-regdNo'])) {
+                     $regdNo = trim($_GET['add-admission-regdNo']);
+                     if (empty($regdNo)) {
+                            header('location: students.php?add-admission&error=Registration Number is Required.');
+                            exit();
+                     }
+                     try {
+                            // Retrieve data from student table
+                            $sql = "SELECT * FROM student WHERE regdNo = '$regdNo'";
+                            $result = $conn->query($sql);
+                            if ($result->num_rows === 0) {
+                                   header('location: students.php?add-admission&error=No student found with provided Registration Number.');
+                                   exit();
+                            }
+                     } catch (Exception $e) {
+                            die("<br><b>Error:</b> " . $e->getMessage());
+                     }
+                     $row = $result->fetch_assoc();
               ?>
- 
-              <form action="processes/addAdmission.php" method="post" name="add-admission-form" enctype="multipart/form-data" class="form-expan small-input-field" id="addAdmissionForm">
 
-                     <div class="col-span-2 center mb-1">
-                            <img src="<?php echo BASE_URL; ?>/public/assets/images/image.jpg" alt="Photo" class="image">
-                     </div>
-                     <div>
-                            <label for="regdNo">Registration No:</label>
-                            <input type="text" name="regdNo" id="regdNo" value="<?= $row['regdNo']?>" readonly>
-                            <p class="error"><?= $errors['regdNo'] ?? ''?></p>
-                     </div>
-                     <div>
-                            <label for="name">Name:</label>
-                            <input type="text" name="name" id="name" value="<?= $row['name']?>" readonly>
-                     </div>
-                     <div>
-                            <label for="phone">Phone:</label>
-                            <input type="number" name="phone" id="phone" value="<?= $row['phone']?>" readonly>
-                     </div>
-                     <div>
-                            <label for="address">Address:</label>
-                            <input type="text" name="address" id="address" value="<?= $row['address']?>" readonly>
-                     </div>
-                     <div>
-                            <label for="faculty">Faculty:</label>
-                            <input type="text" name="faculty" id="faculty" value="<?= $row['faculty']?>" readonly>
-                     </div>
-                     <div>
-                            <label for="parent-phone">Parent Phone:</label>
-                            <input type="number" name="parent-phone" id="parent-phone" value="<?= $row['parentPhone']?>" readonly>
-                     </div>
+                     <?php
+                     $errors = $_SESSION['formErrors'] ?? [];
+                     $oldData = $_SESSION['oldData'] ?? [];
+                     unset($_SESSION['formErrors'], $_SESSION['oldData']);
+                     ?>
 
-                     <div class="col-span-2 mt-1 mb-1">
-                            <hr>
-                     </div>
+                     <form action="processes/addAdmission.php" method="post" name="add-admission-form" enctype="multipart/form-data" class="form-expan small-input-field" id="addAdmissionForm">
 
-                     <div>
-                            <label for="semester">Select Semester:</label>
-                            <select name="semester" id="semester">
-                                   <option value="" selected disabled>Select Sem</option>
-                                   <?php 
-                                          require_once "../includes/semesterShow.php?runningsem"; 
-                                   ?>
-                            </select>
-                            <p class="error" id="semesterError"><?= $errors['semester'] ?? ''?></p>
-                     </div> <br>
-                     <div>
-                            <label for="amount">Enter Amount:</label>
-                            <input type="number" name="amount" id="amount" title="Enter Amount Submitted by student in Numbers..." value="<?= $oldData['amount'] ?? ''?>">
-                            <p class="error" id="amountError"><?= $errors['amount'] ?? ''?></p>
-                     </div>
-                     <div>
-                            <label for="voucher-photo">Upload Photo:</label>
-                            <input type="file" name="voucherPhoto" id="voucherPhoto" title="Upload proof of Amount submit...">
-                            <p class="error" id="voucherError"><?= $errors['voucherPhoto'] ?? ''?></p>
-                     </div>
+                            <div class="col-span-2 center mb-1">
+                                   <img src="<?php echo BASE_URL; ?>/public/assets/images/image.jpg" alt="Photo" class="image">
+                            </div>
+                            <div>
+                                   <label for="regdNo">Registration No:</label>
+                                   <input type="text" name="regdNo" id="regdNo" value="<?= $row['regdNo'] ?>" readonly>
+                                   <p class="error"><?= $errors['regdNo'] ?? '' ?></p>
+                            </div>
+                            <div>
+                                   <label for="name">Name:</label>
+                                   <input type="text" name="name" id="name" value="<?= $row['name'] ?>" readonly>
+                            </div>
+                            <div>
+                                   <label for="phone">Phone:</label>
+                                   <input type="number" name="phone" id="phone" value="<?= $row['phone'] ?>" readonly>
+                            </div>
+                            <div>
+                                   <label for="address">Address:</label>
+                                   <input type="text" name="address" id="address" value="<?= $row['address'] ?>" readonly>
+                            </div>
+                            <div>
+                                   <label for="faculty">Faculty:</label>
+                                   <input type="text" name="faculty" id="faculty" value="<?= $row['faculty'] ?>" readonly>
+                            </div>
+                            <div>
+                                   <label for="parent-phone">Parent Phone:</label>
+                                   <input type="number" name="parent-phone" id="parent-phone" value="<?= $row['parentPhone'] ?>" readonly>
+                            </div>
 
-                     <div class="col-span-2 center mt-2">
-                            <button class="add-btn btn large mt-1">Add Admission</button>
-                     </div>
+                            <div class="col-span-2 mt-1 mb-1">
+                                   <hr>
+                            </div>
 
-              </form>
+                            <div>
+                                   <label for="semester">Select Semester:</label>
+                                   <select name="semester" id="semester">
+                                          <option value="" selected disabled>Select Sem</option>
+                                          <?php
+                                          require_once "../includes/showRunningSemester.php";
+                                          ?>
+                                   </select>
+                                   <p class="error" id="semesterError"><?= $errors['semester'] ?? '' ?></p>
+                            </div> <br>
+                            <div>
+                                   <label for="amount">Enter Amount:</label>
+                                   <input type="number" name="amount" id="amount" title="Enter Amount Submitted by student in Numbers..." value="<?= $oldData['amount'] ?? '' ?>">
+                                   <p class="error" id="amountError"><?= $errors['amount'] ?? '' ?></p>
+                            </div>
+                            <div>
+                                   <label for="voucher-photo">Upload Photo:</label>
+                                   <input type="file" name="voucherPhoto" id="voucherPhoto" title="Upload proof of Amount submit...">
+                                   <p class="error" id="voucherError"><?= $errors['voucherPhoto'] ?? '' ?></p>
+                            </div>
+
+                            <div class="col-span-2 center mt-2">
+                                   <button class="add-btn btn large mt-1">Add Admission</button>
+                            </div>
+
+                     </form>
+              <?php
+              } else {
+                     header("location: students.php?add-admission");
+                     exit();
+              }
+              ?>
        </div>
 
 
@@ -533,17 +555,18 @@ if (isset($_GET['add-student'])) {
 ?>
        <div class="main center-fdct">
               <h1 class="heading">View Admission</h1>
-              <form action="" class="form">
+              <form action="" method="get" class="form">
+                     <input type="hidden" name="view-admission-sem" value="true">
                      <div>
                             <label for="semester">Select Semester:</label>
                             <select name="view-admission-semId" id="semester">
                                    <option value="" selected disabled>Select Sem</option>
-                                   <?php 
-                                          require_once "../includes/semesterShow.php?runningSem"; 
+                                   <?php
+                                          require_once "../includes/showRunningSemester.php";
                                    ?>
                             </select>
                      </div>
-                     <div class="center">
+                     <div class="center mt-1">
                             <input type="submit" value="View Admission" class="view-btn">
                      </div>
               </form>
@@ -551,94 +574,63 @@ if (isset($_GET['add-student'])) {
 
        <!-- Code for Viewing Admission -->
 <?php
-} else if (!empty($_GET['view-admission-semId'])) {
+} else if (isset($_GET['view-admission-sem']) || isset($_GET['view-admission-semId'])) {
 ?>
        <div class="main center-fdct">
 
-             <?php
-                     if ($_SERVER['REQUEST_METHOD'] === "GET" && !empty($_GET['view-admission-semId'])) {
-                            $semId = trim($_GET['view-admission-semId']);
-                            try {
-                                   // Retrieve data from student table
-                                   $sql = "SELECT * FROM student WHERE regdNo = '$regdNo'";
-                                   $result = $conn->query($sql);
-                                   if ($result->num_rows === 0) {
-                                          header('location: students.php?add-admission&error=No student found with provided RegdNo.');
-                                          exit();
-                                   }
-                            } catch (Exception $e) {
-                                   die("<br><b>Error:</b> " . $e->getMessage());
-                            }
-                            $row = $result->fetch_assoc();
+              <?php
+                     $semId = trim($_GET['view-admission-semId']) ?? '';
+                     if (empty($semId)) {
+                            header('location: students.php?view-admission&error=Semester is Required.');
+                            exit();
                      }
+                     $batch = getSemBatch($semId);
+
+                     try {
+                            // Retrieve data from student table
+                            $sql = "SELECT * FROM student s JOIN sem{$semId}Admission a on s.regdNo = a.regdNo WHERE s.batch = '$batch'";
+
+                            $result = $conn->query($sql);
+                            if ($result->num_rows === 0) {
+                                   header('location: students.php?view-admission&error=No student is admitted to ' . getSemName($semId) . ' semester.');
+                                   exit();
+                            }
+                     } catch (Exception $e) {
+                            die("<br><b>Error:</b> " . $e->getMessage());
+                     }
+                     
+              
               ?>
-
-
-
-
-
-
-
-
-
-              <h1 class="heading">Semester X, View Admission</h1>
+              <h1 class="heading"><?= getSemName($semId) ?> Semester - View Admission</h1>
               <div class="box-cover">
                      <table>
-                            <thead>
+                            <thead class="top-sticky">
                                    <tr>
                                           <th>Regd. No.</th>
                                           <th>Name</th>
-                                          <th>Fee Submitted</th>
                                           <th>Phone</th>
+                                          <th>Fee Submitted</th>
+                                          <th>Voucher</th>
                                           <th>Action</th>
                                    </tr>
                             </thead>
                             <tbody>
+                     <?php
+                            while($row=$result->fetch_assoc()){
+                     ?>
                                    <tr>
-                                          <td>SC-4632-32332-323-32</td>
-                                          <td>Bishal Bhat</td>
-                                          <td class="tac v-align-m">16500</td>
-                                          <td>98063888</td>
+                                          <td><?= $row['regdNo']?></td>
+                                          <td><?= $row['name']?></td>
+                                          <td><?= $row['phone']?></td>
+                                          <td class="tac v-align-m"><?= $row['admissionAmount']?></td>
+                                          <td class="tac"><a href="<?= $row['photo']?>" target="_blank" class="view-btn">view</a></td>
                                           <td>
-                                                 <a href="?view-student-regd-no" class="view-btn">View Student</a>
+                                                 <a href="?view-student-regdNo=<?= $row['regdNo']?>" class="view-btn">View Student</a>
                                           </td>
                                    </tr>
-                                   <tr>
-                                          <td>SC-4632-32332-323-32</td>
-                                          <td>Bishal Bhat</td>
-                                          <td class="tac v-align-m">16500</td>
-                                          <td>98063888</td>
-                                          <td>
-                                                 <a href="?view-student-regd-no" class="view-btn">View Student</a>
-                                          </td>
-                                   </tr>
-                                   <tr>
-                                          <td>SC-4632-32332-323-32</td>
-                                          <td>Bishal Bhat</td>
-                                          <td class="tac v-align-m">16500</td>
-                                          <td>98063888</td>
-                                          <td>
-                                                 <a href="?view-student-regd-no" class="view-btn">View Student</a>
-                                          </td>
-                                   </tr>
-                                   <tr>
-                                          <td>SC-4632-32332-323-32</td>
-                                          <td>Bishal Bhat</td>
-                                          <td class="tac v-align-m">16500</td>
-                                          <td>98063888</td>
-                                          <td>
-                                                 <a href="?view-student-regd-no" class="view-btn">View Student</a>
-                                          </td>
-                                   </tr>
-                                   <tr>
-                                          <td>SC-4632-32332-323-32</td>
-                                          <td>Bishal Bhat</td>
-                                          <td class="tac v-align-m">16500</td>
-                                          <td>98063888</td>
-                                          <td>
-                                                 <a href="?view-student-regd-no" class="view-btn">View Student</a>
-                                          </td>
-                                   </tr>
+                     <?php
+                            }
+                     ?>
                             </tbody>
                      </table>
               </div>
@@ -650,19 +642,17 @@ if (isset($_GET['add-student'])) {
 ?>
        <div class="main center-fdct">
               <h1 class="heading">View Fees</h1>
-              <form action="?view-fees-batch-regd-no" method="post" name="student-regd-form" enctype="multipart/form-data" class="form">
+              <form action="" class="form">
                      <div>
-                            <label for="batch">Enter Batch:</label>
-                            <input type="number" name="batch" id="batch">
+                            <label for="fees-batch">Enter Batch:</label>
+                            <input type="number" name="fees-batch" id="fees-batch">
                      </div>
-                     <div class="center large bold">
-                            OR
-                     </div>
+                     <p class="center large bold-relative">OR</p>
                      <div>
-                            <label for="regd-no">Enter Regd. No:</label>
-                            <input type="text" name="regd-no" id="regd-no">
+                            <label for="fees-regdNo">Enter Registration No:</label>
+                            <input type="text" name="fees-regdNo" id="fees-regdNo">
                      </div>
-                     <div class="center">
+                     <div class="center mt-1">
                             <input type="submit" value="View Fees" class="view-btn">
                      </div>
               </form>
@@ -670,13 +660,39 @@ if (isset($_GET['add-student'])) {
 
        <!-- Code for Viewing Fees -->
 <?php
-} else if (isset($_GET['view-fees-batch-regd-no'])) {
+} else if (isset($_GET['fees-regdNo']) || isset($_GET['fees-batch'])) {
 ?>
        <div class="main center-fdct">
-              <h1 class="heading">View Fees - 20YY Batch</h1>
+
+       <?php
+              if(empty($_GET['fees-regdNo']) && empty($_GET['fees-batch'])){
+                     header("location: students.php?view-fees&error=Batch or Registration Number is Required.");
+                     exit();
+              }
+              try {
+                     $batch = $_GET['fees-batch'] ?? '';  
+                     $regdNo = $_GET['fees-regdNo'] ?? '';  
+                     $sql;
+
+                     if(!empty($batch)){
+                           $sql = "SELECT * FROM student JOIN fees ON student.regdNo = fees.regdNo WHERE student.batch = '$batch'";
+                     }
+                     if(!empty($regdNo)){
+                            $sql = "SELECT * FROM student JOIN fees ON student.regdNo = fees.regdNo WHERE student.regdNo = '$regdNo'";
+                     }
+                     $result = $conn->query($sql);
+                     if ($result->num_rows === 0) {
+                            header('location: students.php?view-fees&error=No Record found for provided Batch or Registration No.');
+                            exit();
+                     }
+              } catch (Exception $e) {
+                            die("<br><b>Error:</b> " . $e->getMessage());
+              }
+       ?>
+              <h1 class="heading">View Fees - <?= ($batch !== "") ? $batch." Batch" : $regdNo ?></h1>
               <div class="box-cover">
                      <table class="smaller-table">
-                            <thead>
+                            <thead class="top-sticky">
                                    <tr>
                                           <th>Regd. No.</th>
                                           <th>Name</th>
@@ -692,67 +708,27 @@ if (isset($_GET['add-student'])) {
                                    </tr>
                             </thead>
                             <tbody>
+                     <?php
+                            while($row = $result->fetch_assoc()){
+                     ?>
                                    <tr>
-                                          <td>SC-4632-32332-32</td>
-                                          <td>Bishal Bhat</td>
-                                          <td>16500</td>
-                                          <td>1600, 500</td>
-                                          <td>16500</td>
-                                          <td>16500</td>
-                                          <td>16500</td>
-                                          <td>16500</td>
-                                          <td></td>
-                                          <td></td>
+                                          <td><?= $row['regdNo']?></td>
+                                          <td><?= $row['name']?></td>
+                                          <td><?= $row['sem1']?></td>
+                                          <td><?= $row['sem2']?></td>
+                                          <td><?= $row['sem3']?></td>
+                                          <td><?= $row['sem4']?></td>
+                                          <td><?= $row['sem5']?></td>
+                                          <td><?= $row['sem6']?></td>
+                                          <td><?= $row['sem7']?></td>
+                                          <td><?= $row['sem8']?></td>
                                           <td>
-                                                 <a href="?view-student-regd-no" class="view-btn">View Student</a>
+                                                 <a href="?view-student-regdNo=<?= $row['regdNo']?>" class="view-btn">View Student</a>
                                           </td>
                                    </tr>
-                                   <tr>
-                                          <td>SC-4632-32332-32</td>
-                                          <td>Bishal Bhat</td>
-                                          <td>16500</td>
-                                          <td>1600, 500</td>
-                                          <td>16500</td>
-                                          <td>16500</td>
-                                          <td>16500</td>
-                                          <td>16500</td>
-                                          <td></td>
-                                          <td></td>
-                                          <td>
-                                                 <a href="?view-student-regd-no" class="view-btn">View Student</a>
-                                          </td>
-                                   </tr>
-                                   <tr>
-                                          <td>SC-4632-32332-32</td>
-                                          <td>Bishal Bhat</td>
-                                          <td>16500</td>
-                                          <td>1600, 500</td>
-                                          <td>16500</td>
-                                          <td>16500</td>
-                                          <td>16500</td>
-                                          <td>16500</td>
-                                          <td></td>
-                                          <td></td>
-                                          <td>
-                                                 <a href="?view-student-regd-no" class="view-btn">View Student</a>
-                                          </td>
-                                   </tr>
-                                   <tr>
-                                          <td>SC-4632-32332-32</td>
-                                          <td>Bishal Bhat</td>
-                                          <td>16500</td>
-                                          <td>1600, 500</td>
-                                          <td>16500</td>
-                                          <td>16500</td>
-                                          <td>16500</td>
-                                          <td>16500</td>
-                                          <td></td>
-                                          <td></td>
-                                          <td>
-                                                 <a href="?view-student-regd-no" class="view-btn">View Student</a>
-                                          </td>
-                                   </tr>
-
+                     <?php
+                            }
+                     ?>
                             </tbody>
                      </table>
               </div>
@@ -782,10 +758,14 @@ if (isset($_GET['add-student'])) {
 ?>
        <div class="main center-fdct">
               <h1 class="heading">Delete Student</h1>
-              
+
               <?php
-              if ($_SERVER['REQUEST_METHOD'] === "GET" && isset($_GET['delete-student-regdNo'])) {
+              if (isset($_GET['delete-student-regdNo'])) {
                      $regdNo = trim($_GET['delete-student-regdNo']);
+                     if(empty($regdNo)){
+                            header("location: students.php?delete-student&error=Registration Number is Required.");
+                            exit();
+                     }
                      try {
                             // Retrieve data from student table
                             $sql = "SELECT * FROM student WHERE regdNo = '$regdNo'";
@@ -803,43 +783,43 @@ if (isset($_GET['add-student'])) {
 
               <form action="processes/studentProcess.php?operation=delete-student" method="post" name="delete-student-form" class="form-expan">
                      <div class="col-span-2 center mb-2">
-                            <img src="<?= $row['photo']?>" alt="Photo" class="image">
+                            <img src="<?= $row['photo'] ?>" alt="Photo" class="image">
                      </div>
                      <div>
                             <label for="regdNo">Registration Number:</label>
-                            <input type="text" name="regdNo" id="regdNo" value="<?= $row['regdNo']?>" readonly>
+                            <input type="text" name="regdNo" id="regdNo" value="<?= $row['regdNo'] ?>" readonly>
                      </div>
                      <div>
                             <label for="name">Name:</label>
-                            <input type="text" name="name" id="name" value="<?= $row['name']?>" readonly>
+                            <input type="text" name="name" id="name" value="<?= $row['name'] ?>" readonly>
                      </div>
                      <div class="gender">
                             <label for="gender">Gender:</label><br>
-                            <input type="text" name="gender" id="gender" value="<?= $row['gender']?>" readonly>
+                            <input type="text" name="gender" id="gender" value="<?= $row['gender'] ?>" readonly>
                      </div>
                      <div>
                             <label for="phone">Phone:</label>
-                            <input type="number" name="phone" id="phone" value="<?= $row['phone']?>" readonly>
+                            <input type="number" name="phone" id="phone" value="<?= $row['phone'] ?>" readonly>
                      </div>
                      <div>
                             <label for="email">Email:</label>
-                            <input type="email" name="email" id="email" value="<?= $row['email']?>" readonly>
+                            <input type="email" name="email" id="email" value="<?= $row['email'] ?>" readonly>
                      </div>
                      <div>
                             <label for="address">Address:</label>
-                            <input type="text" name="address" id="address" value="<?= $row['address']?>" readonly>
+                            <input type="text" name="address" id="address" value="<?= $row['address'] ?>" readonly>
                      </div>
                      <div>
                             <label for="parent">Parent Name:</label><br>
-                            <input type="text" name="parentName" id="parentName" value="<?= $row['parentName']?>" readonly>
+                            <input type="text" name="parentName" id="parentName" value="<?= $row['parentName'] ?>" readonly>
                      </div>
                      <div>
                             <label for="parentPhone">Parent Phone:</label><br>
-                            <input type="number" name="parentPhone" id="parentPhone" value="<?= $row['parentPhone']?>" readonly>
+                            <input type="number" name="parentPhone" id="parentPhone" value="<?= $row['parentPhone'] ?>" readonly>
                      </div>
 
                      <div class="col-span-2 center">
-                            <button class="delete-btn btn large mt-1" onclick="return confirmDelete('<?= $row['regdNo']?>')">Delete Student</button>
+                            <button class="delete-btn btn large mt-1" onclick="return confirmDelete('<?= $row['regdNo'] ?>')">Delete Student</button>
                      </div>
               </form>
        </div>
@@ -849,7 +829,7 @@ if (isset($_GET['add-student'])) {
 } else {
 ?>
        <div class="main center">
-              <div class="center-fdct gap-2">
+              <div class="center-fdct gap">
                      <a href="?add-student" class="view-btn x-width">Add Student</a>
                      <a href="?view-student" class="view-btn x-width">View Student</a>
                      <a href="?edit-student" class="view-btn x-width">Edit Student</a>

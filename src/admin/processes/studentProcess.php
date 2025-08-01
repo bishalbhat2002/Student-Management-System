@@ -162,10 +162,12 @@ if ($_SERVER['REQUEST_METHOD'] === "POST" && $_GET['operation'] !== 'delete-stud
        if ($_GET['operation'] === 'add-student') {
               $sql = "INSERT INTO Student (regdNo, name, gender, dob, faculty, phone, email, address, parentName, parentPhone, password, batch, photo, seeResult, nebResult) VALUES 
                      ('$regdNo', '$name', '$gender', '$dob', '$faculty', '$phone', '$email', '$address', '$parentName', '$parentPhone', '$dob', $batch, '$photoPath', '$seeResultPath', '$nebResultPath')";
-
+              
+              $sqlFees = "INSERT INTO fees (regdNo) VALUES ('$regdNo')";
               // Execute update
               try {
                      $conn->query($sql);
+                     $conn->query($sqlFees);
                      header("location: ../students.php?view-all-students&success= Student added successfully");
                      exit();
               } catch (Exception $e) {
@@ -213,8 +215,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST" && $_GET['operation'] !== 'delete-stud
 
 
 }else if ($_SERVER['REQUEST_METHOD'] === "POST" && $_GET['operation'] === 'delete-student') {
-       
-       $regdNo      = trim($_POST['regdNo']);
+       $regdNo = trim($_POST['regdNo']);
        try{
               $sql = "DELETE FROM student where regdNo = '$regdNo'";
               $conn->query($sql);

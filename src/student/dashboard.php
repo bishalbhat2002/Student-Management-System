@@ -1,4 +1,5 @@
 <?php require_once "../includes/header.php"; ?>
+<?php require_once "../includes/functions.php" ?>
 
 <!-- Code for Updating Student Info-->
 <?php
@@ -140,7 +141,60 @@ if (isset($_GET['update-student-info'])) {
               </form>
        </div>
 
+<!-- Code to View Student Notice -->
+<?php
+       }else if(isset($_GET['nid'])){
+?>
+              <div class="center-fdct main">
 
+              <?php
+                     if(empty($_GET['nid'])){
+                            header("location: dashboard.php?error=Notice id is missing.");
+                            exit(); 
+                     }   
+                     
+                     try {
+                            $table = "student";  
+                            $nid = $_GET['nid'];  
+                            
+                            $sql = "SELECT * FROM {$table}notice WHERE nid = '$nid'";
+                            
+                            $result = $conn->query($sql);
+                            $row = $result->fetch_assoc();
+
+                            if ($result->num_rows === 0) {
+                                   header('location: dashboard.php?error=No Notice Found.');
+                                   exit();
+                            }
+                     } catch (Exception $e) {
+                            die("<br><b>Error:</b> " . $e->getMessage());
+                     }
+              
+              ?>
+                     <h1 class="heading">View Notice</h1>
+                     <div class="box notice-view-box">
+                            <h2 class="sub-heading"><?= $row['title']?></h2>
+                            <p> 
+                                   <?= $row['nbody']?>
+                            </p>
+
+                            <?php
+                                   if(!empty($row['photo'])){
+                            ?>
+                                          <div class="center">
+                                                 <a href="<?= $row['photo'] ?>"  download="Notice-sample-name" title="Click to download Notice">
+                                                        <img src="<?= $row['photo'] ?>" alt="Notice Image" class="notice-image">
+                                                 </a>
+                                          </div>
+                            <?php
+                                   }
+                            ?>
+                     <div class="center"><?= $row['date'] ?></div>
+
+                     </div>
+                    
+              </div>
+ 
 <!-- Code To display Student Dashboard... -->
 <?php
 } else {
@@ -152,20 +206,9 @@ if (isset($_GET['update-student-info'])) {
                             <h3><?= $_SESSION['name'] ?></h3>
                      </div>
 
-                      <?php      
-                                   try {
-                                          $sql = "SELECT semName FROM semester WHERE
-                                                  semId = '{$_SESSION['semId']}'";
-                                          $result = $conn->query($sql);
-                                          $semName = "";
-                                          if ($result->num_rows > 0) {
-                                                 $row = $result->fetch_assoc();
-                                                 $semName = $row['semName'];
-                                          }
-                                   }catch(Exception $e){
-                                          exit("<br><b>Error:</b>".$e->getMessage());
-                                   }
-                                          
+                     <?php      
+                            $semId = $_SESSION['semId'];
+                            $semName = getSemName($semId);
                      ?>     
 
                      <div class="student-status ">
@@ -184,7 +227,7 @@ if (isset($_GET['update-student-info'])) {
                                           if ($result->num_rows > 0) {
                                                  while($row = $result->fetch_assoc()){
                             ?>     
-                                                        <a href="?table=student&nid=<?= $row['nid'] ?>" class="notice" >
+                                                        <a href="?nid=<?= $row['nid'] ?>" class="notice" >
                                                                <div class="notice-number"><?= $row['nid'] ?></div>
                                                                <div class="notice-title"><?= $row['title'] ?></div>
                                                                <p class="notice-date"><?= $row['date'] ?></p>
@@ -240,6 +283,3 @@ if (isset($_GET['update-student-info'])) {
 
 <?php require_once "../includes/footer.php"; ?>
 
-
-
-<?php

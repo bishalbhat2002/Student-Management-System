@@ -533,7 +533,8 @@ body {
   }
 }
 .student-info{
-  align-self: center;
+  align-self: flex-end;
+  margin-bottom: 4rem;
 }
 
 /* Update Admin Info Code start here...  */
@@ -583,7 +584,7 @@ body {
 
 .teacher-notices{
   grid-area: teachers;
-  max-height: 60rem;
+  max-height: 50rem;
   width: 50rem;
   justify-self: start;
   align-self: flex-end;
@@ -594,7 +595,7 @@ body {
 .student-notices{
   padding-top: 0;
   grid-area: students;
-  max-height: 60rem;
+  max-height: 50rem;
   width: 50rem;
   align-self: flex-end;
   justify-self: center;
@@ -696,7 +697,6 @@ textarea{
 .notice-view-box{
   max-height: 60rem;
   width: 50rem;
-  margin-top: -2rem;
   color: var(--bgcolor-primary-100);
   h2{
     font-size: 2.2rem;
@@ -1135,7 +1135,8 @@ tr{
 
 /*  Student Dashboard Notice Height */
 .student-status .dashboard-notices{
-  max-height: 30.5rem;
-  align-self: flex-start;
+  height: 25rem;
+  align-self: flex-end;
+  margin-bottom: 4rem;
 }
 /*  Student Dashboard Notice Height */
