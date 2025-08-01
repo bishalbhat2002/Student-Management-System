@@ -420,10 +420,10 @@ if (isset($_GET['add-student'])) {
 ?>
        <div class="main center-fdct">
               <h1 class="heading">Add Admission</h1>
-              <form action="?add-admission-regd-no" method="post" name="student-regd-form" enctype="multipart/form-data" class="form">
+              <form action="" class="form">
                      <div>
-                            <label for="regd-no">Enter Regd. No:</label>
-                            <input type="text" name="regd-no" id="regd-no">
+                            <label for="add-admission-regdNo">Enter Regd. No:</label>
+                            <input type="text" name="add-admission-regdNo" id="add-admission-regdNo">
                      </div>
                      <div class="center">
                             <input type="submit" value="Find Student" class="edit-btn">
@@ -433,38 +433,64 @@ if (isset($_GET['add-student'])) {
 
        <!-- Code for editing Adding Student Admission -->
 <?php
-} else if (isset($_GET['add-admission-regd-no'])) {
+} else if (!empty($_GET['add-admission-regdNo'])) {
 ?>
        <div class="main center-fdct">
               <h1 class="heading">Add Admission</h1>
-              <form action="?view-admission-semester" method="post" name="add-admission-form" enctype="multipart/form-data" class="form-expan small-input-field" id="addAdmissionForm">
+             
+             <?php
+                     if ($_SERVER['REQUEST_METHOD'] === "GET" && !empty($_GET['add-admission-regdNo'])) {
+                            $regdNo = trim($_GET['add-admission-regdNo']);
+                            try {
+                                   // Retrieve data from student table
+                                   $sql = "SELECT * FROM student WHERE regdNo = '$regdNo'";
+                                   $result = $conn->query($sql);
+                                   if ($result->num_rows === 0) {
+                                          header('location: students.php?add-admission&error=No student found with provided RegdNo.');
+                                          exit();
+                                   }
+                            } catch (Exception $e) {
+                                   die("<br><b>Error:</b> " . $e->getMessage());
+                            }
+                            $row = $result->fetch_assoc();
+                     }
+              ?>
+
+              <?php
+              $errors = $_SESSION['formErrors'] ?? [];
+              $oldData = $_SESSION['oldData'] ?? [];
+              unset($_SESSION['formErrors'], $_SESSION['oldData']);
+              ?>
+ 
+              <form action="processes/addAdmission.php" method="post" name="add-admission-form" enctype="multipart/form-data" class="form-expan small-input-field" id="addAdmissionForm">
 
                      <div class="col-span-2 center mb-1">
                             <img src="<?php echo BASE_URL; ?>/public/assets/images/image.jpg" alt="Photo" class="image">
                      </div>
                      <div>
-                            <label for="regd-no">Registration No:</label>
-                            <input type="text" name="regd-no" id="regd-no">
+                            <label for="regdNo">Registration No:</label>
+                            <input type="text" name="regdNo" id="regdNo" value="<?= $row['regdNo']?>" readonly>
+                            <p class="error"><?= $errors['regdNo'] ?? ''?></p>
                      </div>
                      <div>
                             <label for="name">Name:</label>
-                            <input type="text" name="name" id="name">
+                            <input type="text" name="name" id="name" value="<?= $row['name']?>" readonly>
                      </div>
                      <div>
                             <label for="phone">Phone:</label>
-                            <input type="number" name="phone" id="phone">
+                            <input type="number" name="phone" id="phone" value="<?= $row['phone']?>" readonly>
                      </div>
                      <div>
                             <label for="address">Address:</label>
-                            <input type="text" name="address" id="address">
+                            <input type="text" name="address" id="address" value="<?= $row['address']?>" readonly>
                      </div>
                      <div>
                             <label for="faculty">Faculty:</label>
-                            <input type="text" name="faculty" id="faculty">
+                            <input type="text" name="faculty" id="faculty" value="<?= $row['faculty']?>" readonly>
                      </div>
                      <div>
                             <label for="parent-phone">Parent Phone:</label>
-                            <input type="number" name="parent-phone" id="parent-phone">
+                            <input type="number" name="parent-phone" id="parent-phone" value="<?= $row['parentPhone']?>" readonly>
                      </div>
 
                      <div class="col-span-2 mt-1 mb-1">
@@ -475,23 +501,24 @@ if (isset($_GET['add-student'])) {
                             <label for="semester">Select Semester:</label>
                             <select name="semester" id="semester">
                                    <option value="" selected disabled>Select Sem</option>
-                                   <option value="1st Sem">1st Semester</option>
-                                   <option value="8th Sem">8th Semester</option>
+                                   <?php 
+                                          require_once "../includes/semesterShow.php?runningsem"; 
+                                   ?>
                             </select>
-                            <p class="error" id="semesterError"></p>
+                            <p class="error" id="semesterError"><?= $errors['semester'] ?? ''?></p>
                      </div> <br>
                      <div>
                             <label for="amount">Enter Amount:</label>
-                            <input type="number" name="amount" id="amount" title="Enter Amount Submitted by student in Numbers...">
-                            <p class="error" id="amountError"></p>
+                            <input type="number" name="amount" id="amount" title="Enter Amount Submitted by student in Numbers..." value="<?= $oldData['amount'] ?? ''?>">
+                            <p class="error" id="amountError"><?= $errors['amount'] ?? ''?></p>
                      </div>
                      <div>
                             <label for="voucher-photo">Upload Photo:</label>
-                            <input type="file" name="voucher-photo" id="voucher-photo" title="Upload proof of Amount submit...">
-                            <p class="error" id="voucherError"></p>
+                            <input type="file" name="voucherPhoto" id="voucherPhoto" title="Upload proof of Amount submit...">
+                            <p class="error" id="voucherError"><?= $errors['voucherPhoto'] ?? ''?></p>
                      </div>
 
-                     <div class="col-span-2 center">
+                     <div class="col-span-2 center mt-2">
                             <button class="add-btn btn large mt-1">Add Admission</button>
                      </div>
 
@@ -506,13 +533,14 @@ if (isset($_GET['add-student'])) {
 ?>
        <div class="main center-fdct">
               <h1 class="heading">View Admission</h1>
-              <form action="?view-admission-semester" method="post" name="student-regd-form" enctype="multipart/form-data" class="form">
+              <form action="" class="form">
                      <div>
                             <label for="semester">Select Semester:</label>
-                            <select name="semester" id="semester">
+                            <select name="view-admission-semId" id="semester">
                                    <option value="" selected disabled>Select Sem</option>
-                                   <option value="1st Sem">1st Semester</option>
-                                   <option value="8th Sem">8th Semester</option>
+                                   <?php 
+                                          require_once "../includes/semesterShow.php?runningSem"; 
+                                   ?>
                             </select>
                      </div>
                      <div class="center">
@@ -521,13 +549,38 @@ if (isset($_GET['add-student'])) {
               </form>
        </div>
 
-
-
        <!-- Code for Viewing Admission -->
 <?php
-} else if (isset($_GET['view-admission-semester'])) {
+} else if (!empty($_GET['view-admission-semId'])) {
 ?>
        <div class="main center-fdct">
+
+             <?php
+                     if ($_SERVER['REQUEST_METHOD'] === "GET" && !empty($_GET['view-admission-semId'])) {
+                            $semId = trim($_GET['view-admission-semId']);
+                            try {
+                                   // Retrieve data from student table
+                                   $sql = "SELECT * FROM student WHERE regdNo = '$regdNo'";
+                                   $result = $conn->query($sql);
+                                   if ($result->num_rows === 0) {
+                                          header('location: students.php?add-admission&error=No student found with provided RegdNo.');
+                                          exit();
+                                   }
+                            } catch (Exception $e) {
+                                   die("<br><b>Error:</b> " . $e->getMessage());
+                            }
+                            $row = $result->fetch_assoc();
+                     }
+              ?>
+
+
+
+
+
+
+
+
+
               <h1 class="heading">Semester X, View Admission</h1>
               <div class="box-cover">
                      <table>

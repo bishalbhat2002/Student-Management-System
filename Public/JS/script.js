@@ -785,7 +785,7 @@ function validateAdmissionForm() {
     // Get field values
     const semester = document.getElementById("semester").value;
     const amountValue = document.getElementById("amount").value.trim();
-    const voucherPhotoInput = document.getElementById("voucher-photo");
+    const voucherPhotoInput = document.getElementById("voucherPhoto");
     
     // Get error display elements
     const semesterError = document.getElementById("semesterError");

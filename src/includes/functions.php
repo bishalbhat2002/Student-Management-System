@@ -30,3 +30,22 @@ function deleteData($path, $url){
               }
        }
 }
+
+function getSemName($semId){
+      try {
+              $sql = "SELECT * from semester
+                     WHERE semId = '{$semId}'";
+              require_once "../../config/db_connect.php";
+              global $conn;
+              $result = $conn->query($sql);
+              
+              if ($result->num_rows > 0) {
+                     $row = $result->fetch_assoc();
+                     return $row['semName'];
+              } else{
+                     return "";
+              }
+       } catch (Exception $e) {
+              exit("<br><b>Error:</b>" . $e->getMessage());
+       } 
+}

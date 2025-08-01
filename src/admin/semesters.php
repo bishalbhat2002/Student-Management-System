@@ -1,72 +1,69 @@
 <?php require_once "../includes/header.php"; ?>
+<?php require_once "../includes/functions.php" ?>
 <div class="main center-fdct">
 
 <?php
-       if(isset($_GET['viewstudents-sem'])){
+       if(isset($_GET['view-Semester-students'])){
 ?>
 <!-- View All Student Code here -->
        <div>
-              <h1 class="heading">X Semester Information</h1>
-              <div class="box-cover">
-                     <table>
-                            <thead>
-                                   <tr>
-                                          <th>Regd.No</th>
-                                          <th>Name</th>
-                                          <th>Attendance</th>
-                                          <th>Phone</th>
-                                          <th>Action</th>
-                                   </tr>
-                            </thead>
-                            <tbody>
-                                   <tr>
-                                          <td>Sc-1243423342</td>
-                                          <td>Bishal Bhat</td>
-                                          <td class="center">39/39</td>
-                                          <td>98095343</td>
-                                          <td>
-                                                 <a href="students.php?view-student-regd-no" class="view-btn">View Details</a>
-                                          </td>
-                                   </tr>
-                                   <tr>
-                                          <td>Sc-1243423342</td>
-                                          <td>Bishal Bhat</td>
-                                          <td class="center">39/39</td>
-                                          <td>98095343</td>
-                                          <td>
-                                                 <a href="students.php?view-student-regd-no" class="view-btn">View Details</a>
-                                          </td>
-                                   </tr>
-                                   <tr>
-                                          <td>Sc-1243423342</td>
-                                          <td>Bishal Bhat</td>
-                                          <td class="center">39/39</td>
-                                          <td>98095343</td>
-                                          <td>
-                                                 <a href="students.php?view-student-regd-no" class="view-btn">View Details</a>
-                                          </td>
-                                   </tr>
-                                   <tr>
-                                          <td>Sc-1243423342</td>
-                                          <td>Bishal Bhat</td>
-                                          <td class="center">39/39</td>
-                                          <td>98095343</td>
-                                          <td>
-                                                 <a href="students.php?view-student-regd-no" class="view-btn">View Details</a>
-                                          </td>
-                                   </tr>
-                                   <tr>
-                                          <td>Sc-1243423342</td>
-                                          <td>Bishal Bhat</td>
-                                          <td class="center">39/39</td>
-                                          <td>98095343</td>
-                                          <td>
-                                                 <a href="students.php?view-student-regd-no" class="view-btn">View Details</a>
-                                          </td>
-                                   </tr>
-                            </tbody>
-                     </table>
-              </div> 
+       <?php
+              if(empty($_GET['semId']) || empty($_GET['batch'])){
+                     header('location: semesters.php');
+                     exit();
+              }
+              try {
+                     $semId = $_GET['semId'];
+                     $batch = $_GET['batch'];
+                     
+                     $sql = "SELECT * FROM student JOIN sem{$semId}admission ON student.regdNo = sem{$semId}admission.regdNo
+                            WHERE student.batch = '$batch'"; 
+                     $result = $conn->query($sql);
+              } catch (Exception $e) {
+                     exit("<br><b>Error:</b>" . $e->getMessage());
+              }
+       ?>
+              <h1 class="heading"><?= getSemName($semId)?> Semester Information</h1>
+             
+             <?php
+                     if ($result->num_rows == 0) {
+                            echo "<h2 class='heading-smaller'>No Student Found...</h2>";
+                     }else{
+              ?>
+                            <div class="box-cover">
+                                   <table>
+                                          <thead class="top-sticky">
+                                                 <tr>
+                                                        <th>Regd.No</th>
+                                                        <th>Name</th>
+                                                        <th>Phone</th>
+                                                        <th>Address</th>
+                                                        <th>Action</th>
+                                                 </tr>
+                                          </thead>
+                                          <tbody>
+
+                                          <?php
+                                                 while ($row = $result->fetch_assoc()){
+                                          ?>
+                                                        <tr>
+                                                               <td><?= $row['regdNo']?></td>
+                                                               <td><?= $row['name']?></td>
+                                                               <td class="center"><?= $row['phone']?></td>
+                                                               <td><?= $row['address']?></td>
+                                                               <td>
+                                                                      <a href="students.php?view-student-regd-no" class="view-btn">View Details</a>
+                                                               </td>
+                                                        </tr>
+                                          <?php
+                                                 }
+                                          ?>
+                                          </tbody>
+                                   </table>
+                            </div> 
+              <?php
+                     }
+              ?>
        </div>
 
 <?php
@@ -81,8 +78,7 @@
                                    <select name="semesterId" id="semester">
                                           <option value="" selected disabled>Select Semester</option>
                                           <?php 
-                                                 $nonRunningSem = true;                               # Set to true because we only want to show the non running semesters to add to the running list.
-                                                 require_once "../includes/semesterShow.php"; 
+                                                 require_once "../includes/semesterShow.php?runningSem"; 
                                           ?>
                                    </select>
                             </div>
@@ -104,7 +100,6 @@
               <h1 class="heading">View Semester Info</h1>
        <?php
               try {
-                     $sql;
                      $sql = "SELECT semName, totalStudent, rsid, batch FROM 
                      runningSemester JOIN semester ON runningSemester.rsid = semester.semId"; 
                      $result = $conn->query($sql);
@@ -124,7 +119,7 @@
                                    </div> 
                                    <p> <?= $row['totalStudent']?> Students</p> 
                                    <div class="action">
-                                          <a href="?viewstudents&semId=<?= $row['rsid']?>" class="view-btn">View All Students</a>
+                                          <a href="?view-Semester-students&semId=<?= $row['rsid']?>&batch=<?= $row['batch']?>" class="view-btn">View All Students</a>
                                           <a href="processes/semester.php?operation=delete-semester&semId=<?= $row['rsid']?>" class="delete-btn" onclick="return confirmDelete('<?= $row['rsid']?>')">Delete Semester</a>
                                    </div>
                             </div>       
