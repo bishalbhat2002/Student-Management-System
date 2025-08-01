@@ -35,7 +35,7 @@
   --color-view: rgba(116, 116, 116, 0.925);
   --bgcolor-hover: rgb(49, 49, 255);
   --color-hover: rgb(253, 253, 253);
-  --color-reset: rgb(228, 166, 32);
+  --color-reset: rgb(187, 151, 72);
   --color-highlighter: rgb(254, 187, 63);
   --color-error: rgb(249, 32, 32);
 
@@ -289,19 +289,20 @@ body {
   margin: 0 auto;
   grid-area: main;
   display: grid;
-  grid-template-columns: 62rem 5rem 40rem;
+  grid-template-columns: 1rem 57rem 5rem 40rem;
   grid-template-rows: 20rem 1fr;
   grid-template-areas:
-    "greet gap info"
-    "student-status gap info";
+    "gap2 greet gap info"
+    "gap2 student-status gap info";
 }
 .student-dashboard{
   height: 100%;
+  width: inherit;
   color: var(--color-primary-100);
   margin: 0 auto;
   grid-area: main;
   display: grid;
-  grid-template-columns: 55rem 5rem 45rem;
+  grid-template-columns: 57rem 5rem 45rem;
   grid-template-rows: 20rem 1fr;
   grid-template-areas:
     "greet gap info"
@@ -313,7 +314,6 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 4rem;
   h1 {
     font-size: 4rem;
   }
@@ -354,8 +354,9 @@ body {
   grid-area: total-info;
   display: flex;
   align-items: start;
-  justify-content: center;
+  justify-content: start;
   gap: 2rem;
+  margin-left: 1rem;
 }
 .short-info {
   grid-area: short-info;
@@ -374,7 +375,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   align-content: center;
-  justify-content: center;
+  justify-content: start;
   gap: 1rem;
   margin: 0 1rem;
 
@@ -385,22 +386,22 @@ body {
     display: flex;
     align-items: center;
     height: 6rem;
-    width: 24rem;
+    width: 17rem;
 
     .semester-box {
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 2rem;
+      font-size: 1.9rem;
       font-weight: 500;
       height: inherit;
-      width: 9rem;
+      width: 6.5rem;
       background-color: var(--bgcolor-secondary-50);
       border-radius: 0.5rem 0 0 0.5rem;
     }
 
     p {
-      font-size: 2rem;
+      font-size: 1.8rem;
       margin-left: 1rem;
     }
   }
@@ -413,13 +414,14 @@ body {
   width: 25.5rem;
   height: 8rem;
   display: flex;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   font-size: 2rem;
   background-color: var(--bgcolor-card);
   border: 0.1rem solid var(--color-primary-80);
   border-radius: 0.5rem;
   gap: 2rem;
+  padding-left: 2.5rem;
   font-weight: 500;
   img {
     height: 4rem;
@@ -447,9 +449,10 @@ body {
 .more-options {
   grid-area: more-options;
   display: flex;
-  justify-content: center;
+  justify-content: start;
   align-items: end;
   align-self: start;
+  margin-left: 1rem;
   gap: 2rem;
 
   .tadmission-container {

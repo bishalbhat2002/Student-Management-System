@@ -1,8 +1,8 @@
 
 <?php
 session_start();
-if (isset($_POST['login'])) {
-       if (isset($_POST['role']) && isset($_POST['username']) && isset($_POST['password'])) {
+if ($_SERVER['REQUEST_METHOD']==="POST") {
+       if (!empty($_POST['role']) && !empty($_POST['username']) && !empty($_POST['password'])) {
               $role = $_POST['role'];
               $username = $_POST['username'];
               $password = $_POST['password'];
@@ -51,6 +51,9 @@ if (isset($_POST['login'])) {
               header("location:login.php?error= User must fill all fields");
               exit();
        }
+}else{
+       header("location:login.php");
+       exit();
 }
 
 ?>
