@@ -310,7 +310,7 @@ if (isset($_GET['publish-result'])) {
 } else if (isset($_GET['analyze-result'])) {
 ?>
        <div class="center-fdct main">
-              <h1 class="heading">Analyze Result</h1>
+              <h1 class="heading">View All Result</h1>
               <form action="" method="get" class="form">
                      <input type="hidden" name="Analyze-result-batch-sem" value="true">
                      <div>
@@ -365,7 +365,7 @@ if (isset($_GET['publish-result'])) {
               $courses = getCourses($semId);
               $semName = getSemName($semId);
               ?>
-              <h1 class="heading">Analyze Result : <?= $batch ?> Batch - <?= $semName ?> Semester </h1>
+              <h1 class="heading">View Result : <?= $batch ?> Batch - <?= $semName ?> Semester </h1>
               <!-- <form action=""  class="form-result-analyze">
                      <div class="center">
                             <label for="filter" class="mr-1">Filter:</label>
@@ -388,7 +388,7 @@ if (isset($_GET['publish-result'])) {
                      <table class="mt-1" id="result-analysis-table">
                             <thead class="top-sticky">
                                    <tr>
-                                          <!-- <th>Rank</th> -->
+                                          <th>S.N.</th>
                                           <th>Symbol No:</th>
                                           <th>Name</th>
                                           <?php
@@ -407,15 +407,17 @@ if (isset($_GET['publish-result'])) {
 
                                    <?php
                                    while ($row = $result->fetch_assoc()) {
-                                          // $counter = 1;
+                                          static $counter = 1;
                                           $symbolNo = $row['symbolNo'];
                                           echo "<tr>";
                                    ?>
+                                                        <td class="tac"><?= $counter?></td>
                                                         <td><?= $symbolNo ?></td>
                                                         <td><?= $row['name'] ?></td>
                                    <?php
                                           $status = "PASS";
                                           $totalMarks = 0;
+                                          $counter++;
 
                                           foreach ($courses as $course) {
                                                  $courseId = $course['cid']; // Course ID
