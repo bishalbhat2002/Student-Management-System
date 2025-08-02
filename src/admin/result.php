@@ -360,6 +360,7 @@ if (isset($_GET['publish-result'])) {
                      <table class="mt-1" id="result-analysis-table">
                             <thead class="top-sticky">
                                    <tr>
+                                          <!-- <th>Rank</th> -->
                                           <th>Symbol No:</th>
                                           <th>Name</th>
                                           <th title="DSA">CSIT-101</th>
@@ -368,7 +369,7 @@ if (isset($_GET['publish-result'])) {
                                           <th title="WEB-Technology">CSIT-104</th>
                                           <th title="IT">CSIT-105</th>
                                           <th title="C++">CSIT-106</th>
-                                          <th>GPA</th>
+                                          <th>Total</th>
                                           <th>Result</th>
                                           <th>Action</th>
                                    </tr>
