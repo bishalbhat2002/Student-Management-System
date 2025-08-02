@@ -487,7 +487,7 @@ if (isset($_GET['publish-result'])) {
 ?>
        <div class="main center-fdct">
               <h1 class="heading">Result View</h1>
-              <form action="?result-view" method="get" class="form">
+              <form action="" method="get" class="form">
                      <input type="hidden" name="result-view" value="true">
                      <div>
                             <label for="semester">Semester:</label>

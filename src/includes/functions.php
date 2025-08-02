@@ -88,3 +88,19 @@ function getCourses($semId){
               exit("<br><b>Error:</b>" . $e->getMessage());
        } 
 }
+
+function getStudent($regdNo){
+       try {
+              $sql = "SELECT * from student where regdNo = '$regdNo'";
+              global $conn;
+              $result = $conn->query($sql);
+
+              if ($result->num_rows > 0) {
+                     return $result;
+              } else {
+                     return "";
+              }
+       } catch (Exception $e) {
+              exit("<br><b>Error:</b>" . $e->getMessage());
+       } 
+}
