@@ -61,11 +61,11 @@
                             </div>
                      </form>
               </div>
-
+      
+<!-- Code to View Teacher & Student Notice -->
 <?php
        } else if(isset($_GET['table']) && isset($_GET['nid'])){
 ?>
-<!-- Code to View Teacher & Student Notice -->
               <div class="center-fdct main">
 
               <?php

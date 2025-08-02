@@ -41,7 +41,7 @@ if (isset($_GET['view-courses'])) {
               }
               try {
                      // Retrieve data from student table
-                     $sql = "SELECT * FROM sem{$semId}Courses c LEFT JOIN teacher t ON c.tid = t.tid";
+                     $sql = "SELECT * FROM sem{$semId}Courses c LEFT JOIN teacher t ON c.tid = t.tid order by cid";
                      $result = $conn->query($sql);
                      if ($result->num_rows === 0) {
                             header('location: courses.php?view-courses&error=No Courses found with provided semester.');
@@ -74,7 +74,13 @@ if (isset($_GET['view-courses'])) {
                                                  <td class="center"> <?= $row['tid'] ?></td>
                                                  <td>
                                                         <span><?= $row['name'] ?></span>
-                                                        <a href="teachers.php?view-teacher-id=<?= $row['tid'] ?>" class="teacher-info-link">&#8599;</a>
+                                                        <?php
+                                                               if ($row['tid']) {
+                                                        ?>
+                                                               <a href="teachers.php?view-teacher-id=<?=$row['tid']?>" class="teacher-info-link">&#8599;</a>
+                                                        <?php
+                                                               }
+                                                        ?>
                                                  </td>
                                           </tr>
                                    <?php
@@ -128,7 +134,7 @@ if (isset($_GET['view-courses'])) {
               }
               try {
                      // Retrieve data from sem(1-8)courses table
-                     $sql = "SELECT * FROM sem{$semId}Courses";
+                     $sql = "SELECT * FROM sem{$semId}Courses order by cid";
                      $result = $conn->query($sql);
 
                      if ($result->num_rows === 0) {
@@ -224,7 +230,7 @@ if (isset($_GET['view-courses'])) {
               }
               try {
                      // Retrieve data from sem(1-8)courses table
-                     $sql = "SELECT * FROM sem{$semId}Courses c LEFT JOIN teacher t ON c.tid = t.tid ORDER BY from_time DESC";
+                     $sql = "SELECT * FROM sem{$semId}Courses c LEFT JOIN teacher t ON c.tid = t.tid ORDER BY cid";
                      $result = $conn->query($sql);
 
                      if ($result->num_rows === 0) {
@@ -261,8 +267,14 @@ if (isset($_GET['view-courses'])) {
                                                         <td><?= $row['cname'] ?></td>
                                                         <td class="tac"><?= $row['tid'] ?></td>
                                                         <td>
-                                                               <?= $row['name'] ?>
-                                                               <a href="teachers.php/view-teacher-id=<?= $row['tid'] ?>" class="teacher-info-link">&#8599;</a>
+                                                               <span><?= $row['name'] ?></span>
+                                                               <?php
+                                                               if ($row['tid']) {
+                                                               ?>
+                                                                      <a href="teachers.php?view-teacher-id=<?=$row['tid']?>" class="teacher-info-link">&#8599;</a>
+                                                               <?php
+                                                               }
+                                                               ?>
                                                         </td>
                                                         <td class="tac"> <?= $row['from_time'] ?></td>
                                                         <td class="tac"> <?= $row['to_time'] ?></td>
@@ -276,125 +288,134 @@ if (isset($_GET['view-courses'])) {
                      </div>
               </form>
               <div class="mt-3 center">
-                     <a href="courses.php?edit-course-schedule-semId=<?= $semId?>" class="edit-btn font-large">Edit Course Schedule</a>
-       </div>
+                     <a href="?edit-course-schedule-semId=<?= $semId ?>" class="edit-btn font-large">Edit Course Schedule</a>
+              </div>
 
 
-       <!-- Code to Select semester for editing Course schedule -->
-<?php
+              <!-- Code to Select semester for editing Course schedule -->
+       <?php
 } else if (isset($_GET['edit-course-schedule'])) {
-?>
-       <div class="main center-fdct">
-              <div class="center-fdct">
-                     <h1 class="heading">Edit Course Schedule</h1>
-                     <form action="" method="get" class="form">
-                            <input type="hidden" name="edit-course-schedule-sem" value="true" readonly>
-                            <div>
-                                   <label for="semester">Select Semester:</label>
-                                   <select name="edit-course-Schedule-semId" id="semester">
-                                          <option value="" disabled selected>Select Semester</option>
-                                          <?php
-                                          require_once "../includes/showSemester.php";
-                                          ?>
-                                          <!-- Add All semester dynamically using PHP -->
-                                   </select>
+       ?>
+              <div class="main center-fdct">
+                     <div class="center-fdct">
+                            <h1 class="heading">Edit Course Schedule</h1>
+                            <form action="" method="get" class="form">
+                                   <input type="hidden" name="edit-course-schedule-sem" value="true" readonly>
+                                   <div>
+                                          <label for="semester">Select Semester:</label>
+                                          <select name="edit-course-schedule-semId" id="semester">
+                                                 <option value="" disabled selected>Select Semester</option>
+                                                 <?php
+                                                 require_once "../includes/showSemester.php";
+                                                 ?>
+                                                 <!-- Add All semester dynamically using PHP -->
+                                          </select>
+                                   </div>
+                                   <div class="center">
+                                          <input type="submit" class="view-btn">
+                                   </div>
+                            </form>
+                     </div>
+              </div>
+
+              <!-- Code for editing Course schedule -->
+       <?php
+} else if (isset($_GET['edit-course-schedule-sem']) || isset($_GET['edit-course-schedule-semId'])) {
+       ?>
+              <div class="main center-fdct">
+
+                     <?php
+                     $semId = trim($_GET['edit-course-schedule-semId']);
+
+                     if (empty($semId)) {
+                            header("location: courses.php?edit-course-schedule&error=Semester is Required.");
+                            exit();
+                     }
+                     try {
+                            // Retrieve data from sem(1-8)courses table
+                            $sql = "SELECT * FROM sem{$semId}Courses c LEFT JOIN teacher t ON c.tid = t.tid ORDER BY cid ASC";
+                            $result = $conn->query($sql);
+
+                            if ($result->num_rows === 0) {
+                                   header('location: courses.php?edit-course-schedule&error=No Courses found with provided semester.');
+                                   exit();
+                            }
+                     } catch (Exception $e) {
+                            die("<br><b>Error:</b> " . $e->getMessage());
+                     }
+                     $semName = getSemName($semId);
+                     ?>
+
+                     <h1 class="heading"><?= $semName ?> Semester - Edit Course Schedule</h1>
+                     <form action="processes/coursesProcess.php?operation=edit-course-schedule" method="POST" name="edit-course-schedule" enctype="multipart/form-data">
+                            <div class="box-cover">
+                                   <input type="hidden" name="semId" value="<?= $semId ?>" readonly>
+                                   <table class="edit-table">
+
+                                          <thead>
+                                                 <tr>
+                                                        <th>Cid</th>
+                                                        <th>Course Title</th>
+                                                        <th>Tid</th>
+                                                        <th>Teacher Name</th>
+                                                        <th>From</th>
+                                                        <th>To</th>
+                                                 </tr>
+                                          </thead>
+                                          <tbody>
+                                                 <?php
+                                                 while ($row = $result->fetch_assoc()) {
+                                                 ?>
+                                                        <tr>
+                                                               <td class="tac"><?= $row['cid'] ?></td>
+                                                               <td><?= $row['cname'] ?></td>
+                                                               <td class="tac"><?= $row['tid'] ?></td>
+                                                               <td>
+                                                                      <span><?= $row['name'] ?></span>
+                                                                      <?php
+                                                                      if ($row['tid']) {
+                                                                      ?>
+                                                                             <a href="teachers.php?view-teacher-id=<?=$row['tid']?>" class="teacher-info-link">&#8599;</a>
+                                                                      <?php
+                                                                      }
+                                                                      ?>
+                                                               </td>
+                                                               <td class="v-align-m">
+                                                                      <input type="text" name="<?= $row['cid'] . "_from" ?>" value="<?= $row['from_time'] ?>" class="m-0">
+                                                               </td>
+                                                               <td class="v-align-m">
+                                                                      <input type="text" name="<?= $row['cid'] . "_to" ?>" value="<?= $row['to_time'] ?>" class="m-0">
+                                                               </td>
+                                                        </tr>
+                                                 <?php
+                                                 }
+                                                 ?>
+                                          </tbody>
+
+                                   </table>
                             </div>
-                            <div class="center">
-                                   <input type="submit" class="view-btn">
+                            <div class="mt-3 center">
+                                   <input type="submit" class="font-large mt-3 save-btn" value="save changes">
                             </div>
                      </form>
               </div>
-       </div>
 
-       <!-- Code for editing Course schedule -->
-<?php
-} else if (isset($_GET['edit-course-schedule-sem']) || isset($_GET['edit-course-schedule-semId'])) {
-?>
-       <div class="main center-fdct">
-
-              <?php
-              $semId = trim($_GET['edit-course-Schedule-semId']);
-
-              if (!empty($semId)) {
-                     header("location: courses.php?edit-course-schedule&error=Semester is Required.");
-                     exit();
-              }
-              try {
-                     // Retrieve data from sem(1-8)courses table
-                     $sql = "SELECT * FROM sem{$semId}Courses c LEFT JOIN teacher t ON c.tid = t.tid ORDER BY from_time DESC";
-                     $result = $conn->query($sql);
-
-                     if ($result->num_rows === 0) {
-                            header('location: courses.php?edit-course-schedule&error=No Courses found with provided semester.');
-                            exit();
-                     }
-              } catch (Exception $e) {
-                     die("<br><b>Error:</b> " . $e->getMessage());
-              }
-              $semName = getSemName($semId);
-              ?>
-
-              <h1 class="heading"><?= $semName ?> Semester - Edit Course Schedule</h1>
-              <form action="processes/coursesProcess.php?operation=edit-course-schedule" method="POST" name="edit-course-schedule" enctype="multipart/form-data">
-                     <div class="box-cover">
-                            <input type="hidden" name="semId" value="<?= $semId ?>" readonly>
-                            <table class="edit-table">
-
-                                   <thead>
-                                          <tr>
-                                                 <th>Cid</th>
-                                                 <th>Course Title</th>
-                                                 <th>Tid</th>
-                                                 <th>Teacher Name</th>
-                                                 <th>From</th>
-                                                 <th>To</th>
-                                          </tr>
-                                   </thead>
-                                   <tbody>
-                                          <?php
-                                          while ($row = $result->fetch_assoc()) {
-                                          ?>
-                                                 <tr>
-                                                        <td class="tac"><?= $row['cid'] ?></td>
-                                                        <td><?= $row['cname'] ?></td>
-                                                        <td class="tac"><?= $row['tid'] ?></td>
-                                                        <td><?= $row['name'] ?></td>
-                                                        <td class="v-align-m">
-                                                               <input type="text" name="<?= $row['cid'] . "_from" ?>" class="m-0">
-                                                        </td>
-                                                        <td class="v-align-m">
-                                                               <input type="text" name="<?= $row['cid'] . "_to" ?>" class="m-0">
-                                                        </td>
-                                                 </tr>
-                                          <?php
-                                          }
-                                          ?>
-                                   </tbody>
-
-                            </table>
-                     </div>
-                     <div class="mt-3 center">
-                            <input type="submit" class="font-large mt-3 save-btn" value="save changes">
-                     </div>
-              </form>
-       </div>
-
-       <!-- Code To display Default Options... -->
-<?php
+              <!-- Code To display Default Options... -->
+       <?php
 } else {
-?>
-       <div class="main center">
-              <div class="center-fdc gap">
-                     <a href="?view-courses" class="view-btn x-width">View Courses</a>
-                     <a href="?assign-teacher-to-course" class="view-btn x-width">Assign Teacher to a course</a>
-                     <a href="?view-course-Schedule" class="view-btn x-width">View Course Schedule</a>
-                     <a href="?edit-course-schedule" class="view-btn x-width">Edit Course Schedule</a>
+       ?>
+              <div class="main center">
+                     <div class="center-fdc gap">
+                            <a href="?view-courses" class="view-btn x-width">View Courses</a>
+                            <a href="?assign-teacher-to-course" class="view-btn x-width">Assign Teacher to a course</a>
+                            <a href="?view-course-Schedule" class="view-btn x-width">View Course Schedule</a>
+                            <a href="?edit-course-schedule" class="view-btn x-width">Edit Course Schedule</a>
+                     </div>
               </div>
-       </div>
-<?php
+       <?php
 }
-?>
+       ?>
 
 
 
-<?php require_once "../includes/footer.php"; ?>
+       <?php require_once "../includes/footer.php"; ?>

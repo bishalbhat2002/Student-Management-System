@@ -1156,3 +1156,11 @@ tr{
   }
 }
 /* Overriding Label Margin Top */
+
+
+
+/* Class to hide Element START */
+.hide{
+  display: none;
+}
+/* Class to hide Element END */
