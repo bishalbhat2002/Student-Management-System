@@ -164,7 +164,7 @@ body {
     background-color: var(--bgcolor-primary-100);
     box-shadow: var(--shadow);
     z-index: 3;
-    position: sticky;
+    position: fixed;
     top: 0;
     a{
       transform: none;

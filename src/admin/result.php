@@ -62,7 +62,7 @@ if (isset($_GET['publish-result'])) {
 
                      <div>
                             <label for="symbolNo">Symbol No:</label>
-                            <input type="number" name="symbolNo" id="symbolNo" required>
+                            <input type="text" name="symbolNo" id="symbolNo" required>
                      </div>
 
                      <div class="center">
@@ -120,7 +120,7 @@ if (isset($_GET['publish-result'])) {
                      </div>
                      <div>
                             <label for="symbolNo" class="mt-zero">Symbol No:</label>
-                            <input type="number" name="symbolNo" id="symbolNo" value="<?= $symbolNo ?>" readonly>
+                            <input type="text" name="symbolNo" id="symbolNo" value="<?= $symbolNo ?>" readonly>
                      </div>
 
                      <input type="hidden" name="examYear" value="<?= $examYear ?>">
@@ -195,7 +195,7 @@ if (isset($_GET['publish-result'])) {
                      </div>
                      <div>
                             <label for="symbolNo">Symbol No:</label>
-                            <input type="number" name="symbolNo" id="symbolNo">
+                            <input type="text" name="symbolNo" id="symbolNo">
                      </div>
 
                      <div class="center col-span-2">
@@ -245,9 +245,9 @@ if (isset($_GET['publish-result'])) {
                      </div>
                      <div>
                             <label for="symbolNo" class="mt-zero">Symbol No: </label>
-                            <input type="number" name="symbolNo" id="symbolNo" value="<?= $symbolNo ?>" readonly>
+                            <input type="text" name="symbolNo" id="symbolNo" value="<?= $symbolNo ?>" readonly>
                      </div>
-                     <input type="hidden" name="semId" value="<?= $semId?>" required readonly>
+                     <input type="hidden" name="semId" value="<?= $semId ?>" required readonly>
 
                      <table class="col-span-2 add-result-table-style">
                             <thead>
@@ -260,39 +260,39 @@ if (isset($_GET['publish-result'])) {
                             <tbody>
 
                                    <?php
-                                          foreach ($courses as $course) {
-                                                 $courseId = $course['cid'];
-                                                 $courseName = $course['cname'];
+                                   foreach ($courses as $course) {
+                                          $courseId = $course['cid'];
+                                          $courseName = $course['cname'];
 
-                                                 #Making keys for Semester Result Table From Course table's cid. 
-                                                 $thkey = $course['cid'] . "_TH";
-                                                 $prkey = $course['cid'] . "_PR";
+                                          #Making keys for Semester Result Table From Course table's cid. 
+                                          $thkey = $course['cid'] . "_TH";
+                                          $prkey = $course['cid'] . "_PR";
 
-                                                 $thMarks = (isset($row[$thkey]) ? $row[$thkey] : '');
-                                                 $prMarks = (isset($row[$prkey]) ? $row[$prkey] : '');
+                                          $thMarks = (isset($row[$thkey]) ? $row[$thkey] : '');
+                                          $prMarks = (isset($row[$prkey]) ? $row[$prkey] : '');
                                    ?>
-                                                 <tr>
-                                                        <td class="subject-code"><?=$courseId?></td>
-                                                        <td class="subject-name"><?=$courseName?></td>
-                                                        <?php
-                                                               if ($course['TH'] > 0) {
-                                                        ?>
-                                                                      <td class="marks-input-box smaller"><input type="number" class="tac" name="<?= $course['cid'] . '_TH' ?>" min="0" max="<?= $course['TH'] ?>" value="<?= $thMarks?>" required></td>
-                                                        <?php
-                                                               } else {
-                                                                      echo "<td></td>";
-                                                               }
-                                                               if ($course['PR'] > 0) {
-                                                               ?>
-                                                                      <td class="marks-input-box smaller"><input type="number" class="tac" name="<?= $course['cid'] . '_PR' ?>" min="0" max="<?= $course['PR'] ?>" value="<?= $prMarks?>" required></td>
-                                                        <?php
-                                                               }
-                                                        ?>
-                                                               
-                                                 </tr>
-                            <?php
-                                          }
-                            ?>
+                                          <tr>
+                                                 <td class="subject-code"><?= $courseId ?></td>
+                                                 <td class="subject-name"><?= $courseName ?></td>
+                                                 <?php
+                                                 if ($course['TH'] > 0) {
+                                                 ?>
+                                                        <td class="marks-input-box smaller"><input type="number" class="tac" name="<?= $course['cid'] . '_TH' ?>" min="0" max="<?= $course['TH'] ?>" value="<?= $thMarks ?>" required></td>
+                                                 <?php
+                                                 } else {
+                                                        echo "<td></td>";
+                                                 }
+                                                 if ($course['PR'] > 0) {
+                                                 ?>
+                                                        <td class="marks-input-box smaller"><input type="number" class="tac" name="<?= $course['cid'] . '_PR' ?>" min="0" max="<?= $course['PR'] ?>" value="<?= $prMarks ?>" required></td>
+                                                 <?php
+                                                 }
+                                                 ?>
+
+                                          </tr>
+                                   <?php
+                                   }
+                                   ?>
                             </tbody>
                      </table>
                      <br>
@@ -311,18 +311,19 @@ if (isset($_GET['publish-result'])) {
 ?>
        <div class="center-fdct main">
               <h1 class="heading">Analyze Result</h1>
-              <form action="?Analyze-result-batch-sem" name="result-analyze-form" method="post" enctype="multipart/form-data" class="form">
+              <form action="" method="get" class="form">
+                     <input type="hidden" name="Analyze-result-batch-sem" value="true">
                      <div>
                             <label for="batch">Batch:</label>
-                            <input type="number" min="2062" max="<?php echo date('Y') + 57; ?>">
+                            <input type="number" min="2062" name="batch" id="batch" max="<?php echo date('Y') + 57; ?>">
                      </div>
                      <div>
                             <label for="semester">Semester:</label>
                             <select name="semester" id="semester">
                                    <option value="" selected disabled>Select Sem</option>
-                                   <option value="1st Sem">1st Semester</option>
-                                   <!-- Dynamically Add Result using PHP -->
-                                   <option value="8th Sem">8th Semester</option>
+                                   <?php
+                                   require_once "../includes/showSemester.php";
+                                   ?>
                             </select>
                      </div>
                      <div class="center">
@@ -337,12 +338,40 @@ if (isset($_GET['publish-result'])) {
 ?>
 
        <div class="center-fdct main">
-              <h1 class="heading-smaller">Batch: 20YY, Sem: X - Analyze Result</h1>
-              <form action="?Analyze-result-batch-sem" name="result-publish-form" method="post" enctype="multipart/form-data" class="form-result-analyze">
+
+
+              <?php
+              $batch = trim($_GET['batch']);
+              $semId = (!empty($_GET['semester'])) ? $_GET['semester'] : '';
+
+              $semName = getSemName($semId);
+
+              if (empty($semId) || empty($batch)) {
+                     header("location: result.php?analyze-result&error=All fields are Required.");
+                     exit();
+              }
+
+              try {
+                     $sql = "SELECT * from student s JOIN sem{$semId}result r ON s.regdNo = r.regdNo WHERE s.batch = '$batch'";
+                     $result = $conn->query($sql);
+                     if ($result->num_rows === 0) {
+                            header("location: result.php?edit-result&error=No result exists for $batch Batch - $semName Sem.");
+                            exit();
+                     }
+              } catch (Exception $e) {
+                     exit("<br><b>Error:</b>" . $e->getMessage());
+              }
+
+              $courses = getCourses($semId);
+              $semName = getSemName($semId);
+              ?>
+              <h1 class="heading">Analyze Result : <?= $batch ?> Batch - <?= $semName ?> Semester </h1>
+              <!-- <form action=""  class="form-result-analyze">
                      <div class="center">
                             <label for="filter" class="mr-1">Filter:</label>
                             <select name="filter" id="filter" class="mr-3">
-                                   <option value="Pass" selected>PASS</option>
+                                   <option value="" disabled selected>Select Filter</option>
+                                   <option value="Pass">PASS</option>
                                    <option value="Fail">FAIL</option>
                             </select>
 
@@ -353,8 +382,7 @@ if (isset($_GET['publish-result'])) {
                             </select>
                             <button type="submit" class="view-btn btn">View Result</button>
                      </div>
-              </form>
-              <hr>
+              </form> -->
 
               <div class="center-fdct">
                      <table class="mt-1" id="result-analysis-table">
@@ -363,245 +391,89 @@ if (isset($_GET['publish-result'])) {
                                           <!-- <th>Rank</th> -->
                                           <th>Symbol No:</th>
                                           <th>Name</th>
-                                          <th title="DSA">CSIT-101</th>
-                                          <th title="MP">CSIT-102</th>
-                                          <th title="DAA">CSIT-103</th>
-                                          <th title="WEB-Technology">CSIT-104</th>
-                                          <th title="IT">CSIT-105</th>
-                                          <th title="C++">CSIT-106</th>
+                                          <?php
+                                          foreach ($courses as $header) {
+                                                 $courseId = $header['cid'];
+                                                 $courseName = $header['cname'];
+                                                 echo "<th title='$courseName'>$courseId</th>";
+                                          }
+                                          ?>
                                           <th>Total</th>
                                           <th>Result</th>
                                           <th>Action</th>
                                    </tr>
                             </thead>
                             <tbody>
-                                   <tr>
-                                          <td>09389437894</td>
-                                          <td>Bishal Bhat</td>
-                                          <td class="tac">90</td>
-                                          <td class="tac">91</td>
-                                          <td class="tac">97</td>
-                                          <td class="tac">99</td>
-                                          <td class="tac">91</td>
-                                          <td class="tac">99</td>
-                                          <td></td>
-                                          <td class="tac">Pass</td>
-                                          <td class="center gap-05">
-                                                 <a href="?edit-result-id" class="edit-btn">Edit</a>
-                                                 <a href="?result-view-id" class="view-btn">View</a>
-                                          </td>
-                                   </tr>
 
+                                   <?php
+                                   while ($row = $result->fetch_assoc()) {
+                                          // $counter = 1;
+                                          $symbolNo = $row['symbolNo'];
+                                          echo "<tr>";
+                                   ?>
+                                                        <td><?= $symbolNo ?></td>
+                                                        <td><?= $row['name'] ?></td>
+                                   <?php
+                                          $status = "PASS";
+                                          $totalMarks = 0;
 
-                                   <tr>
-                                          <td>09389437894</td>
-                                          <td>Bishal Bhat</td>
-                                          <td class="tac">90</td>
-                                          <td class="tac">91</td>
-                                          <td class="tac">97</td>
-                                          <td class="tac">99</td>
-                                          <td class="tac">91</td>
-                                          <td class="tac">99</td>
-                                          <td></td>
-                                          <td class="tac">Pass</td>
-                                          <td class="center gap-05">
-                                                 <a href="?edit-result-id" class="edit-btn">Edit</a>
-                                                 <a href="?view" class="view-btn">View</a>
-                                          </td>
-                                   </tr>
+                                          foreach ($courses as $course) {
+                                                 $courseId = $course['cid']; // Course ID
+                                                 $courseName = $course['cname']; // Course Name
 
-                                   <tr>
-                                          <td>09389437894</td>
-                                          <td>Bishal Bhat</td>
-                                          <td class="tac">90</td>
-                                          <td class="tac">91</td>
-                                          <td class="tac">97</td>
-                                          <td class="tac">99</td>
-                                          <td class="tac">91</td>
-                                          <td class="tac">99</td>
-                                          <td></td>
-                                          <td class="tac">Pass</td>
-                                          <td class="center gap-05">
-                                                 <a href="?edit-result-id" class="edit-btn">Edit</a>
-                                                 <a href="?view" class="view-btn">View</a>
-                                          </td>
-                                   </tr>
+                                                 $thfm = $course['TH']; // Course Theory Full Marks
+                                                 $prfm = $course['PR']; // Course Pratical Full Marks
 
-                                   <tr>
-                                          <td>09389437894</td>
-                                          <td>Bishal Bhat</td>
-                                          <td class="tac">90</td>
-                                          <td class="tac">91</td>
-                                          <td class="tac">97</td>
-                                          <td class="tac">99</td>
-                                          <td class="tac">91</td>
-                                          <td class="tac">99</td>
-                                          <td></td>
-                                          <td class="tac">Pass</td>
-                                          <td class="center gap-05">
-                                                 <a href="?edit-result-id" class="edit-btn">Edit</a>
-                                                 <a href="?view" class="view-btn">View</a>
-                                          </td>
-                                   </tr>
+                                                 #Making keys for Semester Result Table From Course table's cid.
+                                                 $thkey = $course['cid'] . "_TH";
+                                                 $prkey = $course['cid'] . "_PR";
 
+                                                 $thMarks = (isset($row[$thkey]) ? $row[$thkey] : 0);
+                                                 $prMarks = (isset($row[$prkey]) ? $row[$prkey] : 0);
 
-                                   <tr>
-                                          <td>09389437894</td>
-                                          <td>Bishal Bhat</td>
-                                          <td class="tac">90</td>
-                                          <td class="tac">91</td>
-                                          <td class="tac">97</td>
-                                          <td class="tac">99</td>
-                                          <td class="tac">91</td>
-                                          <td class="tac">99</td>
-                                          <td></td>
-                                          <td class="tac">Pass</td>
-                                          <td class="center gap-05">
-                                                 <a href="?edit-result-id" class="edit-btn">Edit</a>
-                                                 <a href="?view" class="view-btn">View</a>
-                                          </td>
-                                   </tr>
+                                                 $marksObtained = $thMarks + $prMarks; // Marks obtained for a subject (Th + Pr)
 
-                                   <tr>
-                                          <td>09389437894</td>
-                                          <td>Bishal Bhat</td>
-                                          <td class="tac">90</td>
-                                          <td class="tac">91</td>
-                                          <td class="tac">97</td>
-                                          <td class="tac">99</td>
-                                          <td class="tac">91</td>
-                                          <td class="tac">99</td>
-                                          <td></td>
-                                          <td class="tac">Pass</td>
-                                          <td class="center gap-05">
-                                                 <a href="?edit-result-id" class="edit-btn">Edit</a>
-                                                 <a href="?view" class="view-btn">View</a>
-                                          </td>
-                                   </tr>
-                                   <tr>
-                                          <td>09389437894</td>
-                                          <td>Bishal Bhat</td>
-                                          <td class="tac">90</td>
-                                          <td class="tac">91</td>
-                                          <td class="tac">97</td>
-                                          <td class="tac">99</td>
-                                          <td class="tac">91</td>
-                                          <td class="tac">99</td>
-                                          <td></td>
-                                          <td class="tac">Pass</td>
-                                          <td class="center gap-05">
-                                                 <a href="?edit-result-id" class="edit-btn">Edit</a>
-                                                 <a href="?view" class="view-btn">View</a>
-                                          </td>
-                                   </tr>
+                                                 $totalMarks += $marksObtained; // Total Marks obtained by Student
 
+                                                 if ($status !== "FAIL") {
+                                                        #check for Theory Marks
+                                                        if ($thfm == 100) {
+                                                               if (isset($row[$thkey]) && $row[$thkey] < 45) {
+                                                                      $status = "FAIL";
+                                                               }
+                                                        } else {
+                                                               if (isset($row[$thkey]) && $row[$thkey] < 27) {
+                                                                      $status = "FAIL";
+                                                               }
+                                                        }
 
-                                   <tr>
-                                          <td>09389437894</td>
-                                          <td>Bishal Bhat</td>
-                                          <td class="tac">90</td>
-                                          <td class="tac">91</td>
-                                          <td class="tac">97</td>
-                                          <td class="tac">99</td>
-                                          <td class="tac">91</td>
-                                          <td class="tac">99</td>
-                                          <td></td>
-                                          <td class="tac">Pass</td>
-                                          <td class="center gap-05">
-                                                 <a href="?edit-result-id" class="edit-btn">Edit</a>
-                                                 <a href="?view" class="view-btn">View</a>
-                                          </td>
-                                   </tr>
+                                                        #check for Pratical Marks
+                                                        if ($prfm == 100) {
+                                                               if (isset($row[$prkey]) && $row[$prkey] < 45) {
+                                                                      $status = "FAIL";
+                                                               }
+                                                        } else {
+                                                               if (isset($row[$prkey]) && $row[$prkey] < 18) {
+                                                                      $status = "FAIL";
+                                                               }
+                                                        }
+                                                 }
+                                   ?>              
+                                                        <td class="tac"><?= $marksObtained ?></td>
+                                   <?php
+                                          }
+                                   ?>   
+                                                        <td class="tac"><?= $totalMarks ?></td>
+                                                        <td class="tac"><?= $status ?></td>
+                                                        <td class="center gap-05">
+                                                               <a href="?edit-result-student&semester=<?=$semId?>&symbolNo=<?=$row['symbolNo']?>&regdNo=<?=$row['regdNo']?>" class="edit-btn">Edit</a>
+                                                               <a href="?result-view&symbolNo=<?=$symbolNo?>&semester=<?=$semId?>" class="view-btn">View</a>
+                                                        </td>
 
-                                   <tr>
-                                          <td>09389437894</td>
-                                          <td>Bishal Bhat</td>
-                                          <td class="tac">90</td>
-                                          <td class="tac">91</td>
-                                          <td class="tac">97</td>
-                                          <td class="tac">99</td>
-                                          <td class="tac">91</td>
-                                          <td class="tac">99</td>
-                                          <td></td>
-                                          <td class="tac">Pass</td>
-                                          <td class="center gap-05">
-                                                 <a href="?edit-result-id" class="edit-btn">Edit</a>
-                                                 <a href="?view" class="view-btn">View</a>
-                                          </td>
-                                   </tr>
-
-                                   <tr>
-                                          <td>fewkl</td>
-                                   </tr>
-
-                                   <tr>
-                                          <td>fewkl</td>
-                                   </tr>
-
-                                   <tr>
-                                          <td>fewkl</td>
-                                   </tr>
-
-                                   <tr>
-                                          <td>fewkl</td>
-                                   </tr>
-
-                                   <tr>
-                                          <td>fewkl</td>
-                                   </tr>
-
-                                   <tr>
-                                          <td>fewkl</td>
-                                   </tr>
-
-                                   <tr>
-                                          <td>fewkl</td>
-                                   </tr>
-
-                                   <tr>
-                                          <td>fewkl</td>
-                                   </tr>
-                                   <tr>
-                                          <td>fewkl</td>
-                                   </tr>
-                                   <tr>
-                                          <td>fewkl</td>
-                                   </tr>
-                                   <tr>
-                                          <td>fewkl</td>
-                                   </tr>
-                                   <tr>
-                                          <td>fewkl</td>
-                                   </tr>
-                                   <tr>
-                                          <td>fewkl</td>
-                                   </tr>
-                                   <tr>
-                                          <td>fewkl</td>
-                                   </tr>
-                                   <tr>
-                                          <td>fewkl</td>
-                                   </tr>
-                                   <tr>
-                                          <td>fewkl</td>
-                                   </tr>
-                                   <tr>
-                                          <td>fewkl</td>
-                                   </tr>
-                                   <tr>
-                                          <td>fewkl</td>
-                                   </tr>
-                                   <tr>
-                                          <td>fewkl</td>
-                                   </tr>
-                                   <tr>
-                                          <td>fewkl</td>
-                                   </tr>
-                                   <tr>
-                                          <td>fewkl</td>
-                                   </tr>
-
-
+                                                 </tr>
+                                   <?php
+                                   }
+                                   ?>
                             </tbody>
                      </table>
               </div>
@@ -626,7 +498,7 @@ if (isset($_GET['publish-result'])) {
                      </div>
                      <div>
                             <label for="symbolNo">Symbol No:</label>
-                            <input type="number" name="symbolNo" id="symbolNo">
+                            <input type="text" name="symbolNo" id="symbolNo">
                      </div>
 
                      <div class="center">

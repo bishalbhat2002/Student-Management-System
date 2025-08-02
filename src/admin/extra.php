@@ -1,4 +1,4 @@
-    <?php
+<?php
        $batch = trim($_GET['batch']);
        $semId = (!empty($_GET['semester'])) ? $_GET['semester'] : '';
        
@@ -23,6 +23,14 @@
        $courses = getCourses($semId);
        $semName = getSemName($semId);
 
+       foreach($courses as $header){
+              $courseId = $course['cid'];
+              $courseName = $course['cname'];
+       }
+
+?>
+
+<?php
        while ($row = $result->fetch_assoc()) {
               
               $status = "PASS";
