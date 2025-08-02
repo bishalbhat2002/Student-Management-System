@@ -456,9 +456,9 @@ for($i=1; $i<=8; $i++){
        try {
               $sql = "CREATE TABLE sem{$i}Attendance (
                      regdNo VARCHAR(20) PRIMARY KEY,
-                     Present INT CHECK (Present >= 0),                       #No of Present Days
-                     total INT CHECK (total > 0),                            #Total days class was conducted.
-                     lastAttend DATE DEFAULT CURRENT_DATE,                   #Last date of attendance taken
+                     present INT DEFAULT 0,                       #No of Present Days
+                     total INT 0,                            #Total days class was conducted.
+                     lastAttend DATE,                   #Last date of attendance taken
                      FOREIGN KEY (regdNo) REFERENCES Student(regdNo)
                      )";
               $conn->query($sql);

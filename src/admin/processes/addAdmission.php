@@ -70,6 +70,9 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         $sql2 = "UPDATE runningSemester set totalStudent = totalStudent + 1 Where rsid = '$semId'";
         $conn->query($sql2);
 
+        $sql3 = "INSERT into sem{$semId}attendance (regdNo) values ('$regdNo')";
+        $conn->query($sql3);
+
         header("location: ../students.php?view-admission-semId=$semId&success=Student Admitted successfully to ".getSemName($semId)." Semester");
 
         exit();

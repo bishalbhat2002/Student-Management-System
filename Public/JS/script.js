@@ -731,7 +731,7 @@ function validateNoticeForm() {
     // Check that at least one of notice body or notice photo is provided
     const photoProvided = (noticePhotoInput.files && noticePhotoInput.files.length > 0);
     if (!noticeBody && !photoProvided) {
-        noticeBodyError.textContent = "Please provide either a Notice Body or upload a Notice Photo.";
+        noticeBodyError.textContent = "Please provide either a Notice Body or upload Photo.";
         noticePhotoError.textContent = "Please provide either a Notice Photo or Notice Body.";
         isValid = false;
     }

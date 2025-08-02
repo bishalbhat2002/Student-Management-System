@@ -329,7 +329,6 @@ select {
   padding: 0.5rem 1rem;
   color: var(--color-secondary-50);
   border-radius: 0.4rem;
-  border: none;
 }
 input[type="file"] {
   padding-left: 0rem;
