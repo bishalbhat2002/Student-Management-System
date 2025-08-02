@@ -81,23 +81,7 @@
                      <?php
                             }
                      ?>     
-                            <td></td>
-                                   <td></td></td>
-                                   <td class="tac v-align-m"><input type="checkbox" value="1" name="bishal" class="big-checkbox"></td>
-                                   <td></td>
-                                  </tr>
-
-                                  <td></td>
-                                   <td></td>
-                                   <td class="tac v-align-m"><input type="checkbox" value="1" name="sara" class="big-checkbox"></td>
-                                   <td></td>
-                                  </tr>
-
-                                  <td></td>
-                                   <td></td>
-                                   <td class="tac v-align-m"><input type="checkbox" value="1" name="king" class="big-checkbox"></td>
-                                   <td></td>
-                                  </tr>
+              
                             </tbody>
                      </table>
                      <div class="center mt-1">
@@ -151,7 +135,11 @@
               $semName = getSemName($semId);
 
               try {
-                     $sql = "SELECT * FROM student s JOIN sem{$semId}Admission a on s.regdNo = a.regdNo WHERE s.batch = '$batch'";
+                     $sql = "SELECT * FROM student s
+                            JOIN sem{$semId}Admission a ON s.regdNo = a.regdNo
+                            JOIN sem{$semId}Attendance att ON s.regdNo = att.regdNo
+                            WHERE s.batch = '$batch'";
+
                      $result = $conn->query($sql);
                      if ($result->num_rows === 0) {
                             header("location: attendance.php?view-attendance&error=No student is admitted to $semName Semester.");
@@ -171,7 +159,8 @@
                                    <tr>
                                           <th>Regd. No</th>
                                           <th>Name</th>
-                                          <th title="Current Day"><?php echo date("Y-m-d"); ?></th>
+                                          <th title="Today"><?php echo date("Y-m-d"); ?></th>
+                                          <th>Last Attend</th>
                                           <th>Total Attendance</th>
                                           <th>Phone</th>
                                    </tr>
@@ -186,7 +175,8 @@
                                           <td><?= $row['regdNo']?></td>
                                           <td><?= $row['name']?></td>
                                           <td class="tac v-align-m"><?= ($currentDate == $lastupdate) ? "Present" : "Absent"?></td>
-                                          <td class="tac v-align-m"><?= $row['Present'] .'/'. $row['total'] ?></td>
+                                          <td class="tac v-align-m"><?= $row['lastAttend']?></td>
+                                          <td class="tac v-align-m"><?= $row['present'] .'/'. $row['total'] ?></td>
                                           <td><?= $row['phone']?></td>
                                   </tr>   
                      <?php

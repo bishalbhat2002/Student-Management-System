@@ -6,6 +6,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $tableName = "sem{$semId}Attendance";
     $currentDate = date('Y-m-d');
 
+       try{
+              $statusQuery = $conn->query("SELECT * FROM sem{$semId}attendance");
+       }catch (Exception $e) {
+       die("<br><b>Error:</b>".$e->getMessage());
+    }
+
+    #Check if attendance is already taken or Not...
+    foreach($statusQuery as $status){
+       if($status['lastAttend']==$currentDate){
+              header("location:../attendance.php?view-attendance-sem&semester=$semId&error= Attendance already taken for Today.");
+              exit();
+       }
+    }
+
     try {
 
         // Get all regdNo from Attendance Table
@@ -27,8 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
               } else {
                 // Student is absent
                 $updateSQL = "UPDATE $tableName 
-                              SET total = total + 1,
-                                  lastAttend = '$currentDate'
+                              SET total = total + 1
                               WHERE regdNo = '$regdNo'";
               }
               $conn->query($updateSQL);
