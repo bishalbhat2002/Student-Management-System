@@ -809,10 +809,11 @@ table{
     background-color: var(--color-primary-80);
   } 
   td{
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     font-weight: 500;
     color: var(--color-secondary-80);
     position: relative;
+    padding: 0.5rem 1rem;
   }
   .pl-2{
   padding-left: 2rem;
