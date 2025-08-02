@@ -9,20 +9,21 @@ if (isset($_GET['publish-result'])) {
        <div class="center-fdct main">
               <h1 class="heading">Publish Result</h1>
               <form action="" method="get" class="form">
-                     <div>
-                            <label for="examYear">Exam Year:</label>
-                            <input type="number" name="examYear" id="examYear" min="2062" max="<?php echo date('Y') + 57; ?>" required>
-                     </div>
+                     <input type="hidden" name="publish-result-batch" value="1">
                      <div>
                             <label for="batch">Batch:</label>
                             <input type="number" name="batch" id="batch" min="2062" max="<?php echo date('Y') + 57; ?>" required>
+                     </div>
+                     <div>
+                            <label for="examYear">Exam Year:</label>
+                            <input type="number" name="examYear" id="examYear" min="2062" max="<?php echo date('Y') + 57; ?>" required>
                      </div>
                      <div>
                             <label for="semester">Semester:</label>
                             <select name="semester" id="semester" required>
                                    <option value="" selected disabled>Select Sem</option>
                                    <?php
-                                          require_once "../includes/showSemester.php";
+                                   require_once "../includes/showSemester.php";
                                    ?>
                             </select>
                      </div>
@@ -34,27 +35,26 @@ if (isset($_GET['publish-result'])) {
 
        <!-- Code for entering Regd. No and Symbol Number for Result Publish -->
 <?php
-} else if (!empty($_GET['examYear']) && !empty($_GET['batch'])) {
+} else if (isset($_GET['publish-result-batch'])) {
 ?>
+       <?php
+       $examYear = trim($_GET['examYear']);
+       $batch = trim($_GET['batch']);
+       $semId = (!empty($_GET['semester'])) ? $_GET['semester'] : '';
 
-       <?php  
-              $examYear = trim($_GET['examYear']);
-              $batch = trim($_GET['batch']);
-              $semId = (!empty($_GET['semester'])) ? $_GET['semester'] : '';
-              if (empty($examYear) || empty($batch) || empty($semId)) {
-                     exit();
-                     header("location: result.php?publish-result&error=All fields are Required. 0000");
-                     exit();
-              }
-              $semName = getSemName($semId);
+       if (empty($examYear) || empty($batch) || empty($semId)) {
+              header("location: result.php?publish-result&error=All fields are Required.");
+              exit();
+       }
+       $semName = getSemName($semId);
        ?>
 
        <div class="main center-fdct">
-              <h1 class="heading">Result Publish - <?= $batch?> Batch : <?= $semName?> semester</h1>
+              <h1 class="heading">Result Publish - <?= $batch ?> Batch : <?= $semName ?> semester</h1>
               <form action="?enter-marks" method="post" class="form">
-                     <input type="hidden" name="examYear" value="<?= $examYear?>">
-                     <input type="hidden" name="batch" value="<?= $batch?>">
-                     <input type="hidden" name="semId" value="<?= $semId?>">
+                     <input type="hidden" name="examYear" value="<?= $examYear ?>">
+                     <input type="hidden" name="batch" value="<?= $batch ?>">
+                     <input type="hidden" name="semId" value="<?= $semId ?>">
                      <div>
                             <label for="regdNo">Regd. No:</label>
                             <input type="text" name="regdNo" id="regdNo" required>
@@ -77,54 +77,55 @@ if (isset($_GET['publish-result'])) {
 <?php
 } else if (isset($_GET['enter-marks'])) {
 ?>
-        <?php  
-              $regdNo = trim($_POST['regdNo']);
-              $symbolNo = trim($_POST['symbolNo']);
-              $examYear = trim($_POST['examYear']);
-              $batch = trim($_POST['batch']);
-              $semId = trim($_POST['semId']);
-              if (empty($regdNo) || empty($symbolNo)) {
-                     header("location: result.php?publish-result&error=All fields are Required. 123");
+       <?php
+       $regdNo = trim($_POST['regdNo']);
+       $symbolNo = trim($_POST['symbolNo']);
+       $examYear = trim($_POST['examYear']);
+       $batch = trim($_POST['batch']);
+       $semId = trim($_POST['semId']);
+
+       if (empty($regdNo) || empty($symbolNo)) {
+              header("location: result.php?publish-result&error=All fields are Required.");
+              exit();
+       }
+
+       try {
+              $result = $conn->query("SELECT * FROM student where regdNo = '$regdNo'");
+              if ($result->num_rows === 0) {
+                     header("location: result.php?examYear=$examYear&batch=$batch&semester=$semId&error=No student exists for RegdNo - $regdNo");
                      exit();
               }
-
-              try{
-                     $result = $conn->query("SELECT * FROM student where regdNo = '$regdNo'");
-                     if($result->num_rows === 0){
-                            header("location: result.php?examYear=$examYear&batch=$batch&semester=$semId&error=No student exists for RegdNo - $regdNo");
-                            exit();  
-                     }
-              }catch(Exception $e){
-                     exit("<br><b>Error:</b>".$e->getMessage());
-              }
+       } catch (Exception $e) {
+              exit("<br><b>Error:</b>" . $e->getMessage());
+       }
 
 
-              $semName = getSemName($semId);
+       $semName = getSemName($semId);
        ?>
 
        <div class="main center-fdct">
 
-       <?php
+              <?php
               $courses = getCourses($semId);
-              if($courses === ""){
-                    header("location: ?publish-result?error=Invalid Semester Entered.");
-                    exit();
+              if ($courses === "") {
+                     header("location: ?publish-result?error=Invalid Semester Entered.");
+                     exit();
               }
-       ?>
-              <h1 class="heading">Result Publish - <?= $batch?> Batch : <?= $semName?> semester</h1>
-              <form action="processes/resultProcess.php?operation=publish-result" name="result-publish-form" method="post" enctype="multipart/form-data" class="form-expan">
+              ?>
+              <h1 class="heading">Result Publish - <?= $batch ?> Batch : <?= $semName ?> semester</h1>
+              <form action="processes/resultProcess.php?operation=publish-result" name="result-publish-form" method="post" enctype="multipart/form-data" class="form-expan addresult-form">
                      <div>
-                            <label for="registration-no">Regd. No:</label>
-                            <input type="text" name="regdNo" id="regdNo" value="<?= $regdNo ?>" readlink>
+                            <label for="registration-no" class="mt-zero">Regd. No:</label>
+                            <input type="text" name="regdNo" id="regdNo" value="<?= $regdNo ?>" readonly>
                      </div>
                      <div>
-                            <label for="symbolNo">Symbol No:</label>
-                            <input type="number" name="symbolNo" id="symbolNo" value="<?= $symbolNo ?>" readlink>
+                            <label for="symbolNo" class="mt-zero">Symbol No:</label>
+                            <input type="number" name="symbolNo" id="symbolNo" value="<?= $symbolNo ?>" readonly>
                      </div>
 
-                     <input type="hidden" name="examYear" value="<?= $examYear?>">
-                     <input type="hidden" name="batch" value="<?= $batch?>">
-                     <input type="hidden" name="semId" value="<?= $semId?>">
+                     <input type="hidden" name="examYear" value="<?= $examYear ?>">
+                     <input type="hidden" name="batch" value="<?= $batch ?>">
+                     <input type="hidden" name="semId" value="<?= $semId ?>">
 
                      <table class="col-span-2 add-result-table-style">
                             <thead>
@@ -135,34 +136,36 @@ if (isset($_GET['publish-result'])) {
                                    </tr>
                             </thead>
                             <tbody>
-                     
-                     <?php
-                            while($row = $courses->fetch_assoc()){
-                     ?>
-                                   <tr>
-                                          <td class="cid"><?= $row['cid']?></td>
-                                          <td class="cname"><?= $row['cname'] ?></td>
+
                                    <?php
-                                          if($row['TH']>0){
+                                   while ($row = $courses->fetch_assoc()) {
                                    ?>
-                                          <td class="marks-input-box"><input type="number" name="<?= $row['cid'].'_TH'?>" min="0" max="<?= $row['TH'] ?>" required></td>
+                                          <tr>
+                                                 <td class="smaller tac"><?= $row['cid'] ?></td>
+                                                 <td class="smaller pl-2"><?= $row['cname'] ?></td>
+                                                 <?php
+                                                 if ($row['TH'] > 0) {
+                                                 ?>
+                                                        <td class="marks-input-box smaller"><input type="number" name="<?= $row['cid'] . '_TH' ?>" min="0" max="<?= $row['TH'] ?>" required></td>
+                                                 <?php
+                                                 } else {
+                                                        echo "<td></td>";
+                                                 }
+                                                 if ($row['PR'] > 0) {
+                                                 ?>
+                                                        <td class="marks-input-box smaller"><input type="number" name="<?= $row['cid'] . '_PR' ?>" min="0" max="<?= $row['PR'] ?>" required></td>
+                                          </tr>
                                    <?php
-                                          }
-                                          if($row['PR']>0){
+                                                 }
                                    ?>
-                                          <td class="marks-input-box"><input type="number" name="<?= $row['cid'].'_PR'?>" min="0" max="<?= $row['PR'] ?>" required></td>
-                                   </tr>
-                                   <?php
-                                          }
-                                   ?>
-                     <?php
-                            }
-                     ?>
+                            <?php
+                                   }
+                            ?>
                             </tbody>
                      </table>
                      <br>
 
-                     <div class="center col-span-2 mt-2">
+                     <div class="center col-span-2 mt-1">
                             <button class="btn save-btn large">Save</button>
                      </div>
               </form>
@@ -172,30 +175,27 @@ if (isset($_GET['publish-result'])) {
 <?php
 } else if (isset($_GET['edit-result'])) {
 ?>
-
        <div class="main center-fdct">
               <h1 class="heading">Result Edit</h1>
-              <form action="?edit-result-id" name="result-edit-form" method="post" enctype="multipart/form-data" class="form-expan">
-                     <div>
-                            <label for="batch">Batch:</label>
-                            <input type="number" min="2062" max="<?php echo date('Y') + 57; ?>">
-                     </div>
+              <form action="" method="get" class="form">
+                     <input type="hidden" name="edit-result-student" value="true">
+
                      <div>
                             <label for="semester">Semester:</label>
                             <select name="semester" id="semester">
                                    <option value="" selected disabled>Select Sem</option>
-                                   <option value="1st Sem">1st Semester</option>
-                                   <!-- Add Semesters Dynamically using PHP -->
-                                   <option value="8th Sem">8th Semester</option>
+                                   <?php
+                                   require_once "../includes/showSemester.php";
+                                   ?>
                             </select>
                      </div>
                      <div>
-                            <label for="registration-no">Regd. No:</label>
-                            <input type="text" name="registration-no" id="registration-no">
+                            <label for="regdNo">Regd. No:</label>
+                            <input type="text" name="regdNo" id="regdNo">
                      </div>
                      <div>
-                            <label for="symbol-no">Symbol No:</label>
-                            <input type="number" name="symbol-no" id="symbol-no">
+                            <label for="symbolNo">Symbol No:</label>
+                            <input type="number" name="symbolNo" id="symbolNo">
                      </div>
 
                      <div class="center col-span-2">
@@ -207,20 +207,47 @@ if (isset($_GET['publish-result'])) {
 
        <!-- Code to Edit Result (Edit marks in result) -->
 <?php
-} else if (isset($_GET['edit-result-id'])) {
+} else if (isset($_GET['edit-result-student'])) {
 ?>
-
        <div class="main center-fdct">
-              <h1 class="heading">20YY Batch, X Semester: Edit Result</h1>
-              <form action="?view-result" name="result-edit-form" method="post" enctype="multipart/form-data" class="form-expan">
+
+              <?php
+              $semId = (!empty($_GET['semester'])) ? $_GET['semester'] : '';
+              $regdNo = trim($_GET['regdNo']);
+              $symbolNo = trim($_GET['symbolNo']);
+
+              if (empty($semId) || empty($regdNo) || empty($symbolNo)) {
+                     header("location: result.php?edit-result&error=All fields are Required.");
+                     exit();
+              }
+
+              try {
+                     $sql = "SELECT * from student s JOIN sem{$semId}result r ON s.regdNo = r.regdNo WHERE r.symbolNo = '$symbolNo'";
+                     $result = $conn->query($sql);
+                     if ($result->num_rows === 0) {
+                            header("location: result.php?edit-result&error=No result exists for Symbol Number - $symbolNo");
+                            exit();
+                     }
+              } catch (Exception $e) {
+                     exit("<br><b>Error:</b>" . $e->getMessage());
+              }
+
+              $row = $result->fetch_assoc();
+              $courses = getCourses($semId);
+              $semName = getSemName($semId);
+              ?>
+
+              <h1 class="heading">Edit Result : <?= $row['batch'] ?> Batch - <?= $semName ?> Semester</h1>
+              <form action="processes/resultProcess.php" name="result-edit-form" method="post" class="form-expan">
                      <div>
-                            <label for="registration-no">Regd. No:</label>
-                            <input type="text" name="registration-no" id="registration-no">
+                            <label for="regdNo" class="mt-zero">Regd. No: </label>
+                            <input type="text" name="regdNo" id="regdNo" value="<?= $regdNo ?>" readonly>
                      </div>
                      <div>
-                            <label for="symbol-no">Symbol No:</label>
-                            <input type="number" name="symbol-no" id="symbol-no">
+                            <label for="symbolNo" class="mt-zero">Symbol No: </label>
+                            <input type="number" name="symbolNo" id="symbolNo" value="<?= $symbolNo ?>" readonly>
                      </div>
+                     <input type="hidden" name="semId" value="<?= $semId?>" required readonly>
 
                      <table class="col-span-2 add-result-table-style">
                             <thead>
@@ -231,36 +258,41 @@ if (isset($_GET['publish-result'])) {
                                    </tr>
                             </thead>
                             <tbody>
-                                   <tr>
-                                          <td class="subject-code">CSIT-101</td>
-                                          <td class="subject-name">Subject-1 Lorem ipsum </td>
-                                          <td class="marks-input-box"><input type="number" min="0" max="60" required></td>
-                                          <td class="marks-input-box"><input type="number" min="0" max="40" required></td>
-                                   </tr>
-                                   <tr>
-                                          <td class="subject-code">CSIT-101</td>
-                                          <td class="subject-name">Subject-1 Lorem ipsum </td>
-                                          <td class="marks-input-box"><input type="number" min="0" max="60" required></td>
-                                          <td class="marks-input-box"><input type="number" min="0" max="40" required></td>
-                                   </tr>
-                                   <tr>
-                                          <td class="subject-code">CSIT-101</td>
-                                          <td class="subject-name">Subject-1 Lorem ipsum </td>
-                                          <td class="marks-input-box"><input type="number" min="0" max="60" required></td>
-                                          <td class="marks-input-box"><input type="number" min="0" max="40" required></td>
-                                   </tr>
-                                   <tr>
-                                          <td class="subject-code">CSIT-101</td>
-                                          <td class="subject-name">Subject-1 Lorem ipsum </td>
-                                          <td class="marks-input-box"><input type="number" min="0" max="60" required></td>
-                                          <td class="marks-input-box"><input type="number" min="0" max="40" required></td>
-                                   </tr>
-                                   <tr>
-                                          <td class="subject-code">CSIT-101</td>
-                                          <td class="subject-name">Subject-1 Lorem ipsum </td>
-                                          <td class="marks-input-box"><input type="number" min="0" max="60" required></td>
-                                          <td class="marks-input-box"><input type="number" min="0" max="40" required></td>
-                                   </tr>
+
+                                   <?php
+                                          foreach ($courses as $course) {
+                                                 $courseId = $course['cid'];
+                                                 $courseName = $course['cname'];
+
+                                                 #Making keys for Semester Result Table From Course table's cid. 
+                                                 $thkey = $course['cid'] . "_TH";
+                                                 $prkey = $course['cid'] . "_PR";
+
+                                                 $thMarks = (isset($row[$thkey]) ? $row[$thkey] : '');
+                                                 $prMarks = (isset($row[$prkey]) ? $row[$prkey] : '');
+                                   ?>
+                                                 <tr>
+                                                        <td class="subject-code"><?=$courseId?></td>
+                                                        <td class="subject-name"><?=$courseName?></td>
+                                                        <?php
+                                                               if ($course['TH'] > 0) {
+                                                        ?>
+                                                                      <td class="marks-input-box smaller"><input type="number" class="tac" name="<?= $course['cid'] . '_TH' ?>" min="0" max="<?= $course['TH'] ?>" value="<?= $thMarks?>" required></td>
+                                                        <?php
+                                                               } else {
+                                                                      echo "<td></td>";
+                                                               }
+                                                               if ($course['PR'] > 0) {
+                                                               ?>
+                                                                      <td class="marks-input-box smaller"><input type="number" class="tac" name="<?= $course['cid'] . '_PR' ?>" min="0" max="<?= $course['PR'] ?>" value="<?= $prMarks?>" required></td>
+                                                        <?php
+                                                               }
+                                                        ?>
+                                                               
+                                                 </tr>
+                            <?php
+                                          }
+                            ?>
                             </tbody>
                      </table>
                      <br>
@@ -272,36 +304,6 @@ if (isset($_GET['publish-result'])) {
        </div>
 
 
-       <!-- Code to enter Batch, Semester, Symbol No to view Result-->
-<?php
-} else if (isset($_GET['view-result'])) {
-?>
-       <div class="main center-fdct">
-              <h1 class="heading">Result View</h1>
-              <form action="" method="get" class="form">
-                     <div>
-                            <label for="batch">Batch:</label>
-                            <input type="number" min="2062" name="batch" max="<?php echo date('Y') + 57; ?>">
-                     </div>
-                     <div>
-                            <label for="semester">Semester:</label>
-                            <select name="semester" id="semester">
-                                   <option value="" selected disabled>Select Sem</option>
-                                   <option value="1">1st Semester</option>
-                                   <!-- Add Semesters Dynamically using PHP -->
-                                   <option value="8">8th Semester</option>
-                            </select>
-                     </div>
-                     <div>
-                            <label for="symbolNo">Symbol No:</label>
-                            <input type="number" name="symbolNo" id="symbolNo">
-                     </div>
-
-                     <div class="center">
-                            <button type="submit" class="edit-btn btn mt-2 large">View</button>
-                     </div>
-              </form>
-       </div>
 
        <!-- Code to enter Batch and semester for Result Analyzing -->
 <?php
@@ -557,31 +559,44 @@ if (isset($_GET['publish-result'])) {
 
                                    <tr>
                                           <td>fewkl</td>
-                                   </tr>                          <tr>
+                                   </tr>
+                                   <tr>
                                           <td>fewkl</td>
-                                   </tr>                          <tr>
+                                   </tr>
+                                   <tr>
                                           <td>fewkl</td>
-                                   </tr>                          <tr>
+                                   </tr>
+                                   <tr>
                                           <td>fewkl</td>
-                                   </tr>                          <tr>
+                                   </tr>
+                                   <tr>
                                           <td>fewkl</td>
-                                   </tr>                          <tr>
+                                   </tr>
+                                   <tr>
                                           <td>fewkl</td>
-                                   </tr>                          <tr>
+                                   </tr>
+                                   <tr>
                                           <td>fewkl</td>
-                                   </tr>                          <tr>
+                                   </tr>
+                                   <tr>
                                           <td>fewkl</td>
-                                   </tr>                          <tr>
+                                   </tr>
+                                   <tr>
                                           <td>fewkl</td>
-                                   </tr>                          <tr>
+                                   </tr>
+                                   <tr>
                                           <td>fewkl</td>
-                                   </tr>                          <tr>
+                                   </tr>
+                                   <tr>
                                           <td>fewkl</td>
-                                   </tr>                          <tr>
+                                   </tr>
+                                   <tr>
                                           <td>fewkl</td>
-                                   </tr>                          <tr>
+                                   </tr>
+                                   <tr>
                                           <td>fewkl</td>
-                                   </tr>                          <tr>
+                                   </tr>
+                                   <tr>
                                           <td>fewkl</td>
                                    </tr>
 
@@ -591,19 +606,70 @@ if (isset($_GET['publish-result'])) {
               </div>
        </div>
 
+       <!-- Code to enter Batch, Semester, Symbol No to view Result-->
+<?php
+} else if (isset($_GET['view-result'])) {
+?>
+       <div class="main center-fdct">
+              <h1 class="heading">Result View</h1>
+              <form action="?result-view" method="get" class="form">
+                     <input type="hidden" name="result-view" value="true">
+                     <div>
+                            <label for="semester">Semester:</label>
+                            <select name="semester" id="semester">
+                                   <option value="" selected disabled>Select Sem</option>
+                                   <?php
+                                   require_once "../includes/showSemester.php";
+                                   ?>
+                            </select>
+                     </div>
+                     <div>
+                            <label for="symbolNo">Symbol No:</label>
+                            <input type="number" name="symbolNo" id="symbolNo">
+                     </div>
+
+                     <div class="center">
+                            <button type="submit" class="edit-btn btn mt-2 large">View</button>
+                     </div>
+              </form>
+       </div>
 
 
        <!-- Code to View Result... -->
 <?php
-} else if (!empty($_GET['batch']) && !empty($_GET['semester']) && !empty($_GET['symbolNo'])) {
+} else if (isset($_GET['result-view'])) {
 ?>
+       <?php
+       $symbolNo = $_GET['symbolNo'];
+       $semId = (!empty($_GET['semester'])) ? $_GET['semester'] : '';
+
+       if (empty($symbolNo) || empty($semId)) {
+              header("location: result.php?view-result&error=All fields are Required.");
+              exit();
+       }
+
+       try {
+              $sql = "SELECT * from student s JOIN sem{$semId}result r ON s.regdNo = r.regdNo WHERE r.symbolNo = '$symbolNo'";
+              $result = $conn->query($sql);
+              if ($result->num_rows === 0) {
+                     header("location: result.php?view-result&error=No result exists for Symbol Number - $symbolNo");
+                     exit();
+              }
+       } catch (Exception $e) {
+              exit("<br><b>Error:</b>" . $e->getMessage());
+       }
+
+       $semName = getSemName($semId);
+       $row = $result->fetch_assoc();
+       ?>
+
        <div class="main center-fdc">
               <div class="box-color-white" id="result">
                      <form action="" method="POST" name="resultForm" enctype="multipart/form-data">
                             <!-- Header Section -->
                             <div class="header">
                                    <div class="fwu-logo">
-                                          <img src="<?php echo BASE_URL;?>/public/assets/images/fwu-logo.jpg" alt="FWU-Logo">
+                                          <img src="<?php echo BASE_URL; ?>/public/assets/images/fwu-logo.jpg" alt="FWU-Logo">
                                    </div>
                                    <div>
                                           <h1>Farwestern University</h1>
@@ -611,35 +677,36 @@ if (isset($_GET['publish-result'])) {
                                           <h3>Mahendranagar, Kanchanpur</h3>
                                    </div>
                                    <div class="fwu-logo">
-                                          <img src="<?php echo BASE_URL;?>/public/assets/images/fwu-logo.jpg" alt="FWU-Logo">
+                                          <img src="<?php echo BASE_URL; ?>/public/assets/images/fwu-logo.jpg" alt="FWU-Logo">
                                    </div>
                             </div>
                             <!-- Student Info Section -->
                             <div class="student-info-result">
                                    <div class="info-container">
-                                          <span>Name: Bishal Bhat</span>
-                                          <span>Regd. No: SC-4803-3294-3294</span>
+                                          <span>Name: <?= $row['name'] ?></span>
+                                          <span>Regd. No: <?= $row['regdNo'] ?></span>
                                    </div>
                                    <div class="info-container">
                                           <span>Level: Undergraduate</span>
-                                          <span>Symbol No: 89003493</span>
+                                          <span>Symbol No: <?= $row['symbolNo'] ?></span>
                                    </div>
                                    <div class="info-container">
                                           <span>Program: BSC-CSIT</span>
-                                          <span>Exam Year: 2023</span>
+                                          <span>Exam Year: <?= $row['examYear'] ?></span>
                                    </div>
                                    <div class="info-container">
                                           <span>Faculty: Science & Technology</span>
-                                          <span>Batch: 2078</span>
+                                          <span>Batch: <?= $row['batch'] ?></span>
                                    </div>
                                    <div class="info-container">
                                           <span>Campus: FWU Central Campus</span>
-                                          <span>Semester: 1st Sem</span>
+                                          <span>Semester: <?= $semName ?> Sem</span>
                                    </div>
                                    <div class="info-container">
-                                          <span>Date of Birth: 205x/0x/0y</span>
+                                          <span>Date of Birth: <?= $row['dob'] ?></span>
                                    </div>
                             </div>
+
                             <!-- Student Marks Section -->
                             <div class="marks">
                                    <table class="result-table">
@@ -647,69 +714,94 @@ if (isset($_GET['publish-result'])) {
                                                  <tr>
                                                         <th>Course ID</th>
                                                         <th>Course Title</th>
-                                                        <th colspan="2">Marks Obtained <span>[TH]</span> <Span>[PR]</Span></th>
+                                                        <th colspan="2">Marks Obtained <span class="small-text">[TH]</span> <Span class="small-text">[PR]</Span></th>
                                                         <th>MO</th>
                                                         <th>FM</th>
                                                         <th>Result</th>
                                                  </tr>
                                           </thead>
                                           <tbody>
-                                                 <tr>
-                                                        <td>CSIT-111</td>
-                                                        <td>Subject-1 efefr erogjri rtioeh</td>
-                                                        <td>x.y</td>
-                                                        <td>x.y</td>
-                                                        <td>x.y</td>
-                                                        <td>x.y</td>
-                                                        <td>Pass</td>
-                                                 </tr>
-                                                 <tr>
-                                                        <td>CSIT-111</td>
-                                                        <td>Subject-1</td>
-                                                        <td>x.y</td>
-                                                        <td>x.y</td>
-                                                        <td>x.y</td>
-                                                        <td>x.y</td>
-                                                        <td>Pass</td>
-                                                 </tr>
-                                                 <tr>
-                                                        <td>CSIT-111</td>
-                                                        <td>Subject-1</td>
-                                                        <td>x.y</td>
-                                                        <td>x.y</td>
-                                                        <td>x.y</td>
-                                                        <td>x.y</td>
-                                                        <td>Pass</td>
-                                                 </tr>
-                                                 <tr>
-                                                        <td>CSIT-111</td>
-                                                        <td>Subject-1</td>
-                                                        <td>x.y</td>
-                                                        <td>x.y</td>
-                                                        <td>x.y</td>
-                                                        <td>x.y</td>
-                                                        <td>Pass</td>
-                                                 </tr>
-                                                 <tr>
-                                                        <td>CSIT-111</td>
-                                                        <td>Subject-1</td>
-                                                        <td>x.y</td>
-                                                        <td>x.y</td>
-                                                        <td>x.y</td>
-                                                        <td>x.y</td>
-                                                        <td>Pass</td>
-                                                 </tr>
+
+                                                 <?php
+                                                 $courses = getCourses($semId);
+                                                 $status = "PASS";
+                                                 $totalMarksObtained = 0;
+                                                 $totalFullMarks = 0;
+
+                                                 $marksObtained = 0;
+                                                 $fullMarks = 0;
+
+                                                 foreach ($courses as $course) {
+                                                        $courseId = $course['cid'];
+                                                        $courseName = $course['cname'];
+                                                        $courseStatus = "PASS";
+                                                        $thfm = $course['TH'];
+                                                        $prfm = $course['PR'];
+
+                                                        #Making keys for Semester Result Table From Course table's cid. 
+                                                        $thkey = $course['cid'] . "_TH";
+                                                        $prkey = $course['cid'] . "_PR";
+
+                                                        $thMarks = (isset($row[$thkey]) ? $row[$thkey] : '-');
+                                                        $prMarks = (isset($row[$prkey]) ? $row[$prkey] : '-');
+
+                                                        $thMarksAddition = (isset($row[$thkey]) ? $row[$thkey] : 0);
+                                                        $prMarksAddition = (isset($row[$prkey]) ? $row[$prkey] : 0);
+
+                                                        $marksObtained = $thMarksAddition + $prMarksAddition;
+
+                                                        $fullMarks = 100;
+
+                                                        $totalMarksObtained += $marksObtained;
+                                                        $totalFullMarks += $fullMarks;
+
+                                                        if ($thfm == 100) {
+                                                               if (isset($row[$thkey]) && $row[$thkey] < 45) {
+                                                                      $courseStatus = "FAIL";
+                                                               }
+                                                        } else {
+                                                               if (isset($row[$thkey]) && $row[$thkey] < 27) {
+                                                                      $courseStatus = "FAIL";
+                                                               }
+                                                        }
+
+                                                        if ($prfm == 100) {
+                                                               if (isset($row[$prkey]) && $row[$prkey] < 45) {
+                                                                      $courseStatus = "FAIL";
+                                                               }
+                                                        } else {
+                                                               if (isset($row[$prkey]) && $row[$prkey] < 18) {
+                                                                      $courseStatus = "FAIL";
+                                                               }
+                                                        }
+
+                                                        if ($status === "PASS" && $courseStatus === "FAIL") {
+                                                               $status = "FAIL";
+                                                        }
+                                                 ?>
+                                                        <tr>
+                                                               <td><?= $courseId ?></td>
+                                                               <td class="tas"><?= $courseName ?></td>
+                                                               <td><?= $thMarks ?></td>
+                                                               <td><?= $prMarks ?></td>
+                                                               <td><?= $marksObtained ?></td>
+                                                               <td><?= $fullMarks ?></td>
+                                                               <td><?= $courseStatus ?></td>
+                                                        </tr>
+                                                 <?php
+                                                 }
+                                                 ?>
                                           </tbody>
                                           <tfoot>
                                                  <tr>
-                                                        <td colspan="7"><b>PASS</b></td>
+                                                        <td colspan="7"><b><?= $status ?></b></td>
                                                  </tr>
                                                  <tr>
-                                                        <td colspan="7"><b>Total Obtained Marks:</b> x.y</Marks:br>
+                                                        <td colspan="7"><b>Total Obtained Marks:</b> <?= $totalMarksObtained ?></Marks:br>
                                                         </td>
                                                  </tr>
                                                  <tr>
-                                                        <td colspan="7"><b>Total Full Marks:</b> x.y</Marks:br>
+                                                        <td colspan="7"><b>Total Full Marks:</b> <?= $totalFullMarks ?></Marks:br>
                                                         </td>
                                                  </tr>
                                           </tfoot>

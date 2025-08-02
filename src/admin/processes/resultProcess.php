@@ -2,12 +2,10 @@
 require_once "connection.php";
 require_once "../../includes/functions.php";
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_GET['operation']) && $_GET['operation'] == 'publish-result') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 
        $regdNo = $_POST['regdNo'];
        $symbolNo = $_POST['symbolNo'];
-       $batch = $_POST['batch'];
-       $examYear = $_POST['examYear'];
        $semId = $_POST['semId'];                  #Dynamic table selection
 
        // Collect Subject Marks
@@ -20,38 +18,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_GET['operation']) && $_GET
 
        $tableName = "sem{$semId}result";
 
-       // Check if record exists
-       $checkSql = "SELECT * FROM $tableName WHERE regdNo = '$regdNo'";
-       $result = $conn->query($checkSql);
-
-       if (!$result) {
-              exit("<br> <b>Error:</b> " . $conn->error);
+       try{
+              // Check if record exists
+              $checkSql = "SELECT * FROM $tableName WHERE regdNo = '$regdNo'";
+              $result = $conn->query($checkSql);
+       }catch(Exception $e){
+              exit("<br><b>Error:</b>".$e->getMessage());
        }
 
+      
        if ($result->num_rows > 0) {
               // Update Existing Record
-              $updateSql = "UPDATE $tableName SET 
-                            batch = '$batch',
-                            symbolNo = '$symbolNo',
-                            examYear = '$examYear'";
+              $updateSql = "UPDATE $tableName SET
+                            symbolNo = '$symbolNo'";
 
               foreach ($marks as $subject => $mark) {
-                     $updateSql .= ", $subject = $mark";
+                     $updateSql .= ", $subject = '$mark'";
               }
 
               $updateSql .= " WHERE regdNo = '$regdNo'";
 
-              if ($conn->query($updateSql)) {
-                     header("location: ../result.php?batch=$batch&semester=$semId&symbolNo=$symbolNo&success= Result Updated Successfully.");
+              try{
+                     $conn->query($updateSql);
+                     header("location: ../result.php?result-view&semester=$semId&symbolNo=$symbolNo&success= Result Updated Successfully.");
                      exit();
-              } else {
-                     exit("<br> <b>Error:</b> " . $conn->error);
+              }catch(Exception $e){
+                     exit("<br><b>Result Update Error:</b>".$e->getMessage());
               }
 
        } else {
+              $examYear = $_POST['examYear'];
               // Insert New Record
-              $columns = "regdNo, batch, symbolNo, examYear";
-              $values = "'$regdNo', '$batch', '$symbolNo', '$examYear'";
+              $columns = "regdNo, symbolNo, examYear";
+              $values = "'$regdNo', '$symbolNo', '$examYear'";
 
               foreach ($marks as $subject => $mark) {
                      $columns .= ", $subject";
@@ -59,14 +58,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_GET['operation']) && $_GET
               }
 
               $insertSql = "INSERT INTO $tableName ($columns) VALUES ($values)";
-
-              if ($conn->query($insertSql)) {
-                     header("location: ../result.php?batch=$batch&semester=$semId&symbolNo=$symbolNo&success= Result published Successfully.");
+              
+              try{
+                     $conn->query($insertSql);
+                     header("location: ../result.php?result-view&semester=$semId&symbolNo=$symbolNo&success= Result published Successfully.");
                      exit();
-              } else {
-                     exit("<br> <b>Error:</b> " . $conn->error);
+              }catch(Exception $e){
+                     exit("<br><b>Error:</b>".$e->getMessage());
               }
-       }
+       }  
+
 } else {
        header("location: ../result.php?publish-result&error= Direct Access to Processing file not allowed.");
        exit();

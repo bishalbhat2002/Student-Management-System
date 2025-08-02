@@ -240,7 +240,6 @@ try {
 try {
     $sql = "CREATE TABLE sem1result (
         regdNo VARCHAR(20) PRIMARY KEY,
-        batch VARCHAR(10),
         symbolNo VARCHAR(20),
         examYear YEAR,
         CSIT_111_TH INT CHECK (CSIT_111_TH BETWEEN 0 AND 100),
@@ -262,7 +261,6 @@ try {
 try {
     $sql = "CREATE TABLE sem2result (
         regdNo VARCHAR(20) PRIMARY KEY,
-        batch VARCHAR(10),
         symbolNo VARCHAR(20),
         examYear YEAR,
         CSIT_121_TH INT CHECK (CSIT_121_TH BETWEEN 0 AND 60),
@@ -285,7 +283,6 @@ try {
 try {
     $sql = "CREATE TABLE sem3result (
         regdNo VARCHAR(20) PRIMARY KEY,
-        batch VARCHAR(10),
         symbolNo VARCHAR(20),
         examYear YEAR,
         CSIT_211_TH INT CHECK (CSIT_211_TH BETWEEN 0 AND 60),
@@ -312,7 +309,6 @@ try {
 try {
     $sql = "CREATE TABLE sem4result (
         regdNo VARCHAR(20) PRIMARY KEY,
-        batch VARCHAR(10),
         symbolNo VARCHAR(20),
         examYear YEAR,
         CSIT_221_TH INT CHECK (CSIT_221_TH BETWEEN 0 AND 60),
@@ -339,7 +335,6 @@ try {
 try {
     $sql = "CREATE TABLE sem5result (
         regdNo VARCHAR(20) PRIMARY KEY,
-        batch VARCHAR(10),
         symbolNo VARCHAR(20),
         examYear YEAR,
         CSIT_311_TH INT CHECK (CSIT_311_TH BETWEEN 0 AND 60),
@@ -366,7 +361,6 @@ try {
 try {
     $sql = "CREATE TABLE sem6result (
         regdNo VARCHAR(20) PRIMARY KEY,
-        batch VARCHAR(10),
         symbolNo VARCHAR(20),
         examYear YEAR,
         CSIT_321_TH INT CHECK (CSIT_321_TH BETWEEN 0 AND 60),
@@ -392,7 +386,6 @@ try {
 try {
     $sql = "CREATE TABLE sem7result (
         regdNo VARCHAR(20) PRIMARY KEY,
-        batch VARCHAR(10),
         symbolNo VARCHAR(20),
         examYear YEAR,
         CSIT_411_TH INT CHECK (CSIT_411_TH BETWEEN 0 AND 60),
@@ -418,7 +411,6 @@ try {
 try {
     $sql = "CREATE TABLE sem8result (
         regdNo VARCHAR(20) PRIMARY KEY,
-        batch VARCHAR(10),
         symbolNo VARCHAR(20),
         examYear YEAR,
         CSIT_421_TH INT CHECK (CSIT_421_TH BETWEEN 0 AND 60),
