@@ -242,12 +242,11 @@ try {
         regdNo VARCHAR(20) PRIMARY KEY,
         batch VARCHAR(10),
         symbolNo VARCHAR(20),
+        examYear YEAR,
         CSIT_111_TH INT CHECK (CSIT_111_TH BETWEEN 0 AND 100),
-        CSIT_111_PR INT CHECK (CSIT_111_PR = 0),
         CSIT_112_TH INT CHECK (CSIT_112_TH BETWEEN 0 AND 60),
         CSIT_112_PR INT CHECK (CSIT_112_PR BETWEEN 0 AND 40),
         CSIT_113_TH INT CHECK (CSIT_113_TH BETWEEN 0 AND 100),
-        CSIT_113_PR INT CHECK (CSIT_113_PR = 0),
         CSIT_114_TH INT CHECK (CSIT_114_TH BETWEEN 0 AND 60),
         CSIT_114_PR INT CHECK (CSIT_114_PR BETWEEN 0 AND 40),
         CSIT_115_TH INT CHECK (CSIT_115_TH BETWEEN 0 AND 60),
@@ -265,12 +264,12 @@ try {
         regdNo VARCHAR(20) PRIMARY KEY,
         batch VARCHAR(10),
         symbolNo VARCHAR(20),
+        examYear YEAR,
         CSIT_121_TH INT CHECK (CSIT_121_TH BETWEEN 0 AND 60),
         CSIT_121_PR INT CHECK (CSIT_121_PR BETWEEN 0 AND 40),
         CSIT_122_TH INT CHECK (CSIT_122_TH BETWEEN 0 AND 60),
         CSIT_122_PR INT CHECK (CSIT_122_PR BETWEEN 0 AND 40),
         CSIT_123_TH INT CHECK (CSIT_123_TH BETWEEN 0 AND 100),
-        CSIT_123_PR INT CHECK (CSIT_123_PR = 0),
         CSIT_124_TH INT CHECK (CSIT_124_TH BETWEEN 0 AND 60),
         CSIT_124_PR INT CHECK (CSIT_124_PR BETWEEN 0 AND 40),
         CSIT_125_TH INT CHECK (CSIT_125_TH BETWEEN 0 AND 60),
@@ -288,6 +287,7 @@ try {
         regdNo VARCHAR(20) PRIMARY KEY,
         batch VARCHAR(10),
         symbolNo VARCHAR(20),
+        examYear YEAR,
         CSIT_211_TH INT CHECK (CSIT_211_TH BETWEEN 0 AND 60),
         CSIT_211_PR INT CHECK (CSIT_211_PR BETWEEN 0 AND 40),
         CSIT_212_TH INT CHECK (CSIT_212_TH BETWEEN 0 AND 60),
@@ -314,6 +314,7 @@ try {
         regdNo VARCHAR(20) PRIMARY KEY,
         batch VARCHAR(10),
         symbolNo VARCHAR(20),
+        examYear YEAR,
         CSIT_221_TH INT CHECK (CSIT_221_TH BETWEEN 0 AND 60),
         CSIT_221_PR INT CHECK (CSIT_221_PR BETWEEN 0 AND 40),
         CSIT_222_TH INT CHECK (CSIT_222_TH BETWEEN 0 AND 60),
@@ -340,6 +341,7 @@ try {
         regdNo VARCHAR(20) PRIMARY KEY,
         batch VARCHAR(10),
         symbolNo VARCHAR(20),
+        examYear YEAR,
         CSIT_311_TH INT CHECK (CSIT_311_TH BETWEEN 0 AND 60),
         CSIT_311_PR INT CHECK (CSIT_311_PR BETWEEN 0 AND 40),
         CSIT_312_TH INT CHECK (CSIT_312_TH BETWEEN 0 AND 60),
@@ -366,6 +368,7 @@ try {
         regdNo VARCHAR(20) PRIMARY KEY,
         batch VARCHAR(10),
         symbolNo VARCHAR(20),
+        examYear YEAR,
         CSIT_321_TH INT CHECK (CSIT_321_TH BETWEEN 0 AND 60),
         CSIT_321_PR INT CHECK (CSIT_321_PR BETWEEN 0 AND 40),
         CSIT_322_TH INT CHECK (CSIT_322_TH BETWEEN 0 AND 60),
@@ -376,7 +379,6 @@ try {
         CSIT_324_PR INT CHECK (CSIT_324_PR BETWEEN 0 AND 40),
         CSIT_325_TH INT CHECK (CSIT_325_TH BETWEEN 0 AND 60),
         CSIT_325_PR INT CHECK (CSIT_325_PR BETWEEN 0 AND 40),
-        CSIT_326_TH INT CHECK (CSIT_326_TH = 0),
         CSIT_326_PR INT CHECK (CSIT_326_PR BETWEEN 0 AND 100),
         FOREIGN KEY (regdNo) REFERENCES student(regdNo)
     )";
@@ -392,13 +394,13 @@ try {
         regdNo VARCHAR(20) PRIMARY KEY,
         batch VARCHAR(10),
         symbolNo VARCHAR(20),
+        examYear YEAR,
         CSIT_411_TH INT CHECK (CSIT_411_TH BETWEEN 0 AND 60),
         CSIT_411_PR INT CHECK (CSIT_411_PR BETWEEN 0 AND 40),
         CSIT_412_TH INT CHECK (CSIT_412_TH BETWEEN 0 AND 60),
         CSIT_412_PR INT CHECK (CSIT_412_PR BETWEEN 0 AND 40),
         CSIT_413_TH INT CHECK (CSIT_413_TH BETWEEN 0 AND 60),
         CSIT_413_PR INT CHECK (CSIT_413_PR BETWEEN 0 AND 40),
-        CSIT_414_TH INT CHECK (CSIT_414_TH = 0),
         CSIT_414_PR INT CHECK (CSIT_414_PR BETWEEN 0 AND 100),
         CSIT_415_2_TH INT CHECK (CSIT_415_2_TH BETWEEN 0 AND 60),
         CSIT_415_2_PR INT CHECK (CSIT_415_2_PR BETWEEN 0 AND 40),
@@ -418,9 +420,9 @@ try {
         regdNo VARCHAR(20) PRIMARY KEY,
         batch VARCHAR(10),
         symbolNo VARCHAR(20),
+        examYear YEAR,
         CSIT_421_TH INT CHECK (CSIT_421_TH BETWEEN 0 AND 60),
         CSIT_421_PR INT CHECK (CSIT_421_PR BETWEEN 0 AND 40),
-        CSIT_422_TH INT CHECK (CSIT_422_TH = 0),
         CSIT_422_PR INT CHECK (CSIT_422_PR BETWEEN 0 AND 100),
         CSIT_423_2_TH INT CHECK (CSIT_423_2_TH BETWEEN 0 AND 60),
         CSIT_423_2_PR INT CHECK (CSIT_423_2_PR BETWEEN 0 AND 40),
@@ -499,67 +501,68 @@ echo "<b>All tables Created successfully....</b>";
 // All semester courses in associative array
 $semCourses = [
     1 => [
-        ['cid' => 'CSIT.111', 'cname' => 'English Grammar and Composition', 'TH' => 100, 'PR' => 0],
-        ['cid' => 'CSIT.112', 'cname' => 'Information Technology Fundamentals', 'TH' => 60, 'PR' => 40],
-        ['cid' => 'CSIT.113', 'cname' => 'Calculus and Analytical Geometry', 'TH' => 100, 'PR' => 0],
-        ['cid' => 'CSIT.114', 'cname' => 'Electronic Principles', 'TH' => 60, 'PR' => 40],
-        ['cid' => 'CSIT.115', 'cname' => 'Programming Fundamentals in C', 'TH' => 60, 'PR' => 40]
+        ['cid' => 'CSIT_111', 'cname' => 'English Grammar and Composition', 'TH' => 100, 'PR' => 0],
+        ['cid' => 'CSIT_112', 'cname' => 'Information Technology Fundamentals', 'TH' => 60, 'PR' => 40],
+        ['cid' => 'CSIT_113', 'cname' => 'Calculus and Analytical Geometry', 'TH' => 100, 'PR' => 0],
+        ['cid' => 'CSIT_114', 'cname' => 'Electronic Principles', 'TH' => 60, 'PR' => 40],
+        ['cid' => 'CSIT_115', 'cname' => 'Programming Fundamentals in C', 'TH' => 60, 'PR' => 40]
     ],
     2 => [
-        ['cid' => 'CSIT.121', 'cname' => 'Data Structure and Algorithms', 'TH' => 60, 'PR' => 40],
-        ['cid' => 'CSIT.122', 'cname' => 'Digital Logic Design', 'TH' => 60, 'PR' => 40],
-        ['cid' => 'CSIT.123', 'cname' => 'Linear Algebra', 'TH' => 100, 'PR' => 0],
-        ['cid' => 'CSIT.124', 'cname' => 'Mechanics and Electrodynamics', 'TH' => 60, 'PR' => 40],
-        ['cid' => 'CSIT.125', 'cname' => 'Microprocessor System', 'TH' => 60, 'PR' => 40]
+        ['cid' => 'CSIT_121', 'cname' => 'Data Structure and Algorithms', 'TH' => 60, 'PR' => 40],
+        ['cid' => 'CSIT_122', 'cname' => 'Digital Logic Design', 'TH' => 60, 'PR' => 40],
+        ['cid' => 'CSIT_123', 'cname' => 'Linear Algebra', 'TH' => 100, 'PR' => 0],
+        ['cid' => 'CSIT_124', 'cname' => 'Mechanics and Electrodynamics', 'TH' => 60, 'PR' => 40],
+        ['cid' => 'CSIT_125', 'cname' => 'Microprocessor System', 'TH' => 60, 'PR' => 40]
     ],
     3 => [
-        ['cid' => 'CSIT.211', 'cname' => 'Computer Organization and Architecture', 'TH' => 60, 'PR' => 40],
-        ['cid' => 'CSIT.212', 'cname' => 'Discrete Structures', 'TH' => 60, 'PR' => 40],
-        ['cid' => 'CSIT.213', 'cname' => 'Introduction to Management', 'TH' => 60, 'PR' => 40],
-        ['cid' => 'CSIT.214', 'cname' => 'Object Oriented Programming With C++', 'TH' => 60, 'PR' => 40],
-        ['cid' => 'CSIT.215', 'cname' => 'Operating System', 'TH' => 60, 'PR' => 40],
-        ['cid' => 'CSIT.216', 'cname' => 'Statistics and Probability', 'TH' => 60, 'PR' => 40]
+        ['cid' => 'CSIT_211', 'cname' => 'Computer Organization and Architecture', 'TH' => 60, 'PR' => 40],
+        ['cid' => 'CSIT_212', 'cname' => 'Discrete Structures', 'TH' => 60, 'PR' => 40],
+        ['cid' => 'CSIT_213', 'cname' => 'Introduction to Management', 'TH' => 60, 'PR' => 40],
+        ['cid' => 'CSIT_214', 'cname' => 'Object Oriented Programming With C++', 'TH' => 60, 'PR' => 40],
+        ['cid' => 'CSIT_215', 'cname' => 'Operating System', 'TH' => 60, 'PR' => 40],
+        ['cid' => 'CSIT_216', 'cname' => 'Statistics and Probability', 'TH' => 60, 'PR' => 40]
     ],
     4 => [
-        ['cid' => 'CSIT.221', 'cname' => 'Applied Statistics', 'TH' => 60, 'PR' => 40],
-        ['cid' => 'CSIT.222', 'cname' => 'Data Communication and Network', 'TH' => 60, 'PR' => 40],
-        ['cid' => 'CSIT.223', 'cname' => 'Database Management System', 'TH' => 60, 'PR' => 40],
-        ['cid' => 'CSIT.224', 'cname' => 'Numerical Methods', 'TH' => 60, 'PR' => 40],
-        ['cid' => 'CSIT.225', 'cname' => 'System Analysis and Design', 'TH' => 60, 'PR' => 40],
-        ['cid' => 'CSIT.226', 'cname' => 'Theory of Computation', 'TH' => 60, 'PR' => 40]
+        ['cid' => 'CSIT_221', 'cname' => 'Applied Statistics', 'TH' => 60, 'PR' => 40],
+        ['cid' => 'CSIT_222', 'cname' => 'Data Communication and Network', 'TH' => 60, 'PR' => 40],
+        ['cid' => 'CSIT_223', 'cname' => 'Database Management System', 'TH' => 60, 'PR' => 40],
+        ['cid' => 'CSIT_224', 'cname' => 'Numerical Methods', 'TH' => 60, 'PR' => 40],
+        ['cid' => 'CSIT_225', 'cname' => 'System Analysis and Design', 'TH' => 60, 'PR' => 40],
+        ['cid' => 'CSIT_226', 'cname' => 'Theory of Computation', 'TH' => 60, 'PR' => 40]
     ],
     5 => [
-        ['cid' => 'CSIT.311', 'cname' => 'Design and Analysis of Algorithm', 'TH' => 60, 'PR' => 40],
-        ['cid' => 'CSIT.312', 'cname' => 'Artificial Intelligence', 'TH' => 60, 'PR' => 40],
-        ['cid' => 'CSIT.313', 'cname' => 'Compiler Design', 'TH' => 60, 'PR' => 40],
-        ['cid' => 'CSIT.314', 'cname' => 'Simulation and Modelling', 'TH' => 60, 'PR' => 40],
-        ['cid' => 'CSIT.315', 'cname' => 'Graphics and Visual Computing', 'TH' => 60, 'PR' => 40],
-        ['cid' => 'CSIT.316', 'cname' => 'Web Technology I', 'TH' => 60, 'PR' => 40]
+        ['cid' => 'CSIT_311', 'cname' => 'Design and Analysis of Algorithm', 'TH' => 60, 'PR' => 40],
+        ['cid' => 'CSIT_312', 'cname' => 'Artificial Intelligence', 'TH' => 60, 'PR' => 40],
+        ['cid' => 'CSIT_313', 'cname' => 'Compiler Design', 'TH' => 60, 'PR' => 40],
+        ['cid' => 'CSIT_314', 'cname' => 'Simulation and Modelling', 'TH' => 60, 'PR' => 40],
+        ['cid' => 'CSIT_315', 'cname' => 'Graphics and Visual Computing', 'TH' => 60, 'PR' => 40],
+        ['cid' => 'CSIT_316', 'cname' => 'Web Technology I', 'TH' => 60, 'PR' => 40]
     ],
     6 => [
-        ['cid' => 'CSIT.321', 'cname' => 'Introduction to Cryptography', 'TH' => 60, 'PR' => 40],
-        ['cid' => 'CSIT.322', 'cname' => 'Java Programming I', 'TH' => 60, 'PR' => 40],
-        ['cid' => 'CSIT.323', 'cname' => 'Research Methodology for Computer Science', 'TH' => 60, 'PR' => 40],
-        ['cid' => 'CSIT.324', 'cname' => 'Software Engineering', 'TH' => 60, 'PR' => 40],
-        ['cid' => 'CSIT.325', 'cname' => 'Web Technology II', 'TH' => 60, 'PR' => 40],
-        ['cid' => 'CSIT.326', 'cname' => 'Minor Project I', 'TH' => 0, 'PR' => 100]
+        ['cid' => 'CSIT_321', 'cname' => 'Introduction to Cryptography', 'TH' => 60, 'PR' => 40],
+        ['cid' => 'CSIT_322', 'cname' => 'Java Programming I', 'TH' => 60, 'PR' => 40],
+        ['cid' => 'CSIT_323', 'cname' => 'Research Methodology for Computer Science', 'TH' => 60, 'PR' => 40],
+        ['cid' => 'CSIT_324', 'cname' => 'Software Engineering', 'TH' => 60, 'PR' => 40],
+        ['cid' => 'CSIT_325', 'cname' => 'Web Technology II', 'TH' => 60, 'PR' => 40],
+        ['cid' => 'CSIT_326', 'cname' => 'Minor Project I', 'TH' => 0, 'PR' => 100]
     ],
     7 => [
-        ['cid' => 'CSIT.411', 'cname' => 'E-commerce', 'TH' => 60, 'PR' => 40],
-        ['cid' => 'CSIT.412', 'cname' => 'Advanced Java Programming', 'TH' => 60, 'PR' => 40],
-        ['cid' => 'CSIT.413', 'cname' => 'Object Oriented Analysis and Design', 'TH' => 60, 'PR' => 40],
-        ['cid' => 'CSIT.414', 'cname' => 'Minor Project II', 'TH' => 0, 'PR' => 100],
-        ['cid' => 'CSIT.415.2', 'cname' => 'Database Admin', 'TH' => 60, 'PR' => 40],
-        ['cid' => 'CSIT.416.1', 'cname' => 'Data Mining & Warehousing', 'TH' => 60, 'PR' => 40]
+        ['cid' => 'CSIT_411', 'cname' => 'E-commerce', 'TH' => 60, 'PR' => 40],
+        ['cid' => 'CSIT_412', 'cname' => 'Advanced Java Programming', 'TH' => 60, 'PR' => 40],
+        ['cid' => 'CSIT_413', 'cname' => 'Object Oriented Analysis and Design', 'TH' => 60, 'PR' => 40],
+        ['cid' => 'CSIT_414', 'cname' => 'Minor Project II', 'TH' => 0, 'PR' => 100],
+        ['cid' => 'CSIT_415_2', 'cname' => 'Database Admin', 'TH' => 60, 'PR' => 40],
+        ['cid' => 'CSIT_416_1', 'cname' => 'Data Mining & Warehousing', 'TH' => 60, 'PR' => 40]
     ],
     8 => [
-        ['cid' => 'CSIT.421', 'cname' => 'Parallel Computing', 'TH' => 60, 'PR' => 40],
-        ['cid' => 'CSIT.422', 'cname' => 'Internship', 'TH' => 0, 'PR' => 100],
-        ['cid' => 'CSIT.423.2', 'cname' => 'Advanced Database Design', 'TH' => 60, 'PR' => 40],
-        ['cid' => 'CSIT.424.2', 'cname' => 'Distributed DBMS', 'TH' => 60, 'PR' => 40],
-        ['cid' => 'CSIT.425.3', 'cname' => 'E-Governance', 'TH' => 60, 'PR' => 40]
+        ['cid' => 'CSIT_421', 'cname' => 'Parallel Computing', 'TH' => 60, 'PR' => 40],
+        ['cid' => 'CSIT_422', 'cname' => 'Internship', 'TH' => 0, 'PR' => 100],
+        ['cid' => 'CSIT_423_2', 'cname' => 'Advanced Database Design', 'TH' => 60, 'PR' => 40],
+        ['cid' => 'CSIT_424_2', 'cname' => 'Distributed DBMS', 'TH' => 60, 'PR' => 40],
+        ['cid' => 'CSIT_425_3', 'cname' => 'E-Governance', 'TH' => 60, 'PR' => 40]
     ]
 ];
+
 
 // Insert into DB
 foreach ($semCourses as $sem => $courses) {

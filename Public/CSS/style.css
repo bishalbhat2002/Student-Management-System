@@ -1154,6 +1154,9 @@ tr{
   label{
     margin-top: 0;
   }
+  input, select{
+    margin-bottom: 1.5rem;
+  }
 }
 /* Overriding Label Margin Top */
 

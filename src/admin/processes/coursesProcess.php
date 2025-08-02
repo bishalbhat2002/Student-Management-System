@@ -2,7 +2,6 @@
 require_once "connection.php";
 require_once "../../includes/functions.php";
 
-session_start();
 if (isset($_GET['operation']) && $_GET['operation'] == 'assign-teacher-to-course') {
 
        $semId = $_POST['semId'];
@@ -11,9 +10,8 @@ if (isset($_GET['operation']) && $_GET['operation'] == 'assign-teacher-to-course
        try{
               foreach($coursesResult as $course){
                      $cid = $course['cid'];
-
-                     $postKey = str_replace('.', '_', $cid);
-                     $tid = $_POST[$postKey] ?? null;
+                    
+                     $tid = $_POST[$cid] ?? null;
                      
                      if(!empty($tid)){
                             $sql = "UPDATE sem{$semId}courses set tid = '$tid' where cid = '$cid'";
@@ -42,9 +40,8 @@ if (isset($_GET['operation']) && $_GET['operation'] == 'assign-teacher-to-course
                      foreach($coursesResult as $course){
                             $cid = $course['cid'];
 
-                            $postKey = str_replace('.', '_', $cid);
-                            $fromKey = $postKey."_from";
-                            $toKey = $postKey."_to";
+                            $fromKey = $cid."_from";
+                            $toKey = $cid."_to";
 
                             $from = $_POST[$fromKey] ?? null;
                             $to = $_POST[$toKey] ?? null;
