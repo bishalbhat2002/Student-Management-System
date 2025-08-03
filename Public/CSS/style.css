@@ -125,19 +125,6 @@ body{
 
 /* CSS Code for Error and Success Handling End Here */
 
-
-/* CSS code for handling Form field Error Start Here */
-.error{
-  font-size: 1.5rem;
-  color: var(--color-error);
-  position: relative;
-  bottom: 0.1rem;
-  left: 0.5rem;
-}
-/* CSS code for handling Form field Error End Here */
-
-
-
 /* Common CSS Code for Body START here*/
 body {
   width: 100vw;
@@ -1218,3 +1205,23 @@ tr{
   display: none;
 }
 /* Class to hide Element END */
+
+
+/* CSS code for handling Form field Error Start Here */
+.form-expan .error{
+  font-size: 1.5rem;
+  color: var(--color-error);
+  position: relative;
+  bottom: 0.1rem;
+  left: 0.5rem;
+}
+
+.form .error{
+  font-size: 1.5rem;
+  color: var(--color-error);
+  position: relative;
+  bottom: 1.1rem;
+  left: 0.5rem;
+}
+/* CSS code for handling Form field Error End Here */
+

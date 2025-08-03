@@ -333,9 +333,11 @@ select {
   padding: 0.5rem 1rem;
   color: var(--color-secondary-50);
   border-radius: 0.4rem;
+  border: 0.1rem solid rgb(171, 171, 171);
 }
 input[type="file"] {
-  padding-left: 0rem;
+   padding-left: 0.5rem;
+   padding-top: 0.5rem;
 }
 .big-checkbox {
   display: inline-block;
