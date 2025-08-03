@@ -167,7 +167,7 @@
                      <div class="student-status">
                             <div class="total-info">
                                    <div class="total-students">
-                                          <img src="<?php echo BASE_URL;?>/public/assets/images/student.png" alt="student icon"><?= $totalTeachers ?> <br>Total Students
+                                          <img src="<?php echo BASE_URL;?>/public/assets/images/student.png" alt="student icon"><?= $totalStudents ?> <br>Total Students
                                    </div>
                                    <div class="total-teachers">
                                           <img src="<?php echo BASE_URL;?>/public/assets/images/hat.png" alt="hat icon"><?= $totalTeachers ?> <br>Total Teachers

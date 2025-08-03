@@ -143,12 +143,37 @@ if ($_SERVER['REQUEST_METHOD'] === "POST" && $_GET['operation'] !== 'delete-teac
 }else if ($_SERVER['REQUEST_METHOD'] === "POST" && $_GET['operation'] === 'delete-teacher') {
        $tid = trim($_POST['tid']);
        try {
-              $sql = "DELETE FROM teacher tid where  = '$tid'";
+              // Start transaction for safe deletion
+              $conn->autocommit(FALSE);
+              
+              // Delete from sem1-8StudyMaterials tables
+              for($i = 1; $i <= 8; $i++) {
+                     $sql = "DELETE FROM sem{$i}StudyMaterials WHERE tid = '$tid'";
+                     $conn->query($sql);
+              }
+              
+              // Delete from sem1-8Courses tables (set tid to NULL or delete records)
+              for($i = 1; $i <= 8; $i++) {
+                     $sql = "UPDATE sem{$i}Courses SET tid = NULL WHERE tid = '$tid'";
+                     $conn->query($sql);
+              }
+              
+              // Finally delete the teacher record
+              $sql = "DELETE FROM teacher WHERE tid = '$tid'";
               $conn->query($sql);
-              header("location: ../teachers.php?view-all-teachers&success= Teacher($tid) Deleted successfully.");
+              
+              // Commit transaction
+              $conn->commit();
+              $conn->autocommit(TRUE);
+              
+              header("location: ../teachers.php?view-all-teachers&success=Teacher ($tid) deleted successfully.");
               exit();
        } catch (Exception $e) {
-              header("location: ../students.php?delete-teacher-id=$tid&error=" . $e->getMessage());
+              // Rollback transaction on error
+              $conn->rollback();
+              $conn->autocommit(TRUE);
+              
+              header("location: ../teachers.php?delete-teacher-id=$tid&error=" . urlencode($e->getMessage()));
               exit();
        }
 } else {

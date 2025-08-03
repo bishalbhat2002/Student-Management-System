@@ -437,7 +437,7 @@
                             </div>
 
                             <div class="col-span-2 center mt-1">
-                                   <button class="delete-btn btn large mt-1" onclick="return confirmDelete('TID')">Delete Teacher</button>
+                                   <button class="delete-btn btn large mt-1" onclick="return confirmDelete('<?= $row['tid'] ?>')">Delete Teacher</button>
                             </div>    
                      </form>
               </div>

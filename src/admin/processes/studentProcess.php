@@ -226,12 +226,47 @@ if ($_SERVER['REQUEST_METHOD'] === "POST" && $_GET['operation'] !== 'delete-stud
 } else if ($_SERVER['REQUEST_METHOD'] === "POST" && $_GET['operation'] === 'delete-student') {
        $regdNo = trim($_POST['regdNo']);
        try {
-              $sql = "DELETE FROM student where regdNo = '$regdNo'";
+              // Start transaction for safe deletion
+              $conn->autocommit(FALSE);
+              
+              // Delete from fees table
+              $sql = "DELETE FROM fees WHERE regdNo = '$regdNo'";
               $conn->query($sql);
-              header("location: ../students.php?view-all-students&success= Student Deleted successfully.");
+              
+              // Delete from sem1-8Admission tables
+              for($i = 1; $i <= 8; $i++) {
+                     $sql = "DELETE FROM sem{$i}Admission WHERE regdNo = '$regdNo'";
+                     $conn->query($sql);
+              }
+              
+              // Delete from sem1-8result tables
+              for($i = 1; $i <= 8; $i++) {
+                     $sql = "DELETE FROM sem{$i}result WHERE regdNo = '$regdNo'";
+                     $conn->query($sql);
+              }
+              
+              // Delete from sem1-8Attendance tables
+              for($i = 1; $i <= 8; $i++) {
+                     $sql = "DELETE FROM sem{$i}Attendance WHERE regdNo = '$regdNo'";
+                     $conn->query($sql);
+              }
+              
+              // Finally delete the student record
+              $sql = "DELETE FROM student WHERE regdNo = '$regdNo'";
+              $conn->query($sql);
+              
+              // Commit transaction
+              $conn->commit();
+              $conn->autocommit(TRUE);
+              
+              header("location: ../students.php?view-all-students&success=Student deleted successfully.");
               exit();
        } catch (Exception $e) {
-              header("location: ../students.php?delete-student-regdNo=$regdNo&error=" . $e->getMessage());
+              // Rollback transaction on error
+              $conn->rollback();
+              $conn->autocommit(TRUE);
+              
+              header("location: ../students.php?delete-student-regdNo=$regdNo&error=" . urlencode($e->getMessage()));
               exit();
        }
 } else {

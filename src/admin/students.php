@@ -150,7 +150,7 @@ if (isset($_GET['add-student'])) {
                                                  <td>
                                                         <a href="?view-student-regdNo=<?= $row['regdNo'] ?>" class="view-btn">View</a>
                                                         <a href="?edit-student-regdNo=<?= $row['regdNo'] ?>" class="edit-btn">Edit</a>
-                                                        <a href="?delete-student-regdNo=<?= $row['regdNo'] ?>" onclick="return confirmDelete('<?= $row['regdNo'] ?>')" class="delete-btn">Delete</a>
+                                                        <a href="?delete-student-regdNo=<?= $row['regdNo'] ?>" class="delete-btn">Delete</a>
                                                  </td>
                                           </tr>
                                    <?php

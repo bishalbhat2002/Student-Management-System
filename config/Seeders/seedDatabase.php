@@ -614,16 +614,16 @@ try {
 # Code to Insert Dummy Data in Sem4Attendance Table ...
 try {
        $sql = "INSERT INTO sem4Attendance (regdNo) VALUES
-              ('SC-2080-300-1'),
-              ('SC-2080-300-2'),
-              ('SC-2080-300-3'),
-              ('SC-2080-300-4'),
-              ('SC-2080-300-5'),
-              ('SC-2080-300-6'),
-              ('SC-2080-300-7'),
-              ('SC-2080-300-8'),
-              ('SC-2080-300-9'),
-              ('SC-2080-300-10')";
+              ('SC-2080-400-1'),
+              ('SC-2080-400-2'),
+              ('SC-2080-400-3'),
+              ('SC-2080-400-4'),
+              ('SC-2080-400-5'),
+              ('SC-2080-400-6'),
+              ('SC-2080-400-7'),
+              ('SC-2080-400-8'),
+              ('SC-2080-400-9'),
+              ('SC-2080-400-10')";
 
        $conn->query($sql);
 } catch (Exception $e) {
@@ -637,16 +637,15 @@ try {
 # Code to Insert Dummy Data in Sem5Attendance Table ...
 try {
        $sql = "INSERT INTO sem5Attendance (regdNo) VALUES
-              ('SC-2079-200-1'),
-              ('SC-2079-200-2'),
-              ('SC-2079-200-3'),
-              ('SC-2079-200-4'),
-              ('SC-2079-200-5'),
-              ('SC-2079-200-6'),
-              ('SC-2079-200-7'),
-              ('SC-2079-200-8'),
-              ('SC-2079-200-9'),
-              ('SC-2079-200-10')";
+              ('SC-2079-300-1'),
+              ('SC-2079-300-2'),
+              ('SC-2079-300-3'),
+              ('SC-2079-300-4'),
+              ('SC-2079-300-5'),
+              ('SC-2079-300-6'),
+              ('SC-2079-300-8'),
+              ('SC-2079-300-9'),
+              ('SC-2079-300-10')";
 
        $conn->query($sql);
 } catch (Exception $e) {
@@ -681,22 +680,14 @@ try {
 
 
 # Code to Insert Dummy Data in Sem7Attendance Table ...
-try {
-       $sql = "INSERT INTO sem7Attendance (regdNo) VALUES
-              ('SC-2077-100-1'),
-              ('SC-2077-100-2'),
-              ('SC-2077-100-3'),
-              ('SC-2077-100-4'),
-              ('SC-2077-100-5'),
-              ('SC-2077-100-6'),
-              ('SC-2077-100-7'),
-              ('SC-2077-100-8'),
-              ('SC-2077-100-9'),
-              ('SC-2077-100-10')";
-       $conn->query($sql);
-} catch (Exception $e) {
-       exit("<br><b>Error:</b>" . $e->getMessage());
-}
+# Note: No students currently in semester 7, so no attendance data needed
+# try {
+#        $sql = "INSERT INTO sem7Attendance (regdNo) VALUES
+#               ('placeholder')";
+#        $conn->query($sql);
+# } catch (Exception $e) {
+#        exit("<br><b>Error:</b>" . $e->getMessage());
+# }
 
 
 
