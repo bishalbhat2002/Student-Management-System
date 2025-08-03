@@ -66,8 +66,20 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         $conn->query($sql);
 
         #Add the data in Fees Table
-        $sqlFees = "UPDATE fees set sem{$semId} = '$amount' where regdNo = '$regdNo'";
-        $conn->query($sqlFees);
+        try{
+            $feeCheckSql = "SELECT * from fees where regdNo = '$regdNo'";
+            $resultFeeCheckSql = $conn->query($feeCheckSql);
+            if($resultFeeCheckSql->num_rows == 0){
+                $sqlFees = "INSERT into fees (regdNo, sem{$semId}) VALUES ('$regdNo' ,'$amount')";
+            }else{
+                $sqlFees = "UPDATE fees set sem{$semId} = '$amount' where regdNo = '$regdNo'";
+            }
+
+            $conn->query($sqlFees);
+        }catch(Exception $e){
+            exit("<br><b>Error:</b>".$e->getMessage());
+        }
+
 
         #Update runningSemester Total Student Info
         $sql2 = "UPDATE runningSemester set totalStudent = totalStudent + 1 Where rsid = '$semId'";
@@ -75,7 +87,12 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 
         #Insert the same student RegdNo to Sem(1-8)attendance table
         $sql3 = "INSERT into sem{$semId}attendance (regdNo) values ('$regdNo')";
-        $conn->query($sql3);
+        $conn->query($sql3);     
+        
+        #Update the Student table SemId
+        $sql4 = "UPDATE student SET semId = '$semId' WHERE regdNo = '$regdNo'";
+        $conn->query($sql4);
+
         header("location: ../students.php?view-admission-semId=$semId&success=Student Admitted successfully to ".getSemName($semId)." Semester");
         exit();
     } catch (Exception $e) {

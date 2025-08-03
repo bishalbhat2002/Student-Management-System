@@ -54,7 +54,7 @@ try {
               academicQualification varchar(100) NOT NULL,
               phone VARCHAR(15) UNIQUE NOT NULL,
               email VARCHAR(100) UNIQUE NOT NULL,
-              address TEXT,
+              address varchar(90),
               password VARCHAR(255) NOT NULL,
               photo VARCHAR(255) DEFAULT '../../public/assets/images/image.jpg'
               )";
@@ -77,9 +77,9 @@ try {
        die("<b>Semester Table Creation Failed: </b>" . $e->getMessage());
 }
 
-
 // Student Table Creation Code
 try {
+
        $sql = "CREATE TABLE Student (
               regdNo VARCHAR(20) PRIMARY KEY,
               name VARCHAR(100) NOT NULL,
@@ -428,7 +428,6 @@ try {
 } catch (Exception $e) {
     die("sem8result Table creation failed: " . $e->getMessage());
 }
-
 
 
 // // Attendance Table Creation Code
