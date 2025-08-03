@@ -454,9 +454,10 @@ body {
   display: flex;
   justify-content: start;
   align-items: end;
-  align-self: start;
+  align-self: end;
   margin-left: 1rem;
   gap: 2rem;
+  margin-bottom: 3rem;
 
   .tadmission-container {
     display: flex;
@@ -509,7 +510,8 @@ body {
   max-width: 50rem;
   max-height: 54rem;
   padding: 2rem;
-  align-self: middle;
+  margin-bottom: 3rem;
+  align-self: end;
   div{
     display: flex;
     flex-direction: column;
@@ -1059,34 +1061,38 @@ tr{
 
 /* Teacher Section Code START here */
 .study-material-container{
-  max-height: 30rem;
-  min-width: min(100rem, 90vw);
-  max-width: 90%; 
+  /* min-height: 30rem; */
+
+  min-width: min(90rem, 90%);
+  margin: 0 7rem;
+  width: 90rem;
+  max-width: 90rem; 
   background-color: var(--color-primary-100);
   color: var(--color-secondary-80);
   border: 0.2rem solid var(--color-primary-100);
   border-radius: 0.5rem;
-  padding: 0.5rem 1rem;
+  padding: 1rem 1rem;
   margin-bottom: 2rem;
   box-shadow: var(--notes-shadow);
   display: grid;
   grid-template-rows: 3rem 1fr;
-  grid-template-columns: minmax(6rem, 10rem) 1fr minmax(7rem, 12rem);
+  grid-template-columns: 7rem 1fr 12rem;
   grid-template-areas: 
-          'id subject-title actions'
+          'id  subject-title actions'
           'id-value main-content actions';
   .id{
     grid-area: id;
     font-size: 2rem;
     font-weight: 500;
     justify-self: center;
-    align-self: center;
+    align-self: middle;
+    margin-top: 1rem;
   }
   .subject-title{
     grid-area: subject-title;
-
     font-size: 2rem;
     font-weight: 500;
+    padding-left: 1rem;
   }
   .id-value{
     grid-area: id-value;
@@ -1095,23 +1101,39 @@ tr{
     justify-self: center;
     align-self: start;
     margin-top: 0.5rem;
+    margin-top: 1.5rem;
   }
   .main-content{
     grid-area: main-content;
+    padding-left: 1rem;
     p{
       font-size: 1.5rem;
       font-weight: 400;
-      margin: 0.3rem 0;
+      margin: -0.3rem 0 1rem 0;
     }
-    .teacher-name, .sent-date{
+    .sender-info-box{
+      width: 20rem;
+      display: flex;
+      gap: 1.5rem;
+      justify-content: start;
+      align-items: baseline;
+    }
+   .teacher-name{
+    background-color: var(--color-highlighter);
+    border-radius: 0.3rem;
+      padding: 0.5rem 1rem;
+      font-size: 1.4rem;
+      font-weight: 400;
+    }
+    .sent-date{
       font-size: 1.3rem;
-      font-weight: 500;
+      font-weight: 400;
     }
   }
   .actions{
     grid-area: actions;
     justify-self: center;
-    align-self: center;
+    align-self: flex-end;
   }
   a{
     font-size: 1.3rem;
@@ -1119,6 +1141,10 @@ tr{
 }
 
 .smc-student{
+  padding-right: 2.5rem;
+  display: grid;
+  grid-template-rows: 3rem 1fr;
+  grid-template-columns: 7rem 1fr;
   grid-template-areas: 
   'id subject-title actions'
   'id-value main-content main-content';

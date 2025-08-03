@@ -104,3 +104,56 @@ function getStudent($regdNo){
               exit("<br><b>Error:</b>" . $e->getMessage());
        } 
 }
+
+
+function getCourseName($semId, $cid){
+       try {
+              $sql = "SELECT * from sem{$semId}courses WHERE cid = '$cid'";
+              global $conn;
+              $result = $conn->query($sql);
+
+              if ($result->num_rows > 0) {
+                     $row=$result->fetch_assoc();
+                     return $row['cname'];
+              } else {
+                     return "";
+              }
+       } catch (Exception $e) {
+              exit("<br><b>Error:</b>" . $e->getMessage());
+       } 
+}
+
+function getTeacherName($tid){
+       try {
+              $sql = "SELECT * from teacher WHERE tid = '$tid'";
+              global $conn;
+              $result = $conn->query($sql);
+
+              if ($result->num_rows > 0) {
+                     $row=$result->fetch_assoc();
+                     return $row['name'];
+              } else {
+                     return "";
+              }
+       } catch (Exception $e) {
+              exit("<br><b>Error:</b>" . $e->getMessage());
+       } 
+}
+
+function getAttendance($semId, $regdNo){
+       try {
+              $table = "sem{$semId}Attendance";
+              $sql = "SELECT * from $table WHERE regdNo = '$regdNo'";
+              global $conn;
+              $result = $conn->query($sql);
+
+              if ($result->num_rows > 0) {
+                     $row=$result->fetch_assoc();
+                     return $row;
+              } else {
+                     return "";
+              }
+       } catch (Exception $e) {
+              exit("<br><b>Error:</b>" . $e->getMessage());
+       }       
+}

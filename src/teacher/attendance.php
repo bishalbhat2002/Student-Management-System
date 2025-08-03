@@ -41,6 +41,28 @@
                      header("location: attendance.php?take-attendance&error=Semester is Required.");
                      exit();
               }
+              
+              #checking if attendance already taken ....
+
+              $tableName = "sem{$semId}Attendance";
+              $currentDate = date('Y-m-d');
+
+              try{
+                     $statusQuery = $conn->query("SELECT * FROM $tableName");
+              }catch (Exception $e) {
+                     die("<br><b>Error:</b>".$e->getMessage());
+              }
+
+              #Check if attendance is already taken or Not...
+              if($statusQuery->num_rows > 0){
+                     foreach($statusQuery as $status){
+                            if($status['lastAttend']==$currentDate){
+                                   header("location:attendance.php?view-attendance-sem&semester=$semId&error= Attendance already taken for Today.");
+                                   exit();
+                            }
+                     }
+              }
+
               $batch = getSemBatch($semId);
               $semName = getSemName($semId);
 
@@ -48,7 +70,7 @@
                      $sql = "SELECT * FROM student s JOIN sem{$semId}Admission a on s.regdNo = a.regdNo WHERE s.batch = '$batch'";
                      $result = $conn->query($sql);
                      if ($result->num_rows === 0) {
-                            header("location: attendance.php?take-attendance&error=No student is admitted to $semName Semester.");
+                            header("location: attendance.php?take-attendance&error=No student is admitted to $semName Semester From $batch Batch.");
                             exit();
                      }
               } catch (Exception $e) {
@@ -142,7 +164,7 @@
 
                      $result = $conn->query($sql);
                      if ($result->num_rows === 0) {
-                            header("location: attendance.php?view-attendance&error=No student is admitted to $semName Semester.");
+                            header("location: attendance.php?view-attendance&error=No student is admitted to $semName Semester From $batch Batch.");
                             exit();
                      }
               } catch (Exception $e) {
@@ -174,7 +196,7 @@
                                   <tr>
                                           <td><?= $row['regdNo']?></td>
                                           <td><?= $row['name']?></td>
-                                          <td class="tac v-align-m"><?= ($currentDate == $lastupdate) ? "Present" : "Absent"?></td>
+                                          <td class="tac v-align-m"><?= ($currentDate == $lastupdate) ? "✅" : "❌"?></td>
                                           <td class="tac v-align-m"><?= $row['lastAttend']?></td>
                                           <td class="tac v-align-m"><?= $row['present'] .'/'. $row['total'] ?></td>
                                           <td><?= $row['phone']?></td>

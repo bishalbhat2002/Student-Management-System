@@ -95,7 +95,7 @@ if (isset($_GET['add-student'])) {
                      </div>
 
                      <div class="col-span-2 center">
-                            <button class="add-btn btn large mt-1">Add Student</button>
+                            <button type="submit" class="add-btn btn large mt-1">Add Student</button>
                      </div>
 
 

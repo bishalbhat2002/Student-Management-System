@@ -209,11 +209,16 @@ if (isset($_GET['update-student-info'])) {
                      <?php      
                             $semId = $_SESSION['semId'];
                             $semName = getSemName($semId);
+                            $attendanceArray = getAttendance($semId, $_SESSION['regdNo']);
+                            $attendance = "-";
+                            if($attendanceArray !== ""){
+                                   $attendance = $attendanceArray['present'] ." / ". $attendanceArray['total'];
+                            }
                      ?>     
 
                      <div class="student-status ">
                             <div class="short-info">
-                                   <div class="total-attendance">39 / 45 <br>Attendance</div>
+                                   <div class="total-attendance"><?= $attendance ?><br>Attendance</div>
                                    <div class="semester"><?= $semName ?> <br>semester</div>
                             </div>
 
@@ -263,8 +268,9 @@ if (isset($_GET['update-student-info'])) {
                                    <img src="<?= $row['photo']?>" alt="profile picture">
                             </div>
                             <p>Name: <?= $row['name']?></p>
-                            <p>Gender: <?= $row['gender']?></p>
                             <p>DOB: <?= $row['dob']?></p>
+                            <p>Gender: <?= ucfirst($row['gender']) ?></p>
+                            <p>Batch: <?= $row['batch']?></p>
                             <p>Faculty: <?= $row['faculty']?></p>
                             <p>Phone: <?= $row['phone']?></p>
                             <p>Email: <?= $row['email']?></p>

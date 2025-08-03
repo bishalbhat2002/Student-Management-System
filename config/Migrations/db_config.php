@@ -473,12 +473,14 @@ for($i=1; $i<=8; $i++){
        try {
               $sql = "CREATE TABLE sem{$i}StudyMaterials (
                      smid INT PRIMARY KEY AUTO_INCREMENT,
-                     subject VARCHAR(255) NOT NULL,
+                     batch YEAR NOT NULL,
+                     cid VARCHAR(20) NOT NULL,
                      message TEXT NOT NULL,
                      file VARCHAR(255),
-                     tid int,
+                     tid int NOT NULL,
                      date DATE DEFAULT CURRENT_DATE,
-                     FOREIGN KEY (tid) REFERENCES Teacher(tid)
+                     FOREIGN KEY (tid) REFERENCES Teacher(tid),
+                     FOREIGN KEY (cid) REFERENCES sem{$i}Courses(cid)
                      )";
               $conn->query($sql);
        } catch (Exception $e) {

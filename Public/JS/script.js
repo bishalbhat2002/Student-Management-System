@@ -362,6 +362,7 @@ function validateStudentInfo() {
 
     // Get error display elements
     const batchError = document.getElementById('batchError');
+    const regdNoError = document.getElementById('gegdNoError');
     const nameError = document.getElementById('nameError');
     const facultyError = document.getElementById('facultyError');
     const dobError = document.getElementById('dobError');
@@ -376,6 +377,7 @@ function validateStudentInfo() {
     const nebResultError = document.getElementById('nebResultError');
 
     // Reset error messages
+    regdNoError.textContent = "";
     batchError.textContent = "";
     nameError.textContent = "";
     if(facultyError){
@@ -393,6 +395,7 @@ function validateStudentInfo() {
     nebResultError.textContent = "";
 
     // Get field values directly (all elements are assumed to exist)
+    const regdNo = document.getElementById('regdNo').value.trim();
     const name = document.getElementById('name').value.trim();
     const batch = document.getElementById('batch').value.trim();
     const faculty = document.getElementById('faculty').value.trim();
@@ -411,6 +414,10 @@ function validateStudentInfo() {
     const nebResultInput = document.getElementById('nebResult');
 
     // Validate required text fields
+    if (!regdNo) {
+        regdNoError.textContent = "RegdNo is required.";
+        isValid = false;
+    }    
     if (!batch) {
         batchError.textContent = "Batch is required.";
         isValid = false;
@@ -562,21 +569,28 @@ function validateStudyMaterialForm() {
     let isValid = true;
 
     // Get field values
+    const semester = document.getElementById("semester").value;
     const subject = document.getElementById("subject").value;
     const message = document.getElementById("Message").value.trim();
     const fileInput = document.getElementById("file");
 
     // Get error display elements
+    const semesterError = document.getElementById("semesterError");
     const subjectError = document.getElementById("subjectError");
     const messageError = document.getElementById("messageError");
     const fileError = document.getElementById("fileError");
 
     // Reset error messages
+    semesterError.textContent = "";
     subjectError.textContent = "";
     messageError.textContent = "";
     fileError.textContent = "";
 
     // Check required field: subject
+    if (!semester) {
+        semesterError.textContent = "Semester is required.";
+        isValid = false;
+    }    
     if (!subject) {
         subjectError.textContent = "Subject is required.";
         isValid = false;
@@ -599,10 +613,9 @@ function validateStudyMaterialForm() {
         const file = fileInput.files[0];
         // Allowed MIME types: Word, Excel, Image (JPEG, PNG), PDF
         const allowedTypes = [
-            "application/msword",
             "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-            "application/vnd.ms-excel",
             "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            'application/vnd.openxmlformats-officedocument.presentationml.presentation',
             "image/jpeg",
             "image/png",
             "application/pdf"
@@ -619,7 +632,7 @@ function validateStudyMaterialForm() {
 
     return isValid;
 }
-const studyMaterialForm = document.getElementById("studyMaterialForm"); 
+const studyMaterialForm = document.getElementById("sendStudyMaterialForm"); 
 if (studyMaterialForm) {
     studyMaterialForm.addEventListener("submit", (event) => {
         if (!validateStudyMaterialForm()) {
@@ -634,21 +647,28 @@ function validateUpdateStudyMaterialForm() {
     let isValid = true;
 
     // Get field values
+    const semester = document.getElementById("semester").value;
     const subject = document.getElementById("subject").value;
     const message = document.getElementById("Message").value.trim();
     const fileInput = document.getElementById("file");
 
     // Get error display elements
+    const semesterError = document.getElementById("semesterError");
     const subjectError = document.getElementById("subjectError");
     const messageError = document.getElementById("messageError");
     const fileError = document.getElementById("fileError");
 
     // Reset error messages
+    semesterError.textContent = "";
     subjectError.textContent = "";
     messageError.textContent = "";
     fileError.textContent = "";
 
     // Check required field: subject
+    if (!semester) {
+        semesterError.textContent = "Semester is required.";
+        isValid = false;
+    }
     if (!subject) {
         subjectError.textContent = "Subject is required.";
         isValid = false;
@@ -668,10 +688,9 @@ function validateUpdateStudyMaterialForm() {
         const file = fileInput.files[0];
         // Allowed MIME types: Word, Excel, Image (JPEG, PNG), PDF
         const allowedTypes = [
-            "application/msword",
             "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-            "application/vnd.ms-excel",
             "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            'application/vnd.openxmlformats-officedocument.presentationml.presentation',
             "image/jpeg",
             "image/png",
             "application/pdf"
