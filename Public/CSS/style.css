@@ -144,7 +144,6 @@ body {
   height: 100vh;
   background-color: var(--bgcolor-primary-80);
   position: relative;
-
   display: grid;
   grid-template-rows: 7rem 1fr;
   grid-template-columns: 20rem 1fr;
@@ -156,6 +155,7 @@ body {
   .logo {
     grid-area: header;
     width: 100%;
+    width: 100%;
     height: 7rem;
     display: flex;
     justify-content: center;
@@ -166,6 +166,7 @@ body {
     z-index: 4;
     position: sticky;
     top: 0;
+  
   
     a{
       transform: none;

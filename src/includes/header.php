@@ -42,6 +42,7 @@
 </head>
 <body>
        <div class="logo"><a href="<?php echo BASE_URL; ?>">SMS</a></div>
+       
        <div id="hambuger-icon"><img src="<?php echo BASE_URL;?>/public/assets/images/hambuger.png" alt="Hamburger icon"></div>
        <nav class="navbar">
 
