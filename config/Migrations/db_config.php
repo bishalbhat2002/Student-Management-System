@@ -579,7 +579,6 @@ foreach ($semCourses as $sem => $courses) {
 
 
 require_once "../absolutepath.php";
-
 #Inserting demo records in users table for Testing...  // Comment this part after executing this file once...
        $demoPhoto = BASE_URL.'/public/assets/images/image.jpg';
        $demoSeeResult = BASE_URL.'/public/assets/images/demoSeeResult.png';
@@ -606,8 +605,8 @@ require_once "../absolutepath.php";
        }          
        
        try{
-              $sql = "INSERT INTO Student (regdNo, name, gender, dob, faculty, phone, email, address, parentName, parentPhone, password, batch, photo, seeResult, nebResult) VALUES
-                     ('student', 'Bishal Bhat', 'male', '2002-12-17', 'Science & Technology', '9841023456', 'bishalbhat2002@gmail.com', 'Mahendranagar, Kanchanpur Nepal', 'xyzzz', '9841098765', '$password', 2082,'$demoPhoto', '$demoSeeResult', '$demoNebResult')";
+              $sql = "INSERT INTO Student (regdNo, name, gender, dob, faculty, phone, email, address, parentName, parentPhone, password, batch, semId,photo, seeResult, nebResult) VALUES
+                     ('student', 'Bishal Bhat', 'male', '2002-12-17', 'Science & Technology', '9841023456', 'bishalbhat2002@gmail.com', 'Mahendranagar, Kanchanpur Nepal', 'xyzzz', '9841098765', '$password', 2082, 2, '$demoPhoto', '$demoSeeResult', '$demoNebResult')";
               $conn->query($sql);
               echo "<br>Demo Student Data Inserted Successfully...";
        }catch(Exception $e){

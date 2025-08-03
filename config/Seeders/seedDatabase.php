@@ -3,28 +3,28 @@ require_once "../db_connect.php";
 
 
 # Default Password for all users (Admin, Teacher, Student)
-$plainPassword = '0000';
-$hashedPassword = password_hash($plainPassword, PASSWORD_BCRYPT);
+$password = '0000';
+
 
 
 # Code to Insert Dummy Teacher Data ...
 try {
        $sql = "INSERT INTO Teacher (name, gender, dob, faculty, academicQualification, phone, email, address, password, photo) VALUES
-              ('Ram Prasad Sharma', 'male', '1980-05-14', 'CSIT', 'M.Sc. Computer Science', '9800000001', 'ram.sharma@example.com', 'Kathmandu', '$hashedPassword', 'http://localhost/student-management-system/public/assets/images/image.jpg'),
-              ('Sita Kumari Bhattarai', 'female', '1985-08-25', 'CSIT', 'M.Sc. Information Technology', '9800000002', 'sita.bhattarai@example.com', 'Lalitpur', '$hashedPassword', 'http://localhost/student-management-system/public/assets/images/image.jpg'),
-              ('Krishna Bahadur Karki', 'male', '1979-11-12', 'CSIT', 'MCA', '9800000003', 'krishna.karki@example.com', 'Bhaktapur', '$hashedPassword', 'http://localhost/student-management-system/public/assets/images/image.jpg'),
-              ('Gita Devi Poudel', 'female', '1990-02-03', 'CSIT', 'M.Sc. Computer Science', '9800000004', 'gita.poudel@example.com', 'Pokhara', '$hashedPassword', 'http://localhost/student-management-system/public/assets/images/image.jpg'),
-              ('Bishnu Raj Joshi', 'male', '1982-07-19', 'CSIT', 'MIT', '9800000005', 'bishnu.joshi@example.com', 'Butwal', '$hashedPassword', 'http://localhost/student-management-system/public/assets/images/image.jpg'),
-              ('Sunita Koirala', 'female', '1988-09-10', 'CSIT', 'MCA', '9800000006', 'sunita.koirala@example.com', 'Dharan', '$hashedPassword', 'http://localhost/student-management-system/public/assets/images/image.jpg'),
-              ('Hari Prasad Ghimire', 'male', '1981-03-22', 'CSIT', 'M.Sc. Computer Science', '9800000007', 'hari.ghimire@example.com', 'Chitwan', '$hashedPassword', 'http://localhost/student-management-system/public/assets/images/image.jpg'),
-              ('Mina Kumari Acharya', 'female', '1992-01-15', 'CSIT', 'MIT', '9800000008', 'mina.acharya@example.com', 'Hetauda', '$hashedPassword', 'http://localhost/student-management-system/public/assets/images/image.jpg'),
-              ('Nabin Kumar Rijal', 'male', '1983-06-30', 'CSIT', 'M.Sc. IT', '9800000009', 'nabin.rijal@example.com', 'Biratnagar', '$hashedPassword', 'http://localhost/student-management-system/public/assets/images/image.jpg'),
-              ('Anita Shrestha', 'female', '1987-12-05', 'CSIT', 'MCA', '9800000010', 'anita.shrestha@example.com', 'Nepalgunj', '$hashedPassword', 'http://localhost/student-management-system/public/assets/images/image.jpg'),
-              ('Dipak Raj Bhandari', 'male', '1980-10-18', 'CSIT', 'M.Sc. Computer Science', '9800000011', 'dipak.bhandari@example.com', 'Dhangadhi', '$hashedPassword', 'http://localhost/student-management-system/public/assets/images/image.jpg'),
-              ('Rita Kumari Subedi', 'female', '1991-04-08', 'CSIT', 'M.Sc. IT', '9800000012', 'rita.subedi@example.com', 'Janakpur', '$hashedPassword', 'http://localhost/student-management-system/public/assets/images/image.jpg'),
-              ('Shyam Sundar Adhikari', 'male', '1984-09-25', 'CSIT', 'MIT', '9800000013', 'shyam.adhikari@example.com', 'Gorkha', '$hashedPassword', 'http://localhost/student-management-system/public/assets/images/image.jpg'),
-              ('Kalpana Devi Neupane', 'female', '1989-11-11', 'CSIT', 'MCA', '9800000014', 'kalpana.neupane@example.com', 'Ilam', '$hashedPassword', 'http://localhost/student-management-system/public/assets/images/image.jpg'),
-              ('Ramesh Bahadur Thapa', 'male', '1986-07-07', 'CSIT', 'M.Sc. Computer Science', '9800000015', 'ramesh.thapa@example.com', 'Bharatpur', '$hashedPassword', 'http://localhost/student-management-system/public/assets/images/image.jpg')";
+              ('Ram Prasad Sharma', 'male', '1980-05-14', 'CSIT', 'M.Sc. Computer Science', '9800000001', 'ram.sharma@example.com', 'Kathmandu', '$password', 'http://localhost/student-management-system/public/assets/images/image.jpg'),
+              ('Sita Kumari Bhattarai', 'female', '1985-08-25', 'CSIT', 'M.Sc. Information Technology', '9800000002', 'sita.bhattarai@example.com', 'Lalitpur', '$password', 'http://localhost/student-management-system/public/assets/images/image.jpg'),
+              ('Krishna Bahadur Karki', 'male', '1979-11-12', 'CSIT', 'MCA', '9800000003', 'krishna.karki@example.com', 'Bhaktapur', '$password', 'http://localhost/student-management-system/public/assets/images/image.jpg'),
+              ('Gita Devi Poudel', 'female', '1990-02-03', 'CSIT', 'M.Sc. Computer Science', '9800000004', 'gita.poudel@example.com', 'Pokhara', '$password', 'http://localhost/student-management-system/public/assets/images/image.jpg'),
+              ('Bishnu Raj Joshi', 'male', '1982-07-19', 'CSIT', 'MIT', '9800000005', 'bishnu.joshi@example.com', 'Butwal', '$password', 'http://localhost/student-management-system/public/assets/images/image.jpg'),
+              ('Sunita Koirala', 'female', '1988-09-10', 'CSIT', 'MCA', '9800000006', 'sunita.koirala@example.com', 'Dharan', '$password', 'http://localhost/student-management-system/public/assets/images/image.jpg'),
+              ('Hari Prasad Ghimire', 'male', '1981-03-22', 'CSIT', 'M.Sc. Computer Science', '9800000007', 'hari.ghimire@example.com', 'Chitwan', '$password', 'http://localhost/student-management-system/public/assets/images/image.jpg'),
+              ('Mina Kumari Acharya', 'female', '1992-01-15', 'CSIT', 'MIT', '9800000008', 'mina.acharya@example.com', 'Hetauda', '$password', 'http://localhost/student-management-system/public/assets/images/image.jpg'),
+              ('Nabin Kumar Rijal', 'male', '1983-06-30', 'CSIT', 'M.Sc. IT', '9800000009', 'nabin.rijal@example.com', 'Biratnagar', '$password', 'http://localhost/student-management-system/public/assets/images/image.jpg'),
+              ('Anita Shrestha', 'female', '1987-12-05', 'CSIT', 'MCA', '9800000010', 'anita.shrestha@example.com', 'Nepalgunj', '$password', 'http://localhost/student-management-system/public/assets/images/image.jpg'),
+              ('Dipak Raj Bhandari', 'male', '1980-10-18', 'CSIT', 'M.Sc. Computer Science', '9800000011', 'dipak.bhandari@example.com', 'Dhangadhi', '$password', 'http://localhost/student-management-system/public/assets/images/image.jpg'),
+              ('Rita Kumari Subedi', 'female', '1991-04-08', 'CSIT', 'M.Sc. IT', '9800000012', 'rita.subedi@example.com', 'Janakpur', '$password', 'http://localhost/student-management-system/public/assets/images/image.jpg'),
+              ('Shyam Sundar Adhikari', 'male', '1984-09-25', 'CSIT', 'MIT', '9800000013', 'shyam.adhikari@example.com', 'Gorkha', '$password', 'http://localhost/student-management-system/public/assets/images/image.jpg'),
+              ('Kalpana Devi Neupane', 'female', '1989-11-11', 'CSIT', 'MCA', '9800000014', 'kalpana.neupane@example.com', 'Ilam', '$password', 'http://localhost/student-management-system/public/assets/images/image.jpg'),
+              ('Ramesh Bahadur Thapa', 'male', '1986-07-07', 'CSIT', 'M.Sc. Computer Science', '9800000015', 'ramesh.thapa@example.com', 'Bharatpur', '$password', 'http://localhost/student-management-system/public/assets/images/image.jpg')";
 
        $conn->query($sql);
 } catch (Exception $e) {
@@ -37,16 +37,16 @@ try {
 # Code to Insert Dummy Student Data 2077 Batch...
 try {
        $sql = "INSERT INTO Student (regdNo, name, gender, dob, faculty, phone, email, address, parentName, parentPhone, password, batch, semId, photo, seeResult, nebResult) VALUES
-                     ('SC-2077-100-1', 'Aakash Bhatt', 'male', '2001-03-15', 'CSIT', '9811000001', 'aakash.bhatt@example.com', 'Mahendranagar Kanchanpur', 'Ram Bhatt', '9812000001', '$hashedPassword', 2077, 8, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
-                     ('SC-2077-100-2', 'Bhawana Joshi', 'female', '2001-06-22', 'CSIT', '9811000002', 'bhawana.joshi@example.com', 'Mahendranagar Kanchanpur', 'Keshav Joshi', '9812000002', '$hashedPassword', 2077, 8, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
-                     ('SC-2077-100-3', 'Suman Shahi', 'male', '2000-12-10', 'CSIT', '9811000003', 'suman.shahi@example.com', 'Mahendranagar Kanchanpur', 'Hari Shahi', '9812000003', '$hashedPassword', 2077, 8, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
-                     ('SC-2077-100-4', 'Prerana Bista', 'female', '2002-01-05', 'CSIT', '9811000004', 'prerana.bista@example.com', 'Mahendranagar Kanchanpur', 'Mohan Bista', '9812000004', '$hashedPassword', 2077, 8, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
-                     ('SC-2077-100-5', 'Roshan Saud', 'male', '2001-09-09', 'CSIT', '9811000005', 'roshan.saud@example.com', 'Mahendranagar Kanchanpur', 'Gopal Saud', '9812000005', '$hashedPassword', 2077, 8, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
-                     ('SC-2077-100-6', 'Samiksha Thapa', 'female', '2002-03-14', 'CSIT', '9811000006', 'samiksha.thapa@example.com', 'Mahendranagar Kanchanpur', 'Ramesh Thapa', '9812000006', '$hashedPassword', 2077, 8, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
-                     ('SC-2077-100-7', 'Prakash Rokaya', 'male', '2001-02-18', 'CSIT', '9811000007', 'prakash.rokaya@example.com', 'Mahendranagar Kanchanpur', 'Suresh Rokaya', '9812000007', '$hashedPassword', 2077, 8, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
-                     ('SC-2077-100-8', 'Anjali Singh', 'female', '2002-07-28', 'CSIT', '9811000008', 'anjali.singh@example.com', 'Mahendranagar Kanchanpur', 'Dinesh Singh', '9812000008', '$hashedPassword', 2077, 8, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
-                     ('SC-2077-100-9', 'Bijay Bhatta', 'male', '2001-08-11', 'CSIT', '9811000009', 'bijay.bhatta@example.com', 'Mahendranagar Kanchanpur', 'Shankar Bhatta', '9812000009', '$hashedPassword', 2077, 8, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
-                     ('SC-2077-100-10', 'Kripa Mahara', 'female', '2002-05-20', 'CSIT', '9811000010', 'kripa.mahara@example.com', 'Mahendranagar Kanchanpur', 'Birendra Mahara', '9812000010', '$hashedPassword', 2077, 8, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png')";
+                     ('SC-2077-100-1', 'Aakash Bhatt', 'male', '2001-03-15', 'CSIT', '9811000001', 'aakash.bhatt@example.com', 'Mahendranagar Kanchanpur', 'Ram Bhatt', '9812000001', '$password', 2077, 8, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
+                     ('SC-2077-100-2', 'Bhawana Joshi', 'female', '2001-06-22', 'CSIT', '9811000002', 'bhawana.joshi@example.com', 'Mahendranagar Kanchanpur', 'Keshav Joshi', '9812000002', '$password', 2077, 8, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
+                     ('SC-2077-100-3', 'Suman Shahi', 'male', '2000-12-10', 'CSIT', '9811000003', 'suman.shahi@example.com', 'Mahendranagar Kanchanpur', 'Hari Shahi', '9812000003', '$password', 2077, 8, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
+                     ('SC-2077-100-4', 'Prerana Bista', 'female', '2002-01-05', 'CSIT', '9811000004', 'prerana.bista@example.com', 'Mahendranagar Kanchanpur', 'Mohan Bista', '9812000004', '$password', 2077, 8, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
+                     ('SC-2077-100-5', 'Roshan Saud', 'male', '2001-09-09', 'CSIT', '9811000005', 'roshan.saud@example.com', 'Mahendranagar Kanchanpur', 'Gopal Saud', '9812000005', '$password', 2077, 8, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
+                     ('SC-2077-100-6', 'Samiksha Thapa', 'female', '2002-03-14', 'CSIT', '9811000006', 'samiksha.thapa@example.com', 'Mahendranagar Kanchanpur', 'Ramesh Thapa', '9812000006', '$password', 2077, 8, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
+                     ('SC-2077-100-7', 'Prakash Rokaya', 'male', '2001-02-18', 'CSIT', '9811000007', 'prakash.rokaya@example.com', 'Mahendranagar Kanchanpur', 'Suresh Rokaya', '9812000007', '$password', 2077, 8, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
+                     ('SC-2077-100-8', 'Anjali Singh', 'female', '2002-07-28', 'CSIT', '9811000008', 'anjali.singh@example.com', 'Mahendranagar Kanchanpur', 'Dinesh Singh', '9812000008', '$password', 2077, 8, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
+                     ('SC-2077-100-9', 'Bijay Bhatta', 'male', '2001-08-11', 'CSIT', '9811000009', 'bijay.bhatta@example.com', 'Mahendranagar Kanchanpur', 'Shankar Bhatta', '9812000009', '$password', 2077, 8, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
+                     ('SC-2077-100-10', 'Kripa Mahara', 'female', '2002-05-20', 'CSIT', '9811000010', 'kripa.mahara@example.com', 'Mahendranagar Kanchanpur', 'Birendra Mahara', '9812000010', '$password', 2077, 8, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png')";
 
        $conn->query($sql);
 } catch (Exception $e) {
@@ -59,16 +59,16 @@ try {
 # Code to Insert Dummy Student Data 2078 Batch ...
 try {
        $sql = "INSERT INTO Student (regdNo, name, gender, dob, faculty, phone, email, address, parentName, parentPhone, password, batch, semId, photo, seeResult, nebResult) VALUES
-              ('SC-2078-200-1', 'Sagar Bista', 'male', '2002-04-14', 'CSIT', '9813000001', 'sagar.bista@example.com', 'Mahendranagar Kanchanpur', 'Ganesh Bista', '9814000001', '$hashedPassword', 2078, 6, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
-              ('SC-2078-200-2', 'Niruta Saud', 'female', '2003-07-09', 'CSIT', '9813000002', 'niruta.saud@example.com', 'Mahendranagar Kanchanpur', 'Laxman Saud', '9814000002', '$hashedPassword', 2078, 6, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
-              ('SC-2078-200-3', 'Bikash Rokaya', 'male', '2002-10-22', 'CSIT', '9813000003', 'bikash.rokaya@example.com', 'Mahendranagar Kanchanpur', 'Raju Rokaya', '9814000003', '$hashedPassword', 2078, 6, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
-              ('SC-2078-200-4', 'Rachana Joshi', 'female', '2003-03-01', 'CSIT', '9813000004', 'rachana.joshi@example.com', 'Mahendranagar Kanchanpur', 'Prem Joshi', '9814000004', '$hashedPassword', 2078, 6, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
-              ('SC-2078-200-5', 'Bibek Shahi', 'male', '2002-06-18', 'CSIT', '9813000005', 'bibek.shahi@example.com', 'Mahendranagar Kanchanpur', 'Shiv Shahi', '9814000005', '$hashedPassword', 2078, 6, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
-              ('SC-2078-200-6', 'Pramila Bhatta', 'female', '2003-01-12', 'CSIT', '9813000006', 'pramila.bhatta@example.com', 'Mahendranagar Kanchanpur', 'Bishnu Bhatta', '9814000006', '$hashedPassword', 2078, 6, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
-              ('SC-2078-200-7', 'Anish Chand', 'male', '2002-08-05', 'CSIT', '9813000007', 'anish.chand@example.com', 'Mahendranagar Kanchanpur', 'Deepak Chand', '9814000007', '$hashedPassword', 2078, 6, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
-              ('SC-2078-200-8', 'Shristi Mahara', 'female', '2003-11-20', 'CSIT', '9813000008', 'shristi.mahara@example.com', 'Mahendranagar Kanchanpur', 'Ramesh Mahara', '9814000008', '$hashedPassword', 2078, 6, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
-              ('SC-2078-200-9', 'Pratik Joshi', 'male', '2002-12-03', 'CSIT', '9813000009', 'pratik.joshi@example.com', 'Mahendranagar Kanchanpur', 'Sushil Joshi', '9814000009', '$hashedPassword', 2078, 6, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
-              ('SC-2078-200-10', 'Santoshi Bista', 'female', '2003-02-14', 'CSIT', '9813000010', 'santoshi.bista@example.com', 'Mahendranagar Kanchanpur', 'Krishna Bista', '9814000010', '$hashedPassword', 2078, 6, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png')";
+              ('SC-2078-200-1', 'Sagar Bista', 'male', '2002-04-14', 'CSIT', '9813000001', 'sagar.bista@example.com', 'Mahendranagar Kanchanpur', 'Ganesh Bista', '9814000001', '$password', 2078, 6, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
+              ('SC-2078-200-2', 'Niruta Saud', 'female', '2003-07-09', 'CSIT', '9813000002', 'niruta.saud@example.com', 'Mahendranagar Kanchanpur', 'Laxman Saud', '9814000002', '$password', 2078, 6, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
+              ('SC-2078-200-3', 'Bikash Rokaya', 'male', '2002-10-22', 'CSIT', '9813000003', 'bikash.rokaya@example.com', 'Mahendranagar Kanchanpur', 'Raju Rokaya', '9814000003', '$password', 2078, 6, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
+              ('SC-2078-200-4', 'Rachana Joshi', 'female', '2003-03-01', 'CSIT', '9813000004', 'rachana.joshi@example.com', 'Mahendranagar Kanchanpur', 'Prem Joshi', '9814000004', '$password', 2078, 6, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
+              ('SC-2078-200-5', 'Bibek Shahi', 'male', '2002-06-18', 'CSIT', '9813000005', 'bibek.shahi@example.com', 'Mahendranagar Kanchanpur', 'Shiv Shahi', '9814000005', '$password', 2078, 6, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
+              ('SC-2078-200-6', 'Pramila Bhatta', 'female', '2003-01-12', 'CSIT', '9813000006', 'pramila.bhatta@example.com', 'Mahendranagar Kanchanpur', 'Bishnu Bhatta', '9814000006', '$password', 2078, 6, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
+              ('SC-2078-200-7', 'Anish Chand', 'male', '2002-08-05', 'CSIT', '9813000007', 'anish.chand@example.com', 'Mahendranagar Kanchanpur', 'Deepak Chand', '9814000007', '$password', 2078, 6, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
+              ('SC-2078-200-8', 'Shristi Mahara', 'female', '2003-11-20', 'CSIT', '9813000008', 'shristi.mahara@example.com', 'Mahendranagar Kanchanpur', 'Ramesh Mahara', '9814000008', '$password', 2078, 6, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
+              ('SC-2078-200-9', 'Pratik Joshi', 'male', '2002-12-03', 'CSIT', '9813000009', 'pratik.joshi@example.com', 'Mahendranagar Kanchanpur', 'Sushil Joshi', '9814000009', '$password', 2078, 6, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
+              ('SC-2078-200-10', 'Santoshi Bista', 'female', '2003-02-14', 'CSIT', '9813000010', 'santoshi.bista@example.com', 'Mahendranagar Kanchanpur', 'Krishna Bista', '9814000010', '$password', 2078, 6, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png')";
 
        $conn->query($sql);
 } catch (Exception $e) {
@@ -82,16 +82,16 @@ try {
 # Code to Insert Dummy Student Data Batch 2079 ...
 try {
        $sql = "INSERT INTO Student (regdNo, name, gender, dob, faculty, phone, email, address, parentName, parentPhone, password, batch, semId, photo, seeResult, nebResult) VALUES
-              ('SC-2079-300-1', 'Pawan Bista', 'male', '2003-03-12', 'CSIT', '9815000001', 'pawan.bista@example.com', 'Mahendranagar Kanchanpur', 'Narayan Bista', '9816000001', '$hashedPassword', 2079, 5, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
-              ('SC-2079-300-2', 'Sujata Saud', 'female', '2004-08-18', 'CSIT', '9815000002', 'sujata.saud@example.com', 'Mahendranagar Kanchanpur', 'Mahendra Saud', '9816000002', '$hashedPassword', 2079, 5, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
-              ('SC-2079-300-3', 'Suman Rokaya', 'male', '2003-10-25', 'CSIT', '9815000003', 'suman.rokaya@example.com', 'Mahendranagar Kanchanpur', 'Kiran Rokaya', '9816000003', '$hashedPassword', 2079, 5, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
-              ('SC-2079-300-4', 'Nikita Joshi', 'female', '2004-01-03', 'CSIT', '9815000004', 'nikita.joshi@example.com', 'Mahendranagar Kanchanpur', 'Prakash Joshi', '9816000004', '$hashedPassword', 2079, 5, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
-              ('SC-2079-300-5', 'Bibek Shahi', 'male', '2003-06-30', 'CSIT', '9815000005', 'bibek.shahi@example.com', 'Mahendranagar Kanchanpur', 'Ram Shahi', '9816000005', '$hashedPassword', 2079, 5, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
-              ('SC-2079-300-6', 'Pratiksha Bhatta', 'female', '2004-03-20', 'CSIT', '9815000006', 'pratiksha.bhatta@example.com', 'Mahendranagar Kanchanpur', 'Krishna Bhatta', '9816000006', '$hashedPassword', 2079, 5, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
-              ('SC-2079-300-7', 'Dipesh Chand', 'male', '2003-05-15', 'CSIT', '9815000007', 'dipesh.chand@example.com', 'Mahendranagar Kanchanpur', 'Hari Chand', '9816000007', '$hashedPassword', 2079, 5, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
-              ('SC-2079-300-8', 'Shristi Mahara', 'female', '2004-11-11', 'CSIT', '9815000008', 'shristi.mahara@example.com', 'Mahendranagar Kanchanpur', 'Kamal Mahara', '9816000008', '$hashedPassword', 2079, 5, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
-              ('SC-2079-300-9', 'Pravesh Joshi', 'male', '2003-08-05', 'CSIT', '9815000009', 'pravesh.joshi@example.com', 'Mahendranagar Kanchanpur', 'Sanjay Joshi', '9816000009', '$hashedPassword', 2079, 5, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
-              ('SC-2079-300-10', 'Alisha Bista', 'female', '2004-04-29', 'CSIT', '9815000010', 'alisha.bista@example.com', 'Mahendranagar Kanchanpur', 'Ramesh Bista', '9816000010', '$hashedPassword', 2079, 5, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png')";
+              ('SC-2079-300-1', 'Pawan Bista', 'male', '2003-03-12', 'CSIT', '9815000001', 'pawan.bista@example.com', 'Mahendranagar Kanchanpur', 'Narayan Bista', '9816000001', '$password', 2079, 5, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
+              ('SC-2079-300-2', 'Sujata Saud', 'female', '2004-08-18', 'CSIT', '9815000002', 'sujata.saud@example.com', 'Mahendranagar Kanchanpur', 'Mahendra Saud', '9816000002', '$password', 2079, 5, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
+              ('SC-2079-300-3', 'Suman Rokaya', 'male', '2003-10-25', 'CSIT', '9815000003', 'suman.rokaya@example.com', 'Mahendranagar Kanchanpur', 'Kiran Rokaya', '9816000003', '$password', 2079, 5, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
+              ('SC-2079-300-4', 'Nikita Joshi', 'female', '2004-01-03', 'CSIT', '9815000004', 'nikita.joshi@example.com', 'Mahendranagar Kanchanpur', 'Prakash Joshi', '9816000004', '$password', 2079, 5, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
+              ('SC-2079-300-5', 'Bibek Shahi', 'male', '2003-06-30', 'CSIT', '9815000005', 'bibeks.shahi@example.com', 'Mahendranagar Kanchanpur', 'Ram Shahi', '9816000005', '$password', 2079, 5, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
+              ('SC-2079-300-6', 'Pratiksha Bhatta', 'female', '2004-03-20', 'CSIT', '9815000006', 'pratiksha.bhatta@example.com', 'Mahendranagar Kanchanpur', 'Krishna Bhatta', '9816000006', '$password', 2079, 5, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
+              ('SC-2079-300-7', 'Dipesh Chand', 'male', '2003-05-15', 'CSIT', '9815000007', 'dipesh.chand@example.com', 'Mahendranagar Kanchanpur', 'Hari Chand', '9816000007', '$password', 2079, 4, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
+              ('SC-2079-300-8', 'Shanti Mahara', 'female', '2004-11-11', 'CSIT', '9815000008', 'shanti.mahara@example.com', 'Mahendranagar Kanchanpur', 'Kamal Mahara', '9816000008', '$password', 2079, 5, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
+              ('SC-2079-300-9', 'Pravesh Joshi', 'male', '2003-08-05', 'CSIT', '9815000009', 'pravesh.joshi@example.com', 'Mahendranagar Kanchanpur', 'Sanjay Joshi', '9816000009', '$password', 2079, 5, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
+              ('SC-2079-300-10', 'Alisha Bista', 'female', '2004-04-29', 'CSIT', '9815000010', 'alisha.bista@example.com', 'Mahendranagar Kanchanpur', 'Ramesh Bista', '9816000010', '$password', 2079, 5, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png')";
 
        $conn->query($sql);
 } catch (Exception $e) {
@@ -105,16 +105,16 @@ try {
 # Code to Insert Dummy Student Data Batch 2080 ...
 try {
        $sql = "INSERT INTO Student (regdNo, name, gender, dob, faculty, phone, email, address, parentName, parentPhone, password, batch, semId, photo, seeResult, nebResult) VALUES
-              ('SC-2080-400-1', 'Manoj Bista', 'male', '2004-02-11', 'CSIT', '9817000001', 'manoj.bista@example.com', 'Mahendranagar Kanchanpur', 'Dhan Bahadur Bista', '9818000001', '$hashedPassword', 2080, 4, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
-              ('SC-2080-400-2', 'Nisha Saud', 'female', '2005-06-09', 'CSIT', '9817000002', 'nisha.saud@example.com', 'Mahendranagar Kanchanpur', 'Prem Saud', '9818000002', '$hashedPassword', 2080, 4, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
-              ('SC-2080-400-3', 'Dipendra Rokaya', 'male', '2004-09-25', 'CSIT', '9817000003', 'dipendra.rokaya@example.com', 'Mahendranagar Kanchanpur', 'Keshav Rokaya', '9818000003', '$hashedPassword', 2080, 4, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
-              ('SC-2080-400-4', 'Alisha Joshi', 'female', '2005-01-13', 'CSIT', '9817000004', 'alisha.joshi@example.com', 'Mahendranagar Kanchanpur', 'Suresh Joshi', '9818000004', '$hashedPassword', 2080, 4, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
-              ('SC-2080-400-5', 'Sushant Shahi', 'male', '2004-07-30', 'CSIT', '9817000005', 'sushant.shahi@example.com', 'Mahendranagar Kanchanpur', 'Bishnu Shahi', '9818000005', '$hashedPassword', 2080, 4, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
-              ('SC-2080-400-6', 'Sajina Bhatta', 'female', '2005-03-05', 'CSIT', '9817000006', 'sajina.bhatta@example.com', 'Mahendranagar Kanchanpur', 'Govinda Bhatta', '9818000006', '$hashedPassword', 2080, 4, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
-              ('SC-2080-400-7', 'Ramesh Chand', 'male', '2004-05-19', 'CSIT', '9817000007', 'ramesh.chand@example.com', 'Mahendranagar Kanchanpur', 'Narayan Chand', '9818000007', '$hashedPassword', 2080, 4, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
-              ('SC-2080-400-8', 'Samiksha Mahara', 'female', '2005-10-10', 'CSIT', '9817000008', 'samiksha.mahara@example.com', 'Mahendranagar Kanchanpur', 'Rajendra Mahara', '9818000008', '$hashedPassword', 2080, 4, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
-              ('SC-2080-400-9', 'Pratik Joshi', 'male', '2004-12-01', 'CSIT', '9817000009', 'pratik.joshi2080@example.com', 'Mahendranagar Kanchanpur', 'Krishna Joshi', '9818000009', '$hashedPassword', 2080, 4, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
-              ('SC-2080-400-10', 'Apsara Bista', 'female', '2005-02-22', 'CSIT', '9817000010', 'apsara.bista@example.com', 'Mahendranagar Kanchanpur', 'Bhuwan Bista', '9818000010', '$hashedPassword', 2080, 4, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png')";
+              ('SC-2080-400-1', 'Manoj Bista', 'male', '2004-02-11', 'CSIT', '9817000001', 'manoj.bista@example.com', 'Mahendranagar Kanchanpur', 'Dhan Bahadur Bista', '9818000001', '$password', 2080, 4, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
+              ('SC-2080-400-2', 'Nisha Saud', 'female', '2005-06-09', 'CSIT', '9817000002', 'nisha.saud@example.com', 'Mahendranagar Kanchanpur', 'Prem Saud', '9818000002', '$password', 2080, 4, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
+              ('SC-2080-400-3', 'Dipendra Rokaya', 'male', '2004-09-25', 'CSIT', '9817000003', 'dipendra.rokaya@example.com', 'Mahendranagar Kanchanpur', 'Keshav Rokaya', '9818000003', '$password', 2080, 4, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
+              ('SC-2080-400-4', 'Alisha Joshi', 'female', '2005-01-13', 'CSIT', '9817000004', 'alisha.joshi@example.com', 'Mahendranagar Kanchanpur', 'Suresh Joshi', '9818000004', '$password', 2080, 4, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
+              ('SC-2080-400-5', 'Sushant Shahi', 'male', '2004-07-30', 'CSIT', '9817000005', 'sushant.shahi@example.com', 'Mahendranagar Kanchanpur', 'Bishnu Shahi', '9818000005', '$password', 2080, 4, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
+              ('SC-2080-400-6', 'Sajina Bhatta', 'female', '2005-03-05', 'CSIT', '9817000006', 'sajina.bhatta@example.com', 'Mahendranagar Kanchanpur', 'Govinda Bhatta', '9818000006', '$password', 2080, 4, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
+              ('SC-2080-400-7', 'Ramesh Chand', 'male', '2004-05-19', 'CSIT', '9817000007', 'ramesh.chand@example.com', 'Mahendranagar Kanchanpur', 'Narayan Chand', '9818000007', '$password', 2080, 4, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
+              ('SC-2080-400-8', 'Samiksha Mahara', 'female', '2005-10-10', 'CSIT', '9817000008', 'samiksha.mahara@example.com', 'Mahendranagar Kanchanpur', 'Rajendra Mahara', '9818000008', '$password', 2080, 4, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
+              ('SC-2080-400-9', 'Pratik Joshi', 'male', '2004-12-01', 'CSIT', '9817000009', 'pratik.joshi2080@example.com', 'Mahendranagar Kanchanpur', 'Krishna Joshi', '9818000009', '$password', 2080, 4, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
+              ('SC-2080-400-10', 'Apsara Bista', 'female', '2005-02-22', 'CSIT', '9817000010', 'apsara.bista@example.com', 'Mahendranagar Kanchanpur', 'Bhuwan Bista', '9818000010', '$password', 2080, 4, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png')";
 
        $conn->query($sql);
 } catch (Exception $e) {
@@ -129,16 +129,16 @@ try {
 # Code to Insert Dummy Student Data Batch 2081 ...
 try {
        $sql = "INSERT INTO Student (regdNo, name, gender, dob, faculty, phone, email, address, parentName, parentPhone, password, batch, semId, photo, seeResult, nebResult) VALUES
-              ('SC-2081-400-1', 'Rabin Joshi', 'male', '2005-01-11', 'CSIT', '9817000101', 'rabin.joshi@example.com', 'Dhangadhi, Kailali', 'Hari Joshi', '9818000101', '$hashedPassword', 2081, 2, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
-              ('SC-2081-400-2', 'Anisha Thapa', 'female', '2005-05-22', 'CSIT', '9817000102', 'anisha.thapa@example.com', 'Mahendranagar, Kanchanpur', 'Bishnu Thapa', '9818000102', '$hashedPassword', 2081, 2, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
-              ('SC-2081-400-3', 'Kiran Saud', 'male', '2004-09-18', 'CSIT', '9817000103', 'kiran.saud@example.com', 'Attariya, Kailali', 'Ram Saud', '9818000103', '$hashedPassword', 2081, 2, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
-              ('SC-2081-400-4', 'Sarita Bista', 'female', '2005-02-07', 'CSIT', '9817000104', 'sarita.bista@example.com', 'Bhimdatta, Kanchanpur', 'Mahendra Bista', '9818000104', '$hashedPassword', 2081, 2, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
-              ('SC-2081-400-5', 'Nirajan Rokaya', 'male', '2004-07-19', 'CSIT', '9817000105', 'nirajan.rokaya@example.com', 'Tikapur, Kailali', 'Khem Rokaya', '9818000105', '$hashedPassword', 2081, 2, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
-              ('SC-2081-400-6', 'Samjhana Chand', 'female', '2005-03-15', 'CSIT', '9817000106', 'Mahendranagar, Kanchanpur', 'Dilli Chand', '9818000106', '$hashedPassword', 2081, 2, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
-              ('SC-2081-400-7', 'Rupak Shahi', 'male', '2004-06-11', 'CSIT', '9817000107', 'Dhangadhi, Kailali', 'Surendra Shahi', '9818000107', '$hashedPassword', 2081, 2, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
-              ('SC-2081-400-8', 'Kabita Bhatta', 'female', '2005-10-03', 'CSIT', '9817000108', 'Bhimdatta, Kanchanpur', 'Prem Bhatta', '9818000108', '$hashedPassword', 2081, 2, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
-              ('SC-2081-400-9', 'Bibek Chand', 'male', '2004-11-25', 'CSIT', '9817000109', 'Mahendranagar, Kanchanpur', 'Rajan Chand', '9818000109', '$hashedPassword', 2081, 2, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
-              ('SC-2081-400-10', 'Asmita Saud', 'female', '2005-01-30', 'CSIT', '9817000110', 'asmita.saud@example.com', 'Dhangadhi, Kailali', 'Devendra Saud', '9818000110', '$hashedPassword', 2081, 2, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png')";
+              ('SC-2081-400-1', 'Rabin Joshi', 'male', '2005-01-11', 'CSIT', '9817000101', 'rabin.joshi@example.com', 'Dhangadhi, Kailali', 'Hari Joshi', '9818000101', '$password', 2081, 2, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
+              ('SC-2081-400-2', 'Anisha Thapa', 'female', '2005-05-22', 'CSIT', '9817000102', 'anisha.thapa@example.com', 'Mahendranagar, Kanchanpur', 'Bishnu Thapa', '9818000102', '$password', 2081, 2, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
+              ('SC-2081-400-3', 'Kiran Saud', 'male', '2004-09-18', 'CSIT', '9817000103', 'kiran.saud@example.com', 'Attariya, Kailali', 'Ram Saud', '9818000103', '$password', 2081, 2, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
+              ('SC-2081-400-4', 'Sarita Bista', 'female', '2005-02-07', 'CSIT', '9817000104', 'sarita.bista@example.com', 'Bhimdatta, Kanchanpur', 'Mahendra Bista', '9818000104', '$password', 2081, 2, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
+              ('SC-2081-400-5', 'Nirajan Rokaya', 'male', '2004-07-19', 'CSIT', '9817000105', 'nirajan.rokaya@example.com', 'Tikapur, Kailali', 'Khem Rokaya', '9818000105', '$password', 2081, 2, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
+              ('SC-2081-400-6', 'Samjhana Chand', 'female', '2005-03-15', 'CSIT', '9817000106', 'samjhana.chand@example.com', 'Mahendranagar, Kanchanpur', 'Dilli Chand', '9818000106', '$password', 2081, 2, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
+              ('SC-2081-400-7', 'Rupak Shahi', 'male', '2004-06-11', 'CSIT', '9817000107', 'rupak.shahi@example.com', 'Dhangadhi, Kailali', 'Surendra Shahi', '9818000107', '$password', 2081, 2, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
+              ('SC-2081-400-8', 'Kabita Bhatta', 'female', '2005-10-03', 'CSIT', '9817000108', 'kabita.bhatta@example.com', 'Bhimdatta, Kanchanpur', 'Prem Bhatta', '9818000108', '$password', 2081, 2, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
+              ('SC-2081-400-9', 'Bibek Chand', 'male', '2004-11-25', 'CSIT', '9817000109', 'bibek.chand@example.com', 'Mahendranagar, Kanchanpur', 'Rajan Chand', '9818000109', '$password', 2081, 2, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png'),
+              ('SC-2081-400-10', 'Asmita Saud', 'female', '2005-01-30', 'CSIT', '9817000110', 'asmita.saud@example.com', 'Dhangadhi, Kailali', 'Devendra Saud', '9818000110', '$password', 2081, 2, 'http://localhost/student-management-system/public/assets/images/image.jpg', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png', 'http://localhost/student-management-system/public/assets/images/demoSeeResult.png')";
 
        $conn->query($sql);
 } catch (Exception $e) {
@@ -153,7 +153,7 @@ try {
 # Code to Insert Dummy Running Semester (2, 4, 5, 6, 8) ...
 try {
        $sql = "INSERT INTO runningsemester (rsid, totalStudent, batch) VALUES
-              (2, 15, 2081), (4, 15, 2080), (5, 15, 2079), (6, 20, 2078), (8, 20, 2077)";
+              (2, 10, 2081), (4, 10, 2080), (5, 10, 2079), (6, 10, 2078), (8, 10, 2077)";
 
        $conn->query($sql);
 } catch (Exception $e) {
@@ -590,115 +590,9 @@ try {
 }
 
 
-
-
-
-
-# Code to Insert Dummy Data in Sem1Attendance Table ...
-try {
-       $sql = "INSERT INTO sem1Attendance (regdNo) VALUES
-              ('SC-2077-100-1'),
-              ('SC-2077-100-2'),
-              ('SC-2077-100-3'),
-              ('SC-2077-100-4'),
-              ('SC-2077-100-5'),
-              ('SC-2077-100-6'),
-              ('SC-2077-100-7'),
-              ('SC-2077-100-8'),
-              ('SC-2077-100-9'),
-              ('SC-2077-100-10'),
-              ('SC-2078-200-1'),
-              ('SC-2078-200-2'),
-              ('SC-2078-200-3'),
-              ('SC-2078-200-4'),
-              ('SC-2078-200-5'),
-              ('SC-2078-200-6'),
-              ('SC-2078-200-7'),
-              ('SC-2078-200-8'),
-              ('SC-2078-200-9'),
-              ('SC-2078-200-10'),
-              ('SC-2079-300-1'),
-              ('SC-2079-300-2'),
-              ('SC-2079-300-3'),
-              ('SC-2079-300-4'),
-              ('SC-2079-300-5'),
-              ('SC-2079-300-6'),
-              ('SC-2079-300-7'),
-              ('SC-2079-300-8'),
-              ('SC-2079-300-9'),
-              ('SC-2079-300-10'),
-              ('SC-2080-400-1'),
-              ('SC-2080-400-2'),
-              ('SC-2080-400-3'),
-              ('SC-2080-400-4'),
-              ('SC-2080-400-5'),
-              ('SC-2080-400-6'),
-              ('SC-2080-400-7'),
-              ('SC-2080-400-8'),
-              ('SC-2080-400-9'),
-              ('SC-2080-400-10'),
-              ('SC-2081-400-1'),
-              ('SC-2081-400-2'),
-              ('SC-2081-400-3'),
-              ('SC-2081-400-4'),
-              ('SC-2081-400-5'),
-              ('SC-2081-400-6'),
-              ('SC-2081-400-7'),
-              ('SC-2081-400-8'),
-              ('SC-2081-400-9'),
-              ('SC-2081-400-10')";
-       $conn->query($sql);
-} catch (Exception $e) {
-       exit("<br><b>Error:</b>" . $e->getMessage());
-}
-
-
-
-
-
 # Code to Insert Dummy Data in Sem2Attendance Table ...
 try {
        $sql = "INSERT INTO sem2Attendance (regdNo) VALUES
-              ('SC-2077-100-1'),
-              ('SC-2077-100-2'),
-              ('SC-2077-100-3'),
-              ('SC-2077-100-4'),
-              ('SC-2077-100-5'),
-              ('SC-2077-100-6'),
-              ('SC-2077-100-7'),
-              ('SC-2077-100-8'),
-              ('SC-2077-100-9'),
-              ('SC-2077-100-10'),
-              ('SC-2078-200-1'),
-              ('SC-2078-200-2'),
-              ('SC-2078-200-3'),
-              ('SC-2078-200-4'),
-              ('SC-2078-200-5'),
-              ('SC-2078-200-6'),
-              ('SC-2078-200-7'),
-              ('SC-2078-200-8'),
-              ('SC-2078-200-9'),
-              ('SC-2078-200-10'),
-              ('SC-2079-300-1'),
-              ('SC-2079-300-2'),
-              ('SC-2079-300-3'),
-              ('SC-2079-300-4'),
-              ('SC-2079-300-5'),
-              ('SC-2079-300-6'),
-              ('SC-2079-300-7'),
-              ('SC-2079-300-8'),
-              ('SC-2079-300-9'),
-              ('SC-2079-300-10'),
-              ('SC-2080-400-1'),
-              ('SC-2080-400-2'),
-              ('SC-2080-400-3'),
-              ('SC-2080-400-4'),
-              ('SC-2080-400-5'),
-              ('SC-2080-400-6'),
-              ('SC-2080-400-7'),
-              ('SC-2080-400-8'),
-              ('SC-2080-400-9'),
-              ('SC-2080-400-10'),
               ('SC-2081-400-1'),
               ('SC-2081-400-2'),
               ('SC-2081-400-3'),
@@ -713,59 +607,6 @@ try {
 } catch (Exception $e) {
        exit("<br><b>Error:</b>" . $e->getMessage());
 }
-
-
-
-
-
-# Code to Insert Dummy Data in Sem3Attendance Table ...
-try {
-       $sql = "INSERT INTO sem3Attendance (regdNo) VALUES
-              ('SC-2077-100-1'),
-              ('SC-2077-100-2'),
-              ('SC-2077-100-3'),
-              ('SC-2077-100-4'),
-              ('SC-2077-100-5'),
-              ('SC-2077-100-6'),
-              ('SC-2077-100-7'),
-              ('SC-2077-100-8'),
-              ('SC-2077-100-9'),
-              ('SC-2077-100-10'),
-              ('SC-2078-200-1'),
-              ('SC-2078-200-2'),
-              ('SC-2078-200-3'),
-              ('SC-2078-200-4'),
-              ('SC-2078-200-5'),
-              ('SC-2078-200-6'),
-              ('SC-2078-200-7'),
-              ('SC-2078-200-8'),
-              ('SC-2078-200-9'),
-              ('SC-2078-200-10'),
-              ('SC-2079-300-1'),
-              ('SC-2079-300-2'),
-              ('SC-2079-300-3'),
-              ('SC-2079-300-4'),
-              ('SC-2079-300-5'),
-              ('SC-2079-300-6'),
-              ('SC-2079-300-7'),
-              ('SC-2079-300-8'),
-              ('SC-2079-300-9'),
-              ('SC-2079-300-10'),
-              ('SC-2080-400-1'),
-              ('SC-2080-400-2'),
-              ('SC-2080-400-3'),
-              ('SC-2080-400-4'),
-              ('SC-2080-400-5'),
-              ('SC-2080-400-6'),
-              ('SC-2080-400-7'),
-              ('SC-2080-400-8'),
-              ('SC-2080-400-9'),
-              ('SC-2080-400-10')";
-       $conn->query($sql);
-} catch (Exception $e) {
-       exit("<br><b>Error:</b>" . $e->getMessage());
-}
-
 
 
 
@@ -773,46 +614,17 @@ try {
 # Code to Insert Dummy Data in Sem4Attendance Table ...
 try {
        $sql = "INSERT INTO sem4Attendance (regdNo) VALUES
-              ('SC-2077-100-1'),
-              ('SC-2077-100-2'),
-              ('SC-2077-100-3'),
-              ('SC-2077-100-4'),
-              ('SC-2077-100-5'),
-              ('SC-2077-100-6'),
-              ('SC-2077-100-7'),
-              ('SC-2077-100-8'),
-              ('SC-2077-100-9'),
-              ('SC-2077-100-10'),
-              ('SC-2078-200-1'),
-              ('SC-2078-200-2'),
-              ('SC-2078-200-3'),
-              ('SC-2078-200-4'),
-              ('SC-2078-200-5'),
-              ('SC-2078-200-6'),
-              ('SC-2078-200-7'),
-              ('SC-2078-200-8'),
-              ('SC-2078-200-9'),
-              ('SC-2078-200-10'),
-              ('SC-2079-300-1'),
-              ('SC-2079-300-2'),
-              ('SC-2079-300-3'),
-              ('SC-2079-300-4'),
-              ('SC-2079-300-5'),
-              ('SC-2079-300-6'),
-              ('SC-2079-300-7'),
-              ('SC-2079-300-8'),
-              ('SC-2079-300-9'),
-              ('SC-2079-300-10'),
-              ('SC-2080-400-1'),
-              ('SC-2080-400-2'),
-              ('SC-2080-400-3'),
-              ('SC-2080-400-4'),
-              ('SC-2080-400-5'),
-              ('SC-2080-400-6'),
-              ('SC-2080-400-7'),
-              ('SC-2080-400-8'),
-              ('SC-2080-400-9'),
-              ('SC-2080-400-10')";
+              ('SC-2080-300-1'),
+              ('SC-2080-300-2'),
+              ('SC-2080-300-3'),
+              ('SC-2080-300-4'),
+              ('SC-2080-300-5'),
+              ('SC-2080-300-6'),
+              ('SC-2080-300-7'),
+              ('SC-2080-300-8'),
+              ('SC-2080-300-9'),
+              ('SC-2080-300-10')";
+
        $conn->query($sql);
 } catch (Exception $e) {
        exit("<br><b>Error:</b>" . $e->getMessage());
@@ -825,36 +637,17 @@ try {
 # Code to Insert Dummy Data in Sem5Attendance Table ...
 try {
        $sql = "INSERT INTO sem5Attendance (regdNo) VALUES
-              ('SC-2077-100-1'),
-              ('SC-2077-100-2'),
-              ('SC-2077-100-3'),
-              ('SC-2077-100-4'),
-              ('SC-2077-100-5'),
-              ('SC-2077-100-6'),
-              ('SC-2077-100-7'),
-              ('SC-2077-100-8'),
-              ('SC-2077-100-9'),
-              ('SC-2077-100-10'),
-              ('SC-2078-200-1'),
-              ('SC-2078-200-2'),
-              ('SC-2078-200-3'),
-              ('SC-2078-200-4'),
-              ('SC-2078-200-5'),
-              ('SC-2078-200-6'),
-              ('SC-2078-200-7'),
-              ('SC-2078-200-8'),
-              ('SC-2078-200-9'),
-              ('SC-2078-200-10'),
-              ('SC-2079-300-1'),
-              ('SC-2079-300-2'),
-              ('SC-2079-300-3'),
-              ('SC-2079-300-4'),
-              ('SC-2079-300-5'),
-              ('SC-2079-300-6'),
-              ('SC-2079-300-7'),
-              ('SC-2079-300-8'),
-              ('SC-2079-300-9'),
-              ('SC-2079-300-10')";
+              ('SC-2079-200-1'),
+              ('SC-2079-200-2'),
+              ('SC-2079-200-3'),
+              ('SC-2079-200-4'),
+              ('SC-2079-200-5'),
+              ('SC-2079-200-6'),
+              ('SC-2079-200-7'),
+              ('SC-2079-200-8'),
+              ('SC-2079-200-9'),
+              ('SC-2079-200-10')";
+
        $conn->query($sql);
 } catch (Exception $e) {
        exit("<br><b>Error:</b>" . $e->getMessage());
@@ -867,16 +660,6 @@ try {
 # Code to Insert Dummy Data in Sem6Attendance Table ...
 try {
        $sql = "INSERT INTO sem6Attendance (regdNo) VALUES
-              ('SC-2077-100-1'),
-              ('SC-2077-100-2'),
-              ('SC-2077-100-3'),
-              ('SC-2077-100-4'),
-              ('SC-2077-100-5'),
-              ('SC-2077-100-6'),
-              ('SC-2077-100-7'),
-              ('SC-2077-100-8'),
-              ('SC-2077-100-9'),
-              ('SC-2077-100-10'),
               ('SC-2078-200-1'),
               ('SC-2078-200-2'),
               ('SC-2078-200-3'),
@@ -887,6 +670,7 @@ try {
               ('SC-2078-200-8'),
               ('SC-2078-200-9'),
               ('SC-2078-200-10')";
+
        $conn->query($sql);
 } catch (Exception $e) {
        exit("<br><b>Error:</b>" . $e->getMessage());
@@ -1603,5 +1387,102 @@ try {
        exit("<br><b>Error:</b>" . $e->getMessage());
 }
 
+?>
 
 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seed Data</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgb(58, 58, 58);
+        }
+
+        .container {
+            background-color: #d5d4d4;
+            padding: 3rem 4rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #333333;
+            margin-bottom: 1rem;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            color: #555555;
+            margin-bottom: 2rem;
+        }
+
+        a {
+            text-decoration: none;
+            background-color: #4CAF50;
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        a:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 2rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h3 {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Data Seeded Successfully!</h1>
+        <h3>To Use The System...</h3>
+        <a href='../../login.php'>Click Here</a>
+    </div>
+</body>
+</html>

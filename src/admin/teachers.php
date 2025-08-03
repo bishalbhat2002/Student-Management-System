@@ -95,7 +95,7 @@
                             }
                      ?>
 
-                     <div class="box-expan-normal center">
+                     <div class=" center">
                             <table>
                                    <thead class="top-sticky">
                                           <tr>

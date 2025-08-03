@@ -52,7 +52,7 @@
                                                                <td class="center"><?= $row['phone']?></td>
                                                                <td><?= $row['address']?></td>
                                                                <td>
-                                                                      <a href="students.php?view-student-regd-no" class="view-btn">View Details</a>
+                                                                      <a href="students.php?view-student-regdNo=<?= $row['regdNo']?>" class="view-btn">View Details</a>
                                                                </td>
                                                         </tr>
                                           <?php

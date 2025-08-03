@@ -76,7 +76,7 @@ if (isset($_GET['view-teacher-id'])) {
                      $batch = getSemBatch($semId);
 
                      try {
-                            $sql = "SELECT * FROM sem{$semId}StudyMaterials WHERE batch = $batch ORDER BY smid DESC";
+                            $sql = "SELECT * FROM sem{$semId}StudyMaterials WHERE batch = '$batch' ORDER BY smid DESC";
                             $result = $conn->query($sql);
                      } catch (Exception $e) {
                             die("<br><b>Error:</b> " . $e->getMessage());

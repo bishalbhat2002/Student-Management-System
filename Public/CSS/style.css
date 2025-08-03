@@ -255,6 +255,8 @@ body {
   /* Make a class for main grid area for each page...... */
   .main{
     grid-area: main;
+    overflow-y: auto;
+    position: relative;
   }
 }
 /* Common CSS Code for Body END here*/
@@ -1019,7 +1021,7 @@ table{
 
 table .top-sticky{
   position: sticky;
-  top: 7rem;
+  top: 0.1rem;
   z-index: 1;
 }
 
@@ -1100,10 +1102,10 @@ tr{
       margin: -0.3rem 0 1rem 0;
     }
     .sender-info-box{
-      width: 20rem;
+      width: 27rem;
       display: flex;
       gap: 1.5rem;
-      justify-content: start;
+      justify-content: end;
       align-items: baseline;
     }
    .teacher-name{
