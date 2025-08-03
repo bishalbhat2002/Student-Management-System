@@ -405,7 +405,7 @@ if (isset($_GET['view-courses'])) {
 } else {
        ?>
               <div class="main center">
-                     <div class="center-fdc gap">
+                     <div class="center-fdc gap-1">
                             <a href="?view-courses" class="view-btn x-width">View Courses</a>
                             <a href="?assign-teacher-to-course" class="view-btn x-width">Assign Teacher to a course</a>
                             <a href="?view-course-Schedule" class="view-btn x-width">View Course Schedule</a>

@@ -11,12 +11,12 @@ require_once "show_message.php";
               if (error) {
                      setTimeout(() => { // Hides Error Element after 3 Seconds
                             error.style.display = "none";
-                     }, 3000);
+                     }, 4000);
               }
               if (success) {
                      setTimeout(() => { // Hides Success Element after 3 Seconds
                             success.style.display = "none";
-                     }, 3000);
+                     }, 4000);
               }
 
        }

@@ -216,7 +216,7 @@
        }else{
 ?> 
        <div class="main center">
-       <div class="center-fdc gap">
+       <div class="center-fdc gap-1">
               <a href="?take-attendance" class="view-btn x-width">Take Attendance</a> 
               <a href="?view-attendance" class="view-btn x-width">View Attendance</a> 
        </div>

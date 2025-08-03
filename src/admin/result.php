@@ -703,7 +703,7 @@ if (isset($_GET['publish-result'])) {
 } else {
 ?>
        <div class="main center">
-              <div class="center-fdc gap">
+              <div class="center-fdc gap-1">
                      <a href="?publish-result" class="view-btn x-width">Publish Result</a>
                      <a href="?edit-result" class="view-btn x-width">Edit Result</a>
                      <a href="?view-result" class="view-btn x-width">View Result</a>

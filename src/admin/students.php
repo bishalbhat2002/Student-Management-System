@@ -831,7 +831,7 @@ if (isset($_GET['add-student'])) {
 } else {
 ?>
        <div class="main center">
-              <div class="center-fdct gap">
+              <div class="center-fdct gap-1">
                      <a href="?add-student" class="view-btn x-width">Add Student</a>
                      <a href="?view-student" class="view-btn x-width">View Student</a>
                      <a href="?edit-student" class="view-btn x-width">Edit Student</a>

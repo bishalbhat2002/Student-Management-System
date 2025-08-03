@@ -1,18 +1,55 @@
 <?php require_once "../includes/header.php"; ?>
    
+
+<!-- Code to View Student Notice -->
 <?php
-       if(isset($_GET['snv-id'])){
+if(isset($_GET['nid'])){
 ?>
-<!-- Code to View student Notice -->
-              <div class="center-fdct main">
+       <div class="center-fdct main">
+
+              <?php
+                     if(empty($_GET['nid'])){
+                            header("location: notices.php?error=Notice id is missing.");
+                            exit(); 
+                     }   
+                     
+                     try {
+                            $table = "student";  
+                            $nid = $_GET['nid'];  
+                            
+                            $sql = "SELECT * FROM {$table}notice WHERE nid = '$nid'";
+                            
+                            $result = $conn->query($sql);
+                            $row = $result->fetch_assoc();
+
+                            if ($result->num_rows === 0) {
+                                   header('location: notices.php?error=No Notice Found.');
+                                   exit();
+                            }
+                     } catch (Exception $e) {
+                            die("<br><b>Error:</b> " . $e->getMessage());
+                     }
+              
+              ?>
                      <h1 class="heading">View Notice</h1>
                      <div class="box notice-view-box">
-                            <h2 class="sub-heading">Notice Title...</h2>
-                            <p> Notice Body Message... Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, harum accusamus excepturi voluptate cum nemo eos distinctio optio repudiandae, aliquam quas sit nisi quibusdam similique reiciendis neque, fugiat velit quam.</p>
-                            <div class="center">
-                                   <img src="<?php echo BASE_URL;?>/public/assets/images/notice.jpeg" alt="Notice Image" class="notice-image">
-                            </div>
-                     <div class="center">Date: 2082/01/05</div>
+                            <h2 class="sub-heading"><?= $row['title']?></h2>
+                            <p> 
+                                   <?= $row['nbody']?>
+                            </p>
+
+                            <?php
+                                   if(!empty($row['photo'])){
+                            ?>
+                                          <div class="center">
+                                                 <a href="<?= $row['photo'] ?>"  download="Notice-sample-name" title="Click to download Notice">
+                                                        <img src="<?= $row['photo'] ?>" alt="Notice Image" class="notice-image">
+                                                 </a>
+                                          </div>
+                            <?php
+                                   }
+                            ?>
+                             <div class="center"><?= $row['date'] ?></div>
 
                      </div>
                     

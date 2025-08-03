@@ -1,3 +1,3 @@
 <?php
-       require_once "./includes/forbidden_page.php"
+       require_once "includes/forbidden_page.php"
 ?>
