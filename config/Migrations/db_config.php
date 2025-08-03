@@ -431,24 +431,24 @@ try {
 
 
 
-// Attendance Table Creation Code
-try {
-       $sql = "CREATE TABLE Attendance (
-              regdNo VARCHAR(20) PRIMARY KEY,
-              sem1 INT CHECK (sem1 > 0 AND sem1 < 60),
-              sem2 INT CHECK (sem2 > 0 AND sem2 < 60),
-              sem3 INT CHECK (sem3 > 0 AND sem3 < 60),
-              sem4 INT CHECK (sem4 > 0 AND sem4 < 60),
-              sem5 INT CHECK (sem5 > 0 AND sem5 < 60),
-              sem6 INT CHECK (sem6 > 0 AND sem6 < 60),
-              sem7 INT CHECK (sem7 > 0 AND sem7 < 60),
-              sem8 INT CHECK (sem8 > 0 AND sem8 < 60),
-              FOREIGN KEY (regdNo) REFERENCES Student(regdNo)
-              )";
-       $conn->query($sql);
-} catch (Exception $e) {
-       die("<b>Fees Table Creation Failed: </b>" . $e->getMessage());
-}
+// // Attendance Table Creation Code
+// try {
+//        $sql = "CREATE TABLE Attendance (
+//               regdNo VARCHAR(20) PRIMARY KEY,
+//               sem1 INT CHECK (sem1 > 0 AND sem1 < 60),
+//               sem2 INT CHECK (sem2 > 0 AND sem2 < 60),
+//               sem3 INT CHECK (sem3 > 0 AND sem3 < 60),
+//               sem4 INT CHECK (sem4 > 0 AND sem4 < 60),
+//               sem5 INT CHECK (sem5 > 0 AND sem5 < 60),
+//               sem6 INT CHECK (sem6 > 0 AND sem6 < 60),
+//               sem7 INT CHECK (sem7 > 0 AND sem7 < 60),
+//               sem8 INT CHECK (sem8 > 0 AND sem8 < 60),
+//               FOREIGN KEY (regdNo) REFERENCES Student(regdNo)
+//               )";
+//        $conn->query($sql);
+// } catch (Exception $e) {
+//        die("<b>Fees Table Creation Failed: </b>" . $e->getMessage());
+// }
 
 
 // sem(1-8)Attendance Table Creation Code

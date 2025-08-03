@@ -60,21 +60,23 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 
     // Execute insert
     try {
+        #Add Admission for a student
         $sql = "INSERT INTO sem{$semId}Admission (regdNo, admissionAmount, photo) 
                 VALUES ('$regdNo', '$amount', '$voucherPhotoPath')";
         $conn->query($sql);
 
+        #Add the data in Fees Table
         $sqlFees = "UPDATE fees set sem{$semId} = '$amount' where regdNo = '$regdNo'";
         $conn->query($sqlFees);
 
+        #Update runningSemester Total Student Info
         $sql2 = "UPDATE runningSemester set totalStudent = totalStudent + 1 Where rsid = '$semId'";
         $conn->query($sql2);
 
+        #Insert the same student RegdNo to Sem(1-8)attendance table
         $sql3 = "INSERT into sem{$semId}attendance (regdNo) values ('$regdNo')";
         $conn->query($sql3);
-
         header("location: ../students.php?view-admission-semId=$semId&success=Student Admitted successfully to ".getSemName($semId)." Semester");
-
         exit();
     } catch (Exception $e) {
         header("location: ../students.php?add-admission-regdNo=$regdNo&error=".$e->getMessage());
