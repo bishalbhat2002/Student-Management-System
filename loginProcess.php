@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 if ($_SERVER['REQUEST_METHOD']==="POST") {
@@ -6,7 +5,7 @@ if ($_SERVER['REQUEST_METHOD']==="POST") {
               $role = $_POST['role'];
               $username = $_POST['username'];
               $password = $_POST['password'];
-
+       
               // Admin, Teacher, and Student Table - all have different primary Keys (aid, tid, and regdNo.). So, to search on all 3 table based on role at once, we use if else condition.. 
               $table;
               $usernameColumn;

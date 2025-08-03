@@ -154,7 +154,7 @@ for($i=1; $i<=8; $i++){
                      admission_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                      photo VARCHAR(255),
                      FOREIGN KEY (regdNo) REFERENCES Student(regdNo)
-                     )";
+                     )"; 
               $conn->query($sql);
        } catch (Exception $e) {
               die("<b>Sem{$i}Admission Table Creation Failed: </b>" . $e->getMessage());
@@ -584,32 +584,32 @@ require_once "../absolutepath.php";
        $demoPhoto = BASE_URL.'/public/assets/images/image.jpg';
        $demoSeeResult = BASE_URL.'/public/assets/images/demoSeeResult.png';
        $demoNebResult  = BASE_URL.'/public/assets/images/demoNebResult.png';
+       $password = '0000';
+       
        try{
               $sql = "INSERT INTO Admin (aid, name, gender, dob, faculty, phone, email, address, password, photo) VALUES
-                     ('admin', 'Bishal Bhat', 'male', '2002-12-17', 'Science & Technology', '9841000001', 'bishalbhat2002@gmail.com', 'Mahendranagar, Kanchanpur Nepal', '0000', '$demoPhoto'),
-                     ('admin2', 'Bob Smith', 'Male', '1975-09-20', 'Engineering', '9841000002', 'bob@example.com', '456 Admin Rd, City', 'password456', '$demoPhoto')";
+                     ('admin', 'Bishal Bhat', 'male', '2002-12-17', 'Science & Technology', '9841000001', 'bishalbhat2002@gmail.com', 'Mahendranagar, Kanchanpur Nepal', '$password', '$demoPhoto'),
+                     ('admin2', 'Bob Smith', 'Male', '1975-09-20', 'Engineering', '9841000002', 'bob@example.com', '456 Admin Rd, City', '$password', '$demoPhoto')";
               $conn->query($sql);
-              echo "<br>Demo Data Inserted Successfully...";
+              echo "<br>Demo Admin Data Inserted Successfully...";
        }catch(Exception $e){
               die("<b>Error while inserting Admin Demo records: </b>".$e->getMessage());
        }          
        
        try{
               $sql = "INSERT INTO Teacher (name, gender, dob, faculty, academicQualification, phone, email, address, password, photo) VALUES
-                     ('Bishal Bhat', 'male', '2002-12-17', 'Science & Technology', 'Masters in IT' ,'9841012345', 'bishalbhat2002@gmail.com', 'Mahendranagar, Kanchanpur Nepal', '0000', '$demoPhoto'),
-                     ('Ms. Diana Lee', 'Female', '1985-11-22', 'Physics', 'MBA' , '9841012346', 'diana@example.com', '101 Teacher Blvd, City', '0000', '$demoPhoto')";
+                     ('Bishal Bhat', 'male', '2002-12-17', 'Science & Technology', 'Masters in IT' ,'9841012345', 'bishalbhat2002@gmail.com', 'Mahendranagar, Kanchanpur', '$password', '$demoPhoto')";
               $conn->query($sql);
-              echo "<br>Demo Data Inserted Successfully...";
+              echo "<br>Demo Teacher Data Inserted Successfully...";
        }catch(Exception $e){
               die("<b>Error while inserting teacher Demo records: </b>".$e->getMessage());
        }          
        
        try{
               $sql = "INSERT INTO Student (regdNo, name, gender, dob, faculty, phone, email, address, parentName, parentPhone, password, batch, photo, seeResult, nebResult) VALUES
-                     ('student', 'Bishal Bhat', 'male', '2002-12-17', 'Science & Technology', '9841023456', 'bishalbhat2002@gmail.com', 'Mahendranagar, Kanchanpur Nepal', 'xyzzz', '9841098765', '0000', 2060,'$demoPhoto', '$demoSeeResult', '$demoNebResult'),
-                     ('S1002', 'Fiona Patel', 'Female', '2006-08-12', 'Engineering', '9841023457', 'fiona@example.com', '303 Student Rd, City', 'Raj Patel', '9841098766', 'studpass2', 2061, '$demoPhoto', '$demoSeeResult', '$demoNebResult')";
+                     ('student', 'Bishal Bhat', 'male', '2002-12-17', 'Science & Technology', '9841023456', 'bishalbhat2002@gmail.com', 'Mahendranagar, Kanchanpur Nepal', 'xyzzz', '9841098765', '$password', 2082,'$demoPhoto', '$demoSeeResult', '$demoNebResult')";
               $conn->query($sql);
-              echo "<br>Demo Data Inserted Successfully...";
+              echo "<br>Demo Student Data Inserted Successfully...";
        }catch(Exception $e){
               die("<b>Error while inserting StudentDemo records: </b>".$e->getMessage());
        }   
