@@ -22,7 +22,6 @@ try {
        die("<b>Database Creation Failed: </b>" . $e->getMessage());
 }
 
-
 // Admin Table Creation Code
 try {
        $sql = "CREATE TABLE Admin (
@@ -468,7 +467,7 @@ for($i=1; $i<=8; $i++){
 }
 
 
-echo "<b>All tables Created successfully....</b>";
+// echo "<b>All tables Created successfully....</b>";
 
 // Filling Course tables Sem(1-8)Course Tables code Start:
 // All semester courses in associative array
@@ -570,7 +569,7 @@ require_once "../absolutepath.php";
                      ('admin', 'Bishal Bhat', 'male', '2002-12-17', 'Science & Technology', '9841000001', 'bishalbhat2002@gmail.com', 'Mahendranagar, Kanchanpur Nepal', '$password', '$demoPhoto'),
                      ('admin2', 'Bob Smith', 'Male', '1975-09-20', 'Engineering', '9841000002', 'bob@example.com', '456 Admin Rd, City', '$password', '$demoPhoto')";
               $conn->query($sql);
-              echo "<br>Demo Admin Data Inserted Successfully...";
+              // echo "<br>Demo Admin Data Inserted Successfully...";
        }catch(Exception $e){
               die("<b>Error while inserting Admin Demo records: </b>".$e->getMessage());
        }          
@@ -579,7 +578,7 @@ require_once "../absolutepath.php";
               $sql = "INSERT INTO Teacher (name, gender, dob, faculty, academicQualification, phone, email, address, password, photo) VALUES
                      ('Bishal Bhat', 'male', '2002-12-17', 'Science & Technology', 'Masters in IT' ,'9841012345', 'bishalbhat2002@gmail.com', 'Mahendranagar, Kanchanpur', '$password', '$demoPhoto')";
               $conn->query($sql);
-              echo "<br>Demo Teacher Data Inserted Successfully...";
+              // echo "<br>Demo Teacher Data Inserted Successfully...";
        }catch(Exception $e){
               die("<b>Error while inserting teacher Demo records: </b>".$e->getMessage());
        }          
@@ -588,7 +587,7 @@ require_once "../absolutepath.php";
               $sql = "INSERT INTO Student (regdNo, name, gender, dob, faculty, phone, email, address, parentName, parentPhone, password, batch, semId, photo, seeResult, nebResult) VALUES
                      ('student', 'Bishal Bhat', 'male', '2002-12-17', 'Science & Technology', '9841023456', 'bishalbhat2002@gmail.com', 'Mahendranagar, Kanchanpur Nepal', 'xyzzz', '9841098765', '$password', 2082, 1, '$demoPhoto', '$demoSeeResult', '$demoNebResult')";
               $conn->query($sql);
-              echo "<br>Demo Student Data Inserted Successfully...";
+              // echo "<br>Demo Student Data Inserted Successfully...";
        }catch(Exception $e){
               die("<b>Error while inserting StudentDemo records: </b>".$e->getMessage());
        }   
@@ -597,3 +596,101 @@ require_once "../absolutepath.php";
 $conn->close();
 
 ?>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create DB</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgb(58, 58, 58);
+        }
+
+        .container {
+            background-color: #d5d4d4;
+            padding: 3rem 4rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #333333;
+            margin-bottom: 1rem;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            color: #555555;
+            margin-bottom: 2rem;
+        }
+
+        a {
+            text-decoration: none;
+            background-color: #4CAF50;
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        a:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 2rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h3 {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Database Created Successfully!</h1>
+        <h3>Choose Any one...</h3>
+        <a href='../Seeders/seedDatabase.php'>Add Dummy Data to Database Here</a>
+        <a href='../../login.php'>Go to Login Page</a>
+    </div>
+</body>
+</html>
