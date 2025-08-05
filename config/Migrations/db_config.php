@@ -33,7 +33,7 @@ try {
               faculty VARCHAR(100),
               phone VARCHAR(15) UNIQUE NOT NULL,
               email VARCHAR(100) UNIQUE NOT NULL,
-              address TEXT,
+              address varchar(100),
               password VARCHAR(255) NOT NULL,
               photo VARCHAR(255) DEFAULT '../../public/assets/images/image.jpg'
               )";
@@ -430,26 +430,6 @@ try {
 }
 
 
-// // Attendance Table Creation Code
-// try {
-//        $sql = "CREATE TABLE Attendance (
-//               regdNo VARCHAR(20) PRIMARY KEY,
-//               sem1 INT CHECK (sem1 > 0 AND sem1 < 60),
-//               sem2 INT CHECK (sem2 > 0 AND sem2 < 60),
-//               sem3 INT CHECK (sem3 > 0 AND sem3 < 60),
-//               sem4 INT CHECK (sem4 > 0 AND sem4 < 60),
-//               sem5 INT CHECK (sem5 > 0 AND sem5 < 60),
-//               sem6 INT CHECK (sem6 > 0 AND sem6 < 60),
-//               sem7 INT CHECK (sem7 > 0 AND sem7 < 60),
-//               sem8 INT CHECK (sem8 > 0 AND sem8 < 60),
-//               FOREIGN KEY (regdNo) REFERENCES Student(regdNo)
-//               )";
-//        $conn->query($sql);
-// } catch (Exception $e) {
-//        die("<b>Fees Table Creation Failed: </b>" . $e->getMessage());
-// }
-
-
 // sem(1-8)Attendance Table Creation Code
 for($i=1; $i<=8; $i++){
        try {
@@ -605,8 +585,8 @@ require_once "../absolutepath.php";
        }          
        
        try{
-              $sql = "INSERT INTO Student (regdNo, name, gender, dob, faculty, phone, email, address, parentName, parentPhone, password, batch, semId,photo, seeResult, nebResult) VALUES
-                     ('student', 'Bishal Bhat', 'male', '2002-12-17', 'Science & Technology', '9841023456', 'bishalbhat2002@gmail.com', 'Mahendranagar, Kanchanpur Nepal', 'xyzzz', '9841098765', '$password', 2082, 2, '$demoPhoto', '$demoSeeResult', '$demoNebResult')";
+              $sql = "INSERT INTO Student (regdNo, name, gender, dob, faculty, phone, email, address, parentName, parentPhone, password, batch, semId, photo, seeResult, nebResult) VALUES
+                     ('student', 'Bishal Bhat', 'male', '2002-12-17', 'Science & Technology', '9841023456', 'bishalbhat2002@gmail.com', 'Mahendranagar, Kanchanpur Nepal', 'xyzzz', '9841098765', '$password', 2082, 1, '$demoPhoto', '$demoSeeResult', '$demoNebResult')";
               $conn->query($sql);
               echo "<br>Demo Student Data Inserted Successfully...";
        }catch(Exception $e){
