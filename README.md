@@ -13,7 +13,7 @@ This project was developed as **Minor Project I for the 6th Semester of BSc CSIT
 Since the project is not deployed online, a **video demonstration is available on YouTube.**
 
 ### Watch Project Demo Video  
-https://youtu.be/k1pUgNJp3Is?si=Be9SCcZVg65oj-To
+https://youtu.be/k1pUgNJp3Is
 
 ---
 
