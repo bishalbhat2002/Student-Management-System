@@ -136,114 +136,6 @@ Frontend technologies used:
 
 ---
 
-# 📁 Project Structure
-
-```
-Student-Management-System/
-    ├── config/
-    │   ├── Seeders/
-    │   │   ├── seedDatabase.php
-    │   ├── absolutepath.php
-    │   ├── db_config.php
-    │   ├── db_connect.php
-    ├── Public/
-    │   ├── assets/
-    │   │   ├── images/
-    │   │   │   ├── demoNebResult.png
-    │   │   │   ├── DemoNotice.png
-    │   │   │   ├── demoSeeResult.png
-    │   │   │   ├── demoVoucher.png
-    │   │   │   ├── fwu-logo.jpg
-    │   │   │   ├── hambuger.png
-    │   │   │   ├── hat.png
-    │   │   │   ├── image.jpg
-    │   │   │   ├── notice.jpeg
-    │   │   │   ├── result.png
-    │   │   │   ├── student.png
-    │   ├── CSS/
-    │   │   ├── loginstyle.css
-    │   │   ├── mediaqueries.css
-    │   │   ├── style.css
-    │   │   ├── utilityClasses.css
-    │   ├── JS/
-    │   │   ├── script.js
-    ├── src/
-    │   ├── admin/
-    │   │   ├── processes/
-    │   │   │   ├── addAdmission.php
-    │   │   │   ├── connection.php
-    │   │   │   ├── coursesProcess.php
-    │   │   │   ├── index.php
-    │   │   │   ├── noticeProcess.php
-    │   │   │   ├── resetPassword.php
-    │   │   │   ├── resultProcess.php
-    │   │   │   ├── semester.php
-    │   │   │   ├── studentProcess.php
-    │   │   │   ├── teacherProcess.php
-    │   │   │   ├── updateAdminInfo.php
-    │   │   │   ├── updatePassword.php
-    │   │   ├── courses.php
-    │   │   ├── dashboard.php
-    │   │   ├── index.php
-    │   │   ├── notices.php
-    │   │   ├── result.php
-    │   │   ├── semesters.php
-    │   │   ├── students.php
-    │   │   ├── teachers.php
-    │   ├── includes/
-    │   │   ├── footer.php
-    │   │   ├── forbidden_page.php
-    │   │   ├── functions.php
-    │   │   ├── header.php
-    │   │   ├── index.php
-    │   │   ├── show_message.php
-    │   │   ├── showNonRunningSemester.php
-    │   │   ├── showRunningSemester.php
-    │   │   ├── showSemester.php
-    │   │   ├── showTeacher.php
-    │   ├── student/
-    │   │   ├── processes/
-    │   │   │   ├── connection.php
-    │   │   │   ├── index.php
-    │   │   │   ├── updatePassword.php
-    │   │   │   ├── updateStudentInfo.php
-    │   │   ├── courses.php
-    │   │   ├── dashboard.php
-    │   │   ├── index.php
-    │   │   ├── notices.php
-    │   │   ├── result.php
-    │   │   ├── study-materials.php
-    │   │   ├── view-fees.php
-    │   ├── teacher/
-    │   │   ├── processes/
-    │   │   │   ├── attendanceProcess.php
-    │   │   │   ├── connection.php
-    │   │   │   ├── studyMaterialProcess.php
-    │   │   │   ├── updatePassword.php
-    │   │   │   └── updateTeacherInfo.php
-    │   │   ├── attendance.php
-    │   │   ├── courses.php
-    │   │   ├── dashboard.php
-    │   │   ├── index.php
-    │   │   ├── notices.php
-    │   │   ├── study-materials.php
-    │   ├── index.php
-    ├── uploads/
-    │   ├── StudyMaterials/
-    │   │   └── index.php
-    │   └── index.php
-    ├── index.php
-    ├── login.php
-    ├── loginProcess.php
-    └── usernamesPasswords.txt
-
-
-```
-
-
-
----
-
 # ⚙️ Running the Project Locally
 
 Follow these steps to run the project on your local machine.
@@ -270,8 +162,8 @@ Example path:
 ```
 C:/xampp/htdocs/student-management-system
 
-Note: The folder name must be "student-management-system".
 ```
+Note: The folder name must be "student-management-system".
 
 ---
 
@@ -410,3 +302,111 @@ This project was developed as part of:
 # ⭐ Support
 
 If you find this project useful, consider giving it a ⭐ on GitHub.
+
+
+
+---
+
+# 📁 Project Structure
+
+```
+Student-Management-System/
+    ├── config/
+    │   ├── Seeders/
+    │   │   ├── seedDatabase.php
+    │   ├── absolutepath.php
+    │   ├── db_config.php
+    │   ├── db_connect.php
+    ├── Public/
+    │   ├── assets/
+    │   │   ├── images/
+    │   │   │   ├── demoNebResult.png
+    │   │   │   ├── DemoNotice.png
+    │   │   │   ├── demoSeeResult.png
+    │   │   │   ├── demoVoucher.png
+    │   │   │   ├── fwu-logo.jpg
+    │   │   │   ├── hambuger.png
+    │   │   │   ├── hat.png
+    │   │   │   ├── image.jpg
+    │   │   │   ├── notice.jpeg
+    │   │   │   ├── result.png
+    │   │   │   ├── student.png
+    │   ├── CSS/
+    │   │   ├── loginstyle.css
+    │   │   ├── mediaqueries.css
+    │   │   ├── style.css
+    │   │   ├── utilityClasses.css
+    │   ├── JS/
+    │   │   ├── script.js
+    ├── src/
+    │   ├── admin/
+    │   │   ├── processes/
+    │   │   │   ├── addAdmission.php
+    │   │   │   ├── connection.php
+    │   │   │   ├── coursesProcess.php
+    │   │   │   ├── index.php
+    │   │   │   ├── noticeProcess.php
+    │   │   │   ├── resetPassword.php
+    │   │   │   ├── resultProcess.php
+    │   │   │   ├── semester.php
+    │   │   │   ├── studentProcess.php
+    │   │   │   ├── teacherProcess.php
+    │   │   │   ├── updateAdminInfo.php
+    │   │   │   ├── updatePassword.php
+    │   │   ├── courses.php
+    │   │   ├── dashboard.php
+    │   │   ├── index.php
+    │   │   ├── notices.php
+    │   │   ├── result.php
+    │   │   ├── semesters.php
+    │   │   ├── students.php
+    │   │   ├── teachers.php
+    │   ├── includes/
+    │   │   ├── footer.php
+    │   │   ├── forbidden_page.php
+    │   │   ├── functions.php
+    │   │   ├── header.php
+    │   │   ├── index.php
+    │   │   ├── show_message.php
+    │   │   ├── showNonRunningSemester.php
+    │   │   ├── showRunningSemester.php
+    │   │   ├── showSemester.php
+    │   │   ├── showTeacher.php
+    │   ├── student/
+    │   │   ├── processes/
+    │   │   │   ├── connection.php
+    │   │   │   ├── index.php
+    │   │   │   ├── updatePassword.php
+    │   │   │   ├── updateStudentInfo.php
+    │   │   ├── courses.php
+    │   │   ├── dashboard.php
+    │   │   ├── index.php
+    │   │   ├── notices.php
+    │   │   ├── result.php
+    │   │   ├── study-materials.php
+    │   │   ├── view-fees.php
+    │   ├── teacher/
+    │   │   ├── processes/
+    │   │   │   ├── attendanceProcess.php
+    │   │   │   ├── connection.php
+    │   │   │   ├── studyMaterialProcess.php
+    │   │   │   ├── updatePassword.php
+    │   │   │   └── updateTeacherInfo.php
+    │   │   ├── attendance.php
+    │   │   ├── courses.php
+    │   │   ├── dashboard.php
+    │   │   ├── index.php
+    │   │   ├── notices.php
+    │   │   ├── study-materials.php
+    │   ├── index.php
+    ├── uploads/
+    │   ├── StudyMaterials/
+    │   │   └── index.php
+    │   └── index.php
+    ├── index.php
+    ├── login.php
+    ├── loginProcess.php
+    └── usernamesPasswords.txt
+
+
+```
