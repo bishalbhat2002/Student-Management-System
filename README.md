@@ -161,7 +161,6 @@ Example path:
 
 ```
 C:/xampp/htdocs/student-management-system
-
 ```
 Note: The folder name must be "student-management-system".
 
