@@ -557,7 +557,7 @@ foreach ($semCourses as $sem => $courses) {
 // Filling Course tables Sem(1-8)Course Tables code End:
 
 
-require_once "../absolutepath.php";
+require_once "absolutepath.php";
 #Inserting demo records in users table for Testing...  // Comment this part after executing this file once...
        $demoPhoto = BASE_URL.'/public/assets/images/image.jpg';
        $demoSeeResult = BASE_URL.'/public/assets/images/demoSeeResult.png';
@@ -689,8 +689,8 @@ $conn->close();
     <div class="container">
         <h1>Database Created Successfully!</h1>
         <h3>Choose Any one...</h3>
-        <a href='../Seeders/seedDatabase.php'>Add Dummy Data to Database Here</a>
-        <a href='../../login.php'>Go to Login Page</a>
+        <a href='Seeders/seedDatabase.php'>Add Dummy Data to Database Here</a>
+        <a href='../login.php'>Go to Login Page</a>
     </div>
 </body>
 </html>
